@@ -5,6 +5,8 @@ for all physical objects that have a position and rotation in space.
 
 """
 
+from roco.api.Component import Component
+
 class MechanicalComponent(Component):
     """A derived component to act as a base for all mechanical objects.
 

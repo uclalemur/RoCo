@@ -5,6 +5,8 @@ for all physical objects that can be constructed by folding 2D faces.
 
 """
 
+from MechanicalComponent import MechanicalComponent
+
 class FoldedComponent(MechanicalComponent):
     """A type of MechanicalComponent is a base for all foldable structures.
 

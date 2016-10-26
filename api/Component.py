@@ -5,6 +5,7 @@ components.
 
 """
 
+from Parameterized import Parameterized
 
 def getSubcomponentObject(component, name=None, **kwargs):
     """Function to generate an instantiated component from the class name.

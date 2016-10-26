@@ -4,6 +4,8 @@ This module contains the Port class.
 
 """
 
+from Parameterized import Parameterized
+
 class Port(Parameterized):
     """A class representing an abstract port
 
