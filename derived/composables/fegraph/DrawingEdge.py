@@ -14,8 +14,15 @@ class EdgeType():
     """
 
 class DrawingEdge():
-  """
-  A class representing an Edge.
+  """A class representing an Edge.
+
+  Attributes:
+      name (str): The name of the edge
+      x1 (int): The x coordinate of the first point of the edge
+      y1 (int): The y coordinate of the first point of the edge
+      x2 (int): The x coordinate of the second point of the edge
+      y2 (int): The y coordinate of the second point of the edge
+      edgetype (EdgeType): The type of edge being represented
   """
 
   def __init__(self, name, pt1, pt2, edgetype):
