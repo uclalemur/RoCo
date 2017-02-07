@@ -36,3 +36,54 @@ class Component(Parameterized):
             define the output of the component.
 
     """
+
+    def __init__(self, yaml_file=None, **kwargs):
+        """Constructs a new Component object.
+
+        Creates a Component that is either blank or loaded from a yaml file.
+
+        Args:
+            yaml_file (str): The optional yaml file to load the component information from.
+            **kwargs: Arbitrary keyword arguments to control construction.
+
+        """
+
+    def _make_test(self, protobuf=False, display=True):
+        """Constructs a test version of the Component.
+
+        Sets test parameters as defined by the Component and creates output.
+
+        Args:
+            protobuf (Boolean): Whether to construct a protobuf or not.
+            display (Boolean): Whether to display the output or not.
+
+        """
+
+    def _str_to_sympy(self, s):
+        """Converts string to sympy expression
+
+        Uses this Component's parameters to convert a string to a sympy expression.
+
+        Args:
+            s (str): The string to convert
+
+        Returns:
+            The sympy expression.
+
+        """
+
+    def _from_yaml(self, file_name):
+        """Loads in component information from a YAML file.
+
+        Args:
+            file_name (str): The name of the yaml file.
+
+        """
+
+    def define(self, **kwargs):
+        """Function for overriding interfaces.
+
+        Args:
+            **kwargs: Arbitrary keyword arguments
+
+        """
