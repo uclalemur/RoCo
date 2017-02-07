@@ -59,13 +59,13 @@ class Component(Parameterized):
 
         """
 
-    def _str_to_sympy(self, s):
+    def _str_to_sympy(self, string):
         """Converts string to sympy expression
 
         Uses this Component's parameters to convert a string to a sympy expression.
 
         Args:
-            s (str): The string to convert
+            string (str): The string to convert
 
         Returns:
             The sympy expression.
@@ -85,5 +85,32 @@ class Component(Parameterized):
 
         Args:
             **kwargs: Arbitrary keyword arguments
+
+        """
+
+    def add_subcomponent(self, name, object_type, **kwargs):
+        """Adds a subcomponent to this Component.
+
+        Args:
+            name (str): unique identifier to refer to this subcomponent by
+            object_type (str or type): code name of the subcomponent should be python file/class or yaml name
+
+        """
+
+    def del_subcomponent(self, name):
+        """Deletes a subcomponent to this Component and performs any cleanup necessary
+
+        Args:
+            name (str): unique identifier of subcomponent to delete
+
+        """
+
+    def add_parameter_constraint(self, (subcomponent, parameter_name), constraint):
+        """Constraints subcomponent parameter.
+
+        Args:
+            (subcomponent, parameter_name) (tuple(str,str)): a tuple representing a subcomponent a related parameter
+                to constrain.
+            constraint (Number or sympy expression): the constraint to impose on the subcomponent parameter.
 
         """
