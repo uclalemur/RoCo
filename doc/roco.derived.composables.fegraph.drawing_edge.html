@@ -1,0 +1,128 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module roco.derived.composables.fegraph.drawing_edge</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="roco.html"><font color="#ffffff">roco</font></a>.<a href="roco.derived.html"><font color="#ffffff">derived</font></a>.<a href="roco.derived.composables.html"><font color="#ffffff">composables</font></a>.<a href="roco.derived.composables.fegraph.html"><font color="#ffffff">fegraph</font></a>.drawing_edge</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/prathyushk/Development/LEMUR/robot-compiler/roco/derived/composables/fegraph/drawing_edge.py">/Users/prathyushk/Development/LEMUR/robot-compiler/roco/derived/composables/fegraph/drawing_edge.py</a></font></td></tr></table>
+    <p><tt>The&nbsp;<a href="#DrawingEdge">DrawingEdge</a>&nbsp;module<br>
+&nbsp;<br>
+The&nbsp;Drawing&nbsp;edge&nbsp;module&nbsp;contains&nbsp;the&nbsp;<a href="#EdgeType">EdgeType</a>&nbsp;class,&nbsp;defining&nbsp;how&nbsp;edges&nbsp;are<br>
+treated&nbsp;by&nbsp;output&nbsp;methods,&nbsp;and&nbsp;the&nbsp;<a href="#DrawingEdge">DrawingEdge</a>&nbsp;class&nbsp;representing&nbsp;the&nbsp;edges<br>
+that&nbsp;make&nbsp;up&nbsp;a&nbsp;Drawing</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="roco.derived.composables.fegraph.drawing_edge.html#DrawingEdge">DrawingEdge</a>
+</font></dt><dt><font face="helvetica, arial"><a href="roco.derived.composables.fegraph.drawing_edge.html#EdgeType">EdgeType</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DrawingEdge">class <strong>DrawingEdge</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;class&nbsp;representing&nbsp;an&nbsp;Edge.<br>
+&nbsp;<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(str):&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;edge<br>
+&nbsp;&nbsp;&nbsp;&nbsp;x1&nbsp;(int):&nbsp;The&nbsp;x&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;first&nbsp;point&nbsp;of&nbsp;the&nbsp;edge<br>
+&nbsp;&nbsp;&nbsp;&nbsp;y1&nbsp;(int):&nbsp;The&nbsp;y&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;first&nbsp;point&nbsp;of&nbsp;the&nbsp;edge<br>
+&nbsp;&nbsp;&nbsp;&nbsp;x2&nbsp;(int):&nbsp;The&nbsp;x&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;second&nbsp;point&nbsp;of&nbsp;the&nbsp;edge<br>
+&nbsp;&nbsp;&nbsp;&nbsp;y2&nbsp;(int):&nbsp;The&nbsp;y&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;second&nbsp;point&nbsp;of&nbsp;the&nbsp;edge<br>
+&nbsp;&nbsp;&nbsp;&nbsp;edgetype&nbsp;(<a href="#EdgeType">EdgeType</a>):&nbsp;The&nbsp;type&nbsp;of&nbsp;edge&nbsp;being&nbsp;represented<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="DrawingEdge-__init__"><strong>__init__</strong></a>(self, name, pt1, pt2, edgetype)</dt><dd><tt>Initializes&nbsp;an&nbsp;Edge&nbsp;object&nbsp;with&nbsp;pt1&nbsp;and&nbsp;pt2&nbsp;in&nbsp;the&nbsp;form&nbsp;((x1,y1),(x2,y2))<br>
+&nbsp;<br>
+The&nbsp;Edge&nbsp;can&nbsp;have&nbsp;5&nbsp;different&nbsp;types:&nbsp;CUT,&nbsp;FLAT,&nbsp;BEND,&nbsp;FOLD,&nbsp;TAB<br>
+&nbsp;<br>
+:param&nbsp;pt1:&nbsp;location&nbsp;of&nbsp;point&nbsp;one&nbsp;in&nbsp;the&nbsp;form&nbsp;(x1,&nbsp;y1)<br>
+:type&nbsp;pt1:&nbsp;tuple<br>
+:param&nbsp;pt2:&nbsp;location&nbsp;of&nbsp;point&nbsp;one&nbsp;in&nbsp;the&nbsp;form&nbsp;(x2,&nbsp;y2)<br>
+:type&nbsp;pt2:&nbsp;tuple<br>
+:param&nbsp;mode:&nbsp;5&nbsp;different&nbsp;types&nbsp;of&nbsp;Edges:&nbsp;CUT,&nbsp;FLAT,&nbsp;BEND,&nbsp;FOLD,&nbsp;TAB<br>
+:type&nbsp;mode:&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="DrawingEdge-angle"><strong>angle</strong></a>(self, deg<font color="#909090">=False</font>)</dt><dd><tt>:param&nbsp;deg:&nbsp;sets&nbsp;the&nbsp;angle&nbsp;return&nbsp;type&nbsp;to&nbsp;be&nbsp;deg&nbsp;or&nbsp;rad<br>
+:type&nbsp;deg:&nbsp;boolean<br>
+&nbsp;<br>
+:returns:&nbsp;angle&nbsp;of&nbsp;the&nbsp;Edge&nbsp;instance&nbsp;wrt&nbsp;the&nbsp;positive&nbsp;x&nbsp;axis<br>
+:rtype:&nbsp;numpy.float64</tt></dd></dl>
+
+<dl><dt><a name="DrawingEdge-coords"><strong>coords</strong></a>(self)</dt><dd><tt>:returns:&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;coordinates&nbsp;of&nbsp;the&nbsp;Edge&nbsp;instance&nbsp;endpoints<br>
+:rtype:&nbsp;list&nbsp;of&nbsp;[[x1,y1],[x2,y2]]&nbsp;rounded&nbsp;to&nbsp;the&nbsp;nearest&nbsp;1e-6</tt></dd></dl>
+
+<dl><dt><a name="DrawingEdge-copy"><strong>copy</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DrawingEdge-elongate"><strong>elongate</strong></a>(self, lengths, otherway<font color="#909090">=False</font>)</dt><dd><tt>Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;Edge&nbsp;instances&nbsp;that&nbsp;extend&nbsp;out&nbsp;from&nbsp;the&nbsp;endpoint&nbsp;of&nbsp;another&nbsp;Edge&nbsp;instance.<br>
+Mode&nbsp;of&nbsp;all&nbsp;smaller&nbsp;edges&nbsp;is&nbsp;the&nbsp;same&nbsp;as&nbsp;the&nbsp;original&nbsp;Edge&nbsp;instance.<br>
+&nbsp;<br>
+:param&nbsp;lengths:&nbsp;list&nbsp;of&nbsp;lengths&nbsp;to&nbsp;split&nbsp;the&nbsp;Edge&nbsp;instance&nbsp;into<br>
+:type&nbsp;lengths:&nbsp;list<br>
+:param&nbsp;otherway:&nbsp;boolean&nbsp;specifying&nbsp;where&nbsp;to&nbsp;start&nbsp;from&nbsp;(pt2&nbsp;if&nbsp;otherway&nbsp;==&nbsp;False,&nbsp;pt1&nbsp;if&nbsp;otherway&nbsp;==&nbsp;True)<br>
+:type&nbsp;otherway:&nbsp;boolean<br>
+&nbsp;<br>
+:returns:&nbsp;a&nbsp;list&nbsp;of&nbsp;Edge&nbsp;instances&nbsp;that&nbsp;extend&nbsp;out&nbsp;from&nbsp;the&nbsp;endpoint&nbsp;of&nbsp;another&nbsp;Edge&nbsp;instance<br>
+:rtype:&nbsp;a&nbsp;list&nbsp;of&nbsp;Edge&nbsp;instances</tt></dd></dl>
+
+<dl><dt><a name="DrawingEdge-flip"><strong>flip</strong></a>(self)</dt><dd><tt>Flips&nbsp;the&nbsp;directionality&nbsp;of&nbsp;an&nbsp;Edge&nbsp;instance&nbsp;around</tt></dd></dl>
+
+<dl><dt><a name="DrawingEdge-invert"><strong>invert</strong></a>(self)</dt><dd><tt>Swaps&nbsp;mountain&nbsp;and&nbsp;valley&nbsp;folds</tt></dd></dl>
+
+<dl><dt><a name="DrawingEdge-length"><strong>length</strong></a>(self)</dt><dd><tt>Uses&nbsp;the&nbsp;diag()&nbsp;function<br>
+&nbsp;<br>
+:returns:&nbsp;the&nbsp;length&nbsp;of&nbsp;the&nbsp;edge<br>
+:rtype:&nbsp;np.float64</tt></dd></dl>
+
+<dl><dt><a name="DrawingEdge-midpt"><strong>midpt</strong></a>(self)</dt><dd><tt>:returns:&nbsp;a&nbsp;tuple&nbsp;of&nbsp;the&nbsp;edge&nbsp;midpoint<br>
+:rtype:&nbsp;tuple</tt></dd></dl>
+
+<dl><dt><a name="DrawingEdge-mirrorX"><strong>mirrorX</strong></a>(self)</dt><dd><tt>Changes&nbsp;the&nbsp;coordinates&nbsp;of&nbsp;an&nbsp;Edge&nbsp;instance&nbsp;so&nbsp;that&nbsp;it&nbsp;is&nbsp;symmetric&nbsp;about&nbsp;the&nbsp;Y&nbsp;axis.</tt></dd></dl>
+
+<dl><dt><a name="DrawingEdge-mirrorY"><strong>mirrorY</strong></a>(self)</dt><dd><tt>Changes&nbsp;the&nbsp;coordinates&nbsp;of&nbsp;an&nbsp;Edge&nbsp;instance&nbsp;so&nbsp;that&nbsp;it&nbsp;is&nbsp;symmetric&nbsp;about&nbsp;the&nbsp;X&nbsp;axis.</tt></dd></dl>
+
+<dl><dt><a name="DrawingEdge-toDrawing"><strong>toDrawing</strong></a>(self, drawing, label<font color="#909090">=''</font>, mode<font color="#909090">=None</font>, engine<font color="#909090">=None</font>)</dt><dd><tt>Draws&nbsp;an&nbsp;Edge&nbsp;instance&nbsp;to&nbsp;a&nbsp;CAD&nbsp;file.<br>
+&nbsp;<br>
+:type&nbsp;drawing:<br>
+:param&nbsp;drawing:<br>
+:type&nbsp;label:&nbsp;tuple<br>
+:param&nbsp;label:&nbsp;location&nbsp;of&nbsp;point&nbsp;two&nbsp;in&nbsp;the&nbsp;form&nbsp;(x2,y2).<br>
+:type&nbsp;mode:<br>
+:param&nbsp;mode:</tt></dd></dl>
+
+<dl><dt><a name="DrawingEdge-transform"><strong>transform</strong></a>(self, scale<font color="#909090">=1</font>, angle<font color="#909090">=0</font>, origin<font color="#909090">=(0, 0)</font>)</dt><dd><tt>Scales,&nbsp;rotates,&nbsp;and&nbsp;translates&nbsp;an&nbsp;Edge&nbsp;instance.<br>
+&nbsp;<br>
+:param&nbsp;scale:&nbsp;scaling&nbsp;factor<br>
+:type&nbsp;scale:&nbsp;float<br>
+:param&nbsp;angle:&nbsp;angle&nbsp;to&nbsp;rotate&nbsp;in&nbsp;radians<br>
+:type&nbsp;angle:&nbsp;float<br>
+:param&nbsp;origin:&nbsp;origin<br>
+:type&nbsp;origin:&nbsp;tuple</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="EdgeType">class <strong>EdgeType</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Representation&nbsp;of&nbsp;the&nbsp;different&nbsp;modes&nbsp;of&nbsp;Edge&nbsp;instances<br>
+&nbsp;<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;edgetype&nbsp;(int):&nbsp;An&nbsp;enum&nbsp;representing&nbsp;the&nbsp;edge&nbsp;type<br>
+&nbsp;&nbsp;&nbsp;&nbsp;angle&nbsp;(int):&nbsp;the&nbsp;angle&nbsp;between&nbsp;the&nbsp;faces&nbsp;of&nbsp;the&nbsp;edge<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"></td></tr></table></td></tr></table>
+</body></html>

@@ -5,7 +5,7 @@ graph class
 """
 
 from fegraph.face_edge_graph import FaceEdgeGraph
-from roco.api.Composable import Composable
+from roco.api.composable import Composable
 
 class GraphComposable(Composable,FaceEdgeGraph):
     """Class allowing output to be produced from FaceEdgeGraphs

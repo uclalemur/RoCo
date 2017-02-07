@@ -4,7 +4,7 @@ This module contains the EdgePort class.
 
 """
 
-from roco.api.Port import Port
+from roco.api.port import Port
 
 class EdgePort(Port):
     """A class representing a physical edge that can be connected to.
