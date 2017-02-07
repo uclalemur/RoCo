@@ -179,6 +179,19 @@ class Parameterized(object):
         """
 
     def set_variable_solved(self, name, value):
+        """Sets a solved value for the symbolic variable
+
+        Args:
+            name (str): the name of the parameter to set the value to.
+            value(Number): the value to assign to the parameter
+        """
+
     def get_variable_value(self, name):
-    def fix_variable(self, name, value):
-    def unfix_variable(self, name):
+        """Returns the solved value of a parameter
+
+        Args:
+            name (str): the name of the parameter.
+
+        Returns:
+            the value of the parameter.
+        """
