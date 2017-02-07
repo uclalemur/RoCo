@@ -27,15 +27,14 @@ class Parameterized(object):
 
     """
     def __init__(self):
-        """
-        Creates a the parameterized object.
+        """Creates a parameterized object.
 
         Args:
             None
         """
+
     def get_name(self):
-        """
-        Returns the name of the parameterized object.
+        """Returns the name of the parameterized object.
 
         Args:
             None
@@ -43,16 +42,16 @@ class Parameterized(object):
         Returns:
             A str representation of the object's name
         """
+
     def set_name(self, name):
-        """
-        Sets the name of the parameterized object.
+        """Sets the name of the parameterized object.
 
         Args:
             name (str): the new object name
         """
+
     def add_parameter(self, name, value, is_symbol=True, **kwargs):
-        """
-        Adds a k/v pair to the internal store if the key has not been added
+        """Adds a k/v pair to the internal store if the key has not been added
             before
 
         Args:
@@ -71,9 +70,9 @@ class Parameterized(object):
             KeyError: A parameter called name has already been created
             ValueError: Invalid characters in name
         """
+
     def set_parameter(self, name, value, force_constant=False):
-        """
-        Sets a k/v pair to the internal store if the key has been added previously
+        """Sets a k/v pair to the internal store if the key has been added previously
 
         Args:
             name (str): the parameter name
@@ -89,9 +88,9 @@ class Parameterized(object):
             KeyError: A parameter called name does not exist
             ValueError: Old parameter value is a constant and cannot be changed
         """
+
     def get_parameter(self, name, strict=True):
-        """
-        Retrieves the parameter with the given name
+        """Retrieves the parameter with the given name
 
         Args:
             name (str): the parameter name
@@ -104,9 +103,9 @@ class Parameterized(object):
         Raises:
             KeyError: A parameter called name does not exist or is uninitialized
         """
+
     def has_parameter(self, name):
-        """
-        Check if a parameter with the given name exists
+        """Check if a parameter with the given name exists
 
         Args:
             name (str): the parameter name
@@ -114,9 +113,9 @@ class Parameterized(object):
         Returns:
             True if the parameter exists, False otherwise
         """
-    def inheritParameters(self, other, prefix):
-        """
-        Adds parameters from another parameterized object to the current object
+
+    def inherit_parameters(self, other, prefix):
+        """Adds parameters from another parameterized object to the current object
 
         Args:
             other (Parameterized): the parameterized object to inherit
@@ -124,9 +123,9 @@ class Parameterized(object):
             prefix (str): a prefix string to be added to the name of inherited
                 parameters
         """
-    def delParameter(self, name):
-        """
-        Removes the parameter with the given name
+
+    def del_parameter(self, name):
+        """Removes the parameter with the given name
 
         Args:
             name (str): the parameter name
@@ -137,3 +136,49 @@ class Parameterized(object):
         Raises:
             KeyError: A parameter called name does not exist
         """
+
+    def get_variable_sub(self, parameter):
+        """Gets the non ambiguous variable for the parameter
+
+        Args:
+            parameter (Dummy): the parameter object desired
+
+        Returns:
+            The non ambiguous variable for the parameter
+
+        Raises:
+            KeyError: The parameter does not exist in the scope of the object
+        """
+
+    def get_all_subs(self):
+        """Gets the variable substitutions for all the parameters in the object
+
+        Args:
+            None
+
+        Returns:
+            A dictionary containing all (parameter, value) pairs found
+        """
+
+    def get_constraints(self):
+        """Gets all the constraints associated with the parameterized object
+
+        Args:
+            None
+
+        Returns:
+            A list containing all constraint expressions
+        """
+
+    def add_constraint(self, expression):
+        """Adds a new sympy constraint to the parameterized object
+
+        Args:
+            expression(sympy.core.relational): A sympy expression representing a
+                relationship between two or more parameters
+        """
+
+    def set_variable_solved(self, name, value):
+    def get_variable_value(self, name):
+    def fix_variable(self, name, value):
+    def unfix_variable(self, name):
