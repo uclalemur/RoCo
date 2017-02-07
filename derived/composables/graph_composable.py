@@ -4,7 +4,7 @@ Contains the GraphComposable class, which adds output functionality to the
 graph class
 """
 
-from fegraph.FaceEdgeGraph import FaceEdgeGraph
+from fegraph.face_edge_graph import FaceEdgeGraph
 from roco.api.Composable import Composable
 
 class GraphComposable(Composable,FaceEdgeGraph):

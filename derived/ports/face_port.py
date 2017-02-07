@@ -4,7 +4,7 @@ This module contains the FacePort class.
 
 """
 
-from SixDOFPort import SixDOFPort
+from six_dof_port import SixDOFPort
 
 class FacePort(SixDOFPort):
     """A class representing a physical face that can be connected to.

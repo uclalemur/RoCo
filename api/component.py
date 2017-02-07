@@ -5,9 +5,9 @@ components.
 
 """
 
-from Parameterized import Parameterized
+from parameterized import Parameterized
 
-def getSubcomponentObject(component, name=None, **kwargs):
+def get_subcomponent_object(component, name=None, **kwargs):
     """Function to generate an instantiated component from the class name.
 
     Args:

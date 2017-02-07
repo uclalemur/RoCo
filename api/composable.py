@@ -14,17 +14,17 @@ class Composable():
     def new(self):
         return self.__class__()
 
-    def append(self, newComposable, newPrefix):
+    def append(self, new_composable, new_prefix):
         raise NotImplementedError
 
-    def addComponent(self, componentObj):
+    def add_component(self, component_obj):
         pass
 
-    def addInterface(self, newInterface):
+    def add_interface(self, new_interface):
         pass
 
-    def attach(self, fromPort, toPort, kwargs):
+    def attach(self, from_port, to_port, kwargs):
         raise NotImplementedError
 
-    def makeOutput(self, filedir, **kwargs):
+    def make_output(self, file_dir, **kwargs):
         raise NotImplementedError
