@@ -114,3 +114,81 @@ class Component(Parameterized):
             constraint (Number or sympy expression): the constraint to impose on the subcomponent parameter.
 
         """
+
+
+    def add_connection(self, (from_name, from_interface), (to_name, to_interface), **kwargs):
+        """ Specifies interfaces on subcomponents to be connected
+
+        Args:
+            (from_name, from_interface) (tuple(str, str)): a tuple containing the name of the subcomponent, and the
+                name of the interface the connection comes from
+            (to_name, to_interface) (tuple(str, str)): a tuple containing the name of the subcomponent, and the
+                name of the interface the connection goes to
+
+        """
+
+    def to_yaml(self, filename):
+        """ Generates YAML file containing component information
+
+        Args:
+            filename (str): name of the yaml file to be generated
+        """
+
+    def assemble(self):
+        """ Assembles the component
+
+        """
+
+    def append(self, name, prefix):
+        """ Appends composables on each of the subcomponents to composable on current component
+
+        Args:
+            name (str): name of subcomponent
+            prefix (str):
+
+
+        """
+
+    def attach(self, (from_name, from_port), (to_name, to_port), kwargs):
+        """ Attaches the specified ports on the subcoponents
+
+        Args:
+            (from_name, from_port) (tuple(str, str)): a tuple containing the name of the subcomponent, and the interface
+                on the component to attach from
+            (to_name, to_port) (tuple(str, str)): a tuple containing the name of the subcomponent, and the interface
+                on the component to attach to
+        """
+
+    def resolveSubcomponent(self, name):
+        """ Creates subcomponent object and adds it to the current component
+
+        Args:
+            name: name of subcomponent to be created
+
+        """
+
+    def evalComponents(self):
+        """ Creates composables in current component based on composables in each of the subcomponents, then
+            appends composables in subcomponents to corresponding composable in component
+
+        """
+
+    def evalInterfaces(self):
+        """ Adds interfaces to composables
+
+        """
+
+
+    def evalConnections(self):
+        """ Attaches each of the ports between which a connection was made
+
+        """
+
+    def make(self):
+        """ Evaluates subcomponents, connections, and constraints, then assembles the component
+
+        """
+
+
+
+
