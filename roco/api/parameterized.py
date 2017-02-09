@@ -195,3 +195,8 @@ class Parameterized(object):
         Returns:
             the value of the parameter.
         """
+
+    def solve(self):
+        """Performs the solving that is necessary
+
+        """
