@@ -115,7 +115,34 @@ class Component(Parameterized):
 
         """
 
+    def add_interface(self, name, val):
+        """Adds an interface to this component.
 
+        Args:
+            name (str): unique identifier for interface that will be added to the component.
+            val (Port): the value that the new interface takes on.
+        """
+    def del_interface(self, name):
+        """Deletes an interface from this component.
+
+        Args:
+            name (str): unique identifier for interface that will be deleted from the component.
+        """
+    def inherit_all_interfaces(self, subcomponent, prefix=""):
+        """Adds all interfaces from subcomponent to current component
+
+        Args:
+            subcomponent (Component): Component object from which all the interfaces will be inherited.
+            prefix (str): name of component, will automatically work if ignored or left as "" (an empty string).
+        """
+    def inherit_interface(self, name, (subcomponent, subname)):
+        """Adds specified interface from subcomponent to current component
+
+        Args:
+            name (str): New unique identifier for the interface that will be inherited.
+            (subcomponent, subname) (tuple(Component, str)): Component object from which the specified interface
+                will be inherited, and the name of the interface that is to be inherited from the subcomponent
+        """
     def add_connection(self, (from_name, from_interface), (to_name, to_interface), **kwargs):
         """ Specifies interfaces on subcomponents to be connected
 
@@ -134,6 +161,70 @@ class Component(Parameterized):
             filename (str): name of the yaml file to be generated
         """
 
+    def get_subcomponent(self, name):
+        """ Returns specified subcomponent of the component
+
+        Args:
+            name (str): name of the subcomponent to return
+        """
+
+    def set_subcomponent_parameter(self, (c, n), v):
+        """ Sets parameter of subcomponent tot he specified value
+
+        Args:
+            (c, n) (tuple (str, str)): name of subcomponent, and name of parameter to modify
+            v (str): Value of the parameter
+        """
+
+    def get_defaults(self):
+        """ Gets a dictionary of default values for the parameters
+
+        Args:
+            None
+
+        Returns:
+            A dictionary relating parameter names to parameter values.
+        """
+
+    def get_all_defaults(self):
+        """ Gets a dictionary of default values for the parameters including the ones from the subcomponents
+
+        Args:
+            None
+
+        Returns:
+            A dictionary relating parameter names to parameter values.
+        """
+
+    def get_subcomponent_interface(self, component, name):
+        """ Returns a subcomponent interface
+
+        Args:
+            component (str): name of the subcomponent
+            name (str): name of the interface in that subcomponent
+
+        Returns:
+            the interface belonging to 'component' with name 'name'
+        """
+
+    def get_interface(self, name):
+        """ Returns a interface of this component
+
+        Args:
+            name (str): name of the interface to return
+
+        Returns:
+            the interface with name 'name'
+        """
+
+    def set_interface(self, name, value):
+        """ Sets a interface as passed in
+
+        Args:
+            name (str): name of the interface to set
+            value: the value to set the interface to
+        """
+
     def assemble(self):
         """ Assembles the component
 
@@ -145,7 +236,6 @@ class Component(Parameterized):
         Args:
             name (str): name of subcomponent
             prefix (str):
-
 
         """
 
@@ -159,7 +249,7 @@ class Component(Parameterized):
                 on the component to attach to
         """
 
-    def resolveSubcomponent(self, name):
+    def resolve_subcomponent(self, name):
         """ Creates subcomponent object and adds it to the current component
 
         Args:
@@ -167,19 +257,19 @@ class Component(Parameterized):
 
         """
 
-    def evalComponents(self):
+    def eval_subcomponents(self):
         """ Creates composables in current component based on composables in each of the subcomponents, then
             appends composables in subcomponents to corresponding composable in component
 
         """
 
-    def evalInterfaces(self):
+    def eval_interfaces(self):
         """ Adds interfaces to composables
 
         """
 
 
-    def evalConnections(self):
+    def eval_connections(self):
         """ Attaches each of the ports between which a connection was made
 
         """
@@ -188,7 +278,3 @@ class Component(Parameterized):
         """ Evaluates subcomponents, connections, and constraints, then assembles the component
 
         """
-
-
-
-
