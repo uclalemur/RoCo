@@ -168,12 +168,12 @@ class Component(Parameterized):
             name (str): name of the subcomponent to return
         """
 
-    def set_subcomponent_parameter(self, (c, n), v):
-        """ Sets parameter of subcomponent tot he specified value
+    def set_subcomponent_parameter(self, (subcomponent, parameter), value):
+        """ Sets parameter of subcomponent to the specified value
 
         Args:
-            (c, n) (tuple (str, str)): name of subcomponent, and name of parameter to modify
-            v (str): Value of the parameter
+            (subcomponent, parameter) (tuple (str, str)): name of subcomponent, and name of parameter to modify
+            value: Value of the parameter
         """
 
     def get_defaults(self):
@@ -313,30 +313,30 @@ class Component(Parameterized):
 
         """
 
-    def make_component_tree(self, fn, root="Root"):
+    def make_component_tree(self, file_name, tree_name="Root"):
         """Creates a image depicting the component tree
 
         Args:
-            fn (str): filename to write image to
-            root (str): name of the tree
+            file_name (str): filename to write image to
+            tree_name (str): name of the tree
 
         """
 
-    def recurse_component_tree(self, graph, mynode, myname):
+    def recurse_component_tree(self, graph, my_node, my_name):
         """Helper function to recurse down component tree to create it
 
         Args:
             graph (pydot.Dot): graph to add all the nodes to.
-            mynode (pydot.Node): current node that is being added and will be recursed upon.
-            myname (str): name of the tree.
+            my_node (pydot.Node): current node that is being added and will be recursed upon.
+            my_name (str): name of the tree.
 
         """
 
-    def make_output(self, filedir=".", **kwargs):
+    def make_output(self, file_dir=".", **kwargs):
         """Creates output based on the kwargs
 
         Args:
-            filedir (str): directory to store output
+            file_dir (str): directory to store output
             kwargs (dict): arguments dictating which output to make
 
         """

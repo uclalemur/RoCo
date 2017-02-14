@@ -206,11 +206,11 @@ class Parameterized(object):
             the value of the parameter.
         """
 
-    def eval_equation(self, eqn):
+    def eval_equation(self, equation):
         """Evaluates given sympy expression using the parameters.
 
         Args:
-            eqn (sympy symbol or expression): A sympy variable or expression to be evaluated
+            equation (sympy symbol or expression): A sympy variable or expression to be evaluated
 
         Returns:
             Evaluated value for expression.
