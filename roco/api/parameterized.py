@@ -178,6 +178,16 @@ class Parameterized(object):
                 relationship between two or more parameters
         """
 
+    def check_constraints(self):
+        """Verifies that all constraints are satisfied
+
+        Args:
+            None
+
+        Returns:
+            True if the constraints are all satisfied, false otherwise
+        """
+
     def set_variable_solved(self, name, value):
         """Sets a solved value for the symbolic variable
 
@@ -191,6 +201,19 @@ class Parameterized(object):
 
         Args:
             name (str): the name of the parameter.
+
+        Returns:
+            the value of the parameter.
+        """
+
+    def eval_equation(self, eqn):
+        """Evaluates given sympy expression using the parameters.
+
+        Args:
+            eqn (sympy symbol or expression): A sympy variable or expression to be evaluated
+
+        Returns:
+            Evaluated value for expression.
 
         Returns:
             the value of the parameter.

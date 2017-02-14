@@ -257,6 +257,30 @@ class Component(Parameterized):
 
         """
 
+    def resolve_subcomponents(self):
+        """Calls resolve_subcomponent on all subcomponents
+
+        Args:
+            None
+
+        """
+
+    def inherit_constraints(self, subcomponent):
+        """Inherits the constraints from a subcomponent
+
+        Args:
+            subcomponent (str): name of subcomponent to inherit from
+
+        """
+
+    def eval_constraints(self):
+        """Evaluates all the constraints imposed on subcomponents
+
+        Args:
+            None
+
+        """
+
     def eval_subcomponents(self):
         """ Creates composables in current component based on composables in each of the subcomponents, then
             appends composables in subcomponents to corresponding composable in component
@@ -276,5 +300,43 @@ class Component(Parameterized):
 
     def make(self):
         """ Evaluates subcomponents, connections, and constraints, then assembles the component
+
+        """
+
+    def reset(self):
+        """Resets component to a state before make is called.
+
+        """
+
+    def make_component_hierarchy(self):
+        """Creates and returns a hierarchical representation of the component.
+
+        """
+
+    def make_component_tree(self, fn, root="Root"):
+        """Creates a image depicting the component tree
+
+        Args:
+            fn (str): filename to write image to
+            root (str): name of the tree
+
+        """
+
+    def recurse_component_tree(self, graph, mynode, myname):
+        """Helper function to recurse down component tree to create it
+
+        Args:
+            graph (pydot.Dot): graph to add all the nodes to.
+            mynode (pydot.Node): current node that is being added and will be recursed upon.
+            myname (str): name of the tree.
+
+        """
+
+    def make_output(self, filedir=".", **kwargs):
+        """Creates output based on the kwargs
+
+        Args:
+            filedir (str): directory to store output
+            kwargs (dict): arguments dictating which output to make
 
         """
