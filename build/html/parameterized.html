@@ -1,0 +1,372 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Parameterized &#8212; roco 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Component" href="component.html" />
+    <link rel="prev" title="roco.api" href="code.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="component.html" title="Component"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="code.html" title="roco.api"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">roco 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="code.html" accesskey="U">roco.api</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-api.parameterized">
+<span id="parameterized"></span><h1>Parameterized<a class="headerlink" href="#module-api.parameterized" title="Permalink to this headline">¶</a></h1>
+<p>Parameterized class.</p>
+<p>This module contains the Parameterized class which is a base class for
+Component.</p>
+<dl class="class">
+<dt id="api.parameterized.Parameterized">
+<em class="property">class </em><code class="descclassname">api.parameterized.</code><code class="descname">Parameterized</code><a class="headerlink" href="#api.parameterized.Parameterized" title="Permalink to this definition">¶</a></dt>
+<dd><p>An object represented by parameters, constraints, and relations.</p>
+<p>Acts as a base class to represent an object with parameters that can
+be constrained and has relations between parameters.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><dl class="first last docutils">
+<dt>parameters (dict): contains parameters by name, can be symbolic</dt>
+<dd>variables.</dd>
+<dt>allParameters (dict): contains parameters by symbolic variable.</dt>
+<dd>Includes ones inherited from other parameterized objects.
+The variable key points to a tuple, (name, value).</dd>
+<dt>constraints (list): list of sympy relations that define constraints</dt>
+<dd>on the parameterized object.</dd>
+<dt>relations (list): list of sympy relations that define soft relations</dt>
+<dd>between parameters.</dd>
+<dt>subs (dict): contains tuples from ambiguous symbolic variable to</dt>
+<dd>specific symbolic variable which includes parameter
+inheritance.</dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="api.parameterized.Parameterized.add_constraint">
+<code class="descname">add_constraint</code><span class="sig-paren">(</span><em>expression</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.add_constraint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a new sympy constraint to the parameterized object</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>expression(sympy.core.relational): A sympy expression representing a</dt>
+<dd>relationship between two or more parameters</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.parameterized.Parameterized.add_parameter">
+<code class="descname">add_parameter</code><span class="sig-paren">(</span><em>name</em>, <em>value</em>, <em>is_symbol=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.add_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Adds a k/v pair to the internal store if the key has not been added</dt>
+<dd>before</dd>
+<dt>Args:</dt>
+<dd><p class="first">name (str): the parameter name
+value (int): an integer representing the default value for the</p>
+<blockquote>
+<div>parameter</div></blockquote>
+<dl class="docutils">
+<dt>is_symbol (bool): if True, the parameter&#8217;s value will be stored as a</dt>
+<dd>Dummy symbol whose value can be changed. Else, it will be stored
+as is</dd>
+</dl>
+<p class="last"><a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs (dict): kwargs for the creation of the Dummy</p>
+</dd>
+<dt>Returns:</dt>
+<dd>The newly added parameter</dd>
+<dt>Raises:</dt>
+<dd>KeyError: A parameter called name has already been created
+ValueError: Invalid characters in name</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.parameterized.Parameterized.check_constraints">
+<code class="descname">check_constraints</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.check_constraints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifies that all constraints are satisfied</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>True if the constraints are all satisfied, false otherwise</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.parameterized.Parameterized.del_parameter">
+<code class="descname">del_parameter</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.del_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the parameter with the given name</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name (str): the parameter name</dd>
+<dt>Returns:</dt>
+<dd>The removed parameter with the given name</dd>
+<dt>Raises:</dt>
+<dd>KeyError: A parameter called name does not exist</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.parameterized.Parameterized.eval_equation">
+<code class="descname">eval_equation</code><span class="sig-paren">(</span><em>equation</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.eval_equation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluates given sympy expression using the parameters.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>equation (sympy symbol or expression): A sympy variable or expression to be evaluated</dd>
+<dt>Returns:</dt>
+<dd>Evaluated value for expression.</dd>
+<dt>Returns:</dt>
+<dd>the value of the parameter.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.parameterized.Parameterized.get_all_subs">
+<code class="descname">get_all_subs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.get_all_subs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the variable substitutions for all the parameters in the object</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>A dictionary containing all (parameter, value) pairs found</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.parameterized.Parameterized.get_constraints">
+<code class="descname">get_constraints</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.get_constraints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets all the constraints associated with the parameterized object</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>A list containing all constraint expressions</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.parameterized.Parameterized.get_name">
+<code class="descname">get_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of the parameterized object.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>A str representation of the object&#8217;s name</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.parameterized.Parameterized.get_parameter">
+<code class="descname">get_parameter</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the parameter with the given name</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name (str): the parameter name</dd>
+<dt>Returns:</dt>
+<dd>The parameter with the given name</dd>
+<dt>Raises:</dt>
+<dd>KeyError: A parameter called name does not exist or is uninitialized</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.parameterized.Parameterized.get_variable_sub">
+<code class="descname">get_variable_sub</code><span class="sig-paren">(</span><em>parameter</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.get_variable_sub" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the non ambiguous variable for the parameter</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>parameter (Dummy): the parameter object desired</dd>
+<dt>Returns:</dt>
+<dd>The non ambiguous variable for the parameter</dd>
+<dt>Raises:</dt>
+<dd>KeyError: The parameter does not exist in the scope of the object</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.parameterized.Parameterized.get_variable_value">
+<code class="descname">get_variable_value</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.get_variable_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the solved value of a parameter</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name (str): the name of the parameter.</dd>
+<dt>Returns:</dt>
+<dd>the value of the parameter.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.parameterized.Parameterized.inherit_parameters">
+<code class="descname">inherit_parameters</code><span class="sig-paren">(</span><em>other</em>, <em>prefix</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.inherit_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds parameters from another parameterized object to the current object</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>other (Parameterized): the parameterized object to inherit</dt>
+<dd>parameters from</dd>
+<dt>prefix (str): a prefix string to be added to the name of inherited</dt>
+<dd>parameters</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.parameterized.Parameterized.set_name">
+<code class="descname">set_name</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.set_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the name of the parameterized object.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name (str): the new object name</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.parameterized.Parameterized.set_parameter">
+<code class="descname">set_parameter</code><span class="sig-paren">(</span><em>name</em>, <em>value</em>, <em>force_constant=False</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.set_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets a k/v pair to the internal store if the key has been added previously</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">name (str): the parameter name
+value (int): an integer representing the default value for the</p>
+<blockquote>
+<div>parameter</div></blockquote>
+<dl class="last docutils">
+<dt>force_constant (bool): if True, the old value of the parameter will</dt>
+<dd>be overwritten even if it was not symbolic</dd>
+</dl>
+</dd>
+<dt>Returns:</dt>
+<dd>The newly modified parameter</dd>
+<dt>Raises:</dt>
+<dd>KeyError: A parameter called name does not exist
+ValueError: Old parameter value is a constant and cannot be changed</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.parameterized.Parameterized.set_variable_solved">
+<code class="descname">set_variable_solved</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.set_variable_solved" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets a solved value for the symbolic variable</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name (str): the name of the parameter to set the value to.
+value(Number): the value to assign to the parameter</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.parameterized.Parameterized.solve">
+<code class="descname">solve</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs the solving that is necessary</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="code.html"
+                        title="previous chapter">roco.api</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="component.html"
+                        title="next chapter">Component</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/parameterized.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="component.html" title="Component"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="code.html" title="roco.api"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">roco 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="code.html" >roco.api</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Gopi Suresh, Ahmed Allibhoy, Christian Warloe, Prathyush Katukojwala.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+    </div>
+  </body>
+</html>

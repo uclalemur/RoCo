@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Composable &#8212; roco 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Component" href="component.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="component.html" title="Component"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">roco 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="code.html" accesskey="U">roco.api</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-api.composable">
+<span id="composable"></span><h1>Composable<a class="headerlink" href="#module-api.composable" title="Permalink to this headline">¶</a></h1>
+<p>Composable class</p>
+<p>This module contains the Composable class, meant to be derived by any classes
+meant to be used to produce output</p>
+<dl class="class">
+<dt id="api.composable.Composable">
+<em class="property">class </em><code class="descclassname">api.composable.</code><code class="descname">Composable</code><a class="headerlink" href="#api.composable.Composable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Composable is an interface for objects which produce outputs</p>
+<p>Any class meant to produce output usable for the final robot designs should
+derive from this class. In any derived class, all member functions may be
+redefined.</p>
+<dl class="method">
+<dt id="api.composable.Composable.add_component">
+<code class="descname">add_component</code><span class="sig-paren">(</span><em>component_obj</em><span class="sig-paren">)</span><a class="headerlink" href="#api.composable.Composable.add_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tells composable about what component it belongs to.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>component_obj (Component): the component to tie this composable to.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.composable.Composable.add_interface">
+<code class="descname">add_interface</code><span class="sig-paren">(</span><em>new_interface</em><span class="sig-paren">)</span><a class="headerlink" href="#api.composable.Composable.add_interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tells composable about an interface</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>new_interface: interface to add to composable.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.composable.Composable.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>new_composable</em>, <em>new_prefix</em><span class="sig-paren">)</span><a class="headerlink" href="#api.composable.Composable.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Combines two composables with the new one being prefixed.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>new_composable (Composable): the composable that is being appended to this one.
+new_prefix (str): the prefix of all the names for the composable being appended.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.composable.Composable.attach">
+<code class="descname">attach</code><span class="sig-paren">(</span><em>from_port</em>, <em>to_port</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#api.composable.Composable.attach" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attaches two ports inside the composable together</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>from_port (Port):
+to_port(Port):
+kwargs (dict): args relating to the connection between the ports.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.composable.Composable.make_output">
+<code class="descname">make_output</code><span class="sig-paren">(</span><em>file_dir</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#api.composable.Composable.make_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates output for the composable.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>file_dir (str): the directory to place to output
+kwargs (dict): arguments for the output generation</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.composable.Composable.new">
+<code class="descname">new</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.composable.Composable.new" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a new instance of a Composable.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>Composable object.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="component.html"
+                        title="previous chapter">Component</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/composable.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="component.html" title="Component"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">roco 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="code.html" >roco.api</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Gopi Suresh, Ahmed Allibhoy, Christian Warloe, Prathyush Katukojwala.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+    </div>
+  </body>
+</html>

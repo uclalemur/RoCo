@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Port &#8212; roco 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Composable" href="composable.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="composable.html" title="Composable"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">roco 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="code.html" accesskey="U">roco.api</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-api.port">
+<span id="port"></span><h1>Port<a class="headerlink" href="#module-api.port" title="Permalink to this headline">¶</a></h1>
+<p>Port class.</p>
+<p>This module contains the Port class.</p>
+<dl class="class">
+<dt id="api.port.Port">
+<em class="property">class </em><code class="descclassname">api.port.</code><code class="descname">Port</code><span class="sig-paren">(</span><em>parent</em>, <em>params</em>, <em>name=''</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#api.port.Port" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class representing an abstract port</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>is_input (bool): whether the port takes input or not.
+is_output (bool): whether the port gives output or not.
+parent (Component): parent component that this port is tied to.</dd>
+</dl>
+<dl class="method">
+<dt id="api.port.Port.add_allowable_mate">
+<code class="descname">add_allowable_mate</code><span class="sig-paren">(</span><em>mate_type</em><span class="sig-paren">)</span><a class="headerlink" href="#api.port.Port.add_allowable_mate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds mate_type to list of ports that are allowed to mate with this port</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>mate_type (type): the type of port to be added to the list of ports allowed to mate with this port.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.port.Port.add_recommended_mate">
+<code class="descname">add_recommended_mate</code><span class="sig-paren">(</span><em>mate_type</em><span class="sig-paren">)</span><a class="headerlink" href="#api.port.Port.add_recommended_mate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds mate_type to list of ports that are recommended to mate with this port</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>mate_type (type): the type of port to be added to the list of ports recommended to mate with this port.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.port.Port.can_mate">
+<code class="descname">can_mate</code><span class="sig-paren">(</span><em>other_port</em><span class="sig-paren">)</span><a class="headerlink" href="#api.port.Port.can_mate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this port can mate with other_port and false otherwise.
+Override this method for better matching.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>other_port (Port): the port that is compared to this port to check compatibility.</dd>
+<dt>Returns:</dt>
+<dd>Boolean denoting whether or not the ports are compatible.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.port.Port.constrain">
+<code class="descname">constrain</code><span class="sig-paren">(</span><em>parent</em>, <em>to_port</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#api.port.Port.constrain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a set of semantic constraints to be satisfied when connecting to to_port object.
+By default, constrain same-named parameters to be equal. Override this method for better matching.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>parent (component): parent of to_port //CHECK
+to_port (port): port that is to be connected to this port.</dd>
+<dt>Returns:</dt>
+<dd>list of semantic constraints</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.port.Port.get_compatible_ports">
+<code class="descname">get_compatible_ports</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.port.Port.get_compatible_ports" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns array of all ports that can match with this one.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>Array of all ports that can match with this one.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.port.Port.get_name">
+<code class="descname">get_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.port.Port.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets this port&#8217;s name</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.port.Port.get_parent">
+<code class="descname">get_parent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.port.Port.get_parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets this port&#8217;s parent component</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.port.Port.get_value">
+<code class="descname">get_value</code><span class="sig-paren">(</span><em>default=None</em><span class="sig-paren">)</span><a class="headerlink" href="#api.port.Port.get_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get anonymous function associated with this port.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>default: value to return if there is no anonymous function associated with this variable.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.port.Port.prefix">
+<code class="descname">prefix</code><span class="sig-paren">(</span><em>prefix=''</em><span class="sig-paren">)</span><a class="headerlink" href="#api.port.Port.prefix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to be overridden to handle prefixing</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>prefix (str): name of the prefix</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.port.Port.set_driven_value">
+<code class="descname">set_driven_value</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#api.port.Port.set_driven_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set driven value that the port will take.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>value (function): anonymous function that handles driven inputs? //CHECK</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.port.Port.set_input_value">
+<code class="descname">set_input_value</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#api.port.Port.set_input_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set input value that the port will take.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>value (function): anonymous function that handles inputs</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.port.Port.set_name">
+<code class="descname">set_name</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#api.port.Port.set_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets this port&#8217;s name to be name</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name (str): the name of this port.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.port.Port.set_output_value">
+<code class="descname">set_output_value</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#api.port.Port.set_output_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set output value that the port will take.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>value (function): anonymous function that handles outputs</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.port.Port.set_parent">
+<code class="descname">set_parent</code><span class="sig-paren">(</span><em>new_parent</em><span class="sig-paren">)</span><a class="headerlink" href="#api.port.Port.set_parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets this port&#8217;s parent to be new_parent</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>new_parent (component): the parent component of this port.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.port.Port.should_mate">
+<code class="descname">should_mate</code><span class="sig-paren">(</span><em>other_port</em><span class="sig-paren">)</span><a class="headerlink" href="#api.port.Port.should_mate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this port is designed to mate with other_port and false otherwise.
+Override this method for better matching.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>other_port (Port): the port that is compared to this port to check compatibility.</dd>
+<dt>Returns:</dt>
+<dd>Boolean denoting whether or not the ports are recommended to match.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.port.Port.to_string">
+<code class="descname">to_string</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.port.Port.to_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns string representation of this port. Override for customized implementation.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>String that contains information about this port.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.port.Port.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.port.Port.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to be overridden to handle updates</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="composable.html"
+                        title="previous chapter">Composable</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/port.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="composable.html" title="Composable"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">roco 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="code.html" >roco.api</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Gopi Suresh, Ahmed Allibhoy, Christian Warloe, Prathyush Katukojwala.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+    </div>
+  </body>
+</html>
