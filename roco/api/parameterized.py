@@ -176,37 +176,6 @@ class Parameterized(object):
             True if the constraints are all satisfied, false otherwise
         """
 
-    def set_variable_solved(self, name, value):
-        """Sets a solved value for the symbolic variable
-
-        Args:
-            name (str): the name of the parameter to set the value to.
-            value(Number): the value to assign to the parameter
-        """
-
-    def get_variable_value(self, name):
-        """Returns the solved value of a parameter
-
-        Args:
-            name (str): the name of the parameter.
-
-        Returns:
-            the value of the parameter.
-        """
-
-    def eval_equation(self, equation):
-        """Evaluates given sympy expression using the parameters.
-
-        Args:
-            equation (sympy symbol or expression): A sympy variable or expression to be evaluated
-
-        Returns:
-            Evaluated value for expression.
-
-        Returns:
-            the value of the parameter.
-        """
-
     def solve(self):
         """Performs the solving that is necessary
 
