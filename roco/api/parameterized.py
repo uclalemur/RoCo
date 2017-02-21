@@ -89,29 +89,17 @@ class Parameterized(object):
             ValueError: Old parameter value is a constant and cannot be changed
         """
 
-    def get_parameter(self, name, strict=True):
+    def get_parameter(self, name):
         """Retrieves the parameter with the given name
 
         Args:
             name (str): the parameter name
-            strict (bool): if True, only parameters that have been initialized
-                with a value will be returned
 
         Returns:
             The parameter with the given name
 
         Raises:
             KeyError: A parameter called name does not exist or is uninitialized
-        """
-
-    def has_parameter(self, name):
-        """Check if a parameter with the given name exists
-
-        Args:
-            name (str): the parameter name
-
-        Returns:
-            True if the parameter exists, False otherwise
         """
 
     def inherit_parameters(self, other, prefix):
