@@ -240,7 +240,7 @@ class Component(Parameterized):
         """
 
     def attach(self, (from_name, from_port), (to_name, to_port), kwargs):
-        """ Attaches the specified ports on the subcoponents
+        """ Attaches the specified ports on the subcomponents
 
         Args:
             (from_name, from_port) (tuple(str, str)): a tuple containing the name of the subcomponent, and the interface
