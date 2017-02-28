@@ -153,20 +153,6 @@ ValueError: Invalid characters in name</dd>
 </dd></dl>
 
 <dl class="method">
-<dt id="api.parameterized.Parameterized.eval_equation">
-<code class="descname">eval_equation</code><span class="sig-paren">(</span><em>equation</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.eval_equation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Evaluates given sympy expression using the parameters.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>equation (sympy symbol or expression): A sympy variable or expression to be evaluated</dd>
-<dt>Returns:</dt>
-<dd>Evaluated value for expression.</dd>
-<dt>Returns:</dt>
-<dd>the value of the parameter.</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
 <dt id="api.parameterized.Parameterized.get_all_subs">
 <code class="descname">get_all_subs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.get_all_subs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the variable substitutions for all the parameters in the object</p>
@@ -231,18 +217,6 @@ ValueError: Invalid characters in name</dd>
 </dd></dl>
 
 <dl class="method">
-<dt id="api.parameterized.Parameterized.get_variable_value">
-<code class="descname">get_variable_value</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.get_variable_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the solved value of a parameter</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>name (str): the name of the parameter.</dd>
-<dt>Returns:</dt>
-<dd>the value of the parameter.</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
 <dt id="api.parameterized.Parameterized.inherit_parameters">
 <code class="descname">inherit_parameters</code><span class="sig-paren">(</span><em>other</em>, <em>prefix</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.inherit_parameters" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds parameters from another parameterized object to the current object</p>
@@ -288,17 +262,6 @@ value (int): an integer representing the default value for the</p>
 <dt>Raises:</dt>
 <dd>KeyError: A parameter called name does not exist
 ValueError: Old parameter value is a constant and cannot be changed</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="api.parameterized.Parameterized.set_variable_solved">
-<code class="descname">set_variable_solved</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.set_variable_solved" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets a solved value for the symbolic variable</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>name (str): the name of the parameter to set the value to.
-value(Number): the value to assign to the parameter</dd>
 </dl>
 </dd></dl>
 
