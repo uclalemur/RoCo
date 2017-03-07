@@ -54,6 +54,12 @@ class Variable(Dummy):
         Returns:
             The solved value of the variable.
         """
+    def set_name(self, name):
+        """Returns the name of the variable
+
+        Args:
+            name: The name of the variable.
+        """
     def get_name(self):
         """Returns the name of the variable
 
