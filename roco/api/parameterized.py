@@ -4,6 +4,7 @@ This module contains the Parameterized class which is a base class for
 Component.
 
 """
+from utils.variable import Variable
 
 class Parameterized(object):
     """An object represented by parameters, constraints, and relations.
@@ -34,6 +35,7 @@ class Parameterized(object):
         """
         self._name = None
         self.parameters = {}
+        self.constraints = {}
 
     def get_name(self):
         """Returns the name of the parameterized object.
@@ -54,7 +56,7 @@ class Parameterized(object):
         """
         self._name = name
 
-    def add_parameter(self, name, value, is_symbol=True, **kwargs):
+    def add_parameter(self, name, value, is_literal=False, **kwargs):
         """Adds a k/v pair to the internal store if the key has not been added
             before
 
@@ -62,9 +64,9 @@ class Parameterized(object):
             name (str): the parameter name
             value (int): an integer representing the default value for the
                 parameter
-            is_symbol (bool): if True, the parameter's value will be stored as a
-                Dummy symbol whose value can be changed. Else, it will be stored
-                as is
+            is_literal (bool): if True, the parameter's value will
+                be stored as is. Else, it will be stored in a variable whose value
+                can be changed.
             **kwargs (dict): kwargs for the creation of the Dummy
 
         Returns:
@@ -79,23 +81,25 @@ class Parameterized(object):
         if "." in name:
             raise ValueError("Invalid character '.' in parameter name " + name)
 
-        if is_symbol:
+        if is_literal:
+            self.parameters[name] = value
+        else:
             variable = Variable(name, default=value, real=True, **kwargs)
             self.parameters[name] = variable
-        else:
-            self.parameters[name] = value
 
         return self.get_parameter(name)
 
-    def set_parameter(self, name, value, force_constant=False):
-        """Sets a k/v pair to the internal store if the key has been added previously
+    def set_parameter(self, name, value, force_literal=False):
+        """Sets either the value of the object associated with the parameter,
+        or associated object itself
 
         Args:
             name (str): the parameter name
             value (int): an integer representing the default value for the
                 parameter
-            force_constant (bool): if True, the old value of the parameter will
-                be overwritten even if it was not symbolic
+            force_literal (bool): if True, object associated with the parameter
+            will be replaced by value. Otherwise, the value of the object will
+            be attempted to be changed
 
         Returns:
             The newly modified parameter
@@ -107,7 +111,10 @@ class Parameterized(object):
         if name not in self.parameters:
             raise KeyError("Parameter %s not initialized" % name)
 
-        self.get_parameter(name).set_solved_value(value)
+        if force_literal:
+            self.parameters[name] = value
+        else:
+            self.get_parameter(name).set_default_value(value)
 
     def get_parameter(self, name):
         """Retrieves the parameter with the given name
@@ -134,7 +141,8 @@ class Parameterized(object):
                 parameters
         """
         for name, variable in other.all_parameters():
-            self.parameters[prefixString(prefix, name)] = variable  # Is this how we want to do it?
+            variable.set_name(prefixString(prefix,variable.get_name()))
+            self.add_parameter(prefixString(prefix, name), variable, is_literal=True)  # Is this how we want to do it?
 
     def all_parameters(self):
         """***SHOULD THIS BE INCLUDED TO AVOID ENCAPSULATION VIOLATION?"""
@@ -153,29 +161,8 @@ class Parameterized(object):
         Raises:
             KeyError: A parameter called name does not exist
         """
+        return self.parameters.pop(name)
 
-    def get_variable_sub(self, parameter):
-        """Gets the non ambiguous variable for the parameter
-
-        Args:
-            parameter (Dummy): the parameter object desired
-
-        Returns:
-            The non ambiguous variable for the parameter
-
-        Raises:
-            KeyError: The parameter does not exist in the scope of the object
-        """
-
-    def get_all_subs(self):
-        """Gets the variable substitutions for all the parameters in the object
-
-        Args:
-            None
-
-        Returns:
-            A dictionary containing all (parameter, value) pairs found
-        """
 
     def get_constraints(self):
         """Gets all the constraints associated with the parameterized object
@@ -187,13 +174,42 @@ class Parameterized(object):
             A list containing all constraint expressions
         """
 
-    def add_constraint(self, expression):
+    def add_constraint(self, expression, name=None):
         """Adds a new sympy constraint to the parameterized object
 
         Args:
             expression(sympy.core.relational): A sympy expression representing a
                 relationship between two or more parameters
+            name: a unique identifying name for the constraint. If none is
+                provided, a unique id will be generated
+        Returns:
+            The identifying name for the expression
+
+        Raises:
+            KeyError: A parameter called name has already been created
         """
+        if name is None:
+            name = id(expression)
+
+        if name in self.constraints:
+            raise KeyError("Constraint %s already exists" % name)
+
+        self.constraints[name] = expression
+        return name
+
+    def del_constraint(self,name):
+        """Removes the constraint with the given name
+
+        Args:
+            name (str): the constraint name
+
+        Returns:
+            The removed constraint with the given name
+
+        Raises:
+            KeyError: A constraint called name does not exist
+        """
+        return self.constraints.pop(name)
 
     def check_constraints(self):
         """Verifies that all constraints are satisfied
