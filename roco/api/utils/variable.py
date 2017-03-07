@@ -11,6 +11,18 @@ def eval_equation(self, equation):
     """
 
 class Variable(Dummy):
+    def set_solved_value(self, value):
+        """Sets a new solved value for the variable
+
+        Args:
+            value: the new solved value for the variable
+        """
+    def set_default_value(self, value):
+        """Sets a new default value for the variable
+
+        Args:
+            value: the new default value for the variable
+        """
     def get_default_value(self):
         """Returns the default value of the variable
 
@@ -28,6 +40,9 @@ class Variable(Dummy):
 
         Returns:
             The solved value of the variable.
+
+        Raises:
+            ValueError: The solved value of the variable has not been set
         """
     def get_value(self):
         """Returns the current value of the variable. If the variable has been solved, that
