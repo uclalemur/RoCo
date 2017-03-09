@@ -21,13 +21,13 @@ class TestParameterized(unittest.TestCase):
         self.assertIsNotNone(p.add_parameter("1","RandomValue"))  # Fails if add_parameter doesn't return anything
 
     def test_check_constraints(self):
-    	p = Parameterized()
+        p = Parameterized()
         self.assertEqual(p.check_constraints(),True)  # Fails if any of the constraints is not satisfied
         
     def test_del_parameter(self):
     	p = Parameterized()
-    	p.add_parameter("1","RandomValue")
-        self.assertEqual(p.del_parameter(1),"RandomValue")  #  Should return the removed parameter called 1
+        p.add_parameter("1","RandomValue",is_literal=True)
+        self.assertEqual(p.del_parameter("1"),"RandomValue")  #  Should return the removed parameter called 1
 
 if __name__ == '__main__':
     unittest.main()
