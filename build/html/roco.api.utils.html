@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>utils Package &#8212; roco 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="builders Package" href="roco.builders.html" />
+    <link rel="prev" title="api Package" href="roco.api.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="roco.builders.html" title="builders Package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="roco.api.html" title="api Package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">roco 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="roco.html" >roco Package</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="roco.api.html" accesskey="U">api Package</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="utils-package">
+<h1>utils Package<a class="headerlink" href="#utils-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><code class="xref py py-mod docutils literal"><span class="pre">utils</span></code> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-roco.api.utils"></span><p>The utils module contains helper classes and functions required by the various api modules</p>
+</div>
+<div class="section" id="module-roco.api.utils.variable">
+<span id="variable-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">variable</span></code> Module<a class="headerlink" href="#module-roco.api.utils.variable" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="roco.api.utils.variable.Variable">
+<em class="property">class </em><code class="descclassname">roco.api.utils.variable.</code><code class="descname">Variable</code><a class="headerlink" href="#roco.api.utils.variable.Variable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">sympy.core.symbol.Dummy</span></code></p>
+<dl class="attribute">
+<dt id="roco.api.utils.variable.Variable.default_assumptions">
+<code class="descname">default_assumptions</code><em class="property"> = {}</em><a class="headerlink" href="#roco.api.utils.variable.Variable.default_assumptions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="roco.api.utils.variable.Variable.get_default_value">
+<code class="descname">get_default_value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.utils.variable.Variable.get_default_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the default value of the variable</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>The default value of the variable.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.utils.variable.Variable.get_name">
+<code class="descname">get_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.utils.variable.Variable.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of the variable</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>The name of the variable.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.utils.variable.Variable.get_solved_value">
+<code class="descname">get_solved_value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.utils.variable.Variable.get_solved_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the solved value of the variable</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>The solved value of the variable.</dd>
+<dt>Raises:</dt>
+<dd>ValueError: The solved value of the variable has not been set</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.utils.variable.Variable.get_value">
+<code class="descname">get_value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.utils.variable.Variable.get_value" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Returns the current value of the variable. If the variable has been solved, that</dt>
+<dd>value is returned, otherwise the default is returned</dd>
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>The solved value of the variable.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.utils.variable.Variable.set_default_value">
+<code class="descname">set_default_value</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.utils.variable.Variable.set_default_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets a new default value for the variable</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>value: the new default value for the variable</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.utils.variable.Variable.set_name">
+<code class="descname">set_name</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.utils.variable.Variable.set_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of the variable</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name: The name of the variable.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.utils.variable.Variable.set_solved_value">
+<code class="descname">set_solved_value</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.utils.variable.Variable.set_solved_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets a new solved value for the variable</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>value: the new solved value for the variable</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="roco.api.utils.variable.eval_equation">
+<code class="descclassname">roco.api.utils.variable.</code><code class="descname">eval_equation</code><span class="sig-paren">(</span><em>self</em>, <em>equation</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.utils.variable.eval_equation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluates given sympy expression using the parameters.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>equation (sympy symbol or expression): A sympy variable or expression to be evaluated</dd>
+<dt>Returns:</dt>
+<dd>Evaluated value for expression.</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">utils Package</a><ul>
+<li><a class="reference internal" href="#id1"><code class="docutils literal"><span class="pre">utils</span></code> Package</a></li>
+<li><a class="reference internal" href="#module-roco.api.utils.variable"><code class="docutils literal"><span class="pre">variable</span></code> Module</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="roco.api.html"
+                        title="previous chapter">api Package</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="roco.builders.html"
+                        title="next chapter">builders Package</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/roco.api.utils.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="roco.builders.html" title="builders Package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="roco.api.html" title="api Package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">roco 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="roco.html" >roco Package</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="roco.api.html" >api Package</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Gopi Suresh, Ahmed Allibhoy, Christian Warloe, Prathyush Katukojwala.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+    </div>
+  </body>
+</html>

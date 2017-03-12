@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>composables Package &#8212; roco 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="fegraph Package" href="roco.derived.composables.fegraph.html" />
+    <link rel="prev" title="components Package" href="roco.derived.components.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="roco.derived.composables.fegraph.html" title="fegraph Package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="roco.derived.components.html" title="components Package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">roco 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="roco.html" >roco Package</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="roco.derived.html" accesskey="U">derived Package</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="composables-package">
+<h1>composables Package<a class="headerlink" href="#composables-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><code class="xref py py-mod docutils literal"><span class="pre">composables</span></code> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-roco.derived.composables"></span><p>The Composable package</p>
+<p>This package contains all classes derived from the Composable class, as well
+as any additional classes they may use.</p>
+</div>
+<div class="section" id="module-roco.derived.composables.code_composable">
+<span id="code-composable-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">code_composable</span></code> Module<a class="headerlink" href="#module-roco.derived.composables.code_composable" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="roco.derived.composables.code_composable.CodeComposable">
+<em class="property">class </em><code class="descclassname">roco.derived.composables.code_composable.</code><code class="descname">CodeComposable</code><span class="sig-paren">(</span><em>meta</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.code_composable.CodeComposable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.composables.virtual_composable.VirtualComposable" title="roco.derived.composables.virtual_composable.VirtualComposable"><code class="xref py py-class docutils literal"><span class="pre">roco.derived.composables.virtual_composable.VirtualComposable</span></code></a></p>
+<p>Virtual Composable is an interface for objects which produce code.</p>
+<p>Any class meant to produce code usable for the final robot designs should
+derive from this class. In any derived class, all member functions may be
+redefined.</p>
+<dl class="method">
+<dt id="roco.derived.composables.code_composable.CodeComposable.addComponent">
+<code class="descname">addComponent</code><span class="sig-paren">(</span><em>componentObj</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.code_composable.CodeComposable.addComponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tells composable about what component it belongs to.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>component_obj (Component): the component to tie this composable to.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.code_composable.CodeComposable.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>newComposable</em>, <em>newPrefix</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.code_composable.CodeComposable.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Combines two composables with the new one being prefixed.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>new_composable (Composable): the composable that is being appended to this one.
+new_prefix (str): the prefix of all the names for the composable being appended.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.code_composable.CodeComposable.attach">
+<code class="descname">attach</code><span class="sig-paren">(</span><em>fromPort</em>, <em>toPort</em>, <em>kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.code_composable.CodeComposable.attach" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attaches two ports inside the composable together</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>from_port (Port):
+to_port(Port):
+kwargs (dict): args relating to the connection between the ports.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.code_composable.CodeComposable.makeOutput">
+<code class="descname">makeOutput</code><span class="sig-paren">(</span><em>filedir</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.code_composable.CodeComposable.makeOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates output for the composable.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>file_dir (str): the directory to place to output
+kwargs (dict): arguments for the output generation</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.code_composable.CodeComposable.new">
+<code class="descname">new</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.code_composable.CodeComposable.new" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a new instance of a CodeComposable, identical to this one.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>Code Composable object.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.code_composable.CodeComposable.removeTarget">
+<code class="descname">removeTarget</code><span class="sig-paren">(</span><em>target</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.code_composable.CodeComposable.removeTarget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes a target from the list of supported targets.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>target (Composable): The target to be removed from the meta.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.code_composable.CodeComposable.subParameter">
+<code class="descname">subParameter</code><span class="sig-paren">(</span><em>token</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.code_composable.CodeComposable.subParameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the subParameter for each target supported by the composable</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>token (any): key of the subParameter
+value (any): value of the subParameter</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-roco.derived.composables.graph_composable">
+<span id="graph-composable-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">graph_composable</span></code> Module<a class="headerlink" href="#module-roco.derived.composables.graph_composable" title="Permalink to this headline">¶</a></h2>
+<p>The GraphComposable Module</p>
+<p>Contains the GraphComposable class, which adds output functionality to the
+graph class</p>
+<dl class="class">
+<dt id="roco.derived.composables.graph_composable.GraphComposable">
+<em class="property">class </em><code class="descclassname">roco.derived.composables.graph_composable.</code><code class="descname">GraphComposable</code><a class="headerlink" href="#roco.derived.composables.graph_composable.GraphComposable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="roco.api.html#roco.api.composable.Composable" title="roco.api.composable.Composable"><code class="xref py py-class docutils literal"><span class="pre">roco.api.composable.Composable</span></code></a>, <a class="reference internal" href="roco.derived.composables.fegraph.html#roco.derived.composables.fegraph.face_edge_graph.FaceEdgeGraph" title="roco.derived.composables.fegraph.face_edge_graph.FaceEdgeGraph"><code class="xref py py-class docutils literal"><span class="pre">roco.derived.composables.fegraph.face_edge_graph.FaceEdgeGraph</span></code></a></p>
+<p>Class allowing output to be produced from FaceEdgeGraphs</p>
+<p>The GraphComposable class adds the Composable interface to the
+FaceEdgeGraph class. With this class, graphs can be converted to drawings
+and output to a file or drawn using tkinter</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><dl class="first last docutils">
+<dt>component (FoldedComponent): Reference to the FoldedComponent</dt>
+<dd>represented by the graph</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-roco.derived.composables.virtual_composable">
+<span id="virtual-composable-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">virtual_composable</span></code> Module<a class="headerlink" href="#module-roco.derived.composables.virtual_composable" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="roco.derived.composables.virtual_composable.VirtualComposable">
+<em class="property">class </em><code class="descclassname">roco.derived.composables.virtual_composable.</code><code class="descname">VirtualComposable</code><a class="headerlink" href="#roco.derived.composables.virtual_composable.VirtualComposable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="roco.api.html#roco.api.composable.Composable" title="roco.api.composable.Composable"><code class="xref py py-class docutils literal"><span class="pre">roco.api.composable.Composable</span></code></a></p>
+<p>Virtual Composable is an interface for objects which produce nontangible outputs.</p>
+<p>Any class meant to produce nontangible output usable for the final robot designs should
+derive from this class. In any derived class, all member functions may be
+redefined.</p>
+<dl class="method">
+<dt id="roco.derived.composables.virtual_composable.VirtualComposable.getContainer">
+<code class="descname">getContainer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.virtual_composable.VirtualComposable.getContainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the container of this Virtual Composable object.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>Container Composable Object.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.virtual_composable.VirtualComposable.makeOutput">
+<code class="descname">makeOutput</code><span class="sig-paren">(</span><em>filedir</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.virtual_composable.VirtualComposable.makeOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates output for the composable.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>file_dir (str): the directory to place to output
+kwargs (dict): arguments for the output generation</dd>
+<dt>Raises:</dt>
+<dd>Exception(&#8220;Error: VirtualComposable has no Container!&#8221;) if the Virtual
+Composable has not container.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.virtual_composable.VirtualComposable.setContainer">
+<code class="descname">setContainer</code><span class="sig-paren">(</span><em>container</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.virtual_composable.VirtualComposable.setContainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets a container for the Virtual Composable object. All Virtual Composables
+must have a container. The output generated by this composable is dependent
+upon which container it has.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>container (ContainerComposable): The container being set as the container
+of this Virtual Composable.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="roco.derived.composables.fegraph.html">fegraph Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="roco.derived.composables.fegraph.html#id1"><code class="docutils literal"><span class="pre">fegraph</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roco.derived.composables.fegraph.html#module-roco.derived.composables.fegraph.drawing"><code class="docutils literal"><span class="pre">drawing</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roco.derived.composables.fegraph.html#module-roco.derived.composables.fegraph.drawing_edge"><code class="docutils literal"><span class="pre">drawing_edge</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roco.derived.composables.fegraph.html#module-roco.derived.composables.fegraph.face"><code class="docutils literal"><span class="pre">face</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roco.derived.composables.fegraph.html#module-roco.derived.composables.fegraph.face_edge_graph"><code class="docutils literal"><span class="pre">face_edge_graph</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roco.derived.composables.fegraph.html#module-roco.derived.composables.fegraph.hyper_edge"><code class="docutils literal"><span class="pre">hyper_edge</span></code> Module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">composables Package</a><ul>
+<li><a class="reference internal" href="#id1"><code class="docutils literal"><span class="pre">composables</span></code> Package</a></li>
+<li><a class="reference internal" href="#module-roco.derived.composables.code_composable"><code class="docutils literal"><span class="pre">code_composable</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.derived.composables.graph_composable"><code class="docutils literal"><span class="pre">graph_composable</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.derived.composables.virtual_composable"><code class="docutils literal"><span class="pre">virtual_composable</span></code> Module</a></li>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="roco.derived.components.html"
+                        title="previous chapter">components Package</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="roco.derived.composables.fegraph.html"
+                        title="next chapter">fegraph Package</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/roco.derived.composables.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="roco.derived.composables.fegraph.html" title="fegraph Package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="roco.derived.components.html" title="components Package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">roco 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="roco.html" >roco Package</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="roco.derived.html" >derived Package</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Gopi Suresh, Ahmed Allibhoy, Christian Warloe, Prathyush Katukojwala.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+    </div>
+  </body>
+</html>

@@ -1,3 +1,4 @@
+from roco.derived.composables.virtual_composable import VirtualComposable
 """Code Composable class
 
 This module contains the Code Composable class, which is derived from the Virtual
@@ -71,7 +72,7 @@ class CodeComposable(VirtualComposable):
 
         """
         pass
-        
+
     def attach(self, fromPort, toPort, kwargs):
         """Attaches two ports inside the composable together
 
@@ -79,7 +80,7 @@ class CodeComposable(VirtualComposable):
             from_port (Port):
             to_port(Port):
             kwargs (dict): args relating to the connection between the ports.
-        :return:
+        
         """
         raise NotImplementedError
 

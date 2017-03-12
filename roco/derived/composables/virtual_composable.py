@@ -1,3 +1,5 @@
+from roco.api.composable import Composable
+
 """Virtual Composable class
 
 This module contains the Virtual Composable class, which is derived from the
