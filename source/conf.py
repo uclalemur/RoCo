@@ -18,7 +18,8 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../roco'))
+print "New path-------------------------------------" , os.path.abspath('../roco')
+sys.path.append(os.path.abspath('..'))
 
 
 # -- General configuration ------------------------------------------------
@@ -155,6 +156,3 @@ texinfo_documents = [
      author, 'roco', 'One line description of project.',
      'Miscellaneous'),
 ]
-
-
-

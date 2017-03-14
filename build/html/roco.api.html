@@ -1,0 +1,1121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>api Package &#8212; roco 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="utils Package" href="roco.api.utils.html" />
+    <link rel="prev" title="roco Package" href="roco.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="roco.api.utils.html" title="utils Package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="roco.html" title="roco Package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">roco 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="roco.html" accesskey="U">roco Package</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="api-package">
+<h1>api Package<a class="headerlink" href="#api-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><code class="xref py py-mod docutils literal"><span class="pre">api</span></code> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-roco.api"></span><p>Contains base classes representing both physical and abstract objects used in
+robot designs.</p>
+</div>
+<div class="section" id="component-module">
+<h2><code class="xref py py-mod docutils literal"><span class="pre">component</span></code> Module<a class="headerlink" href="#component-module" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-roco.api.component"></span><p>Component class and helper function.</p>
+<p>This module contains the Component class, as well as a helper function to load
+components.</p>
+<dl class="class">
+<dt id="roco.api.component.Component">
+<em class="property">class </em><code class="descclassname">roco.api.component.</code><code class="descname">Component</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.api.parameterized.Parameterized" title="roco.api.parameterized.Parameterized"><code class="xref py py-class docutils literal"><span class="pre">roco.api.parameterized.Parameterized</span></code></a></p>
+<p>The base class that all components derive from.</p>
+<p>A component is an abstract representation of an element of a device.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><dl class="first docutils">
+<dt>subcomponents (dict): dictionary of component objects that make up the</dt>
+<dd>overall component where the key is the name.</dd>
+<dt>connections (list): list of connection definitions from an interface</dt>
+<dd>to another interface with arguments associated.</dd>
+</dl>
+<p>interfaces (dict): dictionary of interfaces where the key is the name
+composables (OrderedDict): an ordered dictionary of composables that</p>
+<blockquote class="last">
+<div>define the output of the component.</div></blockquote>
+</dd>
+</dl>
+<dl class="method">
+<dt id="roco.api.component.Component.add_connection">
+<code class="descname">add_connection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.add_connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies interfaces on subcomponents to be connected</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>(from_name, from_interface) (tuple(str, str)): a tuple containing the name of the subcomponent, and the</dt>
+<dd>name of the interface the connection comes from</dd>
+<dt>(to_name, to_interface) (tuple(str, str)): a tuple containing the name of the subcomponent, and the</dt>
+<dd>name of the interface the connection goes to</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.add_interface">
+<code class="descname">add_interface</code><span class="sig-paren">(</span><em>name</em>, <em>val</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.add_interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an interface to this component.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name (str): unique identifier for interface that will be added to the component.
+val (Port): the value that the new interface takes on.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.add_parameter_constraint">
+<code class="descname">add_parameter_constraint</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.add_parameter_constraint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constraints subcomponent parameter.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><dl class="first docutils">
+<dt>(subcomponent, parameter_name) (tuple(str,str)): a tuple representing a subcomponent a related parameter</dt>
+<dd>to constrain.</dd>
+</dl>
+<p class="last">constraint (Number or sympy expression): the constraint to impose on the subcomponent parameter.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.add_subcomponent">
+<code class="descname">add_subcomponent</code><span class="sig-paren">(</span><em>name</em>, <em>object_type</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.add_subcomponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a subcomponent to this Component.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name (str): unique identifier to refer to this subcomponent by
+object_type (str or type): code name of the subcomponent should be python file/class or yaml name</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>name</em>, <em>prefix</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Appends composables on each of the subcomponents to composable on current component</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name (str): name of subcomponent
+prefix (str):</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.assemble">
+<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.assemble" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assembles the component</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.attach">
+<code class="descname">attach</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.attach" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attaches the specified ports on the subcomponents</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>(from_name, from_port) (tuple(str, str)): a tuple containing the name of the subcomponent, and the interface</dt>
+<dd>on the component to attach from</dd>
+<dt>(to_name, to_port) (tuple(str, str)): a tuple containing the name of the subcomponent, and the interface</dt>
+<dd>on the component to attach to</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.define">
+<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.define" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function for overriding interfaces.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><a href="#id2"><span class="problematic" id="id3">**</span></a>kwargs: Arbitrary keyword arguments</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.del_interface">
+<code class="descname">del_interface</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.del_interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes an interface from this component.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name (str): unique identifier for interface that will be deleted from the component.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.del_subcomponent">
+<code class="descname">del_subcomponent</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.del_subcomponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes a subcomponent to this Component and performs any cleanup necessary</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name (str): unique identifier of subcomponent to delete</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.eval_connections">
+<code class="descname">eval_connections</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.eval_connections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attaches each of the ports between which a connection was made</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.eval_constraints">
+<code class="descname">eval_constraints</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.eval_constraints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluates all the constraints imposed on subcomponents</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.eval_interfaces">
+<code class="descname">eval_interfaces</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.eval_interfaces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds interfaces to composables</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.eval_subcomponents">
+<code class="descname">eval_subcomponents</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.eval_subcomponents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates composables in current component based on composables in each of the subcomponents, then
+appends composables in subcomponents to corresponding composable in component</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.get_all_defaults">
+<code class="descname">get_all_defaults</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.get_all_defaults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a dictionary of default values for the parameters including the ones from the subcomponents</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>A dictionary relating parameter names to parameter values.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.get_defaults">
+<code class="descname">get_defaults</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.get_defaults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a dictionary of default values for the parameters</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>A dictionary relating parameter names to parameter values.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.get_interface">
+<code class="descname">get_interface</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.get_interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a interface of this component</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name (str): name of the interface to return</dd>
+<dt>Returns:</dt>
+<dd>the interface with name &#8216;name&#8217;</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.get_subcomponent">
+<code class="descname">get_subcomponent</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.get_subcomponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns specified subcomponent of the component</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name (str): name of the subcomponent to return</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.get_subcomponent_interface">
+<code class="descname">get_subcomponent_interface</code><span class="sig-paren">(</span><em>component</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.get_subcomponent_interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a subcomponent interface</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>component (str): name of the subcomponent
+name (str): name of the interface in that subcomponent</dd>
+<dt>Returns:</dt>
+<dd>the interface belonging to &#8216;component&#8217; with name &#8216;name&#8217;</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.inherit_all_interfaces">
+<code class="descname">inherit_all_interfaces</code><span class="sig-paren">(</span><em>subcomponent</em>, <em>prefix=''</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.inherit_all_interfaces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds all interfaces from subcomponent to current component</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>subcomponent (Component): Component object from which all the interfaces will be inherited.
+prefix (str): name of component, will automatically work if ignored or left as &#8220;&#8221; (an empty string).</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.inherit_constraints">
+<code class="descname">inherit_constraints</code><span class="sig-paren">(</span><em>subcomponent</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.inherit_constraints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inherits the constraints from a subcomponent</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>subcomponent (str): name of subcomponent to inherit from</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.inherit_interface">
+<code class="descname">inherit_interface</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.inherit_interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds specified interface from subcomponent to current component</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">name (str): New unique identifier for the interface that will be inherited.
+(subcomponent, subname) (tuple(Component, str)): Component object from which the specified interface</p>
+<blockquote class="last">
+<div>will be inherited, and the name of the interface that is to be inherited from the subcomponent</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.make">
+<code class="descname">make</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.make" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluates subcomponents, connections, and constraints, then assembles the component</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.make_component_hierarchy">
+<code class="descname">make_component_hierarchy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.make_component_hierarchy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates and returns a hierarchical representation of the component.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.make_component_tree">
+<code class="descname">make_component_tree</code><span class="sig-paren">(</span><em>file_name</em>, <em>tree_name='Root'</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.make_component_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a image depicting the component tree</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>file_name (str): filename to write image to
+tree_name (str): name of the tree</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.make_output">
+<code class="descname">make_output</code><span class="sig-paren">(</span><em>file_dir='.'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.make_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates output based on the kwargs</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>file_dir (str): directory to store output
+kwargs (dict): arguments dictating which output to make</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.recurse_component_tree">
+<code class="descname">recurse_component_tree</code><span class="sig-paren">(</span><em>graph</em>, <em>my_node</em>, <em>my_name</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.recurse_component_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper function to recurse down component tree to create it</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>graph (pydot.Dot): graph to add all the nodes to.
+my_node (pydot.Node): current node that is being added and will be recursed upon.
+my_name (str): name of the tree.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets component to a state before make is called.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.resolve_subcomponent">
+<code class="descname">resolve_subcomponent</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.resolve_subcomponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates subcomponent object and adds it to the current component</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name: name of subcomponent to be created</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.resolve_subcomponents">
+<code class="descname">resolve_subcomponents</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.resolve_subcomponents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls resolve_subcomponent on all subcomponents</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.set_interface">
+<code class="descname">set_interface</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.set_interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets a interface as passed in</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name (str): name of the interface to set
+value: the value to set the interface to</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.set_subcomponent_parameter">
+<code class="descname">set_subcomponent_parameter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.set_subcomponent_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets parameter of subcomponent to the specified value</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>(subcomponent, parameter) (tuple (str, str)): name of subcomponent, and name of parameter to modify
+value: Value of the parameter</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.component.Component.to_yaml">
+<code class="descname">to_yaml</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.to_yaml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates YAML file containing component information</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>filename (str): name of the yaml file to be generated</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="roco.api.component.get_subcomponent_object">
+<code class="descclassname">roco.api.component.</code><code class="descname">get_subcomponent_object</code><span class="sig-paren">(</span><em>component</em>, <em>name=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.get_subcomponent_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to generate an instantiated component from the class name.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>component (str): The name of the component class to instantiate.
+name (<code class="xref py py-obj docutils literal"><span class="pre">str</span></code>, optional): The name to set for the component.
+<a href="#id4"><span class="problematic" id="id5">**</span></a>kwargs: Arbitrary keyword arguments to pass into the constructor.</dd>
+<dt>Returns:</dt>
+<dd>The instantiated component.</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-roco.api.composable">
+<span id="composable-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">composable</span></code> Module<a class="headerlink" href="#module-roco.api.composable" title="Permalink to this headline">¶</a></h2>
+<p>Composable class</p>
+<p>This module contains the Composable class, meant to be derived by any classes
+meant to be used to produce output</p>
+<dl class="class">
+<dt id="roco.api.composable.Composable">
+<em class="property">class </em><code class="descclassname">roco.api.composable.</code><code class="descname">Composable</code><a class="headerlink" href="#roco.api.composable.Composable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Composable is an interface for objects which produce outputs</p>
+<p>Any class meant to produce output usable for the final robot designs should
+derive from this class. In any derived class, all member functions may be
+redefined.</p>
+<dl class="method">
+<dt id="roco.api.composable.Composable.add_component">
+<code class="descname">add_component</code><span class="sig-paren">(</span><em>component_obj</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.composable.Composable.add_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tells composable about what component it belongs to.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>component_obj (Component): the component to tie this composable to.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.composable.Composable.add_interface">
+<code class="descname">add_interface</code><span class="sig-paren">(</span><em>new_interface</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.composable.Composable.add_interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tells composable about an interface</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>new_interface: interface to add to composable.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.composable.Composable.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>new_composable</em>, <em>new_prefix</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.composable.Composable.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Combines two composables with the new one being prefixed.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>new_composable (Composable): the composable that is being appended to this one.
+new_prefix (str): the prefix of all the names for the composable being appended.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.composable.Composable.attach">
+<code class="descname">attach</code><span class="sig-paren">(</span><em>from_port</em>, <em>to_port</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.composable.Composable.attach" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attaches two ports inside the composable together</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>from_port (Port):
+to_port(Port):
+kwargs (dict): args relating to the connection between the ports.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.composable.Composable.make_output">
+<code class="descname">make_output</code><span class="sig-paren">(</span><em>file_dir</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.composable.Composable.make_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates output for the composable.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>file_dir (str): the directory to place to output
+kwargs (dict): arguments for the output generation</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.composable.Composable.new">
+<code class="descname">new</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.composable.Composable.new" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a new instance of a Composable.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>Composable object.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-roco.api.connection">
+<span id="connection-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">connection</span></code> Module<a class="headerlink" href="#module-roco.api.connection" title="Permalink to this headline">¶</a></h2>
+<p>Connection class.</p>
+<p>This module contains the Connection class which represents two interfaces in separate components being connected with some arguments.</p>
+<dl class="class">
+<dt id="roco.api.connection.Connection">
+<em class="property">class </em><code class="descclassname">roco.api.connection.</code><code class="descname">Connection</code><span class="sig-paren">(</span><em>from_interface</em>, <em>to_interface</em>, <em>name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.connection.Connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>A connection between interfaces</p>
+<p>This class holds data for a named connection. It also provides enforces rules on making connections between interfaces. For example, two interfaces with different number of ports cannot be connected.</p>
+<dl class="method">
+<dt id="roco.api.connection.Connection.get_name">
+<code class="descname">get_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.connection.Connection.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of this connection.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>name as a string</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.connection.Connection.get_port_matchings">
+<code class="descname">get_port_matchings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.connection.Connection.get_port_matchings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of tuples of ports that have been matched</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>List of ordered pairs of ports</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-roco.api.interface">
+<span id="interface-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">interface</span></code> Module<a class="headerlink" href="#module-roco.api.interface" title="Permalink to this headline">¶</a></h2>
+<p>Interface class.</p>
+<p>This module contains the Interface class which encapsulates ports from composables and makes them available for conneciton at a component level.</p>
+<dl class="class">
+<dt id="roco.api.interface.Interface">
+<em class="property">class </em><code class="descclassname">roco.api.interface.</code><code class="descname">Interface</code><span class="sig-paren">(</span><em>name</em>, <em>ports=None</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.interface.Interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>A single or an ordered list of ports</p>
+<p>This class represents an interface at the component hierarchy level. Two interfaces of components can be connected. At the composable level, an interface merely encapsulates a port or a collection of ports.</p>
+<dl class="method">
+<dt id="roco.api.interface.Interface.get_name">
+<code class="descname">get_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.interface.Interface.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of this interface.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>name as a string</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.interface.Interface.get_ports">
+<code class="descname">get_ports</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.interface.Interface.get_ports" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the collection of ports that represent this interface.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>List containing Port object(s)</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-roco.api.parameterized">
+<span id="parameterized-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">parameterized</span></code> Module<a class="headerlink" href="#module-roco.api.parameterized" title="Permalink to this headline">¶</a></h2>
+<p>Parameterized class.</p>
+<p>This module contains the Parameterized class which is a base class for
+Component.</p>
+<dl class="class">
+<dt id="roco.api.parameterized.Parameterized">
+<em class="property">class </em><code class="descclassname">roco.api.parameterized.</code><code class="descname">Parameterized</code><a class="headerlink" href="#roco.api.parameterized.Parameterized" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>An object represented by parameters, constraints, and relations.</p>
+<p>Acts as a base class to represent an object with parameters that can
+be constrained and has relations between parameters.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><dl class="first last docutils">
+<dt>parameters (dict): contains parameters by name, can be symbolic</dt>
+<dd>variables.</dd>
+<dt>allParameters (dict): contains parameters by symbolic variable.</dt>
+<dd>Includes ones inherited from other parameterized objects.
+The variable key points to a tuple, (name, value).</dd>
+<dt>constraints (list): list of sympy relations that define constraints</dt>
+<dd>on the parameterized object.</dd>
+<dt>relations (list): list of sympy relations that define soft relations</dt>
+<dd>between parameters.</dd>
+<dt>subs (dict): contains tuples from ambiguous symbolic variable to</dt>
+<dd>specific symbolic variable which includes parameter
+inheritance.</dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="roco.api.parameterized.Parameterized.add_constraint">
+<code class="descname">add_constraint</code><span class="sig-paren">(</span><em>expression</em>, <em>name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.parameterized.Parameterized.add_constraint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a new sympy constraint to the parameterized object</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>expression(sympy.core.relational): A sympy expression representing a</dt>
+<dd>relationship between two or more parameters</dd>
+<dt>name: a unique identifying name for the constraint. If none is</dt>
+<dd>provided, a unique id will be generated</dd>
+</dl>
+</dd>
+<dt>Returns:</dt>
+<dd>The identifying name for the expression</dd>
+<dt>Raises:</dt>
+<dd>KeyError: A parameter called name has already been created</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.parameterized.Parameterized.add_parameter">
+<code class="descname">add_parameter</code><span class="sig-paren">(</span><em>name</em>, <em>value</em>, <em>is_literal=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.parameterized.Parameterized.add_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Adds a k/v pair to the internal store if the key has not been added</dt>
+<dd>before</dd>
+<dt>Args:</dt>
+<dd><p class="first">name (str): the parameter name
+value (int): an integer representing the default value for the</p>
+<blockquote>
+<div>parameter</div></blockquote>
+<dl class="docutils">
+<dt>is_literal (bool): if True, the parameter&#8217;s value will</dt>
+<dd>be stored as is. Else, it will be stored in a variable whose value
+can be changed.</dd>
+</dl>
+<p class="last"><a href="#id6"><span class="problematic" id="id7">**</span></a>kwargs (dict): kwargs for the creation of the Dummy</p>
+</dd>
+<dt>Returns:</dt>
+<dd>The newly added parameter</dd>
+<dt>Raises:</dt>
+<dd>KeyError: A parameter called name has already been created
+ValueError: Invalid characters in name</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.parameterized.Parameterized.all_parameters">
+<code class="descname">all_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.parameterized.Parameterized.all_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="#id8"><span class="problematic" id="id9">**</span></a><a href="#id10"><span class="problematic" id="id11">*</span></a>SHOULD THIS BE INCLUDED TO AVOID ENCAPSULATION VIOLATION?</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.parameterized.Parameterized.check_constraints">
+<code class="descname">check_constraints</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.parameterized.Parameterized.check_constraints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifies that all constraints are satisfied</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>True if the constraints are all satisfied, false otherwise</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.parameterized.Parameterized.del_constraint">
+<code class="descname">del_constraint</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.parameterized.Parameterized.del_constraint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the constraint with the given name</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name (str): the constraint name</dd>
+<dt>Returns:</dt>
+<dd>The removed constraint with the given name</dd>
+<dt>Raises:</dt>
+<dd>KeyError: A constraint called name does not exist</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.parameterized.Parameterized.del_parameter">
+<code class="descname">del_parameter</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.parameterized.Parameterized.del_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the parameter with the given name</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name (str): the parameter name</dd>
+<dt>Returns:</dt>
+<dd>The removed parameter with the given name</dd>
+<dt>Raises:</dt>
+<dd>KeyError: A parameter called name does not exist</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.parameterized.Parameterized.get_constraints">
+<code class="descname">get_constraints</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.parameterized.Parameterized.get_constraints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets all the constraints associated with the parameterized object</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>A list containing all constraint expressions</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.parameterized.Parameterized.get_name">
+<code class="descname">get_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.parameterized.Parameterized.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of the parameterized object.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>A str representation of the object&#8217;s name</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.parameterized.Parameterized.get_parameter">
+<code class="descname">get_parameter</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.parameterized.Parameterized.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the parameter with the given name</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name (str): the parameter name</dd>
+<dt>Returns:</dt>
+<dd>The parameter with the given name</dd>
+<dt>Raises:</dt>
+<dd>KeyError: A parameter called name does not exist or is uninitialized</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.parameterized.Parameterized.inherit_parameters">
+<code class="descname">inherit_parameters</code><span class="sig-paren">(</span><em>other</em>, <em>prefix</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.parameterized.Parameterized.inherit_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds parameters from another parameterized object to the current object</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>other (Parameterized): the parameterized object to inherit</dt>
+<dd>parameters from</dd>
+<dt>prefix (str): a prefix string to be added to the name of inherited</dt>
+<dd>parameters</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.parameterized.Parameterized.set_name">
+<code class="descname">set_name</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.parameterized.Parameterized.set_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the name of the parameterized object.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name (str): the new object name</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.parameterized.Parameterized.set_parameter">
+<code class="descname">set_parameter</code><span class="sig-paren">(</span><em>name</em>, <em>value</em>, <em>force_literal=False</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.parameterized.Parameterized.set_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets either the value of the object associated with the parameter,
+or associated object itself</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">name (str): the parameter name
+value (int): an integer representing the default value for the</p>
+<blockquote>
+<div>parameter</div></blockquote>
+<p class="last">force_literal (bool): if True, object associated with the parameter
+will be replaced by value. Otherwise, the value of the object will
+be attempted to be changed</p>
+</dd>
+<dt>Returns:</dt>
+<dd>The newly modified parameter</dd>
+<dt>Raises:</dt>
+<dd>KeyError: A parameter called name does not exist
+ValueError: Old parameter value is a constant and cannot be changed</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.parameterized.Parameterized.solve">
+<code class="descname">solve</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.parameterized.Parameterized.solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs the solving that is necessary</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-roco.api.port">
+<span id="port-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">port</span></code> Module<a class="headerlink" href="#module-roco.api.port" title="Permalink to this headline">¶</a></h2>
+<p>Port class.</p>
+<p>This module contains the Port class.</p>
+<dl class="class">
+<dt id="roco.api.port.Port">
+<em class="property">class </em><code class="descclassname">roco.api.port.</code><code class="descname">Port</code><span class="sig-paren">(</span><em>parent</em>, <em>params</em>, <em>name=''</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.port.Port" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.api.parameterized.Parameterized" title="roco.api.parameterized.Parameterized"><code class="xref py py-class docutils literal"><span class="pre">roco.api.parameterized.Parameterized</span></code></a></p>
+<p>A class representing an abstract port</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>is_input (bool): whether the port takes input or not.
+is_output (bool): whether the port gives output or not.
+parent (Component): parent component that this port is tied to.</dd>
+</dl>
+<dl class="method">
+<dt id="roco.api.port.Port.add_allowable_mate">
+<code class="descname">add_allowable_mate</code><span class="sig-paren">(</span><em>mate_type</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.port.Port.add_allowable_mate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds mate_type to list of ports that are allowed to mate with this port</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>mate_type (type): the type of port to be added to the list of ports allowed to mate with this port.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.port.Port.add_recommended_mate">
+<code class="descname">add_recommended_mate</code><span class="sig-paren">(</span><em>mate_type</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.port.Port.add_recommended_mate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds mate_type to list of ports that are recommended to mate with this port</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>mate_type (type): the type of port to be added to the list of ports recommended to mate with this port.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.port.Port.can_mate">
+<code class="descname">can_mate</code><span class="sig-paren">(</span><em>other_port</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.port.Port.can_mate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this port can mate with other_port and false otherwise.
+Override this method for better matching.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>other_port (Port): the port that is compared to this port to check compatibility.</dd>
+<dt>Returns:</dt>
+<dd>Boolean denoting whether or not the ports are compatible.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.port.Port.constrain">
+<code class="descname">constrain</code><span class="sig-paren">(</span><em>parent</em>, <em>to_port</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.port.Port.constrain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a set of semantic constraints to be satisfied when connecting to to_port object.
+By default, constrain same-named parameters to be equal. Override this method for better matching.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>parent (component): parent of to_port //CHECK
+to_port (port): port that is to be connected to this port.</dd>
+<dt>Returns:</dt>
+<dd>list of semantic constraints</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.port.Port.get_compatible_ports">
+<code class="descname">get_compatible_ports</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.port.Port.get_compatible_ports" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns array of all ports that can match with this one.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>Array of all ports that can match with this one.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.port.Port.get_name">
+<code class="descname">get_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.port.Port.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets this port&#8217;s name</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.port.Port.get_parent">
+<code class="descname">get_parent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.port.Port.get_parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets this port&#8217;s parent component</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.port.Port.get_value">
+<code class="descname">get_value</code><span class="sig-paren">(</span><em>default=None</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.port.Port.get_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get anonymous function associated with this port.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>default: value to return if there is no anonymous function associated with this variable.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.port.Port.prefix">
+<code class="descname">prefix</code><span class="sig-paren">(</span><em>prefix=''</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.port.Port.prefix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to be overridden to handle prefixing</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>prefix (str): name of the prefix</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.port.Port.set_driven_value">
+<code class="descname">set_driven_value</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.port.Port.set_driven_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set driven value that the port will take.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>value (function): anonymous function that handles driven inputs? //CHECK</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.port.Port.set_input_value">
+<code class="descname">set_input_value</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.port.Port.set_input_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set input value that the port will take.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>value (function): anonymous function that handles inputs</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.port.Port.set_name">
+<code class="descname">set_name</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.port.Port.set_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets this port&#8217;s name to be name</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name (str): the name of this port.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.port.Port.set_output_value">
+<code class="descname">set_output_value</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.port.Port.set_output_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set output value that the port will take.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>value (function): anonymous function that handles outputs</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.port.Port.set_parent">
+<code class="descname">set_parent</code><span class="sig-paren">(</span><em>new_parent</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.port.Port.set_parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets this port&#8217;s parent to be new_parent</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>new_parent (component): the parent component of this port.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.port.Port.should_mate">
+<code class="descname">should_mate</code><span class="sig-paren">(</span><em>other_port</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.port.Port.should_mate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this port is designed to mate with other_port and false otherwise.
+Override this method for better matching.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>other_port (Port): the port that is compared to this port to check compatibility.</dd>
+<dt>Returns:</dt>
+<dd>Boolean denoting whether or not the ports are recommended to match.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.port.Port.to_string">
+<code class="descname">to_string</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.port.Port.to_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns string representation of this port. Override for customized implementation.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>String that contains information about this port.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.port.Port.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.port.Port.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to be overridden to handle updates</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="roco.api.utils.html">utils Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="roco.api.utils.html#id1"><code class="docutils literal"><span class="pre">utils</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roco.api.utils.html#module-roco.api.utils.variable"><code class="docutils literal"><span class="pre">variable</span></code> Module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">api Package</a><ul>
+<li><a class="reference internal" href="#id1"><code class="docutils literal"><span class="pre">api</span></code> Package</a></li>
+<li><a class="reference internal" href="#component-module"><code class="docutils literal"><span class="pre">component</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.api.composable"><code class="docutils literal"><span class="pre">composable</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.api.connection"><code class="docutils literal"><span class="pre">connection</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.api.interface"><code class="docutils literal"><span class="pre">interface</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.api.parameterized"><code class="docutils literal"><span class="pre">parameterized</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.api.port"><code class="docutils literal"><span class="pre">port</span></code> Module</a></li>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="roco.html"
+                        title="previous chapter">roco Package</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="roco.api.utils.html"
+                        title="next chapter">utils Package</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/roco.api.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="roco.api.utils.html" title="utils Package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="roco.html" title="roco Package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">roco 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="roco.html" >roco Package</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Gopi Suresh, Ahmed Allibhoy, Christian Warloe, Prathyush Katukojwala.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+    </div>
+  </body>
+</html>

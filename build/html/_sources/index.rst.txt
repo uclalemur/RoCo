@@ -21,9 +21,7 @@ Roco API
    :maxdepth: 2
    :caption: Contents:
 
-   code
-
-
+   roco
 
 Indices and tables
 ==================

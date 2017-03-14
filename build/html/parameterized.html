@@ -88,21 +88,27 @@ inheritance.</dd>
 </dl>
 <dl class="method">
 <dt id="api.parameterized.Parameterized.add_constraint">
-<code class="descname">add_constraint</code><span class="sig-paren">(</span><em>expression</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.add_constraint" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_constraint</code><span class="sig-paren">(</span><em>expression</em>, <em>name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.add_constraint" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a new sympy constraint to the parameterized object</p>
 <dl class="docutils">
 <dt>Args:</dt>
 <dd><dl class="first last docutils">
 <dt>expression(sympy.core.relational): A sympy expression representing a</dt>
 <dd>relationship between two or more parameters</dd>
+<dt>name: a unique identifying name for the constraint. If none is</dt>
+<dd>provided, a unique id will be generated</dd>
 </dl>
 </dd>
+<dt>Returns:</dt>
+<dd>The identifying name for the expression</dd>
+<dt>Raises:</dt>
+<dd>KeyError: A parameter called name has already been created</dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="api.parameterized.Parameterized.add_parameter">
-<code class="descname">add_parameter</code><span class="sig-paren">(</span><em>name</em>, <em>value</em>, <em>is_symbol=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.add_parameter" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_parameter</code><span class="sig-paren">(</span><em>name</em>, <em>value</em>, <em>is_literal=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.add_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt>Adds a k/v pair to the internal store if the key has not been added</dt>
 <dd>before</dd>
@@ -112,9 +118,9 @@ value (int): an integer representing the default value for the</p>
 <blockquote>
 <div>parameter</div></blockquote>
 <dl class="docutils">
-<dt>is_symbol (bool): if True, the parameter&#8217;s value will be stored as a</dt>
-<dd>Dummy symbol whose value can be changed. Else, it will be stored
-as is</dd>
+<dt>is_literal (bool): if True, the parameter&#8217;s value will</dt>
+<dd>be stored as is. Else, it will be stored in a variable whose value
+can be changed.</dd>
 </dl>
 <p class="last"><a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs (dict): kwargs for the creation of the Dummy</p>
 </dd>
@@ -124,6 +130,12 @@ as is</dd>
 <dd>KeyError: A parameter called name has already been created
 ValueError: Invalid characters in name</dd>
 </dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="api.parameterized.Parameterized.all_parameters">
+<code class="descname">all_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.all_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="#id3"><span class="problematic" id="id4">**</span></a><a href="#id5"><span class="problematic" id="id6">*</span></a>SHOULD THIS BE INCLUDED TO AVOID ENCAPSULATION VIOLATION?</p>
 </dd></dl>
 
 <dl class="method">
@@ -139,6 +151,20 @@ ValueError: Invalid characters in name</dd>
 </dd></dl>
 
 <dl class="method">
+<dt id="api.parameterized.Parameterized.del_constraint">
+<code class="descname">del_constraint</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.del_constraint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the constraint with the given name</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name (str): the constraint name</dd>
+<dt>Returns:</dt>
+<dd>The removed constraint with the given name</dd>
+<dt>Raises:</dt>
+<dd>KeyError: A constraint called name does not exist</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
 <dt id="api.parameterized.Parameterized.del_parameter">
 <code class="descname">del_parameter</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.del_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Removes the parameter with the given name</p>
@@ -149,18 +175,6 @@ ValueError: Invalid characters in name</dd>
 <dd>The removed parameter with the given name</dd>
 <dt>Raises:</dt>
 <dd>KeyError: A parameter called name does not exist</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="api.parameterized.Parameterized.get_all_subs">
-<code class="descname">get_all_subs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.get_all_subs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the variable substitutions for all the parameters in the object</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>None</dd>
-<dt>Returns:</dt>
-<dd>A dictionary containing all (parameter, value) pairs found</dd>
 </dl>
 </dd></dl>
 
@@ -203,20 +217,6 @@ ValueError: Invalid characters in name</dd>
 </dd></dl>
 
 <dl class="method">
-<dt id="api.parameterized.Parameterized.get_variable_sub">
-<code class="descname">get_variable_sub</code><span class="sig-paren">(</span><em>parameter</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.get_variable_sub" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the non ambiguous variable for the parameter</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>parameter (Dummy): the parameter object desired</dd>
-<dt>Returns:</dt>
-<dd>The non ambiguous variable for the parameter</dd>
-<dt>Raises:</dt>
-<dd>KeyError: The parameter does not exist in the scope of the object</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
 <dt id="api.parameterized.Parameterized.inherit_parameters">
 <code class="descname">inherit_parameters</code><span class="sig-paren">(</span><em>other</em>, <em>prefix</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.inherit_parameters" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds parameters from another parameterized object to the current object</p>
@@ -244,18 +244,18 @@ ValueError: Invalid characters in name</dd>
 
 <dl class="method">
 <dt id="api.parameterized.Parameterized.set_parameter">
-<code class="descname">set_parameter</code><span class="sig-paren">(</span><em>name</em>, <em>value</em>, <em>force_constant=False</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.set_parameter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets a k/v pair to the internal store if the key has been added previously</p>
+<code class="descname">set_parameter</code><span class="sig-paren">(</span><em>name</em>, <em>value</em>, <em>force_literal=False</em><span class="sig-paren">)</span><a class="headerlink" href="#api.parameterized.Parameterized.set_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets either the value of the object associated with the parameter,
+or associated object itself</p>
 <dl class="docutils">
 <dt>Args:</dt>
 <dd><p class="first">name (str): the parameter name
 value (int): an integer representing the default value for the</p>
 <blockquote>
 <div>parameter</div></blockquote>
-<dl class="last docutils">
-<dt>force_constant (bool): if True, the old value of the parameter will</dt>
-<dd>be overwritten even if it was not symbolic</dd>
-</dl>
+<p class="last">force_literal (bool): if True, object associated with the parameter
+will be replaced by value. Otherwise, the value of the object will
+be attempted to be changed</p>
 </dd>
 <dt>Returns:</dt>
 <dd>The newly modified parameter</dd>

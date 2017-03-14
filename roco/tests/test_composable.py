@@ -2,7 +2,7 @@ import sys
 import os
 import unittest
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
-from api.composable import Composable  # Imports the Composable class
+from roco.api.composable import Composable  # Imports the Composable class
 
 class TestComposable(unittest.TestCase):
 
