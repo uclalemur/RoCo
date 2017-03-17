@@ -2,7 +2,7 @@ import sys
 import os
 import unittest
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
-from roco.api.parameterized import Parameterized  # Imports the Parameterized class
+from api.parameterized import Parameterized  # Imports the Parameterized class
 
 class TestParameterized(unittest.TestCase):
     def setUp(self):
@@ -31,10 +31,6 @@ class TestParameterized(unittest.TestCase):
         self.p.add_parameter("1","RandomValue",is_literal=True)
         self.assertEqual(self.p.del_parameter("1"),"RandomValue")  # Should return the removed parameter called 1
 
-    def test_get_all_subs(self):
-        self.assertIsNotNone(self.p.get_all_subs())  # Fails if get_all_subs doesn't return anything
-        # Should return a dictionary containing all (parameter, value) pairs found
-
     def test_get_constraints(self):
         self.assertIsNotNone(self.p.get_constraints())  # Fails if get_constraints doesn't return anything
         # Should return a list containing all constraint expressions
@@ -45,10 +41,27 @@ class TestParameterized(unittest.TestCase):
         # Sets the name, and then checks it
 
     def test_get_parameter(self):
-        self.assertRaises(KeyError,self.p.get_parameter("3")) # Fails if a KeyError is not raised
+        self.assertRaises(KeyError,self.p.get_parameter,"3") # Fails if a KeyError is not raised
         # A KeyError should be raised because that parameter does not exist
         # Therefore this test should succeed
         # This method can be tested for further details
+        
+    def test_inherit_parameters(self):
+    	p2 = Parameterized()
+    	p2.add_parameter("2","RandomValue2")
+    	self.p.inherit_parameters(p2,"inherited")  # Inherits the parameters of p2
+        self.assertEqual(self.p.get_parameter("inherited2"),"RandomValue2")
+        # Fails if p2's parameters have not been inherited
+        
+    def test_set_parameter(self):
+    	self.p.add_parameter("1","RandomValue")
+        self.p.set_parameter("1","NewValue")
+        self.assertEqual(self.p.get_parameter("1"),"NewValue") # Fails if p2's parameters have not been inherited
+        
+    def test_set_parameter_keyerror(self):
+    	self.p.add_parameter("1","RandomValue")
+        self.assertRaises(KeyError,self.p.set_parameter,"2","RandomValue") # Fails if a KeyError is not raised
+        # A KeyError should be raised because a parameter called 2 does not exist
 
 if __name__ == '__main__':
     unittest.main()
