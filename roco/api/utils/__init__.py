@@ -1,1 +1,3 @@
-"""The utils module contains helper classes and functions required by the various api modules"""
+"""
+The utils module contains helper classes and functions required by the various api modules
+"""
