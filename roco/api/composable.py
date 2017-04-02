@@ -58,7 +58,7 @@ class Composable():
             from_port (Port):
             to_port(Port):
             kwargs (dict): args relating to the connection between the ports.
-        :return:
+
         """
         raise NotImplementedError
 

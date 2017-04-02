@@ -250,6 +250,7 @@ class FaceEdgeGraph(object):
             e.rename(prefixString(prefix, e.name))
         for f in self.faces:
             f.rename(prefixString(prefix, f.name))
+        self.prefixed = True
 
     def rename_edge(self, fromname, toname):
         """
