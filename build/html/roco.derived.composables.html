@@ -162,8 +162,30 @@ value (any): value of the subParameter</dd>
 <p>Contains the GraphComposable class, which adds output functionality to the
 graph class</p>
 <dl class="class">
+<dt id="roco.derived.composables.graph_composable.Decoration">
+<em class="property">class </em><code class="descclassname">roco.derived.composables.graph_composable.</code><code class="descname">Decoration</code><a class="headerlink" href="#roco.derived.composables.graph_composable.Decoration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="roco.api.html#roco.api.composable.Composable" title="roco.api.composable.Composable"><code class="xref py py-class docutils literal"><span class="pre">roco.api.composable.Composable</span></code></a>, <a class="reference internal" href="roco.derived.composables.fegraph.html#roco.derived.composables.fegraph.face_edge_graph.FaceEdgeGraph" title="roco.derived.composables.fegraph.face_edge_graph.FaceEdgeGraph"><code class="xref py py-class docutils literal"><span class="pre">roco.derived.composables.fegraph.face_edge_graph.FaceEdgeGraph</span></code></a></p>
+<p>The base decoration class interface</p>
+<dl class="method">
+<dt id="roco.derived.composables.graph_composable.Decoration.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>new_composable</em>, <em>new_prefix</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.graph_composable.Decoration.append" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.graph_composable.Decoration.attach">
+<code class="descname">attach</code><span class="sig-paren">(</span><em>from_interface</em>, <em>to_interface</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.graph_composable.Decoration.attach" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.graph_composable.Decoration.make_output">
+<code class="descname">make_output</code><span class="sig-paren">(</span><em>filedir</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.graph_composable.Decoration.make_output" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="roco.derived.composables.graph_composable.GraphComposable">
-<em class="property">class </em><code class="descclassname">roco.derived.composables.graph_composable.</code><code class="descname">GraphComposable</code><a class="headerlink" href="#roco.derived.composables.graph_composable.GraphComposable" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">roco.derived.composables.graph_composable.</code><code class="descname">GraphComposable</code><span class="sig-paren">(</span><em>transform=None</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.graph_composable.GraphComposable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="roco.api.html#roco.api.composable.Composable" title="roco.api.composable.Composable"><code class="xref py py-class docutils literal"><span class="pre">roco.api.composable.Composable</span></code></a>, <a class="reference internal" href="roco.derived.composables.fegraph.html#roco.derived.composables.fegraph.face_edge_graph.FaceEdgeGraph" title="roco.derived.composables.fegraph.face_edge_graph.FaceEdgeGraph"><code class="xref py py-class docutils literal"><span class="pre">roco.derived.composables.fegraph.face_edge_graph.FaceEdgeGraph</span></code></a></p>
 <p>Class allowing output to be produced from FaceEdgeGraphs</p>
 <p>The GraphComposable class adds the Composable interface to the
@@ -177,6 +199,47 @@ and output to a file or drawn using tkinter</p>
 </dl>
 </dd>
 </dl>
+<dl class="method">
+<dt id="roco.derived.composables.graph_composable.GraphComposable.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>g2</em>, <em>prefix2</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.graph_composable.GraphComposable.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Composes two GraphComposables and prefixes the composable being composed if necessary</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>g2 (GraphComposable): GraphComposable to append to this one
+prefix2 (str): string to prefix g2 with</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.graph_composable.GraphComposable.attach">
+<code class="descname">attach</code><span class="sig-paren">(</span><em>port1</em>, <em>port2</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.graph_composable.GraphComposable.attach" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attaches two ports together in this composable</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>port1 (Port): first port to attach
+port2 (Port): second port to attach
+<a href="#id2"><span class="problematic" id="id3">**</span></a>kwargs (dict): arguments for the connection</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.graph_composable.GraphComposable.make_output">
+<code class="descname">make_output</code><span class="sig-paren">(</span><em>filedir</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.graph_composable.GraphComposable.make_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates output based on the composable to the given directory. 
+The output files depend upon the kwargs.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>filedir (str): file directory to place output files
+<a href="#id4"><span class="problematic" id="id5">**</span></a>kwargs (dict): arguments for the make process as well as output files</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.graph_composable.GraphComposable.split_merged_edges">
+<code class="descname">split_merged_edges</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.graph_composable.GraphComposable.split_merged_edges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Splits all the edges that have been merged</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -239,7 +302,7 @@ of this Virtual Composable.</dd>
 <li class="toctree-l1"><a class="reference internal" href="roco.derived.composables.fegraph.html">fegraph Package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="roco.derived.composables.fegraph.html#id1"><code class="docutils literal"><span class="pre">fegraph</span></code> Package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="roco.derived.composables.fegraph.html#module-roco.derived.composables.fegraph.drawing"><code class="docutils literal"><span class="pre">drawing</span></code> Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="roco.derived.composables.fegraph.html#module-roco.derived.composables.fegraph.drawing_edge"><code class="docutils literal"><span class="pre">drawing_edge</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roco.derived.composables.fegraph.html#drawing-edge-module"><code class="docutils literal"><span class="pre">drawing_edge</span></code> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="roco.derived.composables.fegraph.html#module-roco.derived.composables.fegraph.face"><code class="docutils literal"><span class="pre">face</span></code> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="roco.derived.composables.fegraph.html#module-roco.derived.composables.fegraph.face_edge_graph"><code class="docutils literal"><span class="pre">face_edge_graph</span></code> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="roco.derived.composables.fegraph.html#module-roco.derived.composables.fegraph.hyper_edge"><code class="docutils literal"><span class="pre">hyper_edge</span></code> Module</a></li>
