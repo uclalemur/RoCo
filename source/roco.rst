@@ -19,4 +19,5 @@ Subpackages
     roco.derived
     roco.library
     roco.tests
+    roco.utils
 
