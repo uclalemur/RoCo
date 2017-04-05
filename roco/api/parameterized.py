@@ -174,6 +174,15 @@ class Parameterized(object):
             A list containing all constraint expressions
         """
 
+    def extend_constraints(self, constraints):
+        """Extends the list of constraints with the input list
+
+        Args:
+            constraints (list): List of new constraints to add
+        """
+        for c in constraints:
+            self.add_constraint(c)
+        
     def add_constraint(self, expression, name=None):
         """Adds a new sympy constraint to the parameterized object
 

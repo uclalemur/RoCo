@@ -11,7 +11,7 @@ class Connection(object):
 
     """
 
-    def __init__(self, from_interface, to_interface, name=None):
+    def __init__(self, from_interface, to_interface, name=None, **kwargs):
         """Creates a connection.
 
         Args:
@@ -23,10 +23,15 @@ class Connection(object):
         if len(from_interface.get_ports()) != len(to_interface.get_ports()):
             raise Exception("Interfaces cannot be connected, number of ports is different")
 
+        self.kwargs = kwargs
+        self.from_interface = from_interface
+        self.to_interface = to_interface
+        
         if name is None:
             self.name = "{}->{}".format(from_interface.get_name(), to_interface.get_name())
         else:
             self.name = name
+
         
         self.matched_ports = []
         for i in range(from_interface.get_ports()):

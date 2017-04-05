@@ -19,7 +19,6 @@ class Interface(object):
             ports (Port or collection): the ports that make up this interface
 
         """
-
         self.name = name
         self.ports = []
         if isinstance(ports, collections.Iterable):
