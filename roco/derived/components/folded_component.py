@@ -14,3 +14,34 @@ class FoldedComponent(MechanicalComponent):
     folded structure as the component is built.
 
     """
+
+    def __init__(self, yaml_file=None, **kwargs):
+        """ Initializes a FoldedComponent object
+
+        Args:
+            yaml_file (str): optional yaml file to load information from
+        
+        """
+        self.GRAPH = 'graph'
+        self.drawing = None
+        MechanicalComponent.__init__(self, yaml_file, **kwargs)
+
+    def define(self, origin=False, euler=False, quat=False, **kwargs):
+        """Function that defines the state of a FoldedComponent
+
+        Args:
+            origin (bool): whether component starts at the origin or not
+            euler (bool): whether to use euler angles to represent rotation or not
+            quat (bool): whether to use quaternions to represent rotation or not
+            **kwargs (dict): arbitrary keyword arguments for define
+        """
+        MechanicalComponent.define(self, origin, euler, quat, **kwargs)
+        g = Graph(transform = self.transform3D,component=self)
+        self.composables[self.GRAPH] = g
+        
+        self.place = self.composables[self.GRAPH].place
+        self.merge_edge = self.composables[self.GRAPH].merge_edge
+        self.add_tab = self.composables[self.GRAPH].add_tab
+        self.get_edge = self.composables[self.GRAPH].get_edge
+        self.attach_face = self.composables[self.GRAPH].attach_face
+        self.add_face = self.composables[self.GRAPH].add_face

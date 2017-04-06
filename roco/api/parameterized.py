@@ -234,3 +234,33 @@ class Parameterized(object):
         """Performs the solving that is necessary
 
         """
+        # first create equivalence classes
+        equiv_classes = []
+        classes_map = {}
+        classnum = 0
+        for i in range(len(self.constraints)):
+          constraint = self.constraints[i]
+          if isinstance(constraint, BooleanTrue):
+            continue
+          if not isinstance(constraint.lhs, Variable) or not isinstance(constraint.rhs, Variable):
+            raise Exception("Constraints are not simple parameters.")
+          if constraint.lhs in classes_map and constraint.rhs not in classes_map:
+            equiv_classes[classes_map[constraint.lhs]].add(constraint.rhs)
+            classes_map[constraint.rhs] = classes_map[constraint.lhs]
+          elif constraint.lhs not in classes_map and constraint.rhs in classes_map:
+            equiv_classes[classes_map[constraint.rhs]].add(constraint.lhs)
+            classes_map[constraint.lhs] = classes_map[constraint.rhs]
+          elif constraint.lhs not in classes_map and constraint.rhs not in classes_map:
+            equiv_classes.append(Set([constraint.lhs, constraint.rhs]))
+            classes_map[constraint.lhs] = classes_map[constraint.rhs] = classnum
+            classnum += 1
+          else:
+            equiv_classes[classes_map[constraint.lhs]].update(equiv_classes[classes_map[constraint.rhs]])
+            equiv_classes[classes_map[constraint.rhs]] = equiv_classes[classes_map[constraint.lhs]]
+
+        # set values of all variables in a single equivalence class to the default
+        # of one of them
+        for e_class in equiv_classes:
+          fixed = next(iter(e_class))
+          for var in e_class:
+              var.set_solved_value(fixed.get_value())
