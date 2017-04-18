@@ -6,6 +6,7 @@ for all physical objects that can be constructed by folding 2D faces.
 """
 
 from mechanical_component import MechanicalComponent
+from roco.derived.composables.graph_composable import GraphComposable
 
 class FoldedComponent(MechanicalComponent):
     """A type of MechanicalComponent is a base for all foldable structures.
@@ -36,7 +37,7 @@ class FoldedComponent(MechanicalComponent):
             **kwargs (dict): arbitrary keyword arguments for define
         """
         MechanicalComponent.define(self, origin, euler, quat, **kwargs)
-        g = Graph(transform = self.transform3D,component=self)
+        g = GraphComposable(transform = self.transform3D)
         self.composables[self.GRAPH] = g
         
         self.place = self.composables[self.GRAPH].place

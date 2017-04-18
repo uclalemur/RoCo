@@ -145,7 +145,10 @@ class FaceEdgeGraph(object):
         self.edges = []
         self.placed = False
         self.prefixed = False
-        self.transform3D = transform or np.eye(4)
+        if transform is not None:
+            self.transform3D = transform
+        else:
+            self.transform3D = np.eye(4)
 
     def add_face(self, f, prefix=None, face_edges=None, face_angles=None, face_flips=None):
         """

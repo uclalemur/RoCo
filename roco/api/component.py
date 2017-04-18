@@ -15,7 +15,7 @@ import roco.utils.mymath as math
 from roco.api.utils.variable import Variable
 
 from roco import ROCO_DIR
-from roco.utils.util import prefix as prefix_string
+from roco.utils.utils import prefix as prefix_string
 from roco.utils.utils import try_import
 from roco.utils.io import load_yaml
 from sympy import Symbol, Eq, StrictGreaterThan, GreaterThan, StrictLessThan, LessThan
@@ -172,10 +172,10 @@ class Component(Parameterized):
         except AttributeError: pass
 
         try:
-          for to_port, from_port, kwargs in definition["connections"]:
+          for from_port, to_port, kwargs in definition["connections"]:
             for param, pvalue in kwargs.iteritems():
                 kwargs[param] = self._str_to_sympy(pvalue)
-            self.add_connection(to_port, from_port, **kwargs)
+            self.add_connection(from_port, to_port, **kwargs)
         except AttributeError: pass
 
         try:
@@ -216,8 +216,8 @@ class Component(Parameterized):
         to_delete = []
 
         # delete edges connecting components
-        for (key, con) in self.connections:
-            if name in (con.from_interface.parent, con.to_interface.parent):
+        for (key, (from_comp, _), (to_comp, _), _) in self.connections:
+            if name in (from_comp, to_comp):
                 to_delete.append(key)
         for key in reversed(to_delete):
             self.connections.pop(key)
@@ -284,22 +284,38 @@ class Component(Parameterized):
         self.interfaces.setdefault(name, self.get_subcomponent_interface(subcomponent,subname))
         return self
     
-    def add_connection(self, from_interface, to_interface, name=None, **kwargs):
+    def add_connection(self, from_interface, to_interface, **kwargs):
         """ Specifies interfaces on subcomponents to be connected
 
         Args:
-            (from_name, from_interface) (tuple(str, str)): a tuple containing the name of the subcomponent, and the
-                name of the interface the connection comes from
-            (to_name, to_interface) (tuple(str, str)): a tuple containing the name of the subcomponent, and the
-                name of the interface the connection goes to
+            from_interface (tuple(str, str)): a tuple containing the name of the subcomponent, and the name of the interface the connection comes from
+            to_interface (tuple(str, str)): a tuple containing the name of the subcomponent, and the name of the interface the connection goes to
+            kwargs (dict): arguments for the connection
+
+        Raises:
+            KeyError: a connection between the two interfaces already exists
 
         """
-        if not isinstance(from_interface, Interface):
-            from_interface = self.get_subcomponent_interface(from_interface[0],from_interface[1])
-        if not isinstance(to_interface, Interface):
-            to_interface = self.get_subcomponent_interface(to_interface[0],to_interface[1])
-        self.connections.append(Connection(from_interface,to_interface,name,kwargs))
+        name = "{} -> {}".format(prefix_string(from_interface[0], from_interface[1]), prefix_string(to_interface[0], to_interface[1]))
+        if name in self.connections:
+            raise KeyError("Connection {} already exists")
+        self.connections[name] = [from_interface, to_interface, kwargs]
 
+    def del_connection(self, from_interface, to_interface):
+        """ Deletes the connection that consists of the two ordered interfaces
+
+        Args:
+            from_interface (tuple(str, str)): a tuple containing the name of the subcomponent, and the name of the interface the connection comes from
+            to_interface (tuple(str, str)): a tuple containing the name of the subcomponent, and the name of the interface the connection goes to
+
+        Raises:
+            KeyError: a connection between the two interface does not exist
+
+        """
+        name = "{} -> {}".format(prefix_string(from_interface[0], from_interface[1]), prefix_string(to_interface[0], to_interface[1]))
+        if name not in self.connections:
+            raise KeyError("Connection {} does not exist")
+        
     def to_yaml(self, filename):
         """ Generates YAML file containing component information
 
@@ -331,15 +347,15 @@ class Component(Parameterized):
           constraints.append(expr)
 
         connections = []
-        for c in self.connections:
+        for from_interface, to_interface, kwargs  in self.connections:
           new_args = {}
-          for param, value in c.kwargs.iteritems():
+          for param, value in kwargs.iteritems():
             try:
               value = repr(value)
             except AttributeError:
               pass
             newArgs[param] = value
-          connections.append([c.to_interface, c.from_interface, new_args])
+          connections.append([from_interface, to_interface, new_args])
 
         definition = {
             "parameters" : parameters,
@@ -516,7 +532,7 @@ class Component(Parameterized):
 
         """
         for name in self.subcomponents:
-            self.resolveSubcomponent(name)
+            self.resolve_subcomponent(name)
 
     def inherit_constraints(self, subcomponent):
         """Inherits the constraints from a subcomponent
@@ -574,27 +590,25 @@ class Component(Parameterized):
         """ Attaches each of the ports between which a connection was made
 
         """
-        for c in self.connections:
-            self.attach(c.from_interface,
-                        c.to_interface,
-                        c.kwargs)
+        for (from_interface, to_interface, kwargs) in self.connections.itervalues():
+            self.attach(from_interface,
+                        to_interface,
+                        kwargs)
 
     def make(self):
         """ Evaluates subcomponents, connections, and constraints, then assembles the component
 
         """
         self.reset()
-        self.modifyParameters()
-        self.resolveSubcomponents()
-        self.evalConstraints()
+        self.resolve_subcomponents()
+        self.eval_constraints()
 
-        self.evalComponents()    # Merge composables from all subcomponents and tell them my components exist
-        self.evalInterfaces()    # Tell composables that my interfaces exist
-        self.evalConnections()   # Tell composables which interfaces are connected
-        self.evalTabs()
+        self.eval_subcomponents()    # Merge composables from all subcomponents and tell them my components exist
+        self.eval_interfaces()    # Tell composables that my interfaces exist
+        self.eval_connections()   # Tell composables which interfaces are connected
         self.assemble()
         self.solve()
-        self.checkConstraints()
+        self.check_constraints()
 
     def reset(self):
         """Resets component to a state before make is called.

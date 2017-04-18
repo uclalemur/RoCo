@@ -28,8 +28,8 @@ class Face():
         com4D (Matrix): Homogeneous coordinates for com2D
         area (double): Area of the face
 
-
     """
+    
 class RegularNGon(Face):
     """Subclass of Face representing regular polygons defined by side length
     """
