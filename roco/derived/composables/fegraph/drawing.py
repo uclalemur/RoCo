@@ -76,7 +76,7 @@ class Drawing():
                 graph and drawing, used to compute the literal values for
                 symbolic coordinates
         """
-        self.place_face(g.faces[0], None, np.eye(4), np.eye(4))
+        self.place_faces(g.faces[0], None, np.eye(4), np.eye(4))
     def add_face(self, vertex_coordinates, allow_overlap=False):
         """Adds a face whose boundary is defined by the vertices in
         vertex_coordinates using right handed convention. If allow_overlap is
@@ -130,142 +130,111 @@ class Drawing():
         self.faces.append(face)
         return True
 
-    def place_face(self, face, edge_from, edge_from_pts, transform2D, placed=None):
-        """Probably needs to be completely rewritten
+    def place_faces(self, face, edge_from, transform_2D, placed=None, allow_overlap=False):
+        """Recursively adds faces to the 2D drawing.
+
+        Args:
+            face: the current face being placed
+            edge_from: the edge by which to attach the current face
+            transform_2D: A tranformation matrix to move the face into its position in 2D space
+            placed: dictionary containing metadata about previously placed entities
+            allow_overlap: Whether or not to allow two face to be placed on top of each other
         """
-        checkForOverlap = False
+
         if placed is not None and face in placed['faces']:
-            # TODO : verify that it connects appropriately along alternate path
-            # print "Repeated face : " + self.name
+            #This face has already been placed, do not place again
             return
-        if placed is None:  # Replacing the entire component
+
+        if placed is None:
+            #No faces have been placed yet, initialize data structures
             placed = {'faces': [], 'edges': {}, 'overlapping': []}
-            checkForOverlap = True
-
-        for e in face.get2DDecorations():
-            self.edges[e[0]] = Edge(e[0], [self.component.evalEquation(x) for x in e[1]],
-                                    [self.component.evalEquation(x) for x in e[2]], EdgeType(e[3]))
-
-        if edge_from is not None:
-            r = face.preTransform(edge_from)  # Get Rotation angle of previous edge
+            check_for_overlap = not allow_overlap
         else:
-            r = np.eye(4)  # Place edge as is
+            #Overlap checking is handled only in top level call
+            check_for_overlap = False
 
-        # Rotate face to new direction
-        facetransform2D = np.dot(transform2D, r)
+        #Will this break if a face has to be flipped?
+        for e in face.get_2D_decorations():
+                self.edges[e[0]] = Edge(e[0], [api.util.variable.eval_equation(x) for x in e[1]],
+                                        [api.util.variable.eval_equation(x) for x in e[2]], EdgeType(e[3]))
 
-        pts2d = np.dot(r, face.pts4d)[0:2, :]
+        """
+        Placing faces involves the notion of "pretransformed" and "transformed" values.
+        Pretransformation moves the edge a face is being connected by to the x axis,
+        and can be thought of as a face's relative position to its neighbor.
+        Transformation moves a face to its absolute position in 2D space.
+        """
+        if edge_from is not None:
+            #Align connected edges
+            pretransform_matrix = face.pretransform(edge_from)
+        else:
+            #Place edge as is
+            pretransform_matrix = np.eye(4)
 
-        # print self.component.evalEquation(np.dot(facetransform2D, face.pts4d))
-        pts2dMatrix = np.dot(r, face.pts4d)
-        coords2DMatrix = np.dot(facetransform2D, face.pts4d)
+        transform_matrix = np.dot(transform_2D, pretransform_matrix)
 
-        coords2D = np.dot(facetransform2D, face.pts4d)[0:2, :]
+        #4D pts are the homogenous coordinates of the face i.e. [x,y,z,1]
+        pretransformed_pts_4D = np.dot(pretransform_matrix, face.pts_4D)
+        transfromed_pts_4D = np.dot(transform_matrix, face.pts_4D)
 
-        facepts2d = []
-        faceedges = []
-        coords2D = self.component.evalEquation(coords2D)
-        # print coords2D
-        # print self.component.evalEquation(pts2d), self.component.evalEquation(face.pts4d), self.component.evalEquation(coords2D)
-        for (i, e) in enumerate(face.edges):
-            if e is None:
-                continue
+        pretransformed_pts_2D = pretransformed_pts_4D[0:2,:]
+        #Numerical values for the coordinates are required for placement
+        transfromed_pts_2D = api.util.variable.eval_equation(transfromed_pts_4D[0:2, :])
 
-            if e.name[:4] == 'temp':
-                continue
+        if not self.add_face(transfromed_pts_2D):
+            #If face cannot be placed without collisions, attempt to reflect it
+            reflection_matrix = np.array([[1,  0, 0, 0],
+                                          [0, -1, 0, 0],
+                                          [0,  0, 1, 0],
+                                          [0,  0, 0, 1]])
 
-            try:
-                da = e.faces[face]
-            except KeyError:
-                # Edge was added as a cut
-                continue
-            facepts2d.append((coords2D[:, i - 1], coords2D[:, i]))
-            faceedges.append(e)
-            '''if da[1]:
-              facepts2d.append((coords2D[:, i - 1], coords2D[:, i]))
-            else:
-              facepts2d.append((coords2D[:, i], coords2D[:, i - 1]))
-          if not self.placeFace(faceedges,facepts2d):
-            raise Exception("Attemping to place overlapping faces")'''
+            #Recompute pretransform and transform with rotation
+            pretransform_matrix = np.dot(reflection_matrix, pretransform_matrix)
+            transform_matrix = np.dot(transform_2D, pretransform_matrix)
 
-        if not self.placeFace(faceedges, facepts2d, coords2D):
-            try:
-                edge_from = self.component.evalEquation(edge_from)
-            except:
-                pass
+            pretransformed_pts_4D = np.dot(pretransform_matrix, face.pts_4D)
+            transfromed_pts_4D = np.dot(transform_matrix, face.pts_4D)
 
-            reflection = ReflectAcross2Dpts(edge_from_pts)
-            reflectionX = np.array([[1, 0, 0, 0],
-                                    [0, -1, 0, 0],
-                                    [0, 0, 1, 0],
-                                    [0, 0, 0, 1]])
+            pretransformed_pts_2D = pretransformed_pts_4D[0:2,:]
+            transfromed_pts_2D = api.util.variable.eval_equation(transfromed_pts_4D[0:2, :])
 
-            if edge_from is not None:
-                r = face.preTransform(edge_from)  # Get Rotation angle of previous edge
-            else:
-                r = np.eye(4)  # Place edge as is
-            r = np.dot(reflectionX, r)
-
-            pts2d = np.dot(r, face.pts4d)[0:2, :]
-            # print self.component.evalEquation(reflection)
-            coords2D = np.dot(reflection, coords2DMatrix)[0:2, :]
-            # print self.component.evalEquation(pts2d), self.component.evalEquation(face.pts4d), self.component.evalEquation(coords2D)
-
-            facepts2d = []
-            faceedges = []
-            coords2D = self.component.evalEquation(coords2D)
-
-            # print coords2D
-            for (i, e) in enumerate(face.edges):
-                if e is None:
-                    continue
-
-                if e.name[:4] == 'temp':
-                    continue
-
-                try:
-                    da = e.faces[face]
-                except KeyError:
-                    # Edge was added as a cut
-                    continue
-                facepts2d.append((coords2D[:, i - 1], coords2D[:, i]))
-                faceedges.append(e)
-            if not self.placeFace(faceedges, facepts2d, coords2D):
+            if not self.add_face(transfromed_pts_2D) and not allow_overlap:
+                #Face was not able to be placed connected to this edge
+                #Keep track of face and hope it gets placed elsewhere
+                #TODO: Try connecting along other edges or undoing previous placements?
                 placed['overlapping'].append(face)
                 return
-
-        # Face is being placed
+        #Face is being placed
         placed['faces'].append(face)
         if face in placed['overlapping']:
             placed['overlapping'].remove(face)
 
-        for i in range(len(faceedges)):
-            # Don't 2d place edges that are tabbed
-            e = faceedges[i]
-            if e.isTab():
-                edgepts2d = None
-            # Evaluate the edge coordinates
-            edgepts2d = (self.component.evalEquation(facepts2d[i][0]), self.component.evalEquation(facepts2d[i][1]))
+        #Place each edge
+        for (i, edge) in enumerate(face.edges):
+            #HACK: Do not place temporary edges
+            if e is None or e.name[:4] == "temp":
+                continue
 
-            '''for ple in placed['edges'].keys():
-              if intersects(edgepts2d,placed['edges'][ple]):
-                print 'Error: Edge Intersects', edgepts2d, placed['edges'][ple]
-                continue'''
-            # Deal with edges that are connected in 3D, but not in 2D
-            if e.name in placed['edges'].keys() and diffEdge(placed['edges'][e.name], edgepts2d,
-                                                             2):  # If edges has already been placed, it must be cut
-                # Create a new edge
-                self.edges['temp' + e.name] = Edge('temp' + e.name, edgepts2d[0], edgepts2d[1], Cut())
+            #Get the endpoints of the edge
+            edge_pts_2D = (transfromed_pts_2D[:,i - 1],transfromed_pts_2D[:,i])
+
+            if e.name in placed['edges'].keys():
+                edge_alias = placed['edges'][e.name]
+                if diff_edge(edge_alias, edgepts2d,2):
+                #If the edge has already been placed in a different place, a cut must be made
+
+                #Create a new edge
+                self.edges['temp' + e.name] = Edge('temp' + e.name, edge_pts_2D[0], edge_pts_2D[1], Cut())
                 # Make old edge into a cut
-                self.edges[e.name] = Edge(e.name, placed['edges'][e.name][0], placed['edges'][e.name][1], Cut())
-
+                self.edges[e.name] = Edge(e.name, edge_alias[0], edge_alias[1], Cut())
             else:
+                #Add edge normally
                 if len(e.faces) == 1:
-                    edge = Cut()
+                    edge_type = Cut()
                 else:
-                    edge = Fold()
-                self.edges[e.name] = Edge(e.name, edgepts2d[0], edgepts2d[1], edge)
-                placed['edges'][e.name] = edgepts2d
+                    edge_type = Fold()
+                self.edges[e.name] = Edge(e.name, edge_pts_2D[0], edge_pts_2D[1], edge_type)
+                placed['edges'][e.name] = edge_pts_2D
 
             if len(e.faces) <= 1:
                 # No other faces to be found, move on to next edge.
@@ -274,35 +243,16 @@ class Drawing():
                 # Don't follow faces off of a Tab
                 continue
 
-            # XXX hack: don't follow small edges
-            el = face.edgeLength(i)
-            try:
-                if el <= 0.01:
-                    continue
-            except TypeError:
-                pass  # print 'sympyicized variable detected - ignoring edge length check'
+            #Compute new transform matrix for next face
+            rotation_matrix = rotate_X_to(pretransformed_pts_2D[:,i],pretransformed_pts_2D[:,i-1])
+            origin_matrix = move_origin_to(pretransformed_pts_2D[:,i-1])
+            next_transfrom_2D = np.dot(transform_2D,np.dot(origin_matrix,np.dot(rotation_matrix,np.eye(4))))
 
-            pt1 = pts2d[:, i - 1]
-            pt2 = pts2d[:, i]
-
-            # TODO : Only skip self and the face that you came from to verify multi-connected edges
-            # XXX : Assumes both faces have opposite edge orientation
-            #       Only works for non-hyper edges -- need to store edge orientation info for a +/- da
-            for (f, a) in e.faces.iteritems():
-                '''if a[1] ^ da[1]:
-                  # opposite orientation
-                  pta, ptb = pt1, pt2
-                else:
-                  # same orientation'''
-                pta, ptb = pt1, pt2
-                x = RotateXTo(ptb, pta)
-
-                r2d = np.eye(4)
-                r2d = np.dot(x, r2d)
-                r2d = np.dot(MoveOriginTo(pta), r2d)
-
-                self.place(f, e, edgepts2d, np.dot(transform2D, r2d), placed)
-        if checkForOverlap and len(placed['overlapping']):
+            #Place faces connected to edge
+            for(f,a) in e.faces.iteritems():
+                self.place(f, e, next_transfrom_2D, placed)
+        if check_for_overlap and len(placed['overlapping']):
+            #Placement has finished, but some edges are still unplaced
             raise Exception('One or more faces could not be placed without overlap!')
 
     def to_DXF(self, filename=None, labels=False, mode="dxf"):
