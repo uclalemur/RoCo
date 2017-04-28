@@ -15,7 +15,7 @@ import roco.utils.mymath as math
 from roco.api.utils.variable import Variable
 
 from roco import ROCO_DIR
-from roco.utils.util import prefix as prefix_string
+from roco.utils.utils import prefix as prefix_string
 from roco.utils.utils import try_import
 from roco.utils.io import load_yaml
 from sympy import Symbol, Eq, StrictGreaterThan, GreaterThan, StrictLessThan, LessThan
@@ -153,7 +153,7 @@ class Component(Parameterized):
 
         try:
           for name, value in definition["subcomponents"].iteritems():
-            try: 
+            try:
               # XXX Can these be sympy functions as well?
               kwargs = value["constants"]
             except AttributeError:
@@ -182,7 +182,7 @@ class Component(Parameterized):
           for name, value in definition["interfaces"].iteritems():
             self.inherit_interface(name, (value["subcomponent"], value["interface"]))
         except AttributeError: pass
-        
+
     def define(self, **kwargs):
         """Function for overriding interfaces.
 
@@ -244,7 +244,7 @@ class Component(Parameterized):
         new_interface = Interface(name, ports)
         self.interfaces.setdefault(name, new_interface)
         return self
-    
+
     def del_interface(self, name):
         """Deletes an interface from this component.
 
@@ -252,7 +252,7 @@ class Component(Parameterized):
             name (str): unique identifier for interface that will be deleted from the component.
         """
         self.interfaces.pop(name)
-        
+
     def inherit_all_interfaces(self, subcomponent, prefix=""):
         """Adds all interfaces from subcomponent to current component
 
@@ -270,7 +270,7 @@ class Component(Parameterized):
           new_interface = Interface(prefix_string(prefix, name), value)
           self.add_interface(prefix_string(prefix, name), new_interface)
         return self
-    
+
     def inherit_interface(self, name, (subcomponent, subname)):
         """Adds specified interface from subcomponent to current component
 
@@ -283,7 +283,7 @@ class Component(Parameterized):
             raise ValueError("Interface %s already exists" % name)
         self.interfaces.setdefault(name, self.get_subcomponent_interface(subcomponent,subname))
         return self
-    
+
     def add_connection(self, from_interface, to_interface, name=None, **kwargs):
         """ Specifies interfaces on subcomponents to be connected
 
@@ -415,7 +415,7 @@ class Component(Parameterized):
 
         """
         pass
-        
+
     def append(self, name, prefix):
         """ Appends composables on each of the subcomponents to composable on current component
 
@@ -537,7 +537,7 @@ class Component(Parameterized):
         for subcomponent in self.subcomponents.iterkeys():
             for (parameter_name, value) in self.subcomponents[subcomponent]["parameters"].iteritems():
                   self.set_parameter(prefix_string(subcomponent, parameter_name), value)
-        
+
     def eval_subcomponents(self):
         """ Creates composables in current component based on composables in each of the subcomponents, then
             appends composables in subcomponents to corresponding composable in component

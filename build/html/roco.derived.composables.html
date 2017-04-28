@@ -66,95 +66,11 @@
 <p>This package contains all classes derived from the Composable class, as well
 as any additional classes they may use.</p>
 </div>
-<div class="section" id="module-roco.derived.composables.code_composable">
-<span id="code-composable-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">code_composable</span></code> Module<a class="headerlink" href="#module-roco.derived.composables.code_composable" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.derived.composables.code_composable.CodeComposable">
-<em class="property">class </em><code class="descclassname">roco.derived.composables.code_composable.</code><code class="descname">CodeComposable</code><span class="sig-paren">(</span><em>meta</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.code_composable.CodeComposable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#roco.derived.composables.virtual_composable.VirtualComposable" title="roco.derived.composables.virtual_composable.VirtualComposable"><code class="xref py py-class docutils literal"><span class="pre">roco.derived.composables.virtual_composable.VirtualComposable</span></code></a></p>
-<p>Virtual Composable is an interface for objects which produce code.</p>
-<p>Any class meant to produce code usable for the final robot designs should
-derive from this class. In any derived class, all member functions may be
-redefined.</p>
-<dl class="method">
-<dt id="roco.derived.composables.code_composable.CodeComposable.addComponent">
-<code class="descname">addComponent</code><span class="sig-paren">(</span><em>componentObj</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.code_composable.CodeComposable.addComponent" title="Permalink to this definition">¶</a></dt>
-<dd><p>Tells composable about what component it belongs to.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>component_obj (Component): the component to tie this composable to.</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.derived.composables.code_composable.CodeComposable.append">
-<code class="descname">append</code><span class="sig-paren">(</span><em>newComposable</em>, <em>newPrefix</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.code_composable.CodeComposable.append" title="Permalink to this definition">¶</a></dt>
-<dd><p>Combines two composables with the new one being prefixed.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>new_composable (Composable): the composable that is being appended to this one.
-new_prefix (str): the prefix of all the names for the composable being appended.</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.derived.composables.code_composable.CodeComposable.attach">
-<code class="descname">attach</code><span class="sig-paren">(</span><em>fromPort</em>, <em>toPort</em>, <em>kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.code_composable.CodeComposable.attach" title="Permalink to this definition">¶</a></dt>
-<dd><p>Attaches two ports inside the composable together</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>from_port (Port):
-to_port(Port):
-kwargs (dict): args relating to the connection between the ports.</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.derived.composables.code_composable.CodeComposable.makeOutput">
-<code class="descname">makeOutput</code><span class="sig-paren">(</span><em>filedir</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.code_composable.CodeComposable.makeOutput" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates output for the composable.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>file_dir (str): the directory to place to output
-kwargs (dict): arguments for the output generation</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.derived.composables.code_composable.CodeComposable.new">
-<code class="descname">new</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.code_composable.CodeComposable.new" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a new instance of a CodeComposable, identical to this one.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>None</dd>
-<dt>Returns:</dt>
-<dd>Code Composable object.</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.derived.composables.code_composable.CodeComposable.removeTarget">
-<code class="descname">removeTarget</code><span class="sig-paren">(</span><em>target</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.code_composable.CodeComposable.removeTarget" title="Permalink to this definition">¶</a></dt>
-<dd><p>Removes a target from the list of supported targets.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>target (Composable): The target to be removed from the meta.</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.derived.composables.code_composable.CodeComposable.subParameter">
-<code class="descname">subParameter</code><span class="sig-paren">(</span><em>token</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.code_composable.CodeComposable.subParameter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the subParameter for each target supported by the composable</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>token (any): key of the subParameter
-value (any): value of the subParameter</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="code-composable-module">
+<h2><code class="xref py py-mod docutils literal"><span class="pre">code_composable</span></code> Module<a class="headerlink" href="#code-composable-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="electrical-composable-module">
+<h2><code class="xref py py-mod docutils literal"><span class="pre">electrical_composable</span></code> Module<a class="headerlink" href="#electrical-composable-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-roco.derived.composables.graph_composable">
 <span id="graph-composable-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">graph_composable</span></code> Module<a class="headerlink" href="#module-roco.derived.composables.graph_composable" title="Permalink to this headline">¶</a></h2>
@@ -301,7 +217,7 @@ of this Virtual Composable.</dd>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="roco.derived.composables.fegraph.html">fegraph Package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="roco.derived.composables.fegraph.html#id1"><code class="docutils literal"><span class="pre">fegraph</span></code> Package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="roco.derived.composables.fegraph.html#module-roco.derived.composables.fegraph.drawing"><code class="docutils literal"><span class="pre">drawing</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roco.derived.composables.fegraph.html#drawing-module"><code class="docutils literal"><span class="pre">drawing</span></code> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="roco.derived.composables.fegraph.html#drawing-edge-module"><code class="docutils literal"><span class="pre">drawing_edge</span></code> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="roco.derived.composables.fegraph.html#module-roco.derived.composables.fegraph.face"><code class="docutils literal"><span class="pre">face</span></code> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="roco.derived.composables.fegraph.html#module-roco.derived.composables.fegraph.face_edge_graph"><code class="docutils literal"><span class="pre">face_edge_graph</span></code> Module</a></li>
@@ -323,7 +239,8 @@ of this Virtual Composable.</dd>
   <ul>
 <li><a class="reference internal" href="#">composables Package</a><ul>
 <li><a class="reference internal" href="#id1"><code class="docutils literal"><span class="pre">composables</span></code> Package</a></li>
-<li><a class="reference internal" href="#module-roco.derived.composables.code_composable"><code class="docutils literal"><span class="pre">code_composable</span></code> Module</a></li>
+<li><a class="reference internal" href="#code-composable-module"><code class="docutils literal"><span class="pre">code_composable</span></code> Module</a></li>
+<li><a class="reference internal" href="#electrical-composable-module"><code class="docutils literal"><span class="pre">electrical_composable</span></code> Module</a></li>
 <li><a class="reference internal" href="#module-roco.derived.composables.graph_composable"><code class="docutils literal"><span class="pre">graph_composable</span></code> Module</a></li>
 <li><a class="reference internal" href="#module-roco.derived.composables.virtual_composable"><code class="docutils literal"><span class="pre">virtual_composable</span></code> Module</a></li>
 <li><a class="reference internal" href="#subpackages">Subpackages</a></li>

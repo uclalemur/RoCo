@@ -58,7 +58,7 @@ class Parameterized(object):
 
     def add_parameter(self, name, value, is_literal=False, **kwargs):
         """Adds a k/v pair to the internal store if the key has not been added
-            before
+        before
 
         Args:
             name (str): the parameter name
@@ -182,7 +182,7 @@ class Parameterized(object):
         """
         for c in constraints:
             self.add_constraint(c)
-        
+
     def add_constraint(self, expression, name=None):
         """Adds a new sympy constraint to the parameterized object
 
