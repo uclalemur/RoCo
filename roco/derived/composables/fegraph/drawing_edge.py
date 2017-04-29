@@ -1,5 +1,5 @@
 
-import roco.api.utils.mymath as np
+import roco.utils.mymath as np
 """The DrawingEdge module
 
 The Drawing edge module contains the EdgeType class, defining how edges are
@@ -131,29 +131,29 @@ class EdgeType():
 
         return kwargs
 
-    #Helper functions to create the various predefined EdgeTypes
-    class Flat(EdgeType):
-      def __init__(self):
-        EdgeType.__init__(self, EdgeType.FLAT)
-    class Reg(EdgeType):
-      def __init__(self):
-        EdgeType.__init__(self, EdgeType.REG)
-    class Cut(EdgeType):
-      def __init__(self):
-        EdgeType.__init__(self, EdgeType.CUT)
-    class NoEdge(EdgeType):
-      def __init__(self):
-        EdgeType.__init__(self, EdgeType.NOEDGE)
-    def Fold(angle=0):
-      if isinstance(angle, (list, tuple)):
-        return [EdgeType(EdgeType.FOLD, angle=x) for x in angle]
-      else:
-        return EdgeType(EdgeType.FOLD, angle=angle)
-    def Flex(angle=0):
-      if isinstance(angle, (list, tuple)):
-        return [EdgeType(EdgeType.FLEX, angle=x) for x in angle]
-      else:
-        return EdgeType(EdgeType.FLEX, angle=angle)
+#Helper functions to create the various predefined EdgeTypes
+class Flat(EdgeType):
+  def __init__(self):
+    EdgeType.__init__(self, EdgeType.FLAT)
+class Reg(EdgeType):
+  def __init__(self):
+    EdgeType.__init__(self, EdgeType.REG)
+class Cut(EdgeType):
+  def __init__(self):
+    EdgeType.__init__(self, EdgeType.CUT)
+class NoEdge(EdgeType):
+  def __init__(self):
+    EdgeType.__init__(self, EdgeType.NOEDGE)
+def Fold(angle=0):
+  if isinstance(angle, (list, tuple)):
+    return [EdgeType(EdgeType.FOLD, angle=x) for x in angle]
+  else:
+    return EdgeType(EdgeType.FOLD, angle=angle)
+def Flex(angle=0):
+  if isinstance(angle, (list, tuple)):
+    return [EdgeType(EdgeType.FLEX, angle=x) for x in angle]
+  else:
+    return EdgeType(EdgeType.FLEX, angle=angle)
 
 def diag(dx, dy):
   """Returns the diagonal distance between two points.
