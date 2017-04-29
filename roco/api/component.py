@@ -378,15 +378,23 @@ class Component(Parameterized):
 
         Args:
             name (str): name of the subcomponent to return
+
+        Returns:
+            the subcomponent with name 'name'
+
+        Raises:
+            KeyError: the subcomponent given by 'name' does not exist
+
         """
         return self.subcomponents[name]["component"]
 
-    def set_subcomponent_parameter(self, (subcomponent, parameter), value):
-        """ Sets parameter of subcomponent to the specified value
+    def constrain_subcomponent_parameter(self, (subcomponent, parameter), value):
+        """ Constrains a parameter of subcomponent to the specified value
 
         Args:
-            (subcomponent, parameter) (tuple (str, str)): name of subcomponent, and name of parameter to modify
+            (subcomponent, parameter) (tuple (str, str)): name of subcomponent, and name of parameter to constrain
             value: Value of the parameter
+
         """
         self.subcomponents[subcomponent]["parameters"][parameter] = value
 
@@ -400,7 +408,7 @@ class Component(Parameterized):
         Returns:
             the interface belonging to 'component' with name 'name'
         """
-        return self.get_component(component).get_interface(name)
+        return self.get_subcomponent(component).get_interface(name)
 
     def get_interface(self, name):
         """ Returns a interface of this component
