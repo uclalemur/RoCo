@@ -1,6 +1,6 @@
 from sympy import Dummy
 
-def eval_equation(self, equation):
+def eval_equation(equation):
     """Evaluates given sympy expression using the parameters.
 
     Args:
@@ -9,6 +9,11 @@ def eval_equation(self, equation):
     Returns:
         Evaluated value for expression.
     """
+
+    eqn_eval = equation
+    for s in eqn_eval.atoms(Variable):
+        eqn_eval = eqn_eval.subs(s, s.get_value())
+    return eqn_eval
 
 class Variable(Dummy):
     def __new__(cls, name, default=-1, commutative=True, **assumptions):
@@ -30,7 +35,7 @@ class Variable(Dummy):
         instance.solved = -1
         return instance
 
-    def set_solved_value(self, value):
+    def set_solved(self, value):
         """Sets a new solved value for the variable
 
         Args:
@@ -58,7 +63,7 @@ class Variable(Dummy):
         """
         return self.default
 
-    def get_solved_value(self):
+    def get_solved(self):
         """Returns the solved value of the variable
 
         Args:
@@ -82,7 +87,7 @@ class Variable(Dummy):
         Returns:
             The solved value of the variable.
         """
-        if self.is_solved():
+        if self.is_solved:
             return self.solved
         return self.default
 

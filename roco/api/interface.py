@@ -4,6 +4,8 @@ This module contains the Interface class which encapsulates ports from composabl
 
 """
 
+import collections
+
 class Interface(object):
     """A single or an ordered list of ports
     
@@ -25,7 +27,7 @@ class Interface(object):
             for port in ports:
                 self.ports.append(port)
         else:
-            self.ports.append(port) 
+            self.ports.append(ports) 
 
 
     def get_name(self):

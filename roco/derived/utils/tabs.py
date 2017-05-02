@@ -1,6 +1,6 @@
-from roco.derived.composables.fegraph.Face import Rectangle
-from roco.derived.composables.fegraph.Drawing import Face
-from roco.derived.composables.fegraph.DrawingEdge import Edge, Flex
+from roco.derived.composables.fegraph.face import Rectangle
+from roco.derived.composables.fegraph.drawing import Face
+from roco.derived.composables.fegraph.drawing_edge import DrawingEdge, Flex
 from roco.utils.mymath import pi, arctan2, norm
 
 class TabDrawing(Face):
@@ -11,8 +11,8 @@ class TabDrawing(Face):
     else:
       Face.__init__(self, 
         ((w,0), (w+t,0), (w,t), (0,t), (-t,0)))
-      self.edges['f0'] = Edge("f0", (0,0), (0,t), Flex())
-      self.edges['f1'] = Edge("f1", (w,0), (w,t), Flex())
+      self.edges['f0'] = DrawingEdge("f0", (0,0), (0,t), Flex())
+      self.edges['f1'] = DrawingEdge("f1", (w,0), (w,t), Flex())
 
     self.edges.pop('e0')
     self.transform(origin=(-w/2.0,-t/2.))

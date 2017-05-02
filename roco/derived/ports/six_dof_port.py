@@ -5,6 +5,7 @@ This module contains the SixDOFPort class.
 """
 
 from roco.api.port import Port
+from roco.utils.transforms import get_6DOF
 
 class SixDOFPort(Port):
     """A class representing a port associated with an object that has 6DOF.

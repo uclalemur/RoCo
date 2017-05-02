@@ -1,8 +1,8 @@
 from Tkinter import *
 import math
 
-from roco.derived.composables.fegraph.Drawing import *
-from roco.derived.composables.fegraph.DrawingEdge import *
+from roco.derived.composables.fegraph.drawing import *
+from roco.derived.composables.fegraph.drawing_edge import *
 
 #def displayTkinter(dwg, height = 500, width = 700, showFlats = True):
 
@@ -78,15 +78,15 @@ class DisplayApp:
         print dwg
         color = "white"
         for e in dwg.edges.items():
-            if e[1].edgetype.edgetype == EdgeType.NOEDGE:
+            if e[1].edge_type.edge_type == EdgeType.NOEDGE:
                 continue
-            if e[1].edgetype.edgetype == EdgeType.CUT:
+            if e[1].edge_type.edge_type == EdgeType.CUT:
                 color = 'blue'
-            elif e[1].edgetype.edgetype == EdgeType.FOLD:
+            elif e[1].edge_type.edge_type == EdgeType.FOLD:
                 color = 'red'
-            elif e[1].edgetype.edgetype == EdgeType.FLEX:
+            elif e[1].edge_type.edge_type == EdgeType.FLEX:
                 color = 'purple'
-            if e[1].edgetype.edgetype == EdgeType.FLAT:
+            if e[1].edge_type.edge_type == EdgeType.FLAT:
                 if self.showFlats:
                     color = 'black'
                 else:

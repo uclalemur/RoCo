@@ -4,6 +4,13 @@ This module contains the Drawing class, a class meant to represent unfolded
 components in 2D form, and several geometric helper functions to aid in the
 creation of Drawings from Graphs.
 """
+
+import roco.utils.mymath as np
+from roco.api.utils.variable import eval_equation
+from drawing_edge import *
+from roco.utils.transforms import *
+from shapely import geometry
+
 def diff_edge(pts1, pts2, dimension, tolerance = 0.01):
     """Determines if two edges are the same
     """
@@ -14,7 +21,7 @@ def diff_edge(pts1, pts2, dimension, tolerance = 0.01):
             diff1 = pts1[i][j] - pts2[i][j]
             diff2 = pts1[1-i][j] - pts2[i][j]
             if (tolerance < diff1 or diff1 < -tolerance) and (tolerance < diff2 or diff2 < -tolerance): #Allow for some difference due to double precision
-            return True
+                return True
     return False
 
 def update_dimensions(dimensions, point):
@@ -76,7 +83,7 @@ class Drawing():
                 graph and drawing, used to compute the literal values for
                 symbolic coordinates
         """
-        self.place_faces(g.faces[0], None, np.eye(4), np.eye(4))
+        self.place_faces(graph.faces[0], None, np.eye(4))
     def add_face(self, vertex_coordinates, allow_overlap=False):
         """Adds a face whose boundary is defined by the vertices in
         vertex_coordinates using right handed convention. If allow_overlap is
@@ -155,8 +162,8 @@ class Drawing():
 
         #Will this break if a face has to be flipped?
         for e in face.get_2D_decorations():
-                self.edges[e[0]] = Edge(e[0], [api.util.variable.eval_equation(x) for x in e[1]],
-                                        [api.util.variable.eval_equation(x) for x in e[2]], EdgeType(e[3]))
+                self.edges[e[0]] = Edge(e[0], [eval_equation(x) for x in e[1]],
+                                        [eval_equation(x) for x in e[2]], EdgeType(e[3]))
 
         """
         Placing faces involves the notion of "pretransformed" and "transformed" values.
@@ -166,7 +173,7 @@ class Drawing():
         """
         if edge_from is not None:
             #Align connected edges
-            pretransform_matrix = face.pretransform(edge_from)
+            pretransform_matrix = face.pre_transform(edge_from)
         else:
             #Place edge as is
             pretransform_matrix = np.eye(4)
@@ -179,7 +186,7 @@ class Drawing():
 
         pretransformed_pts_2D = pretransformed_pts_4D[0:2,:]
         #Numerical values for the coordinates are required for placement
-        transfromed_pts_2D = api.util.variable.eval_equation(transfromed_pts_4D[0:2, :])
+        transfromed_pts_2D = eval_equation(transfromed_pts_4D[0:2, :])
 
         if not self.add_face(transfromed_pts_2D):
             #If face cannot be placed without collisions, attempt to reflect it
@@ -196,7 +203,7 @@ class Drawing():
             transfromed_pts_4D = np.dot(transform_matrix, face.pts_4D)
 
             pretransformed_pts_2D = pretransformed_pts_4D[0:2,:]
-            transfromed_pts_2D = api.util.variable.eval_equation(transfromed_pts_4D[0:2, :])
+            transfromed_pts_2D = eval_equation(transfromed_pts_4D[0:2, :])
 
             if not self.add_face(transfromed_pts_2D) and not allow_overlap:
                 #Face was not able to be placed connected to this edge
@@ -212,45 +219,45 @@ class Drawing():
         #Place each edge
         for (i, edge) in enumerate(face.edges):
             #HACK: Do not place temporary edges
-            if e is None or e.name[:4] == "temp":
+            if edge is None or edge.name[:4] == "temp":
                 continue
 
             #Get the endpoints of the edge
             edge_pts_2D = (transfromed_pts_2D[:,i - 1],transfromed_pts_2D[:,i])
 
-            if e.name in placed['edges'].keys():
-                edge_alias = placed['edges'][e.name]
-                if diff_edge(edge_alias, edgepts2d,2):
+            if edge.name in placed['edges'].keys():
+                edge_alias = placed['edges'][edge.name]
+                if diff_edge(edge_alias, edge_pts_2D,2):
                 #If the edge has already been placed in a different place, a cut must be made
 
                 #Create a new edge
-                self.edges['temp' + e.name] = Edge('temp' + e.name, edge_pts_2D[0], edge_pts_2D[1], Cut())
+                    self.edges['temp' + edge.name] = DrawingEdge('temp' + edge.name, edge_pts_2D[0], edge_pts_2D[1], Cut())
                 # Make old edge into a cut
-                self.edges[e.name] = Edge(e.name, edge_alias[0], edge_alias[1], Cut())
+                self.edges[edge.name] = DrawingEdge(edge.name, edge_alias[0], edge_alias[1], Cut())
             else:
                 #Add edge normally
-                if len(e.faces) == 1:
+                if len(edge.faces) == 1:
                     edge_type = Cut()
                 else:
                     edge_type = Fold()
-                self.edges[e.name] = Edge(e.name, edge_pts_2D[0], edge_pts_2D[1], edge_type)
-                placed['edges'][e.name] = edge_pts_2D
+                self.edges[edge.name] = DrawingEdge(edge.name, edge_pts_2D[0], edge_pts_2D[1], edge_type)
+                placed['edges'][edge.name] = edge_pts_2D
 
-            if len(e.faces) <= 1:
+            if len(edge.faces) <= 1:
                 # No other faces to be found, move on to next edge.
                 continue
-            if e.isTab():
+            if edge.is_tab():
                 # Don't follow faces off of a Tab
                 continue
 
             #Compute new transform matrix for next face
-            rotation_matrix = rotate_X_to(pretransformed_pts_2D[:,i],pretransformed_pts_2D[:,i-1])
+            rotation_matrix = rotate_x_to(pretransformed_pts_2D[:,i],pretransformed_pts_2D[:,i-1])
             origin_matrix = move_origin_to(pretransformed_pts_2D[:,i-1])
             next_transfrom_2D = np.dot(transform_2D,np.dot(origin_matrix,np.dot(rotation_matrix,np.eye(4))))
 
             #Place faces connected to edge
-            for(f,a) in e.faces.iteritems():
-                self.place(f, e, next_transfrom_2D, placed)
+            for(f,a) in edge.faces.iteritems():
+                self.place_faces(f, edge, next_transfrom_2D, placed)
         if check_for_overlap and len(placed['overlapping']):
             #Placement has finished, but some edges are still unplaced
             raise Exception('One or more faces could not be placed without overlap!')
@@ -260,9 +267,9 @@ class Drawing():
         """
         from dxfwrite import DXFEngine as dxf
         dwg = dxf.drawing(filename)
-        EdgeType.makeLinetypes(dwg, dxf)
+        EdgeType.make_linetypes(dwg, dxf)
         for e in self.edges.items():
-            e[1].toDrawing(dwg, e[0] if labels else "", mode=mode, engine=dxf)
+            e[1].to_drawing(dwg, e[0] if labels else "", mode=mode, engine=dxf)
         dwg.save()
 
     def to_SVG(self, filename, labels=False, mode=None, save_to_file=True):
@@ -270,7 +277,7 @@ class Drawing():
         """
         import svgwrite
 
-        dim = self.getDimensions()
+        dim = self.get_dimensions()
         w = int(dim[1][0] - dim[0][0])
         h = int(dim[1][1] - dim[0][1])
         size = ('{}mm'.format(w), '{}mm'.format(h))
@@ -278,8 +285,8 @@ class Drawing():
         printSVG = svgwrite.Drawing(filename, size=size, viewBox=('0 0 {} {}'.format(w, h)))
         viewSVG = svgwrite.Drawing("view" + filename, viewBox=('0 0 {} {}'.format(w, h)))
         for e in self.edges.items():
-            e[1].toDrawing(printSVG, e[0] if labels else "", mode)
-            e[1].toDrawing(viewSVG, e[0] if labels else "", mode)
+            e[1].to_drawing(printSVG, e[0] if labels else "", mode)
+            e[1].to_drawing(viewSVG, e[0] if labels else "", mode)
         if save_to_file:
             printSVG.save()
             # viewSVG.save()
@@ -297,6 +304,18 @@ class Drawing():
             form [[xmin,ymin],[xmax,ymax]].
         """
         return self.dimensions
+
+    def edge_coords(self):
+        """ Returns a list of all edge coordinates
+        
+        Returns:
+            a list of all Edge instance endpoints in Drawing
+
+        """
+        edges = []
+        for e in self.edges.items():
+            edges.append(e[1].coords())
+        return edges
 
     def rename_edge(self, old_name, new_name):
         """Renames an edge in the drawing
@@ -329,7 +348,7 @@ class Drawing():
             The transformed Drawing.
         """
         if relative is not None:
-            pts = [x[0] for x in self.edgeCoords()] + [x[1] for x in self.edgeCoords()]
+            pts = [x[0] for x in self.edge_coords()] + [x[1] for x in self.edge_coords()]
             xs = [x[0] for x in pts]
             ys = [x[1] for x in pts]
             minx = min(xs)
@@ -379,3 +398,25 @@ class Drawing():
         for e in self.edges.items():
             c.edges[prefix_string(prefix, e[0])] = e[1].copy()
         return c
+
+class Face(Drawing):
+  def __init__(self, pts, edgetype = None, origin = True):
+    Drawing.__init__(self)
+    if origin:
+      pts = list(pts) + [(0,0)]
+    else:
+      pts = list(pts)
+
+    lastpt = pts[-1]
+    edgenum = 0
+    edgenames = []
+    for pt in pts:
+      name = 'e%d' % edgenum
+      self.edges[name] = Edge(name, lastpt, pt, edgetype)
+      edgenames.append(name)
+      lastpt = pt
+      edgenum += 1
+
+class Rectangle(Face):
+  def __init__(self, l, w, edgetype = None, origin = True):
+    Face.__init__(self, ((l, 0), (l, w), (0, w), (0,0)), edgetype, origin)

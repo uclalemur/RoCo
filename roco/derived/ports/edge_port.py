@@ -5,6 +5,8 @@ This module contains the EdgePort class.
 """
 
 from roco.api.port import Port
+from roco.utils.utils import prefix as prefix_string
+from sympy import Eq
 
 class EdgePort(Port):
     """A class representing a physical edge that can be connected to.
@@ -26,7 +28,7 @@ class EdgePort(Port):
             AttributeError: The edge with the given name does not have a
                 length attribute
         """
-        graph = parent.get_graph()
+        graph = parent.get_composable("graph")
         self.edge = graph.get_edge(edge_name)
         # self.placed = False
         params = {}
@@ -51,7 +53,7 @@ class EdgePort(Port):
         Returns:
             List containing names of edges
         """
-        return [self.edgeName]
+        return [self.edge_name]
 
     def get_points(self):
         """Returns the points associated with the edge
