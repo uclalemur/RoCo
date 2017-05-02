@@ -137,7 +137,7 @@ def reflect_across_2D_pts(edgepts):
     return np.dot(shift2,np.dot(reflec,shift))
 
 def move_origin_to(pt):
-  return Translate([pt[0], pt[1], 0])
+  return translate([pt[0], pt[1], 0])
 
 def translate(origin):
   r = np.array([[1, 0, 0, origin[0]],

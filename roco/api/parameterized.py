@@ -4,7 +4,11 @@ This module contains the Parameterized class which is a base class for
 Component.
 
 """
+
 from utils.variable import Variable
+from roco.utils.utils import prefix as prefix_string
+from sympy.logic.boolalg import BooleanTrue
+from sets import Set
 
 class Parameterized(object):
     """An object represented by parameters, constraints, and relations.
@@ -141,8 +145,8 @@ class Parameterized(object):
                 parameters
         """
         for name, variable in other.all_parameters():
-            variable.set_name(prefixString(prefix,variable.get_name()))
-            self.add_parameter(prefixString(prefix, name), variable, is_literal=True)  # Is this how we want to do it?
+            variable.set_name(prefix_string(prefix,variable.get_name()))
+            self.add_parameter(prefix_string(prefix, name), variable, is_literal=True)  # Is this how we want to do it?
 
     def all_parameters(self):
         """***SHOULD THIS BE INCLUDED TO AVOID ENCAPSULATION VIOLATION?"""
@@ -173,6 +177,7 @@ class Parameterized(object):
         Returns:
             A list containing all constraint expressions
         """
+        return self.constraints
 
     def extend_constraints(self, constraints):
         """Extends the list of constraints with the input list
@@ -180,8 +185,8 @@ class Parameterized(object):
         Args:
             constraints (list): List of new constraints to add
         """
-        for c in constraints:
-            self.add_constraint(c)
+        for s in constraints:
+            self.add_constraint(s)
         
     def add_constraint(self, expression, name=None):
         """Adds a new sympy constraint to the parameterized object
@@ -238,8 +243,7 @@ class Parameterized(object):
         equiv_classes = []
         classes_map = {}
         classnum = 0
-        for i in range(len(self.constraints)):
-          constraint = self.constraints[i]
+        for (key, constraint) in self.constraints.iteritems():
           if isinstance(constraint, BooleanTrue):
             continue
           if not isinstance(constraint.lhs, Variable) or not isinstance(constraint.rhs, Variable):
@@ -263,4 +267,4 @@ class Parameterized(object):
         for e_class in equiv_classes:
           fixed = next(iter(e_class))
           for var in e_class:
-              var.set_solved_value(fixed.get_value())
+              var.set_solved(fixed.get_value())

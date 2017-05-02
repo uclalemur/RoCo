@@ -4,6 +4,7 @@ Contains the Graph class and several helper functions.
 
 from roco.derived.composables.fegraph.hyper_edge import HyperEdge
 from roco.utils import mymath as np
+from roco.api.utils.variable import eval_equation
 from roco.utils.utils import prefix as prefix_string
 import copy
 
@@ -129,7 +130,7 @@ class FaceEdgeGraph(object):
             the Graph
         faces (list): A list of Face objects that make up the vertices of the
             Graph
-        transform3D (Matrix): Matrix representing the position and
+        transform_3D (Matrix): Matrix representing the position and
             transformation of the Graph in 3D spaces
     """
 
@@ -146,9 +147,9 @@ class FaceEdgeGraph(object):
         self.placed = False
         self.prefixed = False
         if transform is not None:
-            self.transform3D = transform
+            self.transform_3D = transform
         else:
-            self.transform3D = np.eye(4)
+            self.transform_3D = np.eye(4)
 
     def add_face(self, f, prefix=None, face_edges=None, face_angles=None, face_flips=None):
         """
@@ -170,7 +171,7 @@ class FaceEdgeGraph(object):
         if prefix and not self.placed:
             f.prefix_edges(prefix)
 
-        self.rebuildEdges()
+        self.rebuild_edges()
         return self
 
     def attach_face(self, from_edge, new_face, new_edge, prefix=None, angle=0, edge_type=None, joints=None):
@@ -250,9 +251,9 @@ class FaceEdgeGraph(object):
             prefix (str): the string to prefix all faces and edges with
         """
         for e in self.edges:
-            e.rename(prefixString(prefix, e.name))
+            e.rename(prefix_string(prefix, e.name))
         for f in self.faces:
-            f.rename(prefixString(prefix, f.name))
+            f.rename(prefix_string(prefix, f.name))
         self.prefixed = True
 
     def rename_edge(self, fromname, toname):
@@ -450,9 +451,9 @@ class FaceEdgeGraph(object):
       """
       if force:
           self.unplace()
-      transform_2d = np.eye(4)
-      transform_3d = np.eye(4)
-      self.faces[0].place(None, transform_2d, transform_3d)
+      transform_2D = np.eye(4)
+      transform_3D = np.eye(4)
+      self.faces[0].place(None, transform_2D, transform_3D)
 
     def get_3d_com(self):
       """
@@ -473,8 +474,8 @@ class FaceEdgeGraph(object):
       Unplaces all the faces and edges in the graph
       """
       for f in self.faces:
-          f.transform2D = None
-          f.transform3D = None
+          f.transform_2D = None
+          f.transform_3D = None
 
       for e in self.edges:
           f.pts2D = None
@@ -490,13 +491,13 @@ class FaceEdgeGraph(object):
       self.place()
       stlFaces = []
       for face in self.faces:
-        if self.component.evalEquation(face.area) > 0:
-          tdict = copy.deepcopy(face.getTriangleDict(self.component))
+        if eval_equation(face.area) > 0:
+          tdict = copy.deepcopy(face.get_triangle_dict())
           newverts = []
           for vert in tdict["vertices"]:
-            newverts.append(tuple(self.component.evalEquation(i) for i in vert))
+            newverts.append(tuple(eval_equation(i) for i in vert))
           tdict["vertices"] = newverts
-          stlFaces.append([self.component.evalEquation(face.transform3D), tdict, face.name])
+          stlFaces.append([eval_equation(face.transform_3D), tdict, face.name])
         '''
         else:
           print "skipping face:", face.name

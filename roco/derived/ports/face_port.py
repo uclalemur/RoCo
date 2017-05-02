@@ -21,7 +21,7 @@ class FacePort(SixDOFPort):
             parent (component): The component to which this port will be added.
             face: the face associated with the port
         """
-        self.face = parent.get_graph().get_face(face)
+        self.face = parent.get_composable("graph").get_face(face)
         SixDOFPort.__init__(self, parent, self.face)
 
     def get_face_name(self):

@@ -54,6 +54,7 @@ class GraphComposable(Composable, FaceEdgeGraph):
         if not g2.placed:
             if not g2.prefixed:
                 g2.prefix(prefix2)
+                g2.prefixed = True
             self.faces.extend(g2.faces)
             self.edges.extend(g2.edges)
             g2.placed = True
@@ -73,7 +74,7 @@ class GraphComposable(Composable, FaceEdgeGraph):
           label1 = port1.get_edges()
           label2 = port2.get_edges()
         except AttributeError:
-          pass
+            pass
         else:
           # XXX associate ports with specific composables so this isn't necessary
           for i in range(len(label1)):
@@ -145,7 +146,7 @@ class GraphComposable(Composable, FaceEdgeGraph):
         from roco.derived.utils.tabs import BeamTabs, BeamSlotDecoration
         self.tabify(kw("tabFace", BeamTabs), kw("tabDecoration", None),
                     kw("slotFace", None), kw("slotDecoration", BeamSlotDecoration))
-        self.place(assembling=True)
+        self.place()
 
         if kw("placeOnly", False):
           return
@@ -170,7 +171,7 @@ class GraphComposable(Composable, FaceEdgeGraph):
         if kw("svgString", False):
           self.drawing = d
           d.to_dxf(filedir + "/silhouette.dxf", mode="silhouette")
-          return d.to_svg('nofile', to_file=False)
+          return d.to_SVG('nofile', to_file=False)
 
         if kw("display"):
           from roco.utils.display import displayTkinter
@@ -179,19 +180,19 @@ class GraphComposable(Composable, FaceEdgeGraph):
         if kw("unfolding"):
           print "Generating cut-and-fold pattern... ",
           sys.stdout.flush()
-          d.to_svg(filedir + "/lasercutter.svg", mode="Corel")
+          d.to_SVG(filedir + "/lasercutter.svg", mode="Corel")
           print "done."
 
         if kw("unfolding"):
           print "Generating printer pattern... ",
           sys.stdout.flush()
-          d.to_svg(filedir + "/print.svg", mode="print")
+          d.to_SVG(filedir + "/print.svg", mode="print")
           print "done."
 
         if kw("silhouette"):
           print "Generating cut-and-fold pattern for Silhouette papercutter... ",
           sys.stdout.flush()
-          d.to_dxf(filedir + "/silhouette.dxf", mode="silhouette")
+          d.to_DXF(filedir + "/silhouette.dxf", mode="silhouette")
           print "done."
 
         #3D representation cannot be created without evaluating variables

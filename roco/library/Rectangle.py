@@ -34,5 +34,6 @@ class Rectangle(FoldedComponent):
 
 if __name__ == "__main__":
     h = Rectangle()
-    #h._make_test()
+    h.make_output()
+#    h._make_test()
 

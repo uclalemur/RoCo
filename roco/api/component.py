@@ -39,11 +39,11 @@ def get_subcomponent_object(component, name=None, **kwargs):
     try:
         obj = try_import(component, component)
         c = obj(**kwargs)
-        c.setName(name)
+        c.set_name(name)
         return c
     except ImportError:
         c = Component(component, **kwargs)
-        c.setName(name)
+        c.set_name(name)
         return c
 
 
@@ -202,7 +202,7 @@ class Component(Parameterized):
         """
         if name in self.subcomponents:
             raise ValueError("Subcomponent with name {} already exists".format(name))
-        sc = {"class": obj, "parameters": {}, "constants": kwargs, "component": None}
+        sc = {"class": object_type, "parameters": {}, "constants": kwargs, "component": None}
         self.subcomponents.setdefault(name, sc)
         self.resolve_subcomponent(name)
 
@@ -299,7 +299,8 @@ class Component(Parameterized):
         name = "{} -> {}".format(prefix_string(from_interface[0], from_interface[1]), prefix_string(to_interface[0], to_interface[1]))
         if name in self.connections:
             raise KeyError("Connection {} already exists")
-        self.connections[name] = [from_interface, to_interface, kwargs]
+        self.connections[name] = [self.get_subcomponent_interface(from_interface[0], from_interface[1]),
+                                  self.get_subcomponent_interface(to_interface[0], to_interface[1]), kwargs]
 
     def del_connection(self, from_interface, to_interface):
         """ Deletes the connection that consists of the two ordered interfaces
@@ -486,15 +487,15 @@ class Component(Parameterized):
           interface1 = [interface1.ports]
         if not isinstance(interface2.ports, (list, tuple)):
           interface2 = [interface2.ports]
-        if len(interface1) != len(interface2):
-          if len(interface1) == 1:
-            interface1 = interface1 * len(interface2)
-          elif len(interface2) == 1:
-            interface2 = interface2 * len(interface1)
+        if len(interface1.ports) != len(interface2.ports):
+          if len(interface1.ports) == 1:
+            interface1 = interface1 * len(interface2.ports)
+          elif len(interface2.ports) == 1:
+            interface2 = interface2 * len(interface1.ports)
           else:
             raise AttributeError("Number of ports in each interface don't match")
 
-        for (port1, port2) in zip(interface1, interface2):
+        for (port1, port2) in zip(interface1.ports, interface2.ports):
           self.extend_constraints(port1.constrain(self, port2, **kwargs))
           for (key, composable) in self.composables.iteritems():
             try:
@@ -507,6 +508,21 @@ class Component(Parameterized):
                 print self.get_subcomponent_interface(to_name, to_port).name
                 raise
 
+    def get_composable(self, name):
+        """ Returns the composable referred to by 'name'
+        
+        Args:
+            name (str): name of composable to return
+        
+        Returns:
+            Composable object referred to by 'name'
+        
+        Raises:
+            KeyError: Composable given by name does not exist
+
+        """
+        return self.composables[name]
+    
     def resolve_subcomponent(self, name):
         """ Creates subcomponent object and adds it to the current component
 
@@ -698,16 +714,16 @@ class Component(Parameterized):
         # First call makeOutput on the ones of a type whose order is specified
         for composable_type in ordered_types:
             if composable_type in self.composables:
-                self.composables[composable_type].make_output(filedir, **kwargs)
+                self.composables[composable_type].make_output(file_dir, **kwargs)
         # Now call makeOutput on the ones whose type did not care about order
         for (composable_type, composable) in self.composables.iteritems():
             if composable_type not in ordered_types:
-                self.composables[composable_type].make_output(filedir, **kwargs)
+                self.composables[composable_type].make_output(file_dir, **kwargs)
 
         if kw("tree"):
             print "Generating hierarchy tree... ",
             sys.stdout.flush()
-            self.make_component_tree(filedir + "/tree.png")
+            self.make_component_tree(file_dir + "/tree.png")
             print "done."
         print
 

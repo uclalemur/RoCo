@@ -15,7 +15,7 @@ import math
 
 NON_PARAM_LEN = 1
 
-class Face():
+class Face(object):
     """Surface with a boundary defined by an ordered set of points.
 
     Faces are defined by a collection of points ordered according to the right
@@ -399,9 +399,10 @@ class Face():
 
     def get_6DOF(self):
         if self.transform_3D is not None:
-            return get_6DOF(self.transform3D)
+            return get_6DOF(self.transform_3D)
         else:
             return get_6DOF(np.eye(4))
+
 class RegularNGon(Face):
     """Subclass of Face representing regular polygons defined by side length
     """

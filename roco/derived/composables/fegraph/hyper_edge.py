@@ -1,4 +1,9 @@
-class HyperEdge():
+from roco.utils import mymath as np
+#from roco.derived.composables.fegraph.joint import Joint
+import roco.utils.mymath as math
+import sympy
+
+class HyperEdge(object):
     """HyperEdge represents the connection between two or more Face objects
 
     Attributes:
@@ -39,6 +44,7 @@ class HyperEdge():
         self.pts_3D = None
         self.edge_type = "FOLD"
         self.joints = []
+
         if face:
             self.faces = {face: (angle, flip)}
         else:
@@ -149,7 +155,7 @@ class HyperEdge():
         self.faces[face] = (newangle, flip)
 
     TOL = 5e-2
-    def matches_length(self, length, tolerance=self.TOL):
+    def matches_length(self, length):
         """Check if a length is the same as the length of the edge, within a
             tolerance
 
@@ -163,7 +169,7 @@ class HyperEdge():
         """
         try:
             # XXX: Hack to force type error testing here
-            if np.simplify(self.length - length) < tolerance:
+            if np.simplify(self.length - length) < self.TOL:
                 return True
             else:
                 return False
@@ -245,8 +251,8 @@ class HyperEdge():
         """
         if not self.edge_type is "JOINT":
             raise Exception("Trying to add joints to a non-joint edge")
-        if not isinstance(joint, Joint):
-            raise Exception("Not a joint!")
+    #    if not isinstance(joint, Joint):
+    #        raise Exception("Not a joint!")
         self.joints.append(joint)
 
     def __eq__(self, other):
@@ -259,6 +265,6 @@ class HyperEdge():
         # return self.name + " [ # faces : %d, len : %d ]" % (len(self.faces), self.length)
         ret = "%s#%d" % (self.name, len(self.faces))
         if len(self.faces) > 1:
-        return ret + repr(self.faces.values())
+            return ret + repr(self.faces.values())
         else:
-        return ret
+            return ret

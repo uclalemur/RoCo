@@ -7,11 +7,11 @@ treated by output methods, and the DrawingEdge class representing the edges
 that make up a Drawing
 """
 
-class EdgeType():
+class EdgeType(object):
     """Representation of the different modes of Edge instances
 
     Attributes:
-        edgetype (int): An enum representing the edge type
+        edge_type (int): An enum representing the edge type
         angle (int): the angle between the faces of the edge
     """
     #Enum for the various edge types
@@ -85,7 +85,7 @@ class EdgeType():
             The kwargs for creating the drawing in the mode specified by the
                 mode argument
         """
-        if self.edgetype in (EdgeType.FLAT, EdgeType.NOEDGE):
+        if self.edge_type in (EdgeType.FLAT, EdgeType.NOEDGE):
             return
 
         svg_args = [{"stroke": c} for c in ["#00ff00", "#ff0000", "#0000ff", "#0000ff"]]
@@ -93,30 +93,30 @@ class EdgeType():
         layer_args = [{"layer": c} for c in ["Registration", "Cut", "xxx", "Flex"]]
 
         if mode == "dxf":
-          ret = dxf_args[self.edgetype]
-          if self.edgetype in (EdgeType.FOLD, EdgeType.FLEX) :
+          ret = dxf_args[self.edge_type]
+          if self.edge_type in (EdgeType.FOLD, EdgeType.FLEX) :
             ret["linetype"] = "FOLD"
           return ret
 
         elif mode == "silhouette":
-          et = self.edgetype
+          et = self.edge_type
           if et in (EdgeType.FOLD, EdgeType.FLEX) and self.angle % 360 > 180:
             et = 4
           ret = dxf_args[et]
-          if self.edgetype in (EdgeType.FOLD, EdgeType.FLEX) :
+          if self.edge_type in (EdgeType.FOLD, EdgeType.FLEX) :
             ret["linetype"] = "FOLD"
           return ret
         elif mode == "autofold":
-          ret = dxf_args[self.edgetype]
-          ret.update(layer_args[self.edgetype])
-          if self.edgetype == EdgeType.FOLD:
+          ret = dxf_args[self.edge_type]
+          ret.update(layer_args[self.edge_type])
+          if self.edge_type == EdgeType.FOLD:
             ret["layer"] = repr(self.angle)
           return ret
 
         kwargs = {"id" : name}
-        kwargs.update(svg_args[self.edgetype])
+        kwargs.update(svg_args[self.edge_type])
 
-        if self.edgetype in (EdgeType.FOLD, EdgeType.FLEX) :
+        if self.edge_type in (EdgeType.FOLD, EdgeType.FLEX) :
           if mode == "print":
             if self.angle % 360 > 180:
               kwargs["stroke"] = "#00ff00"
@@ -169,7 +169,7 @@ def diag(dx, dy):
 
 all_edges = ["Reg", "Cut", "Fold", "Flex", "Flat", "Tab", "NoEdge"]
 
-class DrawingEdge():
+class DrawingEdge(object):
   """A class representing an Edge.
 
   Attributes:
@@ -178,10 +178,10 @@ class DrawingEdge():
       y1 (int): The y coordinate of the first point of the edge
       x2 (int): The x coordinate of the second point of the edge
       y2 (int): The y coordinate of the second point of the edge
-      edgetype (EdgeType): The type of edge being represented
+      edge_type (EdgeType): The type of edge being represented
   """
 
-  def __init__(self, name, pt1, pt2, edgetype):
+  def __init__(self, name, pt1, pt2, edge_type):
     """
     Initializes an Edge object with pt1 and pt2 in the form ((x1,y1),(x2,y2))
 
@@ -197,9 +197,9 @@ class DrawingEdge():
     self.y1 = pt1[1]
     self.x2 = pt2[0]
     self.y2 = pt2[1]
-    if edgetype is None:
-      edgetype = Cut()
-    self.edgetype = edgetype
+    if edge_type is None:
+      edge_type = Cut()
+    self.edge_type = edge_type
 
 
   def coords(self):
@@ -264,14 +264,14 @@ class DrawingEdge():
     if otherway:
       lastpt = (self.x1, self.y1)
       for length in lengths:
-        e = Edge((0, 0),(-length,0), self.edgetype)
+        e = Edge((0, 0),(-length,0), self.edge_type)
         e.transform(angle=self.angle(), origin=lastpt)
         lastpt = (e.x2, e.y2)
       edges.append(e)
     else:
       lastpt = (self.x2, self.y2)
       for length in lengths:
-        e = Edge((0,0), (length, 0), self.edgetype)
+        e = Edge((0,0), (length, 0), self.edge_type)
         e.transform(angle=self.angle(), origin=lastpt)
         lastpt = (e.x2, e.y2)
       edges.append(e)
@@ -307,7 +307,7 @@ class DrawingEdge():
     Args:
         None
     """
-    self.edgetype.invert()
+    self.edge_type.invert()
 
   def mirror_x(self):
     """Changes the coordinates of an Edge instance so that it is symmetric about the Y axis.
@@ -349,7 +349,7 @@ class DrawingEdge():
         None
     """
 
-    return Edge(self.name, (self.x1, self.y1), (self.x2, self.y2), self.edgetype)
+    return Edge(self.name, (self.x1, self.y1), (self.x2, self.y2), self.edge_type)
 
   def midpt(self):
     """The midpoint of the edge instance
@@ -378,7 +378,7 @@ class DrawingEdge():
     if engine is None:
       engine = drawing
 
-    kwargs = self.edgetype.draw_args(self.name, mode)
+    kwargs = self.edge_type.draw_args(self.name, mode)
     if kwargs:
 
       dpi = None
@@ -388,8 +388,8 @@ class DrawingEdge():
       elif mode == 'Inkscape':
         dpi = 90 # scale from mm to 90dpi for Inkscape
       elif mode == 'autofold':
-        if str(self.edgetype.angle) not in drawing.layers:
-          drawing.add_layer(str(self.edgetype.angle))
+        if str(self.edge_type.angle) not in drawing.layers:
+          drawing.add_layer(str(self.edge_type.angle))
 
       if dpi: self.transform(scale=(dpi/25.4))
       drawing.add(engine.line((float(self.x1), float(self.y1)), (float(self.x2), float(self.y2)), **kwargs))
