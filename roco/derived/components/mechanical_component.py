@@ -6,6 +6,7 @@ for all physical objects that have a position and rotation in space.
 """
 
 from roco.api.component import Component
+import numpy as np
 
 class MechanicalComponent(Component):
     """A derived component to act as a base for all mechanical objects.
@@ -23,7 +24,7 @@ class MechanicalComponent(Component):
     
     def define(self, origin=False, euler=None, quat=False, **kwargs):
         Component.define(self, **kwargs)
-
+        self.transform3D = np.eye(4)
 """          if origin:
             try:
               x = self.addParameter("dx", 0, dynamic=True)
@@ -36,7 +37,7 @@ class MechanicalComponent(Component):
             origin = [x, y, z]
             self.transform3D = np.Matrix(4, 4, lambda i, j: i == j and 1 or j == 3  and origin[i] or 0)
           else:
-            self.transform3D = np.eye(4)
+self.transform3D = np.eye(4)
 
           if euler:
             try:
