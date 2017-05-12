@@ -67,11 +67,11 @@ def try_import(module, attribute):
          mod = __import__("roco.derived." + module, fromlist=[attribute])
          obj = getattr(mod, attribute)
          return obj
-      except ImportErro:
+      except ImportError:
          mod = __import__("roco.api." + module, fromlist=[attribute])
          obj = getattr(mod, attribute)
          return obj
-      
+
 
 def decorate_graph(face, decoration, offset=(0, 0), offset_dx=None, offset_dy=None, rotate=False, mode=None):
   """
@@ -106,7 +106,7 @@ def decorate_graph(face, decoration, offset=(0, 0), offset_dx=None, offset_dy=No
 def scheme_string(expr, prefix=""):
   """
   Converts an expression to a scheme string
-  
+
   Args:
       expr: sympy expression object
       prefix (str): string to prefix expression with
@@ -134,7 +134,7 @@ def scheme_list(expr):
 
   Args:
       expr: sympy expression object
-  
+
   Returns:
       a list that represents the expression in prefix notation
   """
@@ -157,7 +157,7 @@ def scheme_list(expr):
 
   for a in expr.args:
     elist.append(scheme_list(a))
-  
+
   return elist
 
 def scheme_repr(elist):
@@ -193,7 +193,7 @@ def print_summary(component):
   print "~~~ Equations:"
   for i,c in enumerate(component.get_relations()):
     print scheme_repr(scheme_list(c))
-  print 
+  print
   '''
   for i,c in enumerate(f.getRelations()):
     print i, ":", c
@@ -221,4 +221,3 @@ def print_equations(f):
   for i,c in enumerate(component.get_relations()):
     print c
   print
-

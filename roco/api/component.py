@@ -224,7 +224,8 @@ class Component(Parameterized):
         if self.subcomponents[name]['component'] and 'graph' in self.subcomponents[name]['component'].composables:
             self.subcomponents[name]['component'].composables['graph'].split_merged_edges()
         self.subcomponents.pop(name)
-        del self.composables['graph']
+        if "graph" in self.composables.keys():
+            del self.composables['graph']
         if name in self._prefixed:
             del self._prefixed[name]
         for sc in self.subcomponents:
@@ -510,19 +511,19 @@ class Component(Parameterized):
 
     def get_composable(self, name):
         """ Returns the composable referred to by 'name'
-        
+
         Args:
             name (str): name of composable to return
-        
+
         Returns:
             Composable object referred to by 'name'
-        
+
         Raises:
             KeyError: Composable given by name does not exist
 
         """
         return self.composables[name]
-    
+
     def resolve_subcomponent(self, name):
         """ Creates subcomponent object and adds it to the current component
 

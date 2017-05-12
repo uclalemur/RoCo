@@ -5,7 +5,7 @@ the data within the Code Composable into C++.
 
 """
 
-from svggen.api.targets.Target import Target
+from roco.api.target import Target
 from re import findall
 
 class Cpp(Target):
@@ -215,7 +215,7 @@ class Cpp(Target):
 
         return self.meta
 
-    def makeOutput(self, filedir, **kwargs):
+    def make_output(self, filedir, **kwargs):
         """Converts the Code Componsable into source code and writes it to a
         specified file.
 
