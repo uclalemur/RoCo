@@ -5,8 +5,7 @@ This module contains the InIntPort and OutIntPort classes.
 """
 
 from code_port import CodePort
-from in_port import InPort
-from out_port import OutPort
+from base_port import InPort, OutPort
 
 class InIntPort(InPort, CodePort):
     """A class representing an input port for an integer.

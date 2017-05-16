@@ -91,7 +91,7 @@ composables (OrderedDict): an ordered dictionary of composables that</p>
 </dl>
 <dl class="method">
 <dt id="roco.api.component.Component.add_connection">
-<code class="descname">add_connection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.add_connection" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_connection</code><span class="sig-paren">(</span><em>from_interface</em>, <em>to_interface</em>, <em>name=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.add_connection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Specifies interfaces on subcomponents to be connected</p>
 <dl class="docutils">
 <dt>Args:</dt>
@@ -107,27 +107,12 @@ composables (OrderedDict): an ordered dictionary of composables that</p>
 
 <dl class="method">
 <dt id="roco.api.component.Component.add_interface">
-<code class="descname">add_interface</code><span class="sig-paren">(</span><em>name</em>, <em>val</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.add_interface" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_interface</code><span class="sig-paren">(</span><em>name</em>, <em>ports</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.add_interface" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds an interface to this component.</p>
 <dl class="docutils">
 <dt>Args:</dt>
 <dd>name (str): unique identifier for interface that will be added to the component.
-val (Port): the value that the new interface takes on.</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.api.component.Component.add_parameter_constraint">
-<code class="descname">add_parameter_constraint</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.add_parameter_constraint" title="Permalink to this definition">¶</a></dt>
-<dd><p>Constraints subcomponent parameter.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><dl class="first docutils">
-<dt>(subcomponent, parameter_name) (tuple(str,str)): a tuple representing a subcomponent a related parameter</dt>
-<dd>to constrain.</dd>
-</dl>
-<p class="last">constraint (Number or sympy expression): the constraint to impose on the subcomponent parameter.</p>
-</dd>
+ports (Port or list of Ports): the value that the new interface takes on.</dd>
 </dl>
 </dd></dl>
 
@@ -161,7 +146,7 @@ prefix (str):</dd>
 
 <dl class="method">
 <dt id="roco.api.component.Component.attach">
-<code class="descname">attach</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.attach" title="Permalink to this definition">¶</a></dt>
+<code class="descname">attach</code><span class="sig-paren">(</span><em>interface1</em>, <em>interface2</em>, <em>kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.attach" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attaches the specified ports on the subcomponents</p>
 <dl class="docutils">
 <dt>Args:</dt>
@@ -232,30 +217,6 @@ prefix (str):</dd>
 <code class="descname">eval_subcomponents</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.eval_subcomponents" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates composables in current component based on composables in each of the subcomponents, then
 appends composables in subcomponents to corresponding composable in component</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.api.component.Component.get_all_defaults">
-<code class="descname">get_all_defaults</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.get_all_defaults" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets a dictionary of default values for the parameters including the ones from the subcomponents</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>None</dd>
-<dt>Returns:</dt>
-<dd>A dictionary relating parameter names to parameter values.</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.api.component.Component.get_defaults">
-<code class="descname">get_defaults</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.component.Component.get_defaults" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets a dictionary of default values for the parameters</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>None</dd>
-<dt>Returns:</dt>
-<dd>A dictionary relating parameter names to parameter values.</dd>
-</dl>
 </dd></dl>
 
 <dl class="method">
@@ -536,7 +497,7 @@ kwargs (dict): arguments for the output generation</dd>
 <p>This module contains the Connection class which represents two interfaces in separate components being connected with some arguments.</p>
 <dl class="class">
 <dt id="roco.api.connection.Connection">
-<em class="property">class </em><code class="descclassname">roco.api.connection.</code><code class="descname">Connection</code><span class="sig-paren">(</span><em>from_interface</em>, <em>to_interface</em>, <em>name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.connection.Connection" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">roco.api.connection.</code><code class="descname">Connection</code><span class="sig-paren">(</span><em>from_interface</em>, <em>to_interface</em>, <em>name=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.connection.Connection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>A connection between interfaces</p>
 <p>This class holds data for a named connection. It also provides enforces rules on making connections between interfaces. For example, two interfaces with different number of ports cannot be connected.</p>
@@ -657,9 +618,9 @@ inheritance.</dd>
 <dl class="method">
 <dt id="roco.api.parameterized.Parameterized.add_parameter">
 <code class="descname">add_parameter</code><span class="sig-paren">(</span><em>name</em>, <em>value</em>, <em>is_literal=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.parameterized.Parameterized.add_parameter" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>Adds a k/v pair to the internal store if the key has not been added</dt>
-<dd>before</dd>
+<dd><p>Adds a k/v pair to the internal store if the key has not been added
+before</p>
+<dl class="docutils">
 <dt>Args:</dt>
 <dd><p class="first">name (str): the parameter name
 value (int): an integer representing the default value for the</p>
@@ -723,6 +684,16 @@ ValueError: Invalid characters in name</dd>
 <dd>The removed parameter with the given name</dd>
 <dt>Raises:</dt>
 <dd>KeyError: A parameter called name does not exist</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.api.parameterized.Parameterized.extend_constraints">
+<code class="descname">extend_constraints</code><span class="sig-paren">(</span><em>constraints</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.api.parameterized.Parameterized.extend_constraints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extends the list of constraints with the input list</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>constraints (list): List of new constraints to add</dd>
 </dl>
 </dd></dl>
 

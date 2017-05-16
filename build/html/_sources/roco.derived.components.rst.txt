@@ -9,6 +9,22 @@ components Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`code_component` Module
+----------------------------
+
+.. automodule:: roco.derived.components.code_component
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`electrical_component` Module
+----------------------------------
+
+.. automodule:: roco.derived.components.electrical_component
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 :mod:`folded_component` Module
 ------------------------------
 

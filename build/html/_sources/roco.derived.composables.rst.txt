@@ -17,6 +17,14 @@ composables Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`electrical_composable` Module
+-----------------------------------
+
+.. automodule:: roco.derived.composables.electrical_composable
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 :mod:`graph_composable` Module
 ------------------------------
 

@@ -1,7 +1,7 @@
 from roco.api.composable import Composable
 from roco.derived.composables.virtual_composable import VirtualComposable
 from roco.derived.ports.code_port import CodePort
-from roco.derived.components.CodeComponent
+
 """Code Composable class
 
 This module contains the Code Composable class, which is derived from the Virtual
@@ -111,6 +111,7 @@ class CodeComposable(VirtualComposable):
             self.meta[target] = target(self, meta).attach(from_port, to_port, kwargs)
 
     def make_output(self, file_dir, **kwargs):
+        from roco.derived.components.code_component import CodeComponent
         """Creates output for the composable.
 
         Args:

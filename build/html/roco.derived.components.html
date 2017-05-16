@@ -65,6 +65,12 @@
 <span class="target" id="module-roco.derived.components"></span><p>The components package within derived.</p>
 <p>This package contains all component types derived from the base Component.</p>
 </div>
+<div class="section" id="code-component-module">
+<h2><code class="xref py py-mod docutils literal"><span class="pre">code_component</span></code> Module<a class="headerlink" href="#code-component-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="electrical-component-module">
+<h2><code class="xref py py-mod docutils literal"><span class="pre">electrical_component</span></code> Module<a class="headerlink" href="#electrical-component-module" title="Permalink to this headline">¶</a></h2>
+</div>
 <div class="section" id="module-roco.derived.components.folded_component">
 <span id="folded-component-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">folded_component</span></code> Module<a class="headerlink" href="#module-roco.derived.components.folded_component" title="Permalink to this headline">¶</a></h2>
 <p>The FoldedComponent class.</p>
@@ -77,6 +83,19 @@ for all physical objects that can be constructed by folding 2D faces.</p>
 <p>A type of MechanicalComponent is a base for all foldable structures.</p>
 <p>The FoldedComponent class contains a graph composable that stores the
 folded structure as the component is built.</p>
+<dl class="method">
+<dt id="roco.derived.components.folded_component.FoldedComponent.define">
+<code class="descname">define</code><span class="sig-paren">(</span><em>origin=False</em>, <em>euler=False</em>, <em>quat=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.components.folded_component.FoldedComponent.define" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that defines the state of a FoldedComponent</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>origin (bool): whether component starts at the origin or not
+euler (bool): whether to use euler angles to represent rotation or not
+quat (bool): whether to use quaternions to represent rotation or not
+<a href="#id2"><span class="problematic" id="id3">**</span></a>kwargs (dict): arbitrary keyword arguments for define</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -95,6 +114,11 @@ allows it to have dx, dy, dz parameters for location and qa, qi, qj, qk
 quaternion components to represent rotation.</p>
 <p>All mechanical components can also be solved using their constraints and
 relations.</p>
+<dl class="method">
+<dt id="roco.derived.components.mechanical_component.MechanicalComponent.define">
+<code class="descname">define</code><span class="sig-paren">(</span><em>origin=False</em>, <em>euler=None</em>, <em>quat=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.components.mechanical_component.MechanicalComponent.define" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
@@ -110,6 +134,8 @@ relations.</p>
   <ul>
 <li><a class="reference internal" href="#">components Package</a><ul>
 <li><a class="reference internal" href="#id1"><code class="docutils literal"><span class="pre">components</span></code> Package</a></li>
+<li><a class="reference internal" href="#code-component-module"><code class="docutils literal"><span class="pre">code_component</span></code> Module</a></li>
+<li><a class="reference internal" href="#electrical-component-module"><code class="docutils literal"><span class="pre">electrical_component</span></code> Module</a></li>
 <li><a class="reference internal" href="#module-roco.derived.components.folded_component"><code class="docutils literal"><span class="pre">folded_component</span></code> Module</a></li>
 <li><a class="reference internal" href="#module-roco.derived.components.mechanical_component"><code class="docutils literal"><span class="pre">mechanical_component</span></code> Module</a></li>
 </ul>

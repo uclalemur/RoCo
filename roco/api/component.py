@@ -153,7 +153,7 @@ class Component(Parameterized):
 
         try:
           for name, value in definition["subcomponents"].iteritems():
-            try: 
+            try:
               # XXX Can these be sympy functions as well?
               kwargs = value["constants"]
             except AttributeError:
@@ -182,7 +182,7 @@ class Component(Parameterized):
           for name, value in definition["interfaces"].iteritems():
             self.inherit_interface(name, (value["subcomponent"], value["interface"]))
         except AttributeError: pass
-        
+
     def define(self, **kwargs):
         """Function for overriding interfaces.
 
@@ -224,7 +224,8 @@ class Component(Parameterized):
         if self.subcomponents[name]['component'] and 'graph' in self.subcomponents[name]['component'].composables:
             self.subcomponents[name]['component'].composables['graph'].split_merged_edges()
         self.subcomponents.pop(name)
-        del self.composables['graph']
+        if "graph" in self.composables.keys():
+            del self.composables['graph']
         if name in self._prefixed:
             del self._prefixed[name]
         for sc in self.subcomponents:
@@ -244,7 +245,7 @@ class Component(Parameterized):
         new_interface = Interface(name, ports)
         self.interfaces.setdefault(name, new_interface)
         return self
-    
+
     def del_interface(self, name):
         """Deletes an interface from this component.
 
@@ -252,7 +253,7 @@ class Component(Parameterized):
             name (str): unique identifier for interface that will be deleted from the component.
         """
         self.interfaces.pop(name)
-        
+
     def inherit_all_interfaces(self, subcomponent, prefix=""):
         """Adds all interfaces from subcomponent to current component
 
@@ -270,7 +271,7 @@ class Component(Parameterized):
           new_interface = Interface(prefix_string(prefix, name), value)
           self.add_interface(prefix_string(prefix, name), new_interface)
         return self
-    
+
     def inherit_interface(self, name, (subcomponent, subname)):
         """Adds specified interface from subcomponent to current component
 
@@ -283,7 +284,7 @@ class Component(Parameterized):
             raise ValueError("Interface %s already exists" % name)
         self.interfaces.setdefault(name, self.get_subcomponent_interface(subcomponent,subname))
         return self
-    
+
     def add_connection(self, from_interface, to_interface, **kwargs):
         """ Specifies interfaces on subcomponents to be connected
 
@@ -316,7 +317,7 @@ class Component(Parameterized):
         name = "{} -> {}".format(prefix_string(from_interface[0], from_interface[1]), prefix_string(to_interface[0], to_interface[1]))
         if name not in self.connections:
             raise KeyError("Connection {} does not exist")
-        
+
     def to_yaml(self, filename):
         """ Generates YAML file containing component information
 
@@ -440,7 +441,7 @@ class Component(Parameterized):
 
         """
         pass
-        
+
     def append(self, name, prefix):
         """ Appends composables on each of the subcomponents to composable on current component
 
@@ -510,19 +511,19 @@ class Component(Parameterized):
 
     def get_composable(self, name):
         """ Returns the composable referred to by 'name'
-        
+
         Args:
             name (str): name of composable to return
-        
+
         Returns:
             Composable object referred to by 'name'
-        
+
         Raises:
             KeyError: Composable given by name does not exist
 
         """
         return self.composables[name]
-    
+
     def resolve_subcomponent(self, name):
         """ Creates subcomponent object and adds it to the current component
 
@@ -577,7 +578,7 @@ class Component(Parameterized):
         for subcomponent in self.subcomponents.iterkeys():
             for (parameter_name, value) in self.subcomponents[subcomponent]["parameters"].iteritems():
                   self.set_parameter(prefix_string(subcomponent, parameter_name), value)
-        
+
     def eval_subcomponents(self):
         """ Creates composables in current component based on composables in each of the subcomponents, then
             appends composables in subcomponents to corresponding composable in component
