@@ -145,7 +145,8 @@ class Parameterized(object):
                 parameters
         """
         for name, variable in other.all_parameters():
-            variable.set_name(prefix_string(prefix,variable.get_name()))
+            if isinstance(variable, Variable):
+                variable.set_name(prefix_string(prefix,variable.get_name()))
             self.add_parameter(prefix_string(prefix, name), variable, is_literal=True)  # Is this how we want to do it?
 
     def all_parameters(self):
@@ -185,7 +186,7 @@ class Parameterized(object):
         Args:
             constraints (list): List of new constraints to add
         """
-        for s in constraints:
+        for s in constraints.itervalues():
             self.add_constraint(s)
         
     def add_constraint(self, expression, name=None):
@@ -234,6 +235,7 @@ class Parameterized(object):
         Returns:
             True if the constraints are all satisfied, false otherwise
         """
+        pass
 
     def solve(self):
         """Performs the solving that is necessary
@@ -247,7 +249,8 @@ class Parameterized(object):
           if isinstance(constraint, BooleanTrue):
             continue
           if not isinstance(constraint.lhs, Variable) or not isinstance(constraint.rhs, Variable):
-            raise Exception("Constraints are not simple parameters.")
+            continue
+            #raise Exception("Constraints are not simple parameters.")
           if constraint.lhs in classes_map and constraint.rhs not in classes_map:
             equiv_classes[classes_map[constraint.lhs]].add(constraint.rhs)
             classes_map[constraint.rhs] = classes_map[constraint.lhs]

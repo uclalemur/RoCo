@@ -168,8 +168,8 @@ class FaceEdgeGraph(object):
 
         if face_edges is not None:
             f.rename_edges(face_edges, face_angles, face_flips, self.edges)
-        if prefix and not self.placed:
-            f.prefix_edges(prefix)
+            if prefix and not self.placed:
+                f.prefix_edges(prefix)
 
         self.rebuild_edges()
         return self
