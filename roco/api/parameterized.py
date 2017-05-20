@@ -187,7 +187,7 @@ class Parameterized(object):
             constraints (list): List of new constraints to add
         """
 
-        for s in constraints.itervalues():
+        for s in constraints:
             self.add_constraint(s)
 
     def add_constraint(self, expression, name=None):
@@ -242,6 +242,7 @@ class Parameterized(object):
         """Performs the solving that is necessary
 
         """
+        print self.constraints
         # first create equivalence classes
         equiv_classes = []
         classes_map = {}

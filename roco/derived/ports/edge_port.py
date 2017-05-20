@@ -114,10 +114,11 @@ class EdgePort(Port):
         """
 
         # Can't use default constrain function because pt1 connects to pt2 and vice versa
-        constraints = []
+        constraints = {}
         try:
             if (self.get_parameter("length") != to_port.get_parameter("length")):
-                constraints.append((Eq(self.get_parameter("length"), to_port.get_parameter("length"))))
+                a = Eq(self.get_parameter("length"), to_port.get_parameter("length"))
+                constraints[id(a)] = a
                 #      for i in range(2):
                 #       for x in ["x", "y", "z"]:
                 #         constraints.append(Eq(self.getParameter("pt%d%s" % (i, x)), toPort.getParameter("pt%d%s" % (1-i, x))))

@@ -8,7 +8,7 @@ import collections
 
 class Interface(object):
     """A single or an ordered list of ports
-    
+
     This class represents an interface at the component hierarchy level. Two interfaces of components can be connected. At the composable level, an interface merely encapsulates a port or a collection of ports.
 
     """
@@ -27,7 +27,7 @@ class Interface(object):
             for port in ports:
                 self.ports.append(port)
         else:
-            self.ports.append(ports) 
+            self.ports.append(ports)
 
 
     def get_name(self):
@@ -38,13 +38,13 @@ class Interface(object):
 
         Returns:
             name as a string
-        
+
         """
         return self.name
 
     def get_ports(self):
         """Returns the collection of ports that represent this interface.
-        
+
         Args:
             None
 

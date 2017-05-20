@@ -8,7 +8,7 @@ from parameterized import Parameterized
 
 class Port(Parameterized):
     """A class representing an abstract port
-    
+
     Attributes:
         is_input (bool): whether the port takes input or not.
         is_output (bool): whether the port gives output or not.
@@ -17,8 +17,8 @@ class Port(Parameterized):
     """
     def __init__(self, parent, params, name='', **kwargs):
         """Creates a port object.
-        
-        Args: 
+
+        Args:
             parent (component): The component to which this port will be added.
             params (dict): a set of parameters for the port.
             name (str): name of the port
@@ -79,7 +79,7 @@ class Port(Parameterized):
         self.is_input = False
         self.is_output = False
         self.value_function = fn
-        
+
     def get_value(self, default=None):
         """Get anonymous function associated with this port.
 
@@ -93,7 +93,7 @@ class Port(Parameterized):
     def can_mate(self, other_port):
         """Returns true if this port can mate with other_port and false otherwise.
         Override this method for better matching.
-        
+
         Args:
             other_port (Port): the port that is compared to this port to check compatibility.
 
@@ -110,7 +110,7 @@ class Port(Parameterized):
     def should_mate(self, other_port):
         """Returns true if this port is designed to mate with other_port and false otherwise.
         Override this method for better matching.
-        
+
         Args:
             other_port (Port): the port that is compared to this port to check compatibility.
 
@@ -171,7 +171,7 @@ class Port(Parameterized):
         """
         self.parent = new_parent
 
-        
+
     def get_parent(self):
         """Gets this port's parent component
 
@@ -186,7 +186,7 @@ class Port(Parameterized):
 
         Args:
             None
-        
+
         Returns:
             String that contains information about this port.
         """
@@ -211,9 +211,9 @@ class Port(Parameterized):
         Args:
             parent (component): parent of to_port //CHECK
             to_port (port): port that is to be connected to this port.
-        
+
         Returns:
-            list of semantic constraints 
+            list of semantic constraints
         """
         constraints = []
         for p in self.parameters:

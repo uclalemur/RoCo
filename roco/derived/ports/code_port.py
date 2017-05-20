@@ -60,7 +60,7 @@ class CodePort(Port):
 
         for p in self.parameters:
             if p in to_port.parameters:
-                constraints.append((self.get_parameter(p), toPort.get_parameter(p)))
+                constraints.append((self.get_parameter(p), to_port.get_parameter(p)))
         return constraints
 
     def get_label(self):

@@ -42,6 +42,29 @@ def prefix(s1, s2):
     return s1 + "_" + s2
   return s1 or s2
 
+def to_camel_case(under):
+    """
+    Converts a string delimitted with underscores to camelcase. Does not work if
+    string uses underscores as content as well as as delimeters.
+
+    Args:
+        under (str): string with underscores.
+
+    Returns:
+        The camelcase version of under.
+    """
+    ans = ""
+    und = True
+    for i in range(len(under)):
+        if und is True:
+            ans += under[i].upper()
+            und = False
+        elif under[i] is '_':
+            und = True
+        else:
+            ans += under[i]
+    return ans
+
 def try_import(module, attribute):
   """
   Attempts to import a module from multiple locations

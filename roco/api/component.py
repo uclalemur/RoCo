@@ -16,13 +16,13 @@ from roco.api.utils.variable import Variable
 
 from roco import ROCO_DIR
 from roco.utils.utils import prefix as prefix_string
-from roco.utils.utils import try_import
+from roco.utils.utils import try_import, to_camel_case
 from roco.utils.io import load_yaml
 from sympy import Symbol, Eq, StrictGreaterThan, GreaterThan, StrictLessThan, LessThan
-from port import Port
-from interface import Interface
-from connection import Connection
-from parameterized import Parameterized
+from roco.api.port import Port
+from roco.api.interface import Interface
+from roco.api.connection import Connection
+from roco.api.parameterized import Parameterized
 
 def get_subcomponent_object(component, name=None, **kwargs):
     """Function to generate an instantiated component from the class name.
@@ -37,7 +37,7 @@ def get_subcomponent_object(component, name=None, **kwargs):
 
     """
     try:
-        obj = try_import(component, component)
+        obj = try_import(component, to_camel_case(component))
         c = obj(**kwargs)
         c.set_name(name)
         return c
@@ -138,7 +138,7 @@ class Component(Parameterized):
             file_name (str): The name of the yaml file.
 
         """
-        definition = load_yaml(filename)
+        definition = load_yaml(file_name)
 
         # keys are (parameters, constants, subcomponents, constraints, connections, interfaces)
         try:
@@ -500,13 +500,15 @@ class Component(Parameterized):
           self.extend_constraints(port1.constrain(self, port2, **kwargs))
           for (key, composable) in self.composables.iteritems():
             try:
-                composable.attach(port1, port2, **kwargs)
+                composable.attach(port1, port2, kwargs)
             except:
                 print "Error in attach:"
-                print (from_name, from_port),
-                print self.get_subcomponent_interface(from_name, from_port).name
-                print (to_name, to_port),
-                print self.get_subcomponent_interface(to_name, to_port).name
+                print "interface 1: ", interface1.name
+                print "interface 2: ", interface2.name
+                # print (from_name, from_port),
+                # print self.get_subcomponent_interface(from_name, from_port).name
+                # print (to_name, to_port),
+                # print self.get_subcomponent_interface(to_name, to_port).name
                 raise
 
     def get_composable(self, name):
@@ -566,7 +568,7 @@ class Component(Parameterized):
             subcomponent (str): name of subcomponent to inherit from
 
         """
-        self.extend_constraints(subcomponent.get_constraints())
+        self.extend_constraints(subcomponent.get_constraints().itervalues())
 
     def eval_constraints(self):
         """Evaluates all the constraints imposed on subcomponents
@@ -588,7 +590,6 @@ class Component(Parameterized):
             obj = sc["component"]
             classname = sc["class"]
             try:
-                #obj.make()
                 for (key, composable) in obj.composables.iteritems():
                     if key not in self.composables:
                         self.composables[key] = composable.new()
