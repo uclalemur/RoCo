@@ -184,10 +184,14 @@ class Parameterized(object):
         """Extends the list of constraints with the input list
 
         Args:
-            constraints (list): List of new constraints to add
+            constraints (list/dict): List or dictionary of new constraints to add
         """
+        try:
+            constraint_eqns = constraints.itervalues()
+        except AttributeError:
+            constraint_eqns = constraints
 
-        for s in constraints:
+        for s in constraint_eqns:
             self.add_constraint(s)
 
     def add_constraint(self, expression, name=None):
