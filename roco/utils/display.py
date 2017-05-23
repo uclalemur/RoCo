@@ -98,7 +98,7 @@ class DisplayApp:
     def click(self,event):
         edgename = self.canvas.gettags(event.widget.find_closest(self.canvas.canvasx(event.x),self.canvas.canvasy( event.y)))[0]
         self.label.set(edgename)
-        self.mode.set(str(self.dwg.edges[edgename].edgetype))
+        self.mode.set(str(self.dwg.edges[edgename].edge_type))
         self.coords.set(str(self.dwg.edges[edgename].coords()))
         angle = self.dwg.edges[edgename].angle()
         self.direction.coords('direction', 25,25,25+25*math.cos(angle),25+25*math.sin(angle))
