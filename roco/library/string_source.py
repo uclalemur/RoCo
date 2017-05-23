@@ -1,6 +1,7 @@
-from roco.derived.ports.string_port import InStringPort, OutStringPort
+from roco.derived.ports.string_port import OutStringPort
 from roco.derived.components.code_component import CodeComponent
 from roco.derived.targets.cpp_target import Cpp
+from roco.derived.targets.arduino_target import Arduino
 
 class StringSource(CodeComponent):
 
@@ -23,6 +24,30 @@ class StringSource(CodeComponent):
                 "declarations": "",
 
                 "needs": set()
+            },
+            Arduino: {
+                "code": "",
+
+                "declarations": "",
+
+                "setup": "",
+
+                "loop": "",
+
+                "inputs": {},
+
+                "outputs": {
+                    "str@@name@@": "\"Hello World!\\n\""
+                },
+
+                "needs": set(),
+
+                "interface": {
+                    "html": "",
+                    "style": "",
+                    "js": "",
+                    "event": "",
+                }
             }
         }
         self.add_interface("outStr", OutStringPort(self, "outStr", "str@@name@@"))
@@ -33,3 +58,4 @@ class StringSource(CodeComponent):
 
 if __name__ == "__main__":
     ss = StringSource()
+    ss.make_output()

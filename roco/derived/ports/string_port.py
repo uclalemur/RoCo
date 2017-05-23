@@ -4,8 +4,8 @@ This module contains the InStringPort and OutStringPort classes.
 
 """
 
-from code_port import CodePort
-from base_port import InPort, OutPort
+from roco.derived.ports.code_port import CodePort
+from roco.derived.ports.base_port import InPort, OutPort
 
 class InStringPort(InPort, CodePort):
     """A class representing an input port for a string.

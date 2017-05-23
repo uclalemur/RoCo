@@ -38,7 +38,7 @@ def get_subcomponent_object(component, name=None, **kwargs):
     """
     try:
         obj = try_import(component, to_camel_case(component))
-        c = obj(**kwargs)
+        c = obj(name=name, **kwargs)
         c.set_name(name)
         return c
     except ImportError:
@@ -63,7 +63,7 @@ class Component(Parameterized):
 
     """
 
-    def __init__(self, yaml_file=None, **kwargs):
+    def __init__(self, yaml_file=None, name=None, **kwargs):
         """Constructs a new Component object.
 
         Creates a Component that is either blank or loaded from a yaml file.
@@ -73,7 +73,7 @@ class Component(Parameterized):
             **kwargs: Arbitrary keyword arguments to control construction.
 
         """
-        Parameterized.__init__(self)
+        Parameterized.__init__(self, name=name)
 
         self.subcomponents = {}
         self.connections = {}
@@ -485,31 +485,27 @@ class Component(Parameterized):
         """
         # Interfaces can contain multiple ports, so try each pair of ports
         if not isinstance(interface1.ports, (list, tuple)):
-          interface1 = [interface1.ports]
+            interface1 = [interface1.ports]
         if not isinstance(interface2.ports, (list, tuple)):
-          interface2 = [interface2.ports]
+            interface2 = [interface2.ports]
         if len(interface1.ports) != len(interface2.ports):
-          if len(interface1.ports) == 1:
-            interface1 = interface1 * len(interface2.ports)
-          elif len(interface2.ports) == 1:
-            interface2 = interface2 * len(interface1.ports)
-          else:
-            raise AttributeError("Number of ports in each interface don't match")
+            if len(interface1.ports) == 1:
+                interface1 = interface1 * len(interface2.ports)
+            elif len(interface2.ports) == 1:
+                interface2 = interface2 * len(interface1.ports)
+            else:
+                raise AttributeError("Number of ports in each interface don't match")
 
         for (port1, port2) in zip(interface1.ports, interface2.ports):
-          self.extend_constraints(port1.constrain(self, port2, **kwargs))
-          for (key, composable) in self.composables.iteritems():
-            try:
-                composable.attach(port1, port2, kwargs)
-            except:
-                print "Error in attach:"
-                print "interface 1: ", interface1.name
-                print "interface 2: ", interface2.name
-                # print (from_name, from_port),
-                # print self.get_subcomponent_interface(from_name, from_port).name
-                # print (to_name, to_port),
-                # print self.get_subcomponent_interface(to_name, to_port).name
-                raise
+            self.extend_constraints(port1.constrain(self, port2, **kwargs))
+            for (key, composable) in self.composables.iteritems():
+                try:
+                    composable.attach(port1, port2, kwargs)
+                except:
+                    print "Error in attach:"
+                    print "interface 1: ", interface1.name
+                    print "interface 2: ", interface2.name
+                    raise
 
     def get_composable(self, name):
         """ Returns the composable referred to by 'name'
@@ -678,10 +674,10 @@ class Component(Parameterized):
         import pydot
         self.resolve_subcomponents()
         for n, sc in self.subcomponents.iteritems():
-            fullstr = myname + "/" + n
+            fullstr = my_name + "/" + n
             subnode = pydot.Node(fullstr, label = sc["class"] + r"\n" + n)
             graph.add_node(subnode)
-            edge = pydot.Edge(mynode, subnode)
+            edge = pydot.Edge(my_node, subnode)
             graph.add_edge(edge)
             sub.recurse_component_tree(graph, subnode, fullstr)
 
@@ -703,6 +699,7 @@ class Component(Parameterized):
         if kw("remake", True):
             self.make()
         print "done."
+
 
         # XXX: Is this the right way to do it?
         import os

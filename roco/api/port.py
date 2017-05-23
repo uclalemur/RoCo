@@ -4,7 +4,7 @@ This module contains the Port class.
 
 """
 
-from parameterized import Parameterized
+from roco.api.parameterized import Parameterized
 
 class Port(Parameterized):
     """A class representing an abstract port

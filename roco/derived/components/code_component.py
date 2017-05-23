@@ -4,7 +4,7 @@ from roco.derived.ports.code_port import CodePort
 
 class CodeComponent(Component):
 
-    def __init__(self, yaml_file=None, **kwargs):
+    def __init__(self, yaml_file=None, name = None, **kwargs):
         """Initializes an empty Code Component if yaml_file is None, or a
         composite code component if yaml_file is a valid Composite Component File.
 
@@ -16,7 +16,7 @@ class CodeComponent(Component):
 
         """
         self.meta = dict()
-        Component.__init__(self, yaml_file, **kwargs)
+        Component.__init__(self, yaml_file, name, **kwargs)
 
     def define(self, **kwargs):
         """Function for overriding interfaces.
@@ -52,8 +52,8 @@ class CodeComponent(Component):
             new_meta[target] = target(None, meta).mangle(name)
 
         for (iname, interface) in self.interfaces.iteritems():
-            if isinstance(interface, CodePort):
-                interface.mangle(name)
+            if isinstance(interface.ports[0], CodePort):
+                interface.ports[0].mangle(name)
 
         return new_meta
 

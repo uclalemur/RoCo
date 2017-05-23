@@ -61,7 +61,7 @@ class Cpp(Target):
         """
         return "Cpp"
 
-    def getParamsFrom(self, where):
+    def get_params_from(self, where):
         """Returns an array containing the unmangled versions of all the mangled
         parameter tokens in a given string.
 
@@ -115,13 +115,13 @@ class Cpp(Target):
         """
         output_parameters = []
         input_parameters = []
-        code_parameters = self.getParamsFrom(self.meta["code"])
+        code_parameters = self.get_params_from(self.meta["code"])
 
         for (key, val) in self.meta["inputs"].iteritems():
-            input_parameters += self.getParamsFrom(val)
+            input_parameters += self.get_params_from(val)
 
         for (key, val) in self.meta["outputs"].iteritems():
-            output_parameters += self.getParamsFrom(val)
+            output_parameters += self.get_params_from(val)
 
         return list(set(output_parameters) | set(input_parameters) | set(code_parameters))
 
@@ -197,6 +197,8 @@ class Cpp(Target):
         input_label = to_port.get_label()
         output_label = from_port.get_label()
 
+
+
         try:
             # Substitute all in the necessary inputs into the output specified by output_label
             self.replace_input(output_label)
@@ -216,7 +218,7 @@ class Cpp(Target):
         return self.meta
 
     def make_output(self, filedir, **kwargs):
-        """Converts the Code Componsable into source code and writes it to a
+        """Converts the Code Composable into source code and writes it to a
         specified file.
 
         Args:
