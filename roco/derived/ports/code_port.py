@@ -56,12 +56,7 @@ class CodePort(Port):
         Returns:
             list of semantic constraints
         """
-        constraints = []
-
-        for p in self.parameters:
-            if p in to_port.parameters:
-                constraints.append((self.get_parameter(p), toPort.get_parameter(p)))
-        return constraints
+        return {}
 
     def get_label(self):
         """Returns label
@@ -82,4 +77,4 @@ class CodePort(Port):
 
         """
         label = self.label.replace("@@name@@", name)
-        self.set_parameter("label", label, forceConstant=True) ## TODO: this shouldn't require forceConstant=True
+        self.set_parameter("label", label, force_literal=True) ## TODO: this shouldn't require force_literal=True

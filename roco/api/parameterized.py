@@ -5,7 +5,7 @@ Component.
 
 """
 
-from utils.variable import Variable
+from roco.api.utils.variable import Variable
 from roco.utils.utils import prefix as prefix_string
 from sympy.logic.boolalg import BooleanTrue
 from sets import Set
@@ -31,13 +31,13 @@ class Parameterized(object):
             inheritance.
 
     """
-    def __init__(self):
+    def __init__(self, name = None):
         """Creates a parameterized object.
 
         Args:
             None
         """
-        self._name = None
+        self._name = name
         self.parameters = {}
         self.constraints = {}
 
@@ -184,10 +184,14 @@ class Parameterized(object):
         """Extends the list of constraints with the input list
 
         Args:
-            constraints (list): List of new constraints to add
+            constraints (list/dict): List or dictionary of new constraints to add
         """
+        try:
+            constraint_eqns = constraints.itervalues()
+        except AttributeError:
+            constraint_eqns = constraints
 
-        for s in constraints.itervalues():
+        for s in constraint_eqns:
             self.add_constraint(s)
 
     def add_constraint(self, expression, name=None):

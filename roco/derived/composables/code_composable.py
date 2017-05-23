@@ -72,7 +72,7 @@ class CodeComposable(VirtualComposable):
         to_remove = []
         for (target, meta) in self.meta.iteritems():
             try:
-                self.meta[target] = target(self, meta).append(new_composable.meta[target], new_prefix)
+                self.meta[target] = target(self, meta).append(new_composable.meta[target])
             except KeyError:
                 print("Target: %s not supported!" % str(target(self, meta)))
                 to_remove.append(target)

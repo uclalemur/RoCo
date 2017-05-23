@@ -10,6 +10,7 @@ from roco.api.utils.variable import eval_equation
 from drawing_edge import *
 from roco.utils.transforms import *
 from shapely import geometry
+import pdb
 
 def diff_edge(pts1, pts2, dimension, tolerance = 0.01):
     """Determines if two edges are the same
@@ -233,7 +234,7 @@ class Drawing():
                 #Create a new edge
                     self.edges['temp' + edge.name] = DrawingEdge('temp' + edge.name, edge_pts_2D[0], edge_pts_2D[1], Cut())
                 # Make old edge into a cut
-                self.edges[edge.name] = DrawingEdge(edge.name, edge_alias[0], edge_alias[1], Cut())
+                    self.edges[edge.name] = DrawingEdge(edge.name, edge_alias[0], edge_alias[1], Cut())
             else:
                 #Add edge normally
                 if len(edge.faces) == 1:

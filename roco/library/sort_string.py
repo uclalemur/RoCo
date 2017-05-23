@@ -4,8 +4,8 @@ from roco.derived.targets.cpp_target import Cpp
 
 class SortString(CodeComponent):
 
-    def __init__(self, yamlFile=None, **kwargs):
-        CodeComponent.__init__(self, yamlFile, **kwargs)
+    def __init__(self, yaml_file=None, name = None, **kwargs):
+        CodeComponent.__init__(self, yaml_file, name, **kwargs)
 
     def define(self, **kwargs):
         self.meta = {
