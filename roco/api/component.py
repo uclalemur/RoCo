@@ -161,7 +161,7 @@ class Component(Parameterized):
             self.add_subcomponent(name, value["class"], **kwargs)
             try:
               for param, pvalue in value["parameters"].iteritems():
-                self.set_subcomponent_parameter((name, param), self._str_to_sympy(pvalue))
+                self.constrain_subcomponent_parameter((name, param), self._str_to_sympy(pvalue))
             except AttributeError:
               pass
         except AttributeError: pass
