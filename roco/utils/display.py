@@ -4,7 +4,7 @@ import math
 from roco.derived.composables.fegraph.drawing import *
 from roco.derived.composables.fegraph.drawing_edge import *
 
-#def displayTkinter(dwg, height = 500, width = 700, showFlats = True):
+import pdb
 
 class DisplayApp:
     def __init__(self, dwg, height = 500, width = 700, showFlats = True):
@@ -80,6 +80,7 @@ class DisplayApp:
         for e in dwg.edges.items():
             if e[1].edge_type.edge_type == EdgeType.NOEDGE:
                 continue
+            pdb.set_trace()
             if e[1].edge_type.edge_type == EdgeType.CUT:
                 color = 'blue'
             elif e[1].edge_type.edge_type == EdgeType.FOLD:

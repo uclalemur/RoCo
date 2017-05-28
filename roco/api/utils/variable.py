@@ -109,6 +109,7 @@ class Variable(Dummy):
             The name of the variable.
         """
         return self.name
+
     
     def __getstate__(self):
       state = Dummy.__getstate__(self)

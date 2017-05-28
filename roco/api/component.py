@@ -162,7 +162,7 @@ class Component(Parameterized):
             self.add_subcomponent(name, value["class"], **kwargs)
             try:
               for param, pvalue in value["parameters"].iteritems():
-                self.set_subcomponent_parameter((name, param), self._str_to_sympy(pvalue))
+                self.constrain_subcomponent_parameter((name, param), self._str_to_sympy(pvalue))
             except AttributeError:
               pass
         except AttributeError: pass
@@ -475,7 +475,7 @@ class Component(Parameterized):
             self.composables[key].append(composable, prefix)
         self._prefixed[name] = component
 
-    def attach(self, interface1, interface2, kwargs):
+    def attach(self, interface1, interface2, **kwargs):
         """ Attaches the specified ports on the subcomponents
 
         Args:
@@ -501,7 +501,7 @@ class Component(Parameterized):
             self.extend_constraints(port1.constrain(self, port2, **kwargs))
             for (key, composable) in self.composables.iteritems():
                 try:
-                    composable.attach(port1, port2, kwargs)
+                    composable.attach(port1, port2, **kwargs)
                 except:
                     print "Error in attach:"
                     print "interface 1: ", interface1.name
@@ -616,7 +616,7 @@ class Component(Parameterized):
         for (from_interface, to_interface, kwargs) in self.connections.itervalues():
             self.attach(from_interface,
                         to_interface,
-                        kwargs)
+                        **kwargs)
 
     def make(self):
         """ Evaluates subcomponents, connections, and constraints, then assembles the component

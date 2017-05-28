@@ -401,7 +401,7 @@ class Drawing():
         return c
 
 class Face(Drawing):
-  def __init__(self, pts, edgetype = None, origin = True):
+  def __init__(self, pts, edge_type = None, origin = True):
     Drawing.__init__(self)
     if origin:
       pts = list(pts) + [(0,0)]
@@ -413,11 +413,11 @@ class Face(Drawing):
     edgenames = []
     for pt in pts:
       name = 'e%d' % edgenum
-      self.edges[name] = Edge(name, lastpt, pt, edgetype)
+      self.edges[name] = Edge(name, lastpt, pt, edge_type)
       edgenames.append(name)
       lastpt = pt
       edgenum += 1
 
 class Rectangle(Face):
-  def __init__(self, l, w, edgetype = None, origin = True):
-    Face.__init__(self, ((l, 0), (l, w), (0, w), (0,0)), edgetype, origin)
+  def __init__(self, l, w, edge_type = None, origin = True):
+    Face.__init__(self, ((l, 0), (l, w), (0, w), (0,0)), edge_type, origin)
