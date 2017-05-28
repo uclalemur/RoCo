@@ -9,6 +9,7 @@ from collections import OrderedDict
 from os.path import join
 import sys
 
+import pdb
 import yaml
 import copy
 import roco.utils.mymath as math
@@ -699,7 +700,6 @@ class Component(Parameterized):
         if kw("remake", True):
             self.make()
         print "done."
-
 
         # XXX: Is this the right way to do it?
         import os

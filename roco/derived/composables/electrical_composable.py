@@ -21,7 +21,7 @@ class ElectricalComposable(Composable):
         """Initializes a Electrical Composable.
 
         Args:
-            name (string): Name of Electrical component attached to this composable
+            name (string):  of Electrical component attached to this composable
             physical (dict): dictionary containing physical properties of Electrical component
                 including power, aliases, and connections
             is_virtual (Boolean): Whether or not the component is virtual
@@ -34,7 +34,7 @@ class ElectricalComposable(Composable):
         self.physical[name]["connections"] = [list() for i in range(physical["numPins"])]
         self.physical[name]["virtual"] = is_virtual
 
-    def resolveVirtuals(self):
+    def resolve_virtuals(self):
         return
         #for (cName, cVal) in self.physical.iteritems():
         #    if not cVal["virtual"]:
@@ -57,10 +57,10 @@ class ElectricalComposable(Composable):
         if not isinstance(from_port, ElectricalPort) or not isinstance(to_port, ElectricalPort):
             return
 
-        from_name = from_port.getComponentName()
-        from_pins = from_port.getPins()
-        to_name = to_port.getComponentName()
-        to_pins = to_port.getPins()
+        from_name = from_port.get_component_name()
+        from_pins = from_port.get_pins()
+        to_name = to_port.get_component_name()
+        to_pins = to_port.get_pins()
 
         if len(from_pins) != len(to_pins):
             raise Exception("Number of pins on ports do not match!")
@@ -88,7 +88,7 @@ class ElectricalComposable(Composable):
         """
         self.physical.update(new_composable.physical)
 
-    def makeOutput(self, file_dir, **kwargs):
+    def make_output(self, file_dir, **kwargs):
         """Creates wiring instructions for the composable.
 
         Args:
@@ -100,33 +100,32 @@ class ElectricalComposable(Composable):
         f = open(filename, "w")
 
         f.write("Wiring Instructions:\n")
-        #self.resolveVirtuals()
+        self.resolve_virtuals()
 
-        #newPhysical = deepcopy(self.physical)
-        """
-        for (name, val) in newPhysical.iteritems():
+        new_physical = deepcopy(self.physical)
+
+        for (name, val) in new_physical.iteritems():
             if "Component." in name:
                 name = name.replace("Component.", "")
 
             if val["virtual"]:
                 continue
-            for fPin, connect in list(enumerate(val["connections"])):
-                fPinName = val["aliases"][fPin]
+            for f_pin, connect in list(enumerate(val["connections"])):
+                f_pin_name = val["aliases"][f_pin]
                 if connect:
                     if connect[2]:
                         continue
 
-                    tName = connect[0]
-                    tPin = connect[1]
-                    tPinName = newPhysical[tName]["aliases"][tPin]
-                    newPhysical[tName]["connections"][tPin][2] = True
+                    t_name = connect[0]
+                    t_pin = connect[1]
+                    t_pin_name = new_physical[t_name]["aliases"][t_pin]
+                    new_physical[t_name]["connections"][t_pin][2] = True
 
-                    if "Component." in tName:
-                        tName = tName.replace("Component.", "")
+                    if "Component." in t_name:
+                        t_name = t_name.replace("Component.", "")
 
-                    f.write("Connect %s on %s to %s on %s\n" % (fPinName, name, tPinName, tName))
-                elif fPin in val["power"]["Vin"]:
-                    f.write("Connect %s on %s to Vout\n" % (fPinName, name))
-                elif fPin in val["power"]["Ground"]:
-                    f.write("Connect %s on %s to ground\n" % (fPinName, name))
-        """
+                    f.write("Connect %s on %s to %s on %s\n" % (f_pin_name, name, t_pin_name, t_name))
+                elif f_pin in val["power"]["Vin"]:
+                    f.write("Connect %s on %s to Vout\n" % (f_pin_name, name))
+                elif f_pin in val["power"]["Ground"]:
+                    f.write("Connect %s on %s to ground\n" % (f_pin_name, name))
