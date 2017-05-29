@@ -87,6 +87,7 @@ class Component(Parameterized):
         self.interfaces = {}
         self._prefixed = {}
         self.composables = OrderedDict()
+        self.attribute_params = {}
 
         if yaml_file:
             self._from_yaml(yaml_file)
@@ -237,6 +238,80 @@ class Component(Parameterized):
         for sc in self.subcomponents:
             if 'graph' in self.subcomponents[sc]['component'].composables:
                 self.subcomponents[sc]['component'].composables['graph'].placed = False
+
+    def add_attribute_param(self, name, value, is_literal=False, desc="" **kwargs):
+        """Adds an attribute parameter to the component. Attributes are special parameters
+        which describe some inherent characteristic of the component, which may be often
+        variable between different instances of the component, but can/should not be changed
+        between makes of the same component instance. Thus, it is recommended these be set
+        before calling make or adding connections to the component. Added Attributes will
+        be returned by get_attribute_params, but they are merely a soft restriction for the user,
+        and behave otherwise identically to parameters.
+
+        Args:
+            name (str): the parameter name
+            value (int): an integer representing the default value for the
+                parameter
+            is_literal (bool): if True, the parameter's value will
+                be stored as is. Else, it will be stored in a variable whose value
+                can be changed.
+            desc (str): a description of the attributes purpose
+            **kwargs (dict): kwargs for the creation of the Dummy
+
+        Returns:
+            The newly added parameter
+
+        Raises:
+            KeyError: A parameter called name has already been created
+            ValueError: Invalid characters in name
+        """
+        self.attribute_params[name] = desc
+        return self.add_parameter(name, value, is_literal, **kwargs)
+
+    def get_attribute_params():
+        return self.attribute_params
+
+    def inherit_parameters(self, other, prefix):
+        """Adds parameters from another parameterized object to the current component.
+        Overrides original fucntion in parameterized to account for attribute parameters
+
+        Args:
+            other (Parameterized): the parameterized object to inherit
+                parameters from
+            prefix (str): a prefix string to be added to the name of inherited
+                parameters
+        """
+        attribute_params = {}
+        try:
+            attribute_params = other.get_attribute_params()
+        except:
+            pass
+
+        for name, variable in other.all_parameters():
+            if isinstance(variable, Variable):
+                variable.set_name(prefix_string(prefix,variable.get_name()))
+            if name in attribute_params.keys():
+                self.add_attribute_param(prefix_string(prefix, name), variable, is_literal=True, desc=attribute_params[name])
+            else:
+                self.add_parameter(prefix_string(prefix, name), variable, is_literal=True)
+
+    def del_parameter(self, name):
+        """Removes the parameter with the given name
+
+        Args:
+            name (str): the parameter name
+
+        Returns:
+            The removed parameter with the given name
+
+        Raises:
+            KeyError: A parameter called name does not exist
+        """
+        try:
+            self.attribute_params.pop(name)
+        except:
+            pass
+        return Parameterized.del_parameter(self, name)
 
 
     def add_interface(self, name, ports):
