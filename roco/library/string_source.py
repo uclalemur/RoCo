@@ -1,7 +1,7 @@
 from roco.derived.ports.string_port import OutStringPort
 from roco.derived.components.code_component import CodeComponent
-from roco.derived.targets.cpp_target import Cpp
-from roco.derived.targets.arduino_target import Arduino
+from roco.derived.composables.target.cpp_target import Cpp
+from roco.derived.composables.target.arduino_target import Arduino
 
 class StringSource(CodeComponent):
 

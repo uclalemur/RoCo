@@ -92,7 +92,7 @@ class CodeComposable(VirtualComposable):
                 continue
             self.meta[target] = target(self, meta).sub_parameter(token, value)
 
-    def attach(self, from_port, to_port, kwargs):
+    def attach(self, from_port, to_port, **kwargs):
         """Attaches two ports inside the composable together
 
         Args:
@@ -108,7 +108,7 @@ class CodeComposable(VirtualComposable):
             raise Exception("%s cannot mate with %s!" % (from_port.__class__, to_port.__class__))
 
         for (target, meta) in self.meta.iteritems():
-            self.meta[target] = target(self, meta).attach(from_port, to_port, kwargs)
+            self.meta[target] = target(self, meta).attach(from_port, to_port, **kwargs)
 
     def make_output(self, file_dir, **kwargs):
         from roco.derived.components.code_component import CodeComponent
@@ -120,9 +120,11 @@ class CodeComposable(VirtualComposable):
 
         """
         subs = {}
+        import pdb; pdb.set_trace()
         for component in self.components:
             if isinstance(component, CodeComponent):
                 subs.update(component.get_token_subs())
+
 
         for (target, meta) in self.meta.iteritems():
             self.meta[target] = target(self,meta).sub_parameters(subs)

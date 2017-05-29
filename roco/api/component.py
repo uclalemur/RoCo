@@ -42,6 +42,11 @@ def get_subcomponent_object(component, name=None, **kwargs):
         c = obj(name=name, **kwargs)
         c.set_name(name)
         return c
+    except AttributeError:
+        obj = try_import(component, component.upper())
+        c = obj(name=name, **kwargs)
+        c.set_name(name)
+        return c
     except ImportError:
         c = Component(component, **kwargs)
         c.set_name(name)
@@ -704,7 +709,7 @@ class Component(Parameterized):
         # XXX: Is this the right way to do it?
         import os
         try:
-            os.makedirs(filedir)
+            os.makedirs(file_dir)
         except:
             pass
 

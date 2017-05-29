@@ -1,6 +1,7 @@
 from roco.api.composable import Composable
 from roco.derived.ports.electrical_port import ElectricalPort
 from copy import copy, deepcopy
+import pdb
 
 class ElectricalComposable(Composable):
 
@@ -35,17 +36,20 @@ class ElectricalComposable(Composable):
         self.physical[name]["virtual"] = is_virtual
 
     def resolve_virtuals(self):
-        return
-        #for (cName, cVal) in self.physical.iteritems():
-        #    if not cVal["virtual"]:
-        #        continue
-        #    for cc in cVal["connections"]:
-        #        if cc:
-        #            self.physical[cc[0][0]]["connections"][cc[0][1]] = cc[1]
-        #            self.physical[cc[1][0]]["connections"][cc[1][1]] = cc[0]
+        for (c_name, c_val) in self.physical.iteritems():
+           if not c_val["virtual"]:
+               continue
+           for i in range(len(c_val["connections"])):
+               cc = c_val["connections"][i]
+               if len(cc) > 1:
+                   self.physical[cc[0][0]]["connections"][cc[0][1]] = cc[1]
+                   self.physical[cc[1][0]]["connections"][cc[1][1]] = cc[0]
+               elif len(cc) > 0:
+                   self.physical[c_name]["connections"][i] = cc[0]
 
 
-    def attach(self, from_port, to_port, kwargs):
+
+    def attach(self, from_port, to_port, **kwargs):
         """Attaches two ports inside the composable together
 
         Args:
@@ -67,6 +71,8 @@ class ElectricalComposable(Composable):
 
         f_virtual = self.physical[from_name]["virtual"]
         t_virtual = self.physical[to_name]["virtual"]
+
+        import pdb; pdb.set_trace()
 
         for fpin, tpin in zip(from_pins, to_pins):
             if f_virtual:
@@ -119,6 +125,7 @@ class ElectricalComposable(Composable):
                     t_name = connect[0]
                     t_pin = connect[1]
                     t_pin_name = new_physical[t_name]["aliases"][t_pin]
+                    # pdb.set_trace()
                     new_physical[t_name]["connections"][t_pin][2] = True
 
                     if "Component." in t_name:

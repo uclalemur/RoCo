@@ -1,30 +1,27 @@
 from roco.derived.components.electrical_component import ElectricalComponent
 from roco.derived.ports.electrical_port import ElectricalPort
-import pdb
 
-class LED(ElectricalComponent):
+class Pot(ElectricalComponent):
 
-    def __init__(self, yaml_file=None, name=None, **kwargs):
-        ElectricalComponent.__init__(self, yaml_file, name, **kwargs)
+    def __init__(self, yamlFile=None, **kwargs):
+        ElectricalComponent.__init__(self, yamlFile, **kwargs)
 
     def define(self, **kwargs):
         ElectricalComponent.define(self)
-
-        self.physical =  {
-            "numPins": 2,
+        self.physical = {
+            "numPins": 3,
             "power": {
                 "Vin": [0],
-                "Ground": [1]
+                "Ground": [2]
             },
-            "aliases": ["anode", "cathode"]
+            "aliases": ["first pin", "center pin", "last pin"],
         }
+        self.add_interface("vOut", ElectricalPort(self, [1]))
 
-        self.add_interface('eIn', ElectricalPort(self, [0]))
 
     def assemble(self):
         ElectricalComponent.assemble(self)
 
-
 if __name__ == '__main__':
-    a = LED(name="led1")
+    a = Pot(name="pot1")
     a.make_output()

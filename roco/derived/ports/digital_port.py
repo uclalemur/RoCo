@@ -18,7 +18,7 @@ class DigitalInputPort(VirtualElectricalPort):
 
         """
         VirtualElectricalPort.__init__(self, parent, pin, virtual, **kwargs)
-        self.addAllowableMate(DigitalOutputPort)
+        self.add_allowable_mate(DigitalOutputPort)
 
 class DigitalOutputPort(VirtualElectricalPort):
     """A Digital output port.
@@ -38,4 +38,4 @@ class DigitalOutputPort(VirtualElectricalPort):
         """
 
         VirtualElectricalPort.__init__(self, parent, pin, virtual, **kwargs)
-        self.addAllowableMate(DigitalInputPort)
+        self.add_allowable_mate(DigitalInputPort)

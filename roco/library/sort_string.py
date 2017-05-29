@@ -1,6 +1,6 @@
 from roco.derived.ports.string_port import InStringPort, OutStringPort
 from roco.derived.components.code_component import CodeComponent
-from roco.derived.targets.cpp_target import Cpp
+from roco.derived.composables.target.cpp_target import Cpp
 
 class SortString(CodeComponent):
 
