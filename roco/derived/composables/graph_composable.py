@@ -36,7 +36,7 @@ class GraphComposable(Composable, FaceEdgeGraph):
     def __init__(self, transform=None):
         """
         Initializes a GraphComposable
-        
+
         Args:
             transform: optional initial transform
         """
@@ -62,7 +62,7 @@ class GraphComposable(Composable, FaceEdgeGraph):
     def attach(self, port1, port2, **kwargs):
         """
         Attaches two ports together in this composable
-        
+
         Args:
             port1 (Port): first port to attach
             port2 (Port): second port to attach
@@ -124,7 +124,7 @@ class GraphComposable(Composable, FaceEdgeGraph):
 
     def make_output(self, filedir, **kwargs):
         """
-        Creates output based on the composable to the given directory. 
+        Creates output based on the composable to the given directory.
         The output files depend upon the kwargs.
 
         Args:

@@ -233,7 +233,7 @@ class Component(Parameterized):
             if 'graph' in self.subcomponents[sc]['component'].composables:
                 self.subcomponents[sc]['component'].composables['graph'].placed = False
 
-    def add_attribute_param(self, name, value, is_literal=False, desc="" **kwargs):
+    def add_attribute_param(self, name, value, is_literal=False, desc="", **kwargs):
         """Adds an attribute parameter to the component. Attributes are special parameters
         which describe some inherent characteristic of the component, which may be often
         variable between different instances of the component, but can/should not be changed
@@ -308,16 +308,20 @@ class Component(Parameterized):
         return Parameterized.del_parameter(self, name)
 
 
-    def add_interface(self, name, ports):
+    def add_interface(self, name, interface, wrap_interface=True):
         """Adds an interface to this component.
 
         Args:
             name (str): unique identifier for interface that will be added to the component.
-            ports (Port or list of Ports): the value that the new interface takes on.
+            ports (Port or list of Ports or Interface): the value that the new interface takes on.
+            wrap_interface: If true, interface will be wrapped in an interface object
         """
         if name in self.interfaces:
             raise ValueError("Interface %s already exists" % name)
-        new_interface = Interface(name, ports)
+        if wrap_interface:
+            new_interface = Interface(name, interface)
+        else:
+            new_interface = interface
         self.interfaces.setdefault(name, new_interface)
         return self
 
@@ -498,15 +502,20 @@ class Component(Parameterized):
         """
         return self.interfaces[name]
 
-    def set_interface(self, name, value):
+    def set_interface(self, name, interface, wrap_interface=True):
         """ Sets a interface as passed in
 
         Args:
             name (str): name of the interface to set
             value: the value to set the interface to
+
         """
+        if wrap_interface:
+            new_interface = Interface(name, interface)
+        else:
+            new_interface = interface
         if name in self.interfaces:
-            self.interfaces[name] = value
+            self.interfaces[name] = new_interface
         else:
             raise KeyError("Interface %s not initialized" % n)
         return self

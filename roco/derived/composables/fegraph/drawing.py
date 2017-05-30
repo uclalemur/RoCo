@@ -10,7 +10,7 @@ from roco.api.utils.variable import eval_equation
 from drawing_edge import *
 from roco.utils.transforms import *
 from shapely import geometry
-import pdb
+
 
 def diff_edge(pts1, pts2, dimension, tolerance = 0.01):
     """Determines if two edges are the same
@@ -163,7 +163,7 @@ class Drawing():
 
         #Will this break if a face has to be flipped?
         for e in face.get_2D_decorations():
-                self.edges[e[0]] = Edge(e[0], [eval_equation(x) for x in e[1]],
+                self.edges[e[0]] = DrawingEdge(e[0], [eval_equation(x) for x in e[1]],
                                         [eval_equation(x) for x in e[2]], EdgeType(e[3]))
 
         """
@@ -308,7 +308,7 @@ class Drawing():
 
     def edge_coords(self):
         """ Returns a list of all edge coordinates
-        
+
         Returns:
             a list of all Edge instance endpoints in Drawing
 
@@ -413,7 +413,7 @@ class Face(Drawing):
     edgenames = []
     for pt in pts:
       name = 'e%d' % edgenum
-      self.edges[name] = Edge(name, lastpt, pt, edge_type)
+      self.edges[name] = DrawingEdge(name, lastpt, pt, edge_type)
       edgenames.append(name)
       lastpt = pt
       edgenum += 1
