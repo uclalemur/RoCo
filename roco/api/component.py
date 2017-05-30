@@ -9,6 +9,7 @@ from collections import OrderedDict
 from os.path import join
 import sys
 
+import pdb
 import yaml
 import copy
 import roco.utils.mymath as math
@@ -38,6 +39,11 @@ def get_subcomponent_object(component, name=None, **kwargs):
     """
     try:
         obj = try_import(component, to_camel_case(component))
+        c = obj(name=name, **kwargs)
+        c.set_name(name)
+        return c
+    except AttributeError:
+        obj = try_import(component, component.upper())
         c = obj(name=name, **kwargs)
         c.set_name(name)
         return c
@@ -784,11 +790,10 @@ class Component(Parameterized):
             self.make()
         print "done."
 
-
         # XXX: Is this the right way to do it?
         import os
         try:
-            os.makedirs(filedir)
+            os.makedirs(file_dir)
         except:
             pass
 

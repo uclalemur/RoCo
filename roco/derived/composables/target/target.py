@@ -69,7 +69,7 @@ class Target(object):
         """
         raise NotImplementedError
 
-    def attach(self, from_port, to_port, kwargs):
+    def attach(self, from_port, to_port, **kwargs):
         """Attaches two ports in the component and replaces their symbolic
         representation in the target with real code.
 

@@ -4,7 +4,7 @@ from roco.derived.composables.electrical_composable import ElectricalComposable
 
 class ElectricalComponent(Component):
 
-    def __init__(self, yaml_file=None, **kwargs):
+    def __init__(self, yaml_file=None, name=None, **kwargs):
         """Initializes an empty Code Component if yaml_file is None, or a
         composite code component if yaml_file is a valid Composite Component File.
 
@@ -15,9 +15,9 @@ class ElectricalComponent(Component):
 
 
         """
-        Component.__init__(self, yaml_file=None, **kwargs)
-        self.physical = dict()
-        self.pin_indices = dict()
+        Component.__init__(self, yaml_file=None, name=name, **kwargs)
+        # self.physical = dict()
+        # self.pin_indices = dict()
 
 
     def pin_indices(self, pins):
@@ -34,4 +34,4 @@ class ElectricalComponent(Component):
             into one ElectricalComposable
 
         """
-        self.composables['electrical'] = ElectricalComposable(self.getName(), self.physical)
+        self.composables['electrical'] = ElectricalComposable(self.get_name(), self.physical)

@@ -1,4 +1,4 @@
-from roco.derived.targets.cpp_target import Cpp
+from roco.derived.composables.target.cpp_target import Cpp
 import os
 import errno
 
@@ -92,7 +92,9 @@ class Arduino(Cpp):
         #        self.meta["inputs"][token] = pSub
         for (token, sub) in subs.iteritems():
             for output_token, output_expr in self.meta["outputs"].iteritems():
-                self.meta["outputs"][output_token] = output_expr.replace(self.tokenize(token), sub)
+                tok = self.tokenize(token)
+                if tok in output_expr:
+                    self.meta["outputs"][output_token] = output_expr.replace(tok, sub)
             self.meta["code"] = self.meta["code"].replace(self.tokenize(token), sub)
             self.meta["setup"] = self.meta["setup"].replace(self.tokenize(token), sub)
             self.meta["loop"] = self.meta["loop"].replace(self.tokenize(token), sub)

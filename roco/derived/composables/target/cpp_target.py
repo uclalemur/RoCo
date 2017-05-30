@@ -5,7 +5,7 @@ the data within the Code Composable into C++.
 
 """
 
-from roco.api.target import Target
+from roco.derived.composables.target.target import Target
 from re import findall
 
 class Cpp(Target):

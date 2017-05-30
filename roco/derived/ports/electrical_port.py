@@ -1,4 +1,4 @@
-from Port import Port
+from roco.api.port import Port
 
 
 class ElectricalPort(Port):
@@ -20,7 +20,7 @@ class ElectricalPort(Port):
         Port.__init__(self, parent, params={})
         self.pins = pins
         self.virtual = virtual
-        self.parentName = parent.getName()
+        self.parent_name = parent.get_name()
 
     def get_component_name(self):
         """Returns name of component
@@ -29,9 +29,9 @@ class ElectricalPort(Port):
             None
 
         """
-        return self.parentName
+        return self.parent_name
 
-    def getPins(self):
+    def get_pins(self):
         """Returns an array of the pins.
 
         Args:
@@ -43,9 +43,22 @@ class ElectricalPort(Port):
         """
         if isinstance(self.pins[0], int):
             return self.pins
-        return self.parent.getPinIndices(self.pins)
+        return self.parent.get_pin_indices(self.pins)
 
-    def isVirtual(self):
+    def constrain(self, parent, to_port,  **kwargs):
+        """Return a set of semantic constraints to be satisfied when connecting to to_port object.
+        Overrides inherited implementation.
+
+        Args:
+            parent (component): parent of to_port //CHECK
+            to_port (port): port that is to be connected to this port.
+
+        Returns:
+            list of semantic constraints
+        """
+        return {}
+
+    def is_virtual(self):
         """Returns whether or not this port is virtual
 
         Args:

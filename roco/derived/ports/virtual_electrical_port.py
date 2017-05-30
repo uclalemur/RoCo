@@ -1,3 +1,5 @@
+from roco.derived.ports.electrical_port import ElectricalPort
+
 class VirtualElectricalPort(ElectricalPort):
     """NO IDEA WHAT ANYTHING IN THIS FILE DOES
 

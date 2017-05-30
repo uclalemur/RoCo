@@ -18,23 +18,23 @@ class PWMInputPort(VirtualElectricalPort):
 
         """
         VirtualElectricalPort.__init__(self, parent, pin, virtual, **kwargs)
-        self.addAllowableMate(PWMOutputPort)
+        self.add_allowable_mate(PWMOutputPort)
 
 class PWMOutputPort(VirtualElectricalPort):
-"""A PWM output port.
+    """A PWM output port.
 
-Attributes:
-    None
-"""
-def __init__(self, parent, pin, virtual=False,  **kwargs):
-    """Creates a PWOutputPort Object
-
-    Args:
-        parent (component): The component to which this port will be added.
-        pins (int array): Array containing the pins in this electrical port.
-        virtual (Boolean): Whether or not the port is virtual.
-        kwargs (dict): additional arguments to override params.
-
+    Attributes:
+        None
     """
+    def __init__(self, parent, pin, virtual=False,  **kwargs):
+        """Creates a PWOutputPort Object
+
+        Args:
+            parent (component): The component to which this port will be added.
+            pins (int array): Array containing the pins in this electrical port.
+            virtual (Boolean): Whether or not the port is virtual.
+            kwargs (dict): additional arguments to override params.
+
+        """
         VirtualElectricalPort.__init__(self, parent, pin, virtual, **kwargs)
-        self.addAllowableMate(PWMInputPort)
+        self.add_allowable_mate(PWMInputPort)

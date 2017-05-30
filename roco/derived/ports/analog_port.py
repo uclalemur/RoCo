@@ -17,7 +17,7 @@ class AnalogInputPort(VirtualElectricalPort):
 
         """
         VirtualElectricalPort.__init__(self, parent, pin, virtual, **kwargs)
-        self.addAllowableMate(AnalogOutputPort)
+        self.add_allowable_mate(AnalogOutputPort)
 
 class AnalogOutputPort(VirtualElectricalPort):
     """An Analog output port.
@@ -36,4 +36,4 @@ class AnalogOutputPort(VirtualElectricalPort):
 
         """
         VirtualElectricalPort.__init__(self, parent, pin, virtual, **kwargs)
-        self.addAllowableMate(AnalogInputPort)
+        self.add_allowable_mate(AnalogInputPort)
