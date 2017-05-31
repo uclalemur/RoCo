@@ -1,0 +1,10 @@
+#IDE FILES
+.idea
+
+#COMPILED SOURCE FILES
+*.pyc
+
+#OUTPUT FILES
+*.svg
+*.dxf
+*.stl
