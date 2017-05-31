@@ -8,3 +8,8 @@
 *.svg
 *.dxf
 *.stl
+*.cpp
+*.ino
+
+#EMACS TEMP FILES
+*~
