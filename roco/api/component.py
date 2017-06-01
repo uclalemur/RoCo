@@ -239,7 +239,7 @@ class Component(Parameterized):
             if 'graph' in self.subcomponents[sc]['component'].composables:
                 self.subcomponents[sc]['component'].composables['graph'].placed = False
 
-    def add_attribute_param(self, name, value, is_literal=False, desc="" **kwargs):
+    def add_attribute_param(self, name, value, is_literal=False, desc="", **kwargs):
         """Adds an attribute parameter to the component. Attributes are special parameters
         which describe some inherent characteristic of the component, which may be often
         variable between different instances of the component, but can/should not be changed

@@ -120,7 +120,6 @@ class CodeComposable(VirtualComposable):
 
         """
         subs = {}
-        import pdb; pdb.set_trace()
         for component in self.components:
             if isinstance(component, CodeComponent):
                 subs.update(component.get_token_subs())
