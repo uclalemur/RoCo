@@ -13,7 +13,7 @@ import pdb
 import yaml
 import copy
 import roco.utils.mymath as math
-from roco.api.utils.variable import Variable
+from roco.api.utils.variable import Variable, eval_equation
 
 from roco import ROCO_DIR
 from roco.utils.utils import prefix as prefix_string
@@ -88,6 +88,7 @@ class Component(Parameterized):
         self._prefixed = {}
         self.composables = OrderedDict()
         self.attribute_params = {}
+        self.hierarchical_constraints = {}
 
         if yaml_file:
             self._from_yaml(yaml_file)
@@ -179,6 +180,13 @@ class Component(Parameterized):
         except AttributeError: pass
 
         try:
+          for value in definition["hierarchical_constraints"]:
+              eqn =  self._str_to_sympy(value)
+              self.hierarchical_constraints[eqn.lhs] = eqn.rhs
+        except AttributeError: pass
+
+
+        try:
           for from_port, to_port, kwargs in definition["connections"]:
             for param, pvalue in kwargs.iteritems():
                 kwargs[param] = self._str_to_sympy(pvalue)
@@ -268,8 +276,35 @@ class Component(Parameterized):
         self.attribute_params[name] = desc
         return self.add_parameter(name, value, is_literal, **kwargs)
 
-    def get_attribute_params():
+    def get_attribute_params(self):
         return self.attribute_params
+
+    def add_hierarchical_constraint(self, (subcomponent, parameter), value):
+        """Adds a hierarchical constraint to component
+
+        Args:
+            subcomponent (str): component name to constrain
+            parameter (str): parameter of subcomponent to constrain
+            value (Expression): expression to constrain to
+
+        """
+        self.hierarchical_constraints[self.get_parameter(prefix_string(subcomponent, parameter))] = value
+
+    def get_hierarchical_constraints(self):
+        """Returns a dictionary of hierarchical constraints
+        """
+        return self.hierarchical_constraints
+
+    def extend_hierarchical_constraints(self, hier_constraints):
+        """Extends the list of hierarchical constraints with the input list
+
+            Args:
+                constraints (dict): dictionary of new hierarchical constraints to add
+
+        """
+
+        for (var, val) in hier_constraints.iteritems():
+            self.hierarchical_constraints[var] = val
 
     def inherit_parameters(self, other, prefix):
         """Adds parameters from another parameterized object to the current component.
@@ -314,16 +349,20 @@ class Component(Parameterized):
         return Parameterized.del_parameter(self, name)
 
 
-    def add_interface(self, name, ports):
+    def add_interface(self, name, interface, wrap_interface=True):
         """Adds an interface to this component.
 
         Args:
             name (str): unique identifier for interface that will be added to the component.
-            ports (Port or list of Ports): the value that the new interface takes on.
+            ports (Port or list of Ports or Interface): the value that the new interface takes on.
+            wrap_interface: If true, interface will be wrapped in an interface object
         """
         if name in self.interfaces:
             raise ValueError("Interface %s already exists" % name)
-        new_interface = Interface(name, ports)
+        if wrap_interface:
+            new_interface = Interface(name, interface)
+        else:
+            new_interface = interface
         self.interfaces.setdefault(name, new_interface)
         return self
 
@@ -425,25 +464,30 @@ class Component(Parameterized):
           subcomponents[k] = {"class": v["class"], "parameters": subparams, "constants": v["constants"]}
 
         constraints = []
-        for x in self.constraints:
+        for (key, x) in self.constraints.itervalues():
           expr = repr(x)
           constraints.append(expr)
 
+        hierarchical_constraints = []
+        for (var, val) in self.hierarchical_constraints.iteritems():
+            hierarchical_constraints.append(repr(Eq(var, val)))
+
         connections = []
-        for from_interface, to_interface, kwargs  in self.connections:
+        for from_interface, to_interface, kwargs in self.connections.itervalues():
           new_args = {}
           for param, value in kwargs.iteritems():
             try:
               value = repr(value)
             except AttributeError:
               pass
-            newArgs[param] = value
+            new_args[param] = value
           connections.append([from_interface, to_interface, new_args])
 
         definition = {
             "parameters" : parameters,
             "constants" : constants,
             "subcomponents" : subcomponents,
+            "hierarchical_constraints" : hierarchical_constraints,
             "constraints" : constraints,
             "connections" : connections,
             "interfaces" : self.interfaces,
@@ -479,7 +523,7 @@ class Component(Parameterized):
             value: Value of the parameter
 
         """
-        self.subcomponents[subcomponent]["parameters"][parameter] = value
+        self.add_hierarchical_constraint((subcomponent, parameter), value)
 
     def get_subcomponent_interface(self, component, name):
         """ Returns a subcomponent interface
@@ -504,15 +548,20 @@ class Component(Parameterized):
         """
         return self.interfaces[name]
 
-    def set_interface(self, name, value):
+    def set_interface(self, name, interface, wrap_interface=True):
         """ Sets a interface as passed in
 
         Args:
             name (str): name of the interface to set
             value: the value to set the interface to
+
         """
+        if wrap_interface:
+            new_interface = Interface(name, interface)
+        else:
+            new_interface = interface
         if name in self.interfaces:
-            self.interfaces[name] = value
+            self.interfaces[name] = new_interface
         else:
             raise KeyError("Interface %s not initialized" % n)
         return self
@@ -645,18 +694,18 @@ class Component(Parameterized):
             subcomponent (str): name of subcomponent to inherit from
 
         """
+        self.extend_hierarchical_constraints(subcomponent.get_hierarchical_constraints())
         self.extend_constraints(subcomponent.get_constraints().itervalues())
 
-    def eval_constraints(self):
+    def eval_hierarchical_constraints(self):
         """Evaluates all the constraints imposed on subcomponents
 
         Args:
             None
 
         """
-        for subcomponent in self.subcomponents.iterkeys():
-            for (parameter_name, value) in self.subcomponents[subcomponent]["parameters"].iteritems():
-                  self.set_parameter(prefix_string(subcomponent, parameter_name), value)
+        for (var, val) in self.hierarchical_constraints.iteritems():
+            var.set_solved(eval_equation(val))
 
     def eval_subcomponents(self):
         """ Creates composables in current component based on composables in each of the subcomponents, then
@@ -704,8 +753,7 @@ class Component(Parameterized):
         """
         self.reset()
         self.resolve_subcomponents()
-        self.eval_constraints()
-
+        self.eval_hierarchical_constraints()
         self.eval_subcomponents()    # Merge composables from all subcomponents and tell them my components exist
         self.eval_interfaces()    # Tell composables that my interfaces exist
         self.eval_connections()   # Tell composables which interfaces are connected

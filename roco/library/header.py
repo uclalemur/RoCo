@@ -4,24 +4,25 @@ from roco.derived.composables.fegraph.face import Face
 from roco.derived.ports.mount_port import MountPort
 
 
+
 class Header(Component):
 
   def define(self):
-      self.add_parameter("nrows", 0)
-      self.add_parameter("ncols", 0)
+      self.add_parameter("nrows", 11)
+      self.add_parameter("ncols", 2)
       self.add_parameter("rowsep", 2.54)
-      self.add_parameter("colsep", 2.54)
+      self.add_parameter("colsep", 0.6 * 25.4)
       self.add_parameter("diameter", 1)
       self.add_interface("mount", MountPort(self, None))
 
   def assemble(self):
-    diam = self.get_parameter("diameter")/2.
-    nr = self.get_parameter("nrows")
-    nc = self.get_parameter("ncols")
+    diam = self.get_parameter("diameter").get_value()/2.0
+    nr = self.get_parameter("nrows").get_value()
+    nc = self.get_parameter("ncols").get_value()
 
     def hole(i, j, d):
-      dx = (j - (nc-1)/2.)*self.get_parameter("colsep")
-      dy = (i - (nr-1)/2.)*self.get_parameter("rowsep")
+      dx = (j - (nc-1)/2.0)*self.get_parameter("colsep")
+      dy = (i - (nr-1)/2.0)*self.get_parameter("rowsep")
       return Face("r-%d-%d" % (i,j),
                         ((dx-d, dy-d), (dx+d, dy-d), (dx+d, dy+d), (dx-d, dy+d)),
                         recenter=False)

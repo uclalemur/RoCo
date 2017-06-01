@@ -16,7 +16,7 @@ class Rectangle(FoldedComponent):
     FoldedComponent.define(self, **kwargs)
 
     self.add_parameter("l", 100, positive=True)
-    self.add_parameter("w", 400, positive=True)
+    self.add_parameter("w", 75, positive=True)
 
   def assemble(self):
     dx = self.get_parameter("l")
@@ -24,7 +24,7 @@ class Rectangle(FoldedComponent):
 
     self.add_face(Rect("r", dx, dy))
 
-    self.place() 
+    self.place()
 
     self.add_interface("face", FacePort(self, "r"))
     self.add_interface("b", EdgePort(self, "e0"))
@@ -36,4 +36,3 @@ if __name__ == "__main__":
     h = Rectangle()
     h.make_output()
 #    h._make_test()
-

@@ -18,13 +18,13 @@ class MountPort(Port):
         Port.__init__(self, parent, {})
         self.decoration = decoration
 
-    def getDecoration(self):
+    def get_decoration(self):
         return self.decoration
 
     def toString(self):
         print "decoration"
 
-    def canMate(self, other_port):
+    def can_mate(self, other_port):
         try:
             return (other_port.get_face_name() is not None)
         except AttributeError:

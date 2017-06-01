@@ -186,6 +186,8 @@ class Parameterized(object):
         Args:
             constraints (list/dict): List or dictionary of new constraints to add
         """
+        if not constraints:
+            return
         try:
             constraint_eqns = constraints.itervalues()
         except AttributeError:

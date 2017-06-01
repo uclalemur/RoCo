@@ -84,6 +84,13 @@ class Face(object):
         self.transform_3D = None
 
     def recenter(self, pts, recenter=False):
+        """Calculates the center of mass and moves CoM to origin if recenter is True
+
+        Args:
+            pts (list): list of tuples that represent the points that make up the Face in 2D space.
+            recenter (bool): whether to move the center of mass to origin or not.
+
+        """
         self.pts_2D = [(p[0], p[1]) for p in pts]
 
         # Put centroid of polygon at origin
@@ -113,17 +120,48 @@ class Face(object):
         self.com_4D = np.array(list(self.com_2D) + [0, 1])
 
     def rename(self, name):
+        """Changes the name of this Face
+
+        Args:
+            name (str): name to change to.
+
+        """
         self.name = name
 
     def prefix(self, prefix):
+        """Prefixes the name and all the edge names of this Face
+
+        Args:
+            prefix (str): prefix to add to names of edges and itself.
+
+        """
         self.name = prefix_string(prefix, self.name)
         self.prefix_edges(prefix)
 
     def prefix_edges(self, prefix):
+        """Prefixes all edges contained by this Face
+
+        Args:
+            prefix (str): prefix to add to edge names
+
+        """
         for e in self.edges:
             e.rename(prefix_string(prefix, e.name))
 
     def rename_edges(self, edge_names=None, edge_angles=None, edge_flips=None, all_edges=None):
+        """Renames edges given by edge_names and sets their angle, flip and list of edges they're connected to.
+
+        Args:
+            edge_names (list): list of tuples (edge_index, new_name) where edge_index is the index to modify and
+                               new_name is the name to rename the edge to.
+            edge_angles (list): list of angles to set the edges at.
+            edge_flips (list): list of booleans indicated whether to flip the edge in its connections or not.
+            all_edges(list): list of edges that the edges in the Face should be connected to.
+
+        Returns:
+            This Face object
+
+        """
         if edge_names:
             if edge_angles is None:
                 edge_angles = [0] * len(edge_names)
@@ -134,6 +172,19 @@ class Face(object):
         return self
 
     def set_edge(self, index, name=None, angle=None, flip=False, all_edges=None):
+        """Modifies the state of the edge at the given index
+
+        Args:
+            index (number): index of edge to modify
+            name (str): name to give the edge
+            angle (number): angle to set the edge to
+            flip (bool): whether to flip the edge in connections or not
+            all_edges (list): list of edges to connect the specified edge to
+
+        Returns:
+            This Face object
+
+        """
         if name is None:
             return self
         try:
@@ -152,6 +203,18 @@ class Face(object):
         return self
 
     def replace_edge(self, old_edge, new_edge, angle, flip):
+        """Replaces old_edge with new_edge
+
+        Args:
+            old_edge (HyperEdge): edge to replace
+            new_edge (HyperEdge): edge to replace with
+            angle (number): angle edge is oriented at.
+            flip (bool): whether connections on this edge flip faces or not.
+
+        Returns:
+            This Face object
+
+        """
         for (i, e) in enumerate(self.edges):
             if e is old_edge:
                 self.disconnect(i)
@@ -160,17 +223,45 @@ class Face(object):
         return self
 
     def edge_index(self, name):
+        """Returns the index of the edge given by the name
+
+        Args:
+            name (str): name of edge to find
+
+        Returns:
+            index of the edge with given name
+        """
         for (i, e) in enumerate(self.edges):
             if name == e.name:
                 return i
 
     def edge_coords(self, index):
+        """Returns the coordinates of edge given by index
+
+        Args:
+            index (number): index of edge to return coordinates of.
+
+        Returns:
+            tuple of coordinates for the edge
+
+        """
         return (self.pts_2D[index - 1], self.pts_2D[index])
 
     def edge_length(self, edge_index):
+        """Returns the length of the edge given by the index
+        """
         return self.lens[edge_index]
 
     def rotate(self, n=1):
+        """Rotates the edges n times
+
+        Args:
+            n (number): number of times to rotate edges
+
+        Returns:
+            this Face object
+
+        """
         for i in range(n):
             self.edges.append(self.edges.pop(0))
             self.pts_2D.append(self.pts_2D.pop(0))
@@ -178,6 +269,14 @@ class Face(object):
         return self
 
     def flip(self):
+        """Flips all the connections of the edges of this Face
+
+        Args:
+            None
+
+        Returns:
+            this Face object
+        """
         new_edges = []
         new_pts = []
         while self.edges:

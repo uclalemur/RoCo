@@ -122,9 +122,9 @@ def decorate_graph(face, decoration, offset=(0, 0), offset_dx=None, offset_dy=No
 
   for f in faces:
     if rotate:
-      face.add_decoration(([(p[1]+offset[0], p[0]+offset[1]) for p in f.pts2d], mode))
+      face.add_decoration(([(p[1]+offset[0], p[0]+offset[1]) for p in f.pts_2D], mode))
     else:
-      face.add_decoration(([(p[0]+offset[0], p[1]+offset[1]) for p in f.pts2d], mode))
+      face.add_decoration(([(p[0]+offset[0], p[1]+offset[1]) for p in f.pts_2D], mode))
 
 def scheme_string(expr, prefix=""):
   """
