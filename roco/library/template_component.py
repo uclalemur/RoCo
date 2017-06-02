@@ -42,7 +42,7 @@ class SerialIn(CodeComponent):
                 },
                 "outputs": {
                     "receivedString_@@name@@": "@@name@@_received"
-                    "hasReceivedString_@@name@@": 
+                    "hasReceivedString_@@name@@":
                 },
                 "needs": set(),
                 "interface": {
