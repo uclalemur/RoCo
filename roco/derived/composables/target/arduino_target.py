@@ -238,7 +238,7 @@ class Arduino(Cpp):
                "    %s\n" % "".join([s + ";\n" for (k, s) in self.meta["outputs"].iteritems() if s]) + \
                "}\n"
 
-        import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         f.write(setup)
         f.write(loop)
         f.close()
