@@ -1,5 +1,6 @@
 from roco.derived.ports.serial_port import OutSerialPort
 from roco.derived.ports.int_port import InIntPort
+from roco.derived.ports.bool_port import OutBoolPort
 from roco.derived.components.code_component import CodeComponent
 from roco.derived.composables.target.cpp_target import Cpp
 from roco.derived.composables.target.arduino_target import Arduino
@@ -41,8 +42,8 @@ class SerialIn(CodeComponent):
                     "inBaudRate_@@name@@": None
                 },
                 "outputs": {
-                    "receivedString_@@name@@": "@@name@@_received"
-                    "hasReceivedString_@@name@@": 
+                    "receivedString_@@name@@": "@@name@@_received",
+                    "hasReceivedString_@@name@@": "@@name@@_came",
                 },
                 "needs": set(),
                 "interface": {
@@ -56,6 +57,7 @@ class SerialIn(CodeComponent):
 
         self.add_interface("baudRate", InIntPort(self, "baudRate", "inBaudRate_@@name@@"))
         self.add_interface("received", OutSerialPort(self, "received", "receivedString_@@name@@"))
+        self.add_interface("came", OutBoolPort(self, "came", "hasReceivedString_@@name@@"))
 
         CodeComponent.define(self, **kwargs)
 
