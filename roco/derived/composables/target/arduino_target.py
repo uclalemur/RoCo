@@ -63,7 +63,7 @@ class Arduino(Cpp):
             self.meta["setup"] += p_new_line + new_meta["setup"]
 
         if new_meta["loop"]:
-            self.meta["loop"] += l_new_line + new_meta["setup"]
+            self.meta["loop"] += l_new_line + new_meta["loop"]
 
         if new_meta["interface"]:
             h_new_line = "" if not self.meta["interface"]["html"] else "\n"
@@ -238,7 +238,6 @@ class Arduino(Cpp):
                "    %s\n" % "".join([s + ";\n" for (k, s) in self.meta["outputs"].iteritems() if s]) + \
                "}\n"
 
-        # import pdb; pdb.set_trace()
         f.write(setup)
         f.write(loop)
         f.close()
