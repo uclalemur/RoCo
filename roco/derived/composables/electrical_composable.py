@@ -72,8 +72,6 @@ class ElectricalComposable(Composable):
         f_virtual = self.physical[from_name]["virtual"]
         t_virtual = self.physical[to_name]["virtual"]
 
-        import pdb; pdb.set_trace()
-
         for fpin, tpin in zip(from_pins, to_pins):
             if f_virtual:
                 self.physical[from_name]["connections"][fpin].append([to_name, tpin, False])
