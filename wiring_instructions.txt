@@ -1,0 +1,5 @@
+Wiring Instructions:
+Connect anode on LEDPot_led to center pin on LEDPot_pot
+Connect cathode on LEDPot_led to ground
+Connect first pin on LEDPot_pot to Vout
+Connect last pin on LEDPot_pot to ground

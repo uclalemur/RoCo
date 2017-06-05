@@ -17,7 +17,7 @@ class SerialIn(CodeComponent):
                 "code": ("void @@name@@(){\n"
                         "\t@@name@@_bitcounter = 0;\n"
                         "\twhile(Serial.available()){\n"
-                        "\t\tif(@@name@@_bitcounter < @@name@@_receivedLength){"
+                        "\t\tif(@@name@@_bitcounter < @@name@@_receivedLength){\n"
                         "\t\t\t@@name@@_received[@@name@@_bitcounter] = tolower(Serial.read());\n"
                         "\t\t\t@@name@@_bitcounter++;\n"
                         "\t\t\t@@name@@_came = true;\n"
