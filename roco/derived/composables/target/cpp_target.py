@@ -182,7 +182,7 @@ class Cpp(Target):
             self.meta["code"] = self.meta["code"].replace(self.tokenize(token), sub)
         return self.meta
 
-    def attach(self, from_port, to_port, kwargs):
+    def attach(self, from_port, to_port, **kwargs):
         """Attaches two ports in the component and replaces their symbolic
         representation in the target with real code.
 
