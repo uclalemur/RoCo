@@ -50,11 +50,11 @@ class TestParameterized(unittest.TestCase):
     	p2 = Parameterized()
     	p2.add_parameter("2","RandomValue2")
     	self.p.inherit_parameters(p2,"inherited")  # Inherits the parameters of p2
-        self.assertEqual(self.p.get_parameter("inherited2"),"RandomValue2")
+        self.assertEqual(self.p.get_parameter("inherited_2"),p2.get_parameter("2"))
         # Fails if p2's parameters have not been inherited
         
     def test_set_parameter(self):
-    	self.p.add_parameter("1","RandomValue")
+    	self.p.add_parameter("1","RandomValue", is_literal=True)
         self.p.set_parameter("1","NewValue")
         self.assertEqual(self.p.get_parameter("1"),"NewValue") # Fails if p2's parameters have not been inherited
         

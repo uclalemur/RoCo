@@ -9,4 +9,4 @@ def integral(start, finish):
         sum += func(x+dx)*dx
         x = x+dx
 
-integral(-1, 1)c
+integral(-1, 1)

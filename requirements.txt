@@ -1,0 +1,10 @@
+Cython==0.25.2
+dxfwrite==1.2.1
+mpmath==0.19
+numpy==1.13.0
+pyparsing==2.2.0
+PyYAML==3.12
+Shapely==1.5.17.post1
+svgwrite==1.1.11
+sympy==1.0
+triangle==20170429

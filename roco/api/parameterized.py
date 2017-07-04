@@ -115,7 +115,7 @@ class Parameterized(object):
         if name not in self.parameters:
             raise KeyError("Parameter %s not initialized" % name)
 
-        if force_literal:
+        if force_literal or not isinstance(self.parameters[name], Variable):
             self.parameters[name] = value
         else:
             self.get_parameter(name).set_default_value(value)
@@ -242,7 +242,7 @@ class Parameterized(object):
         Returns:
             True if the constraints are all satisfied, false otherwise
         """
-        pass
+        return True
 
     def solve(self):
         """Performs the solving that is necessary
