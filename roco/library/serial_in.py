@@ -24,7 +24,7 @@ class SerialIn(CodeComponent):
                         "\t\t\tdelay(10);\n"
                         "\t\t}\n"
                         "\t\telse{\n"
-                        "\t\t\t@@name@@_received = realloc(@@name@@_received, @@name@@_receivedLength*2);\n"
+                        "\t\t\t@@name@@_received = (char*)realloc(@@name@@_received, @@name@@_receivedLength*2);\n"
                         "\t\t\t@@name@@_receivedLength = @@name@@_receivedLength*2;\n"
                         "\t\t}\n"
                         "\t}\n"
@@ -35,8 +35,8 @@ class SerialIn(CodeComponent):
                                 "int @@name@@_bitcounter = 0;\n"
                                 "char @@name@@_prefix[4];\n"
                                 "bool @@name@@_came = false;\n"),
-                "setup": ("Serial.begin(<<inBaudRate_@@name@@>>);\n"
-                        "@@name@@_received = calloc(32, sizeof(char));\n"),
+                "setup": ("Serial.begin(9600);\n"
+                        "@@name@@_received = (char*)calloc(32, sizeof(char));\n"),
                 "loop": "@@name@@();\n",
                 "inputs": {
                     "inBaudRate_@@name@@": None
@@ -55,7 +55,6 @@ class SerialIn(CodeComponent):
             }
         }
 
-        self.add_interface("baudRate", InIntPort(self, "baudRate", "inBaudRate_@@name@@"))
         self.add_interface("received", OutSerialPort(self, "received", "receivedString_@@name@@"))
         self.add_interface("came", OutBoolPort(self, "came", "hasReceivedString_@@name@@"))
 
