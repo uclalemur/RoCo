@@ -15,14 +15,14 @@ class NodeMcu(Component):
 
         for n in range(0, 1):
             self.add_interface("a%d" % (n+1), AnalogInputPort(self, ["A%d" % n]))
-            self.add_parameter("A%d" % n, [], is_symbol=False)
+            self.add_parameter("A%d" % n, n, is_symbol=False)
             self.pin_indices["A%d" % n] = n + 9
 
         for n in range(0, 9):
             self.add_interface("di%d" % n, DigitalInputPort(self,["D%d" % n]))
             self.add_interface("do%d" % n, DigitalOutputPort(self,["D%d" % n]))
             self.pin_indices["D%d" % n] = n
-            self.add_parameter("D%d" % n, [], is_symbol=False)
+            self.add_parameter("D%d" % n, n, is_symbol=False)
 
     def set_pin_parameter(self, pin_name, pin_value):
         pass
@@ -50,6 +50,6 @@ class NodeMcu(Component):
             })
 
 if __name__ == '__main__':
-    a = NodeMCU(name="nmcu")
-    import pdb; pdb.set_trace()
-    a.make_output()
+    a = NodeMcu(name="nmcu")
+    print a.parameters
+    # a.make_output()

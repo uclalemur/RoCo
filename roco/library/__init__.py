@@ -15,7 +15,8 @@ import sqlite3 as db
 from pprint import pprint
 
 from roco.api.component import Component
-from roco.utils.utils import try_import
+from roco.utils.utils import try_import, to_camel_case
+
 
 
 py_components = [os.path.basename(f)[:-3] for f in glob.glob(
@@ -58,6 +59,7 @@ def filter_components(composable_type=["all"], verbose=False):
     for comp in all_components:
         try:
             a = get_component(comp, name=comp)
+            print a
             for ctype in composable_type:
                 code_instance = instance_of(a, ctype)
                 if code_instance is True and a not in comps:
@@ -65,7 +67,7 @@ def filter_components(composable_type=["all"], verbose=False):
             if not verbose:
                 print a.get_name()
         except Exception as err:
-            if verbose is True:
+            if verbose is False:
                 print "-------------------------------------------------{}".format(comp)
                 logging.error(traceback.format_exc())
     return comps
@@ -107,7 +109,11 @@ def filter_database(composable_type=["all"], verbose=False):
 def get_component(c, **kwargs):
   try:
     mod = __import__(c, fromlist=[c, "library." + c], globals=globals())
+
+
     obj = getattr(mod, c)()
+  except AttributeError:
+    obj = getattr(mod, to_camel_case(c))()
   except ImportError:
     if "baseclass" in kwargs:
       bc = try_import(kwargs["baseclass"],kwargs["baseclass"])
