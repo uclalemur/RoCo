@@ -9,11 +9,13 @@ def eval_equation(equation):
     Returns:
         Evaluated value for expression.
     """
-
-    eqn_eval = equation
-    for s in eqn_eval.atoms(Variable):
-        eqn_eval = eqn_eval.subs(s, s.get_value())
-    return eqn_eval
+    try:
+        eqn_eval = equation
+        for s in eqn_eval.atoms(Variable):
+            eqn_eval = eqn_eval.subs(s, s.get_value())
+        return eqn_eval
+    except:
+        return equation
 
 class Variable(Dummy):
     def __new__(cls, name, default=-1, commutative=True, **assumptions):
@@ -110,7 +112,7 @@ class Variable(Dummy):
         """
         return self.name
 
-    
+
     def __getstate__(self):
       state = Dummy.__getstate__(self)
       state['is_solved'] = self.is_solved

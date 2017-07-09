@@ -264,14 +264,14 @@ class DrawingEdge(object):
     if otherway:
       lastpt = (self.x1, self.y1)
       for length in lengths:
-        e = Edge((0, 0),(-length,0), self.edge_type)
+        e = DrawingEdge((0, 0),(-length,0), self.edge_type)
         e.transform(angle=self.angle(), origin=lastpt)
         lastpt = (e.x2, e.y2)
       edges.append(e)
     else:
       lastpt = (self.x2, self.y2)
       for length in lengths:
-        e = Edge((0,0), (length, 0), self.edge_type)
+        e = DrawingEdge((0,0), (length, 0), self.edge_type)
         e.transform(angle=self.angle(), origin=lastpt)
         lastpt = (e.x2, e.y2)
       edges.append(e)
@@ -349,7 +349,7 @@ class DrawingEdge(object):
         None
     """
 
-    return Edge(self.name, (self.x1, self.y1), (self.x2, self.y2), self.edge_type)
+    return DrawingEdge(self.name, (self.x1, self.y1), (self.x2, self.y2), self.edge_type)
 
   def midpt(self):
     """The midpoint of the edge instance

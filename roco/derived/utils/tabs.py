@@ -2,14 +2,15 @@ from roco.derived.composables.fegraph.face import Rectangle
 from roco.derived.composables.fegraph.drawing import Face
 from roco.derived.composables.fegraph.drawing_edge import DrawingEdge, Flex
 from roco.utils.mymath import pi, arctan2, norm
+from roco.api.utils.variable import eval_equation
 
 class TabDrawing(Face):
   def __init__(self, w, t, noflap=False):
-    if (noflap or t > w/2):
-      Face.__init__(self, 
+    if (noflap or eval_equation(t) > eval_equation(w)/2):
+      Face.__init__(self,
         ((w,0), (w,t), (0,t)))
     else:
-      Face.__init__(self, 
+      Face.__init__(self,
         ((w,0), (w+t,0), (w,t), (0,t), (-t,0)))
       self.edges['f0'] = DrawingEdge("f0", (0,0), (0,t), Flex())
       self.edges['f1'] = DrawingEdge("f1", (w,0), (w,t), Flex())
@@ -23,7 +24,7 @@ class SlotDrawing(Face):
     self.transform(origin=(-w/2. - 0.25, -t/2. - 0.25));
 
 def BeamTabSlotHelper(face, faceEdge, thick, widget, **kwargs):
-    coords = face.edgeCoords(face.edgeIndex(faceEdge))
+    coords = face.edge_coords(face.edge_index(faceEdge))
     globalOrigin = coords[0]
     theta = arctan2(coords[1][1]-coords[0][1], coords[1][0]-coords[0][0])
     length = norm((coords[1][1]-coords[0][1], coords[1][0]-coords[0][0]))
@@ -39,14 +40,14 @@ def BeamTabSlotHelper(face, faceEdge, thick, widget, **kwargs):
 
     try:
         component = kwargs['component']
-        length = float(component.evalEquation(length))
+        length = float(eval_equation(length))
     except:
         #not sympy
         pass
 
     n = 0
     tw = thick * 3
-    while (tw > thick * 2):
+    while (eval_equation(tw) > eval_equation(thick) * 2):
       n += 1
       d = length*1.0 / (n*5+1)
       tw = 2 * d
@@ -64,7 +65,7 @@ def BeamTabSlotHelper(face, faceEdge, thick, widget, **kwargs):
       for (name, edge) in t.edges.iteritems():
         e = edge.copy()
         e.transform(angle = theta, origin = globalOrigin)
-        face.addDecoration((((e.x1, e.y1), (e.x2, e.y2)), e.edgetype.edgetype))
+        face.add_decoration((((e.x1, e.y1), (e.x2, e.y2)), e.edge_type.edge_type))
       try:
         if kwargs["alternating"]:
           t.mirrorY()
@@ -77,15 +78,15 @@ def BeamSlotDecoration(face, edge, width, **kwargs):
   return BeamTabSlotHelper(face, edge, width, SlotDrawing, **kwargs)
 
 def BeamTabs(length, width, **kwargs):
-    face = Rectangle('tab', length, width, 
-                        edgeNames=["tabedge","e1","oppedge","e3"],
+    face = Rectangle('tab', length, width,
+                        edge_names=["tabedge","e1","oppedge","e3"],
                         recenter=False)
     BeamTabSlotHelper(face, "tabedge", width, TabDrawing, **kwargs)
     return face
 
 def BeamSlots(length, width, **kwargs):
-    face = Rectangle('slot', length, width, 
-                        edgeNames=["slotedge","e1","oppedge","e3"],
+    face = Rectangle('slot', length, width,
+                        edge_names=["slotedge","e1","oppedge","e3"],
                         recenter=False)
     BeamTabSlotHelper(face, "slotedge", width, SlotDrawing, **kwargs)
     return face

@@ -10,9 +10,9 @@ class RectBeam(FoldedComponent):
 
   def define(self, **kwargs):
     FoldedComponent.define(self, **kwargs)
-    self.add_parameter("length", 100, positive=True)
-    self.add_parameter("width", 20, positive=True)
-    self.add_parameter("depth", 50, positive=True)
+    self.add_parameter("length", 150.9, positive=True)
+    self.add_parameter("width", 72.6, positive=True)
+    self.add_parameter("depth", 7.7, positive=True)
 
 
     self.add_parameter("tangle", 90, is_literal=True, **kwargs)
@@ -83,4 +83,3 @@ class RectBeam(FoldedComponent):
 if __name__ == "__main__":
   b = RectBeam()
   # b._make_test()
-
