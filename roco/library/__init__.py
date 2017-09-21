@@ -34,7 +34,10 @@ def update_component_lists():
 
 
 def instance_of(comp, composable_type):
-    return composable_type in comp.composables.keys() or composable_type is "all"
+    try:
+        return composable_type in comp.composables.keys() or composable_type is "all"
+    except:
+        return False
 
 
 # when no arguments are passed in all components are returned
