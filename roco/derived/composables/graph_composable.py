@@ -86,18 +86,20 @@ class GraphComposable(Composable, FaceEdgeGraph):
           for i in range(len(label1)):
             newargs = {}
             for key, value in kwargs.iteritems():
-              if key is 'tab':
+              if key == 'tab':
                 continue
               if isinstance(value, (list, tuple)):
                 newargs[key] = value[i]
               else:
                 newargs[key] = value
             try:
-              if kwargs['tab'] is True:
+              print "TAB", kwargs['tab']
+              if kwargs['tab'] == True:
                 self.add_tab(label1[i], label2[i], **newargs)
                 continue
             except:
               pass
+              print "NEWARSG", newargs
             self.merge_edge(label1[i], label2[i], **newargs)
         # Attach if one port contains a Face and the other contains a Decoration
         try:
