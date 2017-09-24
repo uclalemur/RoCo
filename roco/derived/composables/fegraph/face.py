@@ -604,3 +604,15 @@ class Trapezoid2(Face):
     Face.__init__(self, name, (pt1, pt2, pt3, pt4), [l3, l1, l3, l2], edge_names=edge_names, all_edges=all_edges,
                   recenter=recenter)
 
+class Pentagon(Face):
+  def __init__(self, name, s, edge_names=True, all_edges=None, recenter=True):
+    angle1 = np.pi*36/180
+    angle2 = np.pi*54/180
+    angle3 = np.pi*18/180
+    pt1 = (0,0)
+    pt2 = (s*np.cos(angle1), s*np.sin(angle1))
+    pt3 = (2*s*np.cos(angle1), 0)
+    pt4 = (2*s*np.cos(angle1)*np.sin(angle2), -1*2*s*np.cos(angle1)*np.cos(angle2))
+    pt5 = (s*np.sin(angle3), -1*s*np.cos(angle3))
+    Face.__init__(self, name, (pt1, pt2, pt3, pt4, pt5), [s, s, s, s, s], edge_names=edge_names, all_edges=all_edges,
+                  recenter=recenter)
