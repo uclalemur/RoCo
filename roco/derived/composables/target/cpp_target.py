@@ -85,7 +85,10 @@ class Cpp(Target):
             None.
         """
         self.meta["code"] = self.meta["code"].replace("@@name@@", name)
-        self.meta["declarations"] = self.meta["declarations"].replace("@@name@@", name)
+        dec = []
+        for i in self.meta["declarations"]:
+            dec.append(i.replace("@@name@@", name))
+        self.meta["declarations"] = tuple(dec)
 
         for (key, val) in self.meta["inputs"].iteritems():
             if val is not None:

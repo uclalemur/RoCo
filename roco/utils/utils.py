@@ -27,6 +27,7 @@ class memoized(object):
       '''Support instance methods.'''
       return functools.partial(self.__call__, obj)
 
+
 def prefix(s1, s2):
   """
   Prefixes s2 with s1 with a specific delimiter

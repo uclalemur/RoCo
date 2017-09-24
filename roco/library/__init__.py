@@ -9,7 +9,7 @@ import os, os.path
 import glob
 import traceback
 import logging
-# import MySQLdb as db
+import os
 import sqlite3 as db
 
 from pprint import pprint
@@ -24,6 +24,10 @@ py_components = [os.path.basename(f)[:-3] for f in glob.glob(
 yaml_components = [os.path.basename(
    f)[:-5] for f in glob.glob(os.path.dirname(__file__) + "/*.yaml")]
 all_components = list(set(py_components + yaml_components))
+
+
+def get_lib_dir():
+    return os.path.abspath(os.path.dirname(__file__))
 
 def update_component_lists():
     py_components = [os.path.basename(f)[:-3] for f in glob.glob(os.path.dirname(__file__) + "/*.py") if os.path.basename(f)[0] != "_"]
@@ -110,10 +114,10 @@ def get_component(c, **kwargs):
   try:
     mod = __import__(c, fromlist=[c, "library." + c], globals=globals())
 
-
-    obj = getattr(mod, c)()
-  except AttributeError:
     obj = getattr(mod, to_camel_case(c))()
+  except AttributeError:
+    # import pdb;pdb.set_trace()
+    obj = getattr(mod, c)()
   except ImportError:
     if "baseclass" in kwargs:
       bc = try_import(kwargs["baseclass"],kwargs["baseclass"])
