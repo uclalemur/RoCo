@@ -173,7 +173,7 @@ class GraphComposable(Composable, FaceEdgeGraph):
           d.to_DXF(filedir + "/silhouette.dxf", mode="silhouette")
           return d.to_SVG('nofile', save_to_file=False)
 
-        if kw("display"):
+        if kw("display", False):
           from roco.utils.display import displayTkinter
           displayTkinter(d)
 
