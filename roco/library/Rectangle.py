@@ -15,8 +15,8 @@ class Rectangle(FoldedComponent):
   def define(self, **kwargs):
     FoldedComponent.define(self, **kwargs)
 
-    self.add_parameter("l", 72.6, positive=True)
-    self.add_parameter("w", 7.7, positive=True)
+    self.add_parameter("l", 400, positive=True)
+    self.add_parameter("w", 100, positive=True)
 
   def assemble(self):
     dx = self.get_parameter("l")
