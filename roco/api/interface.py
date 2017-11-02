@@ -13,7 +13,7 @@ class Interface(object):
 
     """
 
-    def __init__(self, name, ports=None):
+    def __init__(self, name, ports, inheritance=None):
         """Creates an interface.
 
         Args:
@@ -22,6 +22,7 @@ class Interface(object):
 
         """
         self.name = name
+        self.inheritance = inheritance
         self.ports = []
         if isinstance(ports, collections.Iterable):
             for port in ports:
@@ -41,6 +42,22 @@ class Interface(object):
 
         """
         return self.name
+
+    def get_inheritance(self):
+        """Returns a tuple indicating the subcomponent this interface is
+        inherited from as well as the name of the interface in that subcomponent.
+
+        Args:
+            None
+
+        Returns:
+            tuple containing the name of the subcomponent and the name of the
+            interface from the subcomponent where the interface was inherited from.
+            If interface is not inherited, returns None
+
+        :return:
+        """
+        return self.inheritance
 
     def get_ports(self):
         """Returns the collection of ports that represent this interface.

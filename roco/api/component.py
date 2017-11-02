@@ -147,10 +147,21 @@ class Component(Parameterized):
         """
         definition = load_yaml(file_name)
 
+        try:
+          for name, value in definition["subcomponents"].iteritems():
+            try:
+              # XXX Can these be sympy functions as well?
+              kwargs = value["constants"]
+            except AttributeError:
+              kwargs = {}
+            self.add_subcomponent(name, value["class"], **kwargs)
+        except AttributeError: pass
+
         # keys are (parameters, constants, subcomponents, constraints, connections, interfaces)
         try:
           for name, default in definition["parameters"].iteritems():
-            self.add_parameter(name, default)
+              if not name in self.parameters:
+                self.add_parameter(name, default)
         except AttributeError: pass
 
         try:
@@ -160,23 +171,17 @@ class Component(Parameterized):
 
         try:
           for name, value in definition["subcomponents"].iteritems():
-            try:
-              # XXX Can these be sympy functions as well?
-              kwargs = value["constants"]
-            except AttributeError:
-              kwargs = {}
-            self.add_subcomponent(name, value["class"], **kwargs)
-            try:
-              for param, pvalue in value["parameters"].iteritems():
-                self.constrain_subcomponent_parameter((name, param), self._str_to_sympy(pvalue))
-            except AttributeError:
-              pass
+              try:
+                  for param, pvalue in value["parameters"].iteritems():
+                      self.constrain_subcomponent_parameter((name, param), self._str_to_sympy(pvalue))
+              except AttributeError:
+                  pass
         except AttributeError: pass
 
         try:
           for value in definition["constraints"]:
             self.add_constraint(self._str_to_sympy(value))
-        except AttributeError: pass
+        except (AttributeError, KeyError) : pass
 
         try:
           for value in definition["hierarchical_constraints"]:
@@ -194,7 +199,7 @@ class Component(Parameterized):
 
         try:
           for name, value in definition["interfaces"].iteritems():
-            self.inherit_interface(name, (value["subcomponent"], value["interface"]))
+            self.inherit_interface(name, value)
         except AttributeError: pass
 
     def define(self, **kwargs):
@@ -401,7 +406,8 @@ class Component(Parameterized):
         """
         if name in self.interfaces:
             raise ValueError("Interface %s already exists" % name)
-        self.interfaces.setdefault(name, self.get_subcomponent_interface(subcomponent,subname))
+        new_interface = Interface(name, self.get_subcomponent_interface(subcomponent,subname).get_ports(), (subcomponent, subname))
+        self.interfaces.setdefault(name, new_interface)
         return self
 
     def add_connection(self, from_interface, to_interface, **kwargs):
@@ -419,8 +425,10 @@ class Component(Parameterized):
         name = "{} -> {}".format(prefix_string(from_interface[0], from_interface[1]), prefix_string(to_interface[0], to_interface[1]))
         if name in self.connections:
             raise KeyError("Connection {} already exists")
-        self.connections[name] = [self.get_subcomponent_interface(from_interface[0], from_interface[1]),
-                                  self.get_subcomponent_interface(to_interface[0], to_interface[1]), kwargs]
+        from_int = self.get_subcomponent_interface(from_interface[0], from_interface[1])
+        to_int = self.get_subcomponent_interface(to_interface[0], to_interface[1])
+        self.connections[name] = [Interface(from_int.get_name(), from_int.get_ports(), from_interface),
+                                  Interface(to_int.get_name(), to_int.get_ports(), to_interface), kwargs]
 
     def del_connection(self, from_interface, to_interface):
         """ Deletes the connection that consists of the two ordered interfaces
@@ -447,9 +455,9 @@ class Component(Parameterized):
         constants = {}
         for k, v in self.parameters.iteritems():
             if isinstance(v, Variable):
-              parameters[k] = v.get_value()
+                parameters[k] = repr(v.get_default_value())
             else:
-              constants[k] = v
+                constants[k] = repr(v)
 
         subcomponents = {}
         for k, v in self.subcomponents.iteritems():
@@ -463,7 +471,7 @@ class Component(Parameterized):
           subcomponents[k] = {"class": v["class"], "parameters": subparams, "constants": v["constants"]}
 
         constraints = []
-        for (key, x) in self.constraints.itervalues():
+        for x in self.constraints.itervalues():
           expr = repr(x)
           constraints.append(expr)
 
@@ -480,7 +488,7 @@ class Component(Parameterized):
             except AttributeError:
               pass
             new_args[param] = value
-          connections.append([from_interface, to_interface, new_args])
+          connections.append([from_interface.get_inheritance(), to_interface.get_inheritance(), new_args])
 
         definition = {
             "parameters" : parameters,
@@ -489,7 +497,7 @@ class Component(Parameterized):
             "hierarchical_constraints" : hierarchical_constraints,
             "constraints" : constraints,
             "connections" : connections,
-            "interfaces" : self.interfaces,
+            "interfaces" : {name: interface.get_inheritance() for (name, interface) in self.interfaces.iteritems()},
         }
 
         if filename is not None:

@@ -112,6 +112,11 @@ class Variable(Dummy):
         """
         return self.name
 
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        return self.name
 
     def __getstate__(self):
       state = Dummy.__getstate__(self)
