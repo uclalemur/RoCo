@@ -66,7 +66,7 @@ def filter_components(composable_type=["all"], verbose=False):
     for comp in all_components:
         try:
             a = get_component(comp, name=comp)
-            print a
+            print a.composables
             for ctype in composable_type:
                 code_instance = instance_of(a, ctype)
                 if code_instance is True and a not in comps:
@@ -75,7 +75,7 @@ def filter_components(composable_type=["all"], verbose=False):
                 print a.get_name()
         except Exception as err:
             if verbose is False:
-                print "-------------------------------------------------{}".format(comp)
+                #print "-------------------------------------------------{}".format(comp)
                 logging.error(traceback.format_exc())
     return comps
 
@@ -165,7 +165,7 @@ def build_database(components, username="root", password=""):
     init_database(c)
 
     for comp in components:
-        print "Component Name: ", comp.get_name()
+        #print "Component Name: ", comp.get_name()
         comp_id = 0
         c.execute('SELECT * FROM components WHERE type LIKE "{}"'.format(comp.get_name()))
         # print c.fetchall()
@@ -176,7 +176,7 @@ def build_database(components, username="root", password=""):
             comp_id = c.fetchall()[0][0]
         else:
             # y = c.fetchall()
-            print x, "\n\n\n", x,  "-----------------------"
+            #print x, "\n\n\n", x,  "-----------------------"
             comp_id = x[0][0]
         # print "\n\n\n", comp.getName()
 
@@ -229,19 +229,17 @@ def write_interfaces(comp, comp_id, c, verbose=False):
         x = c.fetchall()
         if len(x) > 0:
             c.execute('DELETE FROM component_interface_link WHERE component_id LIKE {}'.format(comp_id))
-            # print x[0][1]
     except Exception as err:
         logging.error(traceback.format_exc())
-    pprint(comp.interfaces)
     for k, v in comp.interfaces.iteritems():
         try:
+            
             value = ""
             if isinstance(v, dict):
                 composite_comp = v["subcomponent"]
                 value = comp.subcomponents[composite_comp]["component"].interfaces[v["interface"]].__class__.__name__
             else:
-                # print comp.interfaces, "\n\n value: ", v
-                value = v.__class__.__name__
+                value = v.ports[0].__class__.__name__
 
             c.execute('SELECT * FROM interfaces WHERE var_name LIKE "{}" AND port_type LIKE "{}"'.format(k, value))
             x = c.fetchall()
@@ -261,7 +259,7 @@ def write_interfaces(comp, comp_id, c, verbose=False):
 
         except Exception as err:
             if verbose is True:
-                print "-------------------------------------------------{}".format(comp.get_name())
+                #print "-------------------------------------------------{}".format(comp.get_name())
                 logging.error(traceback.format_exc())
 
 
@@ -281,18 +279,18 @@ def write_parameters(comp, comp_id, c):
         x = c.fetchall()
         if len(x) > 0:
             c.execute('DELETE FROM component_parameter_link WHERE component_id LIKE {}'.format(comp_id))
-            print x[0][1]
+            #print x[0][1]
     except Exception as err:
         logging.error(traceback.format_exc())
-    pprint(comp.parameters)
+    #pprint(comp.parameters)
 
-    print "Here"
+    #print "Here"
 
     for k, v in comp.parameters.iteritems():
-        print "k:", k, "\tv:", v
+        #print "k:", k, "\tv:", v
         c.execute('SELECT * FROM params WHERE var_name LIKE "{}" AND default_value LIKE "{}"'.format(str(k), str(v)))
         x = c.fetchall()
-        print "X: ", x
+        #print "X: ", x
         param_id = 0
         if len(x) == 0:
             c.execute(
@@ -329,7 +327,7 @@ def write_composables(comp, comp_id, c):
         else:
             compos_id = x[0][0]
 
-        print comp_id, compos_id
+        #print comp_id, compos_id
         c.execute('SELECT * FROM component_composable_link WHERE component_id LIKE {} AND composable_id LIKE {}'.format(comp_id, compos_id))
         x = c.fetchall()
         if len(x) == 0:
@@ -433,6 +431,9 @@ def query_database(component, username="root", password="", verbose=False):
     item = ComponentQueryItem(component)
     x = c.execute('SELECT c.*, i.* FROM components c INNER JOIN component_interface_link ci ON ci.component_id = c.id INNER JOIN interfaces i ON i.id = ci.interface_id WHERE type LIKE "{}"'.format(component))
     y = c.fetchall()
+
+    print "Interface=========================================================="
+    print y
     item.gen_interface(y)
 
     # gather parameters

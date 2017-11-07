@@ -45,7 +45,7 @@ class SerialToString(CodeComponent):
         }
         self.add_interface("received", InSerialPort(self, "received", "receivedSerial_@@name@@"))
         self.add_interface("came", InBoolPort(self, "came", "hasReceivedSerial_@@name@@"))
-        self.add_interface("receivedString", OutStringPort(self, "receivedString", "receivedString_@@name@@"))
+        self.add_interface("receivedString", OutStringPort(self, "receivedString_out", "receivedString_@@name@@"))
         self.add_interface("cameOut", OutBoolPort(self, "cameOut", "hasReceivedString_@@name@@"))
 
         CodeComponent.define(self, **kwargs)

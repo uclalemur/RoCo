@@ -55,7 +55,7 @@ class SerialIn(CodeComponent):
             }
         }
 
-        self.add_interface("received", OutSerialPort(self, "received", "receivedString_@@name@@"))
+        self.add_interface("received", OutSerialPort(self, "received_out", "receivedString_@@name@@"))
         self.add_interface("came", OutBoolPort(self, "came", "hasReceivedString_@@name@@"))
 
         CodeComponent.define(self, **kwargs)
