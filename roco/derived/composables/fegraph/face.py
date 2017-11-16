@@ -445,7 +445,7 @@ class Face(object):
             ld = len(d)
             if separateHoles:
                 lv = len(hole_vertices)
-                hole_vertices.extend(d)
+                hole_vertices.append(d)
                 hole_segments.extend([(lv + ((i + 1) % ld), lv + i) for i in range(ld)])
             else:
                 lv = len(vertices)
