@@ -299,7 +299,7 @@ class FaceEdgeGraph(object):
         """
         self.merge_edge(edge1, edge2, angle=angle, tab_width=width)
 
-    def merge_edge(self, edge1, edge2, angle=0, tab_width=None, edge_type=None, joints=None):
+    def merge_edge(self, edge1, edge2, angle=0, tab_width=None, edge_type=None, joints=None, flip=True):
         """
         Merges two edges in the graph
 
@@ -318,7 +318,7 @@ class FaceEdgeGraph(object):
         if e2 is None:
           raise AttributeError("Edge not found: " + edge2)
 
-        if len(e2.faces) > 1:
+        if len(e2.faces) > 1 or not flip:
           #print "Adding third edge"
           e2.merge_with(e1, angle=angle, flip=False, tab_width=tab_width)
         else:
