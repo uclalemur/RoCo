@@ -47,16 +47,16 @@ class Face(object):
 
         Args:
             name (str): name to give the Face
-            pts (list): list of tuples that represent the points that make 
+            pts (list): list of tuples that represent the points that make
                 up the Face in 2D space.
-            lens (list): list of lengths that represent the lengths of each 
+            lens (list): list of lengths that represent the lengths of each
                 side of the Face.
             edge_names (bool): whether to name the edges or not.
             edge_angles (list): list of angles between edges
             all_edges (list): list of all edges that make up Face
             decorations (list): list of decorations on Face
             recenter (bool): whether to recenter the Face or not
-            
+
         """
         if len(pts) > len(lens):
             if len(lens) is 1:
@@ -430,7 +430,7 @@ class Face(object):
 
                 f.place(e, np.dot(transform_2D, r2d), np.dot(transform_3D, r3d), placed=placed)
 
-    def get_triangle_dict(self):
+    def get_triangle_dict(self, separateHoles=True):
         # print self.pts2d
         # if len(self.pts2d > 0):
         #  print type(self.pts2d[0])
@@ -439,14 +439,22 @@ class Face(object):
         segments = [(i, (i + 1) % len(vertices)) for i in range(len(vertices))]
 
         holes = []
-
+        hole_vertices = []
+        hole_segments = []
         for d in (x[0] for x in self.decorations if x[1] == "hole"):
-            lv = len(vertices)
             ld = len(d)
-            vertices.extend(d)
-            segments.extend([(lv + ((i + 1) % ld), lv + i) for i in range(ld)])
+            if separateHoles:
+                lv = len(hole_vertices)
+                hole_vertices.append(d)
+                hole_segments.extend([(lv + ((i + 1) % ld), lv + i) for i in range(ld)])
+            else:
+                lv = len(vertices)
+                vertices.extend(d)
+                segments.extend([(lv + ((i + 1) % ld), lv + i) for i in range(ld)])
             holes.append(tuple(np.sum([np.array(x) for x in d]) / len(d)))
 
+        if hole_vertices:
+            return dict(vertices=(vertices), segments=(segments),hole_vertices=(hole_vertices),hole_segments=(hole_segments), holes=(holes))
         if holes:
             return dict(vertices=(vertices), segments=(segments), holes=(holes))
         else:

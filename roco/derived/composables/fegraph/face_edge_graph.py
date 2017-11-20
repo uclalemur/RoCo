@@ -39,12 +39,12 @@ def inflate(face, thickness=.1, edges=False):
 def stl_write(faces, filename, thickness=0):
     """
     Writes a graph object represented by faces to an STL file.
-    
+
     Args:
         faces (list): list of faces that compose the object.
         filename (str): filename to write STL to.
         thickness (int or float): thickness of each face to draw.
-    
+
     """
     import triangle
 
@@ -137,7 +137,7 @@ class FaceEdgeGraph(object):
     def __init__(self, transform=None):
         """
         Initializes this face-edge graph object
-        
+
         Attributes:
             transform: the initial transform of this object
 
@@ -299,7 +299,7 @@ class FaceEdgeGraph(object):
         """
         self.merge_edge(edge1, edge2, angle=angle, tab_width=width)
 
-    def merge_edge(self, edge1, edge2, angle=0, tab_width=None, edge_type=None, joints=None):
+    def merge_edge(self, edge1, edge2, angle=0, tab_width=None, edge_type=None, joints=None, flip=True):
         """
         Merges two edges in the graph
 
@@ -318,7 +318,7 @@ class FaceEdgeGraph(object):
         if e2 is None:
           raise AttributeError("Edge not found: " + edge2)
 
-        if len(e2.faces) > 1:
+        if len(e2.faces) > 1 or not flip:
           #print "Adding third edge"
           e2.merge_with(e1, angle=angle, flip=False, tab_width=tab_width)
         else:
@@ -369,6 +369,7 @@ class FaceEdgeGraph(object):
             slot_face: Face subclass that will be used for the slots
             slot_decoration: Decoration subclass that will be used for the slots
         """
+        self.add_tabs()
         for e in self.edges:
           if e.is_tab():
             #print "tabbing ", e.name
@@ -389,7 +390,30 @@ class FaceEdgeGraph(object):
 
         #TODO: extend this to three+ edges
         #component.addConnectors((conn, cname), new_edges[0], new_edges[1], depth, tabattachment=None, angle=0)
+    def add_tabs(self):
+        self.tabTraverse(self.faces[0],None, None, None)
 
+    def tabTraverse(self, face, edge, visited, connected):
+        if visited is None:
+            visited = []
+        if connected is None:
+            connected = []
+        if face in visited:
+            if edge in connected:
+                return
+            edge.tab_width = 4
+            return
+        visited.append(face)
+        if edge is None:
+            pass
+        else:
+            connected.append(edge)
+        for (i, e) in enumerate(face.edges):
+            if len(e.faces) <= 1:
+                continue
+            for(f,a) in e.faces.iteritems():
+                if not f == face:
+                    self.tabTraverse(f, e, visited, connected)
     def flip(self):
         """
         Flips all faces in graph
@@ -445,7 +469,7 @@ class FaceEdgeGraph(object):
     def place(self, force=False):
       """
       Places all of the faces in the graph
-      
+
       Args:
           force: whether to unplace first or not
       """
@@ -458,7 +482,7 @@ class FaceEdgeGraph(object):
     def get_3d_com(self):
       """
       Calculates and returns the 3D center of mass
-      
+
       Returns:
           the mass and center of mass
       """
@@ -484,7 +508,7 @@ class FaceEdgeGraph(object):
     def to_stl(self, filename):
       """
       Converts the graph to STL
-      
+
       Args:
           filename (str): name of file to write STL data to
       """
@@ -507,7 +531,7 @@ class FaceEdgeGraph(object):
     def to_svg(self, filename):
       """
       Converts the graph to an SVG
-      
+
       Args:
           filename (str): name of file to write SVG data to
       """
@@ -519,7 +543,7 @@ class FaceEdgeGraph(object):
     def to_dxf(self, filename):
       """
       Converts the graph to an SVG
-      
+
       Args:
           filename (str): name of file to write SVG data to
       """

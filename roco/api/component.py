@@ -131,6 +131,8 @@ class Component(Parameterized):
             The sympy expression.
 
         """
+        if string.lower() == "false" or string.lower() == "true":
+            return string.lower() == "true"
         expr = math.sympify(string)
         subs = []
         for a in expr.atoms(math.Symbol):
