@@ -1,0 +1,31 @@
+connections:
+- - [s2s, receivedString]
+  - [s2m, motorString]
+  - {}
+- - [serial, came]
+  - [s2s, came]
+  - {}
+- - [s2s, cameOut]
+  - [s2m, motorCame]
+  - {}
+- - [serial, received]
+  - [s2s, received]
+  - {}
+constants: {}
+constraints: []
+hierarchical_constraints: []
+interfaces: {}
+parameters: {s2m_target: '''''', s2s_target: '''''', serial_target: ''''''}
+subcomponents:
+  s2m:
+    class: string_to_motor
+    constants: {}
+    parameters: {}
+  s2s:
+    class: serial_to_string
+    constants: {}
+    parameters: {}
+  serial:
+    class: serial_in
+    constants: {}
+    parameters: {}
