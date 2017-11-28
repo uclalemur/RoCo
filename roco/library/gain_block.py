@@ -1,11 +1,12 @@
 from roco.derived.ports.string_port import InStringPort
+from roco.derived.ports.string_port import OutStringPort
 from roco.derived.ports.bool_port import InBoolPort
 from roco.derived.ports.bool_port import OutBoolPort
 from roco.derived.components.code_component import CodeComponent
 from roco.derived.composables.target.cpp_target import Cpp
 from roco.derived.composables.target.arduino_target import Arduino
 
-class StringCompare(CodeComponent):
+class Gain(CodeComponent):
 
     def __init__(self, yaml_file=None, **kwargs):
         CodeComponent.__init__(self, yaml_file, **kwargs)
@@ -51,7 +52,9 @@ class StringCompare(CodeComponent):
         CodeComponent.define(self, **kwargs)
 
     def assemble(self):
-        print self.meta[Arduino]["code"]
+        print self.get_parameter("compareString").get_value()
+
+        #print self.meta[Arduino]["code"]
         CodeComponent.assemble(self)
 
 
