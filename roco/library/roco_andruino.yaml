@@ -1,12 +1,12 @@
 connections:
+- - [s2s, cameOut]
+  - [checker, inDetected]
+  - {}
 - - [s2s, receivedString]
-  - [s2m, motorString]
+  - [checker, inString]
   - {}
 - - [serial, came]
   - [s2s, came]
-  - {}
-- - [s2s, cameOut]
-  - [s2m, motorCame]
   - {}
 - - [serial, received]
   - [s2s, received]
@@ -15,10 +15,11 @@ constants: {}
 constraints: []
 hierarchical_constraints: []
 interfaces: {}
-parameters: {s2m_target: '''''', s2s_target: '''''', serial_target: ''''''}
+parameters: {checker_compareString: '''Go''', checker_target: '''''', s2s_target: '''''',
+  serial_target: ''''''}
 subcomponents:
-  s2m:
-    class: string_to_motor
+  checker:
+    class: string_compare
     constants: {}
     parameters: {}
   s2s:
