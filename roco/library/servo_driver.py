@@ -32,7 +32,7 @@ class ServoDriver(Driver):
                 "code": "",
 
                 "inputs": {
-                    # "in_@@name@@": None,
+                    "in_@@name@@": None,
                 },
 
                 "outputs": {
@@ -47,7 +47,7 @@ class ServoDriver(Driver):
             }
         }
 
-        # self.add_interface("inInt", InIntPort(self, "inInt", "in_@@name@@"))
+        self.add_interface("inInt", InIntPort(self, "inInt", "in_@@name@@"))
         self.add_interface("eOut", ElectricalPort(self, [2], virtual=True))
         self.add_interface("PWMin", PWMInputPort(self, [2], virtual=True))
 

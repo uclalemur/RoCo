@@ -109,6 +109,7 @@ def filter_database(composable_type=["all"], verbose=False):
 
 
 def get_component(c, **kwargs):
+    # import pdb; pdb.set_trace()
     try:
         mod = __import__(c, fromlist=[c, "library." + c], globals=globals())
         obj = getattr(mod, to_camel_case(c))()
