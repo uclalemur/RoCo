@@ -2,7 +2,7 @@ from roco.library.driver import Driver
 from roco.derived.composables.target.arduino_target import Arduino
 from roco.derived.composables.electrical_composable import ElectricalComposable
 from roco.derived.ports.electrical_port import ElectricalPort
-from roco.derived.ports.analog_port import AnalogOutputPort
+from roco.derived.ports.analog_port import AnalogOutputPort, AnalogInputPort
 from roco.derived.ports.int_port import OutIntPort
 
 class PotDriver(Driver):
@@ -42,7 +42,7 @@ class PotDriver(Driver):
                 "needs": set()
             }
         }
-        self.add_interface("vIn", ElectricalPort(self, [1], virtual=True))
+        self.add_interface("vIn", AnalogInputPort(self, [1], virtual=True))
         self.add_interface("aOut", AnalogOutputPort(self, [1], virtual=True))
         self.add_interface("outInt", OutIntPort(self, "outInt", "analog@@name@@"))
 

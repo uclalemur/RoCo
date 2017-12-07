@@ -1,0 +1,23 @@
+connections:
+- - [sIn, received]
+  - [s2s, received]
+  - {}
+- - [sIn, came]
+  - [s2s, came]
+  - {}
+constants: {}
+constraints: []
+hierarchical_constraints: []
+interfaces:
+  out1: [s2s, cameOut]
+  out2: [s2s, receivedString]
+parameters: {s2s_target: '''''', sIn_target: ''''''}
+subcomponents:
+  s2s:
+    class: serial_to_string
+    constants: {}
+    parameters: {}
+  sIn:
+    class: serial_in
+    constants: {}
+    parameters: {}

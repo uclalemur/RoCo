@@ -1,0 +1,20 @@
+connections:
+- - [servo_driver0, eOut]
+  - [servo0, eIn]
+  - {}
+constants: {}
+constraints: []
+hierarchical_constraints: []
+interfaces:
+  PWMin: [servo_driver0, PWMin]
+  inInt: [servo_driver0, inInt]
+parameters: {servo_driver0_Pin: '''''', servo_driver0_target: ''''''}
+subcomponents:
+  servo0:
+    class: servo
+    constants: {}
+    parameters: {}
+  servo_driver0:
+    class: servo_driver
+    constants: {}
+    parameters: {}
