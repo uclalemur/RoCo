@@ -363,30 +363,30 @@ class Face(object):
             return
 
         if placed is None:  # Replacing the entire component
-            placed = {'faces': []}
+            placed = {'faces': []}  ## create a dictionary: placed, the key is 'faces'.
 
-        # Face is being placed
+        ## Face is being placed into the list of key:'faces'. placed={'faces':[face1,face2,...,facen]} ##
         placed['faces'].append(self)
 
         if edge_from is not None:
             r = self.pre_transform(edge_from)
         else:
-            r = np.eye(4)
+            r = np.eye(4)   ## create a identity unit matrix. ##
 
         self.transform_2D = np.dot(transform_2D, r)
         self.transform_3D = np.dot(transform_3D, r)
 
-        pts_2D = np.dot(r, self.pts_4D)[0:2, :]
+        pts_2D = np.dot(r, self.pts_4D)[0:2, :]  ##using numpy, 0-2 rows and all columns. ##
 
         coords_2D = self.get_2D_coords()
         coords_3D = self.get_3D_coords()
 
         for (i, e) in enumerate(self.edges):
             # XXX hack: don't follow small edges
-            if e is None or e.is_tab():
+            if e is None or e.is_tab():  ## do nothing to edges which is tabbed or without connection? ##
                 continue
 
-            el = self.edge_length(i)
+            el = self.edge_length(i)  ##return the length of edge by edge index i. ##
             try:
                 if el <= 0.01:
                     continue
@@ -394,13 +394,13 @@ class Face(object):
                 # print 'sympyicized variable detected - ignoring edge length check'
                 pass
 
-            da = e.faces[self]
+            da = e.faces[self]  ## e is an edge? ##
             if da[1]:
                 e.place((coords_2D[:, i - 1], coords_2D[:, i]), (coords_3D[:, i - 1], coords_3D[:, i]))
             else:
                 e.place((coords_2D[:, i], coords_2D[:, i - 1]), (coords_3D[:, i], coords_3D[:, i - 1]))
 
-            if len(e.faces) <= 1:
+            if len(e.faces) <= 1:  ## how !!!!! ##
                 # No other faces to be found, move on to next edge.
                 continue
 

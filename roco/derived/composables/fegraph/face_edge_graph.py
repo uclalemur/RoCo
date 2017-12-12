@@ -53,6 +53,12 @@ def stl_write(faces, filename, thickness=0):
     triangles = []
     for f in faces:
       r = f[0]
+      # print ("the tramsform function is ",r)
+      # if r is None:
+      #     continue
+
+      # if r is None: #No transform
+      #     r = np.eye(4)
       A = f[1]
 
       facets = []
@@ -67,7 +73,9 @@ def stl_write(faces, filename, thickness=0):
         for t in [np.transpose(np.array([list(A['vertices'][x]) + [0,1] for x in (edge[0], edge[1])])) for edge in A['segments']]:
           facets.extend([np.dot(r, x) for x in inflate(t, thickness=thickness, edges=True)])
       else:
+
         for t in [np.transpose(np.array([list(B['vertices'][x]) + [0,1] for x in (face[0], face[1], face[2])])) for face in B['triangles']]:
+          #print "Here",r,t
           facets.append(np.dot(r, t))
 
       triangles.extend(facets)
@@ -346,7 +354,7 @@ class FaceEdgeGraph(object):
         old_edge_name = edge.name
         new_edges_and_faces = []
 
-        for i, face in enumerate(list(old_edge.faces)):
+        for i, face in enumerate(list(old_edge.faces)):  ## ? ##
             length = old_edge.length
             angle = old_edge.faces[face][0]
             flip = old_edge.faces[face][1]
@@ -359,6 +367,23 @@ class FaceEdgeGraph(object):
         self.rebuild_edges()
         return new_edges_and_faces
 
+    # def fingerJointify(self, finger_joint):
+    #     """
+    #     Adds finger joints to tab connections
+    #
+    #     Args:
+    #         finger_joint: constructor for the finger joint face
+    #     """
+    #     for e in self.edges:
+    #         if e.is_tab():
+    #             for (edgename, face, length, angle, flip) in self.split_edge(e):
+    #                 if flip: ## when two edges are connected, the direction of one of the edges will be flipped. ##
+    #                     self.attach_face(edgename, finger_joint(length,male=True),"attachedge", prefix=edgename, angle=0)
+    #                 else:
+    #                     self.attach_face(edgename, finger_joint(length, male=False), "attachedge", prefix=edgename,
+    #                                      angle=0)
+
+
     def tabify(self, tab_face=None, tab_decoration=None, slot_face=None, slot_decoration=None):
         """
         Adds tab and slot decorations for all edges that are tabs
@@ -370,22 +395,24 @@ class FaceEdgeGraph(object):
             slot_decoration: Decoration subclass that will be used for the slots
         """
         for e in self.edges:
-          if e.is_tab():
+          if e.is_tab():  ##  decide if the edge is added with a tab ##
             #print "tabbing ", e.name
             for (edgename, face, length, angle, flip) in self.split_edge(e):
               if flip:
                 #print "-- tab on: ", edgename, face.name
-                if tab_face is not None:
-                  self.attach_face(edgename, tab_face(length, e.tab_width), "tabedge", prefix=edgename, angle=0)
                 if tab_decoration is not None:
                   tab_decoration(face, edgename, e.tab_width)
+                if tab_face is not None:
+                  self.attach_face(edgename, tab_face(length, e.tab_width), "tabedge", prefix=edgename, angle=0) ## tab_width is passed from add_connection.
+
               else:
                 #print "-- slot on: ", edgename, face.name
+                if slot_decoration is not None:
+                      slot_decoration(face, edgename, e.tab_width)  ## how to define tab width?  ##
                 if slot_face is not None:
                   # XXX TODO: set angle appropriately
                   self.attach_face(edgename, slot_face(length, e.tab_width), "slotedge", prefix=edgename, angle=0)
-                if slot_decoration is not None:
-                  slot_decoration(face, edgename, e.tab_width)
+
 
         #TODO: extend this to three+ edges
         #component.addConnectors((conn, cname), new_edges[0], new_edges[1], depth, tabattachment=None, angle=0)
@@ -451,7 +478,8 @@ class FaceEdgeGraph(object):
       """
       if force:
           self.unplace()
-      transform_2D = np.eye(4)
+      transform_2D = np.eye(4)  ## np is a set of functions and eye is within the np, representing an unit matrix ##
+      # print("The eye(4) is",np.eye(4))
       transform_3D = np.eye(4)
       self.faces[0].place(None, transform_2D, transform_3D)
 

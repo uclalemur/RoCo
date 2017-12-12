@@ -7,6 +7,7 @@ graph class
 from fegraph.face_edge_graph import FaceEdgeGraph
 from roco.api.composable import Composable
 from roco.utils.utils import try_import, decorate_graph
+from roco.builders.generate_coordinates_of_fingerJoint import FingerJoint
 
 class Decoration(Composable, FaceEdgeGraph):
     """
@@ -122,7 +123,7 @@ class GraphComposable(Composable, FaceEdgeGraph):
             if len(e.faces) > 1:
                 self.split_edge(e)
 
-    def make_output(self, filedir, **kwargs):
+    def make_output(self, filedir,**kwargs):
         """
         Creates output based on the composable to the given directory.
         The output files depend upon the kwargs.
@@ -143,11 +144,32 @@ class GraphComposable(Composable, FaceEdgeGraph):
             return kwargs[arg]
           return default
 
+
+
+        # if "fingerJoint" in kwargs:
+        #     tab_face = maleFingerJoint
+        #     tab_decoration = maleFingerJointDecoration
+        #     slot_face = femaleFingerJoint
+        #     slot_decoration = femaleFingerJointDecoration
+        # else:
+        #     tab_face = BeamTabs
+        #     tab_decoration = None
+        #     slot_face = None
+        #     slot_decoration = BeamSlotDecoration
+
         from roco.derived.utils.tabs import BeamTabs, BeamSlotDecoration
-        self.tabify(kw("tabFace", BeamTabs), kw("tabDecoration", None),
-                    kw("slotFace", None), kw("slotDecoration", BeamSlotDecoration))
+        self.tabify(kw("tabFace",BeamTabs ), kw("tabDecoration", None),kw("slotFace", None), kw("slotDecoration", BeamSlotDecoration))
         self.place()
 
+        # ####### last version for adding finger joint.
+        # if kw("wood", False):
+        #     self.fingerJointify(kw("finger_joint",FingerJoint))
+        # else:
+        #     from roco.derived.utils.tabs import BeamTabs, BeamSlotDecoration
+        #     self.tabify(kw("tabFace", BeamTabs), kw("tabDecoration", None),
+        #                 kw("slotFace", None), kw("slotDecoration", BeamSlotDecoration))
+        # self.place()   ##   ##
+        ########################
         if kw("placeOnly", False):
           return
         '''
@@ -162,7 +184,7 @@ class GraphComposable(Composable, FaceEdgeGraph):
         #if kw("placeOnly", False):
         #  return
 
-        if kw("display") or kw("unfolding") or kw("autofolding") or kw("silhouette"):
+        if kw("display") or kw("unfolding") or kw("autofolding") or kw("silhouette"): ## the default kwargs is True, which means the system default draw one kind of format.
           from fegraph.drawing import Drawing
           d = Drawing()
           d.from_graph(self)

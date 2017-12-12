@@ -39,9 +39,10 @@ def prefix(s1, s2):
   Returns:
       prefixed string
   """
+
   if s1 and s2:
     return s1 + "_" + s2
-  return s1 or s2
+  return s1 or s2    ## just return whatever you input. ###
 
 def to_camel_case(under):
     """

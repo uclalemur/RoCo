@@ -28,7 +28,7 @@ def get_subcomponent_object(component, name=None, **kwargs):
     """Function to generate an instantiated component from the class name.
 
     Args:
-        component (str): The name of the component class to instantiate.
+        component (str): The name of the component class to instantiate. Such as 'Rectangle'
         name (:obj:`str`, optional): The name to set for the component.
         **kwargs: Arbitrary keyword arguments to pass into the constructor.
 
@@ -37,8 +37,8 @@ def get_subcomponent_object(component, name=None, **kwargs):
 
     """
     try:
-        obj = try_import(component, to_camel_case(component))
-        c = obj(name=name, **kwargs)
+        obj = try_import(component, to_camel_case(component))  ## Camelcase is to change 'hi_hello' into 'HiHello'.##
+        c = obj(name=name, **kwargs)  ## can't find obj ##
         c.set_name(name)
         return c
     except AttributeError:
@@ -80,22 +80,22 @@ class Component(Parameterized):
         """
         Parameterized.__init__(self, name=name)
 
-        self.subcomponents = {}
+        self.subcomponents = {}   ## Initially, there is no subcomponent. ##
         self.connections = {}
-        self.tabs = []
+        self.tabs = []       ## tabs can add tab and slot to two faces to connect them. ##
         self.interfaces = {}
         self._prefixed = {}
-        self.composables = OrderedDict()
+        self.composables = OrderedDict() ## the OrderedDict can memberize the order that items are input.##
         self.attribute_params = {}
         self.hierarchical_constraints = {}
 
         if yaml_file:
-            self._from_yaml(yaml_file)
+            self._from_yaml(yaml_file)   ## '_from_yaml' can import yaml file from sources other than library. ##
 
         # Override to define actual component
-        self.define(**kwargs)
+        self.define(**kwargs)  ## doesn't any thing.##
 
-        self.make()
+        self.make()  ## don't know 'make()' ##
 
 
     def _make_test(self, protobuf=False, display=True):
@@ -131,11 +131,11 @@ class Component(Parameterized):
             The sympy expression.
 
         """
-        expr = math.sympify(string)
+        expr = math.sympify(string) ## just reture 'string' ##
         subs = []
-        for a in expr.atoms(math.Symbol):
-          subs.append((a, self.get_parameter(repr(a))))
-        expr = expr.subs(subs)
+        for a in expr.atoms(math.Symbol):  ## don't know 'Symbol' and 'atoms'. ##
+          subs.append((a, self.get_parameter(repr(a))))  ## don't know 'repr' and 'get_parameter'
+        expr = expr.subs(subs)  ## don't know 'subs'. ##
         return expr
 
     def _from_yaml(self, file_name):
@@ -211,14 +211,17 @@ class Component(Parameterized):
 
         Args:
             name (str): unique identifier to refer to this subcomponent by
-            object_type (str or type): code name of the subcomponent should be python file/class or yaml name
+            object_type (str or type): code name of the subcomponent should 
+            be python file/class or yaml name. 
+            For example, you want to add a rectangle. You should call 
+            instance.add_subcomponent('r1','Rectangle').
 
         """
         if name in self.subcomponents:
             raise ValueError("Subcomponent with name {} already exists".format(name))
-        sc = {"class": object_type, "parameters": {}, "constants": kwargs, "component": None}
-        self.subcomponents.setdefault(name, sc)
-        self.resolve_subcomponent(name)
+        sc = {"class": object_type, "parameters": {}, "constants": kwargs, "component": None} ## What is component? ##
+        self.subcomponents.setdefault(name, sc) ## add the new subcomponent into dictionaty. 'name' is the key and 'sc' is the value. ##
+        self.resolve_subcomponent(name)  
 
     def del_subcomponent(self, name):
         """Deletes a subcomponent to this Component and performs any cleanup necessary
@@ -421,6 +424,7 @@ class Component(Parameterized):
             raise KeyError("Connection {} already exists")
         self.connections[name] = [self.get_subcomponent_interface(from_interface[0], from_interface[1]),
                                   self.get_subcomponent_interface(to_interface[0], to_interface[1]), kwargs]
+        # print 'the value of connections is', self.connections[name]
 
     def del_connection(self, from_interface, to_interface):
         """ Deletes the connection that consists of the two ordered interfaces
@@ -545,6 +549,7 @@ class Component(Parameterized):
         Returns:
             the interface with name 'name'
         """
+
         return self.interfaces[name]
 
     def set_interface(self, name, interface, wrap_interface=True):
@@ -660,17 +665,17 @@ class Component(Parameterized):
         """
         sc = self.subcomponents[name]
         try:
-          if sc["component"]:
+          if sc["component"]:   ## 'component' is none. why do we need to do it? ##
             return
         except KeyError:
           pass
 
-        c = sc["class"]
+        c = sc["class"]    ## sc['class'] is the object_type. ##
         try:
-          kwargs = sc["constants"]
+          kwargs = sc["constants"]  ## in case the 'constants' dose not exist. ##
         except KeyError:
           kwargs = {}
-        obj = get_subcomponent_object(c, name = prefix_string(self.get_name(), name), **kwargs)
+        obj = get_subcomponent_object(c, name = prefix_string(self.get_name(), name), **kwargs) ## Prefix_string = Prefix ##
         self.subcomponents[name]["component"] = obj
         self.inherit_parameters(obj, name)
         self.inherit_constraints(obj)
@@ -750,15 +755,16 @@ class Component(Parameterized):
         """ Evaluates subcomponents, connections, and constraints, then assembles the component
 
         """
-        self.reset()
+        ## Can't understand why we need make(). ##
+        self.reset()     ## pass? why? ##
         self.resolve_subcomponents()
         self.eval_hierarchical_constraints()
         self.eval_subcomponents()    # Merge composables from all subcomponents and tell them my components exist
         self.eval_interfaces()    # Tell composables that my interfaces exist
         self.eval_connections()   # Tell composables which interfaces are connected
-        self.assemble()
-        self.solve()
-        self.check_constraints()
+        self.assemble()      ## do nothing? ##
+        self.solve()        ## ? ##
+        self.check_constraints()   ## do nothing again? ##
 
     def reset(self):
         """Resets component to a state before make is called.
@@ -823,26 +829,27 @@ class Component(Parameterized):
             return default
 
         print "Compiling robot designs..."
-        sys.stdout.flush()
-        if kw("remake", True):
+        sys.stdout.flush()  ## flush the buffering, thus we can see the output in real time without buffering. ##
+        if kw("remake", True):  ## do self.make() if 'remake' in kwargs or 'True' ?##
             self.make()
         print "done."
 
         # XXX: Is this the right way to do it?
         import os
         try:
-            os.makedirs(file_dir)
+            os.makedirs(file_dir)   ## Almost the same as mkdir except this func can create the whole path. ##
         except:
             pass
 
         # Process composables in some ordering based on type
+        ## the graph is not among them. ##
         ordered_types = ['electrical', 'ui', 'code'] # 'code' needs to know about pins chosen by 'electrical', and 'code' needs to know about IDs assigned by 'ui'
         # First call makeOutput on the ones of a type whose order is specified
         for composable_type in ordered_types:
             if composable_type in self.composables:
                 self.composables[composable_type].make_output(file_dir, **kwargs)
         # Now call makeOutput on the ones whose type did not care about order
-        for (composable_type, composable) in self.composables.iteritems():
+        for (composable_type, composable) in self.composables.iteritems():  ## focus on the format of composable. ##
             if composable_type not in ordered_types:
                 self.composables[composable_type].make_output(file_dir, **kwargs)
 
