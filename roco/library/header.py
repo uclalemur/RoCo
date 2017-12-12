@@ -8,10 +8,10 @@ from roco.derived.ports.mount_port import MountPort
 class Header(Component):
 
   def define(self):
-      self.add_parameter("nrows", 11)
+      self.add_parameter("nrows", 15)
       self.add_parameter("ncols", 2)
       self.add_parameter("rowsep", 2.54)
-      self.add_parameter("colsep", 0.6 * 25.4)
+      self.add_parameter("colsep", 23)
       self.add_parameter("diameter", 1)
       self.add_interface("mount", MountPort(self, None))
 

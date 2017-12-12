@@ -68,8 +68,6 @@ class RectBeam(FoldedComponent):
     for i in faces or range(4):
       self.add_interface("face%d"%i, FacePort(self, "r%d"%i))
 
-    self.add_interface("topface", [EdgePort(self, prefix("r%d" % n,"e0")) for n in faces or range(4)])
-    self.add_interface("botface", [EdgePort(self, prefix("r%d" % n,"e2")) for n in faces or range(4)])
     for i, n in enumerate(faces or range(4)):
       self.add_interface("topedge%d" % i, EdgePort(self, prefix("r%d" % n,"e0")))
       self.add_interface("botedge%d" % i, EdgePort(self, prefix("r%d" % n,"e2")))

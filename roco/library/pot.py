@@ -1,5 +1,5 @@
 from roco.derived.components.electrical_component import ElectricalComponent
-from roco.derived.ports.electrical_port import ElectricalPort
+from roco.derived.ports.analog_port import AnalogOutputPort
 
 class Pot(ElectricalComponent):
 
@@ -16,7 +16,7 @@ class Pot(ElectricalComponent):
             },
             "aliases": ["first pin", "center pin", "last pin"],
         }
-        self.add_interface("vOut", ElectricalPort(self, [1]))
+        self.add_interface("vOut", AnalogOutputPort(self, [1]))
 
 
     def assemble(self):

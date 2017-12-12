@@ -62,11 +62,13 @@ def filter_components(composable_type=["all"], verbose=False):
     Return.
         Array of Component objects which have the specified composable type
     """
+    
     comps = []
     for comp in all_components:
+        if comp == "DrivenServo":
+            import pdb; pdb.set_trace()
         try:
             a = get_component(comp, name=comp)
-            print a
             for ctype in composable_type:
                 code_instance = instance_of(a, ctype)
                 if code_instance is True and a not in comps:
@@ -75,7 +77,7 @@ def filter_components(composable_type=["all"], verbose=False):
                 print a.get_name()
         except Exception as err:
             if verbose is False:
-                print "-------------------------------------------------{}".format(comp)
+                #print "-------------------------------------------------{}".format(comp)
                 logging.error(traceback.format_exc())
     return comps
 
@@ -95,13 +97,10 @@ def filter_database(composable_type=["all"], verbose=False):
     """
     comps = []
     b = update_component_lists()
-    # print "Updated components list in filterDatabase==========================="
-    # print "\n\n\n\n\n", a, "\n\n\n\n"
 
     for comp in b:
         try:
             a = query_database(comp)
-            # print "component", a
             for ctype in composable_type:
                 code_instance = instance_of(a, ctype)
                 if code_instance is True and a not in comps:
@@ -109,36 +108,38 @@ def filter_database(composable_type=["all"], verbose=False):
         except Exception as err:
             logging.error(traceback.format_exc())
 
-    # print allComponents
     return comps
 
 
 def get_component(c, **kwargs):
-  try:
-    mod = __import__(c, fromlist=[c, "library." + c], globals=globals())
+    # import pdb; pdb.set_trace()
+    try:
+        mod = __import__(c, fromlist=[c, "library." + c], globals=globals())
+        obj = getattr(mod, to_camel_case(c))()
+    except AttributeError:
+        try:
+            obj = getattr(mod, c)()
+        except AttributeError :
+            obj = Component(os.path.abspath(os.path.dirname(__file__)) + "/" + c + ".yaml")
+    except ImportError:
+        if "baseclass" in kwargs:
+            bc = try_import(kwargs["baseclass"],kwargs["baseclass"])
+            obj = bc(os.path.abspath(os.path.dirname(__file__)) + "/" + c + ".yaml")
+        else:
+            obj = Component(os.path.abspath(os.path.dirname(__file__)) + "/" + c + ".yaml")
 
-    obj = getattr(mod, to_camel_case(c))()
-  except AttributeError:
-    # import pdb;pdb.set_trace()
-    obj = getattr(mod, c)()
-  except ImportError:
-    if "baseclass" in kwargs:
-      bc = try_import(kwargs["baseclass"],kwargs["baseclass"])
-      obj = bc(os.path.abspath(os.path.dirname(__file__)) + "/" + c + ".yaml")
-    else:
-      obj = Component(os.path.abspath(os.path.dirname(__file__)) + "/" + c + ".yaml")
+    for k, v in kwargs.iteritems():
+        if k == 'name':
+           obj.set_name(v)
+        elif k == 'baseclass':
+            pass
+        else:
+            obj.set_parameter(k, v)
 
-  for k, v in kwargs.iteritems():
-    if k == 'name':
-      obj.set_name(v)
-    elif k == 'baseclass':
-      pass
-    else:
-      obj.set_parameter(k, v)
-  if 'name' not in kwargs:
-    obj.set_name(c)
+    if 'name' not in kwargs:
+        obj.set_name(c)
 
-  return obj
+    return obj
 
 
 def build_database(components, username="root", password=""):
@@ -157,28 +158,21 @@ def build_database(components, username="root", password=""):
 
     # dbPath = os.path.join(os.path.dirname(os.path.dirname(os.getcwd())), 'compDatabase.db')
     db_path = os.path.join(os.getcwd(), 'compDatabase.db')
-    print "Database Path", db_path
-    print "Working Directory", os.getcwd()
     con = db.connect(db_path)
     c = con.cursor()
 
     init_database(c)
 
     for comp in components:
-        print "Component Name: ", comp.get_name()
         comp_id = 0
         c.execute('SELECT * FROM components WHERE type LIKE "{}"'.format(comp.get_name()))
-        # print c.fetchall()
         x = c.fetchall()
         if len(x) == 0:
             c.execute('INSERT INTO components VALUES (NULL, "{}")'.format(comp.get_name()))
             c.execute('SELECT LAST_INSERT_ROWID()')
             comp_id = c.fetchall()[0][0]
         else:
-            # y = c.fetchall()
-            print x, "\n\n\n", x,  "-----------------------"
             comp_id = x[0][0]
-        # print "\n\n\n", comp.getName()
 
 
         write_interfaces(comp, comp_id, c)
@@ -229,19 +223,17 @@ def write_interfaces(comp, comp_id, c, verbose=False):
         x = c.fetchall()
         if len(x) > 0:
             c.execute('DELETE FROM component_interface_link WHERE component_id LIKE {}'.format(comp_id))
-            # print x[0][1]
     except Exception as err:
         logging.error(traceback.format_exc())
-    pprint(comp.interfaces)
     for k, v in comp.interfaces.iteritems():
         try:
+            
             value = ""
             if isinstance(v, dict):
                 composite_comp = v["subcomponent"]
                 value = comp.subcomponents[composite_comp]["component"].interfaces[v["interface"]].__class__.__name__
             else:
-                # print comp.interfaces, "\n\n value: ", v
-                value = v.__class__.__name__
+                value = v.ports[0].__class__.__name__
 
             c.execute('SELECT * FROM interfaces WHERE var_name LIKE "{}" AND port_type LIKE "{}"'.format(k, value))
             x = c.fetchall()
@@ -261,7 +253,6 @@ def write_interfaces(comp, comp_id, c, verbose=False):
 
         except Exception as err:
             if verbose is True:
-                print "-------------------------------------------------{}".format(comp.get_name())
                 logging.error(traceback.format_exc())
 
 
@@ -281,18 +272,12 @@ def write_parameters(comp, comp_id, c):
         x = c.fetchall()
         if len(x) > 0:
             c.execute('DELETE FROM component_parameter_link WHERE component_id LIKE {}'.format(comp_id))
-            print x[0][1]
     except Exception as err:
         logging.error(traceback.format_exc())
-    pprint(comp.parameters)
-
-    print "Here"
 
     for k, v in comp.parameters.iteritems():
-        print "k:", k, "\tv:", v
         c.execute('SELECT * FROM params WHERE var_name LIKE "{}" AND default_value LIKE "{}"'.format(str(k), str(v)))
         x = c.fetchall()
-        print "X: ", x
         param_id = 0
         if len(x) == 0:
             c.execute(
@@ -329,7 +314,6 @@ def write_composables(comp, comp_id, c):
         else:
             compos_id = x[0][0]
 
-        print comp_id, compos_id
         c.execute('SELECT * FROM component_composable_link WHERE component_id LIKE {} AND composable_id LIKE {}'.format(comp_id, compos_id))
         x = c.fetchall()
         if len(x) == 0:
@@ -421,9 +405,7 @@ def query_database(component, username="root", password="", verbose=False):
     if len(exists) == 0:
         if verbose:
             print "The component {} is not in the database.\n Call buildDatabase() with this component in the array to update the database. \nIf this message still persists, check if calling getComponent() on this string works.\n".format(component)
-        else:
-            print "{} not in database".format(component)
-
+        
         con.commit()
         con.close()
         return None
@@ -433,6 +415,7 @@ def query_database(component, username="root", password="", verbose=False):
     item = ComponentQueryItem(component)
     x = c.execute('SELECT c.*, i.* FROM components c INNER JOIN component_interface_link ci ON ci.component_id = c.id INNER JOIN interfaces i ON i.id = ci.interface_id WHERE type LIKE "{}"'.format(component))
     y = c.fetchall()
+
     item.gen_interface(y)
 
     # gather parameters

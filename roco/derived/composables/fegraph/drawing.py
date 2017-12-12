@@ -139,7 +139,7 @@ class Drawing():
         vertices.append(v1)
         face = geometry.Polygon(vertices)
         # print len(self.faces)
-        if allow_overlap:
+        if not allow_overlap:
             for f in self.faces:
                 if face.crosses(f):  # or face.within(f) or face.contains(f) or f.equals(f):
                     # print "cross", list(face.exterior.coords), list(f.exterior.coords)

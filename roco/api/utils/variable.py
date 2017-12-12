@@ -1,4 +1,4 @@
-from sympy import Dummy
+from sympy import Dummy, Symbol
 
 def eval_equation(equation):
     """Evaluates given sympy expression using the parameters.
@@ -112,16 +112,15 @@ class Variable(Dummy):
         """
         return self.name
 
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        return self.name
 
     def __getstate__(self):
-      state = Dummy.__getstate__(self)
+      state = Symbol.__getstate__(self)
       state['is_solved'] = self.is_solved
       state['default'] = self.default
       state['solved'] = self.solved
       return state
-
-    def __setstate__(self, state):
-      Dummy.__setstate__(self, state)
-      self.is_solved = state['is_solved']
-      self.default = state['default']
-      self.solved = state['solved']
