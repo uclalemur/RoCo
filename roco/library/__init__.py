@@ -65,8 +65,6 @@ def filter_components(composable_type=["all"], verbose=False):
     
     comps = []
     for comp in all_components:
-        if comp == "DrivenServo":
-            import pdb; pdb.set_trace()
         try:
             a = get_component(comp, name=comp)
             for ctype in composable_type:
