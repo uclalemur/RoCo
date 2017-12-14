@@ -275,6 +275,12 @@ class Parameterized(object):
         # set values of all variables in a single equivalence class to the default
         # of one of them
         for e_class in equiv_classes:
-          fixed = next(iter(e_class))
+          fixed_solved = None
+          for var in e_class:
+              if var.is_solved:
+                  if fixed_solved is not None and var.get_value() != fixed_solved.get_value():
+                      raise ValueError("Two variables in the same equivalence class are set to different valules")
+                  fixed_solved = var
+          fixed = fixed_solved if fixed_solved is not None else next(iter(e_class))
           for var in e_class:
               var.set_solved(fixed.get_value())
