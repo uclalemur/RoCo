@@ -13,3 +13,6 @@
 
 #EMACS TEMP FILES
 *~
+
+#DS_Store
+*.DS_Store

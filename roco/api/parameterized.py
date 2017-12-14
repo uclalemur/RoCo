@@ -6,7 +6,7 @@ Component.
 """
 
 from roco.api.utils.variable import Variable
-from roco.utils.utils import prefix as prefix_string
+from roco.utils.utils import prefix as prefix_string #The 'as' is to modify the names of modules.
 from sympy.logic.boolalg import BooleanTrue
 from sets import Set
 
@@ -38,8 +38,8 @@ class Parameterized(object):
             None
         """
         self._name = name
-        self.parameters = {}
-        self.constraints = {}
+        self.parameters = {}  ## why you need to add these two parameters? ##
+        self.constraints = {} 
 
     def get_name(self):
         """Returns the name of the parameterized object.
@@ -50,7 +50,7 @@ class Parameterized(object):
         Returns:
             A str representation of the object's name
         """
-        return self._name if self._name is not None else str(self.__class__)
+        return self._name if self._name is not None else str(self.__class__) ## self.__class__ can return the class of this object.
 
     def set_name(self, name):
         """Sets the name of the parameterized object.
@@ -166,7 +166,7 @@ class Parameterized(object):
         Raises:
             KeyError: A parameter called name does not exist
         """
-        return self.parameters.pop(name)
+        return self.parameters.pop(name)       ## what is pop do? ##
 
 
     def get_constraints(self):
@@ -189,7 +189,7 @@ class Parameterized(object):
         if not constraints:
             return
         try:
-            constraint_eqns = constraints.itervalues()
+            constraint_eqns = constraints.itervalues() ## convert the constraints into dictionary. ##
         except AttributeError:
             constraint_eqns = constraints
 
@@ -211,13 +211,16 @@ class Parameterized(object):
             KeyError: A parameter called name has already been created
         """
         if name is None:
-            name = id(expression)
+            name = id(expression)  ## id() can return the memory addresses of the expression. ##
 
         if name in self.constraints:
             raise KeyError("Constraint %s already exists" % name)
 
         self.constraints[name] = expression
-        return name
+        return name ## actually you return 'key' or the memory address of the constrain. ##
+
+
+
 
     def del_constraint(self,name):
         """Removes the constraint with the given name
@@ -231,7 +234,7 @@ class Parameterized(object):
         Raises:
             KeyError: A constraint called name does not exist
         """
-        return self.constraints.pop(name)
+        return self.constraints.pop(name)  ## pop remove the item of 'name' ##
 
     def check_constraints(self):
         """Verifies that all constraints are satisfied
@@ -252,10 +255,10 @@ class Parameterized(object):
         equiv_classes = []
         classes_map = {}
         classnum = 0
-        for (key, constraint) in self.constraints.iteritems():
-          if isinstance(constraint, BooleanTrue):
-            continue
-          if not isinstance(constraint.lhs, Variable) or not isinstance(constraint.rhs, Variable):
+        for (key, constraint) in self.constraints.iteritems():  ## the 'iteritems' will return a dictionary iterator. ## 
+          if isinstance(constraint, BooleanTrue): 
+          	continue
+          if not isinstance(constraint.lhs, Variable) or not isinstance(constraint.rhs, Variable): ## do not know what '.lhs' and '.rhs' is.##
             continue
             #raise Exception("Constraints are not simple parameters.")
           if constraint.lhs in classes_map and constraint.rhs not in classes_map:

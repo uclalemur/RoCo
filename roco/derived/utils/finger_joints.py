@@ -1,10 +1,19 @@
-from roco.derived.composables.fegraph.face import Rectangle
+from roco.derived.composables.fegraph.face import FingerJoint
 from roco.derived.composables.fegraph.drawing import Face
 from roco.derived.composables.fegraph.drawing_edge import DrawingEdge, Flex
 from roco.utils.mymath import pi, arctan2, norm
 from roco.api.utils.variable import eval_equation
 
-class TabDrawing(Face):  ## this TabDrawing is to add the tab shape not the rectangle tab outlay
+
+
+thickOfMaterial = 3.0  ## the thickness of material. ##
+widthOfFinger = 5.0  ## the width of finger. ##
+spaceOfEdge = 20.0  ## the space left to avoid overlapping in corner, such as cube. ##
+extraSpaceOfFingerJoint = 0.0 ## the extra space needed to connect all fingers. ##
+heightOfFinger = thickOfMaterial ## add more parameters for real world assemble. ##
+# upperLimitOfM = length/(2.0*widthOfFinger) - 2.5 ## the upper boundary for the number of fingers. ##
+
+class MaleFingerJointDrawing(Face):
   def __init__(self, w, t, noflap=False): ## What is w, t and noflap?  ##
     if (noflap or eval_equation(t) > eval_equation(w)/2):   ## eval_equation() just a equation to return a value
       Face.__init__(self,
@@ -12,19 +21,18 @@ class TabDrawing(Face):  ## this TabDrawing is to add the tab shape not the rect
     else:
       Face.__init__(self,
         ((w,0), (w+t,0), (w,t), (0,t), (-t,0)))
-      self.edges['f0'] = DrawingEdge("f0", (0,0), (0,t), Flex())  ## find out what is f0 and e0?
+      self.edges['f0'] = DrawingEdge("f0", (0,0), (0,t), Flex())
       self.edges['f1'] = DrawingEdge("f1", (w,0), (w,t), Flex())
 
     self.edges.pop('e0')
     self.transform(origin=(-w/2.0,-t/2.))
 
-class SlotDrawing(Face):
+class FemaleFingerJointDrawing(Face):
   def __init__(self, w, t, noflap=False):
-    Face.__init__(self, ((w+0.5, 0), (w+0.5, 0.5), (0, 0.5)))  ## o.5 is an extra width of slot to facilitate assembly
-    self.transform(origin=(-w/2. - 0.25, -t/2. - 0.25))
+    Face.__init__(self, ((w+0.5, 0), (w+0.5, 0.5), (0, 0.5)))
+    self.transform(origin=(-w/2. - 0.25, -t/2. - 0.25));
 
-def BeamTabSlotHelper(face, faceEdge, thick, widget, **kwargs):
-    '''widget is representing TabDrawing or SlotDrawing, means it is a face'''
+def maleFemaleFingerJointHelper(face, faceEdge, thick, widget, **kwargs):
     coords = face.edge_coords(face.edge_index(faceEdge))
     globalOrigin = coords[0]
     theta = arctan2(coords[1][1]-coords[0][1], coords[1][0]-coords[0][0])
@@ -58,7 +66,7 @@ def BeamTabSlotHelper(face, faceEdge, thick, widget, **kwargs):
     try:
       if kwargs["mirror"]:
         t.mirrorY()
-        t.transform(origin=(0, thick))
+        # t.transform(origin=(0, thick))
     except: pass
 
     for i in range(n):
@@ -73,21 +81,22 @@ def BeamTabSlotHelper(face, faceEdge, thick, widget, **kwargs):
           t.transform(origin=(0, thick))
       except: pass
 
-def BeamTabDecoration(face, edge, width, **kwargs):
-  return BeamTabSlotHelper(face, edge, width, TabDrawing, **kwargs)
-def BeamSlotDecoration(face, edge, width, **kwargs):
-  return BeamTabSlotHelper(face, edge, width, SlotDrawing, **kwargs)
+def maleFingerJointDecoration(face, edge, length, width,  **kwargs):
+  return maleFemaleFingerJointHelper(face, edge,  width, MaleFingerJointDrawing, **kwargs)
 
-def BeamTabs(length, width, **kwargs):
-    face = Rectangle('tab', length, width,
+def femaleFingerJointDecoration(face, edge, length, width,  **kwargs):
+  return maleFemaleFingerJointHelper(face, edge, width, FemaleFingerJointDrawing, **kwargs)
+
+def maleFingerJoint(length, width, **kwargs):
+    face = FingerJoint('maleFingerJoint', length,width,
                         edge_names=["tabedge","e1","oppedge","e3"],
                         recenter=False)
-    BeamTabSlotHelper(face, "tabedge", width, TabDrawing, **kwargs)
+    maleFemaleFingerJointHelper(face, "tabedge", width, MaleFingerJointDrawing, **kwargs)
     return face
 
-def BeamSlots(length, width, **kwargs):
-    face = Rectangle('slot', length, width,
+def femaleFingerJoint(length, width, **kwargs):
+    face = FingerJoint('femaleFingerJoint', length, width,
                         edge_names=["slotedge","e1","oppedge","e3"],
                         recenter=False)
-    BeamTabSlotHelper(face, "slotedge", width, SlotDrawing, **kwargs)
+    maleFemaleFingerJointHelper(face, "slotedge", width, FemaleFingerJointDrawing, **kwargs)
     return face

@@ -84,7 +84,28 @@ class Drawing():
                 graph and drawing, used to compute the literal values for
                 symbolic coordinates
         """
-        self.place_faces(graph.faces[0], None, np.eye(4))
+        # self.place_faces(graph.faces[0], None, np.eye(4))   ## just print first face. change it to create every graph. ####
+
+
+        ## modified##
+        unplaced_faces = graph.faces
+        # print ("The faces is ", graph.faces)
+        # print ("The unplaced_faces is ",unplaced_faces)
+        while unplaced_faces is not None and len(unplaced_faces) > 0:
+           # print ("The length of unplaced_faces is", len(unplaced_faces))
+           if self.dimensions[1][0] is not None:
+               off_set = eval_equation(self.dimensions[1][0]) + 60 ## offset is added to avoid overlapping for different subcomponent.##
+               # off_set = 150
+               # print "the dimentions is ",self.dimensions
+           else:
+               off_set =0
+           # print "off_set is ",off_set
+           unplaced_faces=self.place_faces(unplaced_faces[0], None, np.eye(4),unplaced_faces,off_set) ## update the unplaced_faces after the combined face is placed. ##
+
+        ## the end of modification. ##
+
+
+
     def add_face(self, vertex_coordinates, allow_overlap=False):
         """Adds a face whose boundary is defined by the vertices in
         vertex_coordinates using right handed convention. If allow_overlap is
@@ -138,8 +159,8 @@ class Drawing():
         self.faces.append(face)
         return True
 
-    def place_faces(self, face, edge_from, transform_2D, placed=None, allow_overlap=False):
-        """Recursively adds faces to the 2D drawing.
+    def place_faces(self, face, edge_from, transform_2D, unplacedFaces,off_set,placed=None, allow_overlap=False):
+        """Recursively adds faces to the 2D drawing.##
 
         Args:
             face: the current face being placed
@@ -149,12 +170,15 @@ class Drawing():
             allow_overlap: Whether or not to allow two face to be placed on top of each other
         """
 
+        print "place faces"
+
         if placed is not None and face in placed['faces']:
             #This face has already been placed, do not place again
-            return
+            return unplacedFaces
 
         if placed is None:
             #No faces have been placed yet, initialize data structures
+            ## to save the placed faces for differentiation. ##
             placed = {'faces': [], 'edges': {}, 'overlapping': []}
             check_for_overlap = not allow_overlap
         else:
@@ -162,26 +186,30 @@ class Drawing():
             check_for_overlap = False
 
         #Will this break if a face has to be flipped?
+        ## find out how to transform the decoration. ##
         for e in face.get_2D_decorations():
                 self.edges[e[0]] = DrawingEdge(e[0], [eval_equation(x) for x in e[1]],
                                         [eval_equation(x) for x in e[2]], EdgeType(e[3]))
-
+        ## edges here is a dictionary, the key is decoration edge name. e is nested list and its first element is the edge name. ##
         """
         Placing faces involves the notion of "pretransformed" and "transformed" values.
         Pretransformation moves the edge a face is being connected by to the x axis,
         and can be thought of as a face's relative position to its neighbor.
         Transformation moves a face to its absolute position in 2D space.
         """
+
         if edge_from is not None:
             #Align connected edges
             pretransform_matrix = face.pre_transform(edge_from)
         else:
             #Place edge as is
             pretransform_matrix = np.eye(4)
+            # print "first element is ",pretransform_matrix
+            pretransform_matrix[0,3] += off_set
 
         transform_matrix = np.dot(transform_2D, pretransform_matrix)
 
-        #4D pts are the homogenous coordinates of the face i.e. [x,y,z,1]
+        #4D pts are the homogeneous coordinates of the face i.e. [x,y,z,1]
         pretransformed_pts_4D = np.dot(pretransform_matrix, face.pts_4D)
         transfromed_pts_4D = np.dot(transform_matrix, face.pts_4D)
 
@@ -214,6 +242,13 @@ class Drawing():
                 return
         #Face is being placed
         placed['faces'].append(face)
+        # print ("the length of placed faces is ",len(placed['faces']))
+
+        ##
+        unplacedFaces.remove(face)
+        # print ("The length of unplacedFaces inside the place_face() is ", len(unplacedFaces))
+        ##
+
         if face in placed['overlapping']:
             placed['overlapping'].remove(face)
 
@@ -258,10 +293,19 @@ class Drawing():
 
             #Place faces connected to edge
             for(f,a) in edge.faces.iteritems():
-                self.place_faces(f, edge, next_transfrom_2D, placed)
+                if unplacedFaces is not None:
+                    # print "the length of unplacedFaces in recursive loop is ", len(unplacedFaces)
+                    unplacedFaces = self.place_faces(f, edge, next_transfrom_2D, unplacedFaces, off_set,placed)
+                    # print 'inside loop'
+
+
         if check_for_overlap and len(placed['overlapping']):
             #Placement has finished, but some edges are still unplaced
             raise Exception('One or more faces could not be placed without overlap!')
+
+        ## return the unplaced faces list
+        # print "returned"
+        return unplacedFaces
 
     def to_DXF(self, filename=None, labels=False, mode="dxf"):
         """
