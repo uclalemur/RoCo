@@ -23,6 +23,7 @@ from roco.api.port import Port
 from roco.api.interface import Interface
 from roco.api.connection import Connection
 from roco.api.parameterized import Parameterized
+from ast import literal_eval as make_tuple
 
 def get_subcomponent_object(component, name=None, **kwargs):
     """Function to generate an instantiated component from the class name.
@@ -131,14 +132,17 @@ class Component(Parameterized):
             The sympy expression.
 
         """
-        if string.lower() == "false" or string.lower() == "true":
-            return string.lower() == "true"
-        expr = math.sympify(string)
-        subs = []
-        for a in expr.atoms(math.Symbol):
-          subs.append((a, self.get_parameter(repr(a))))
-        expr = expr.subs(subs)
-        return expr
+        try:
+            if string.lower() == "false" or string.lower() == "true":
+                return string.lower() == "true"
+            expr = math.sympify(string)
+            subs = []
+            for a in expr.atoms(math.Symbol):
+              subs.append((a, self.get_parameter(repr(a))))
+            expr = expr.subs(subs)
+            return expr
+        except:
+            return string
 
     def _from_yaml(self, file_name):
         """Loads in component information from a YAML file.
@@ -193,11 +197,19 @@ class Component(Parameterized):
 
 
         try:
-          for from_port, to_port, kwargs in definition["connections"]:
-            for param, pvalue in kwargs.iteritems():
-                kwargs[param] = self._str_to_sympy(pvalue)
-            self.add_connection(from_port, to_port, **kwargs)
-        except AttributeError: pass
+            for from_port, to_port, kwargs in definition["connections"]:
+                for param, pvalue in kwargs.iteritems():
+                    try:
+                        pvaluetup = make_tuple(pvalue)
+                        if isinstance(pvaluetup, tuple):
+                            kwargs[param] = tuple(self._str_to_sympy(x) for x in pvaluetup)
+                        else:
+                            kwargs[param] = self._str_to_sympy(pvalue)
+                    except:
+                        kwargs[param] = self._str_to_sympy(pvalue)
+                self.add_connection(from_port, to_port, **kwargs)
+        except AttributeError as e:
+            pass
 
         try:
           for name, value in definition["interfaces"].iteritems():
@@ -226,6 +238,12 @@ class Component(Parameterized):
         sc = {"class": object_type, "parameters": {}, "constants": kwargs, "component": None}
         self.subcomponents.setdefault(name, sc)
         self.resolve_subcomponent(name)
+        if 'flip' in kwargs and kwargs['flip']:
+            self.subcomponents[name]['component'].flip()
+
+    def flip(self):
+        if 'graph' in self.composables:
+            self.composables['graph'].flip()
 
     def del_subcomponent(self, name):
         """Deletes a subcomponent to this Component and performs any cleanup necessary
