@@ -44,6 +44,7 @@ class HyperEdge(object):
         self.pts_3D = None
         self.edge_type = "FOLD"
         self.joints = []
+        self.flipped = False
 
         if face:
             self.faces = {face: (angle, flip)}
@@ -134,7 +135,9 @@ class HyperEdge(object):
         """
         if face in self.faces:
             oldangle = self.faces[face]
-            self.faces[face] = (oldangle[0], not oldangle[1])
+            print self.faces[face]
+            self.faces[face] = (-oldangle[0], not oldangle[1])
+            print self.faces[face]
 
     def join(self, length, face, from_face=None, angle = 0, flip = True):
         """Join a new face to the edge
