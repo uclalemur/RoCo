@@ -174,7 +174,7 @@ class FaceEdgeGraph(object):
         self.rebuild_edges()
         return self
 
-    def attach_face(self, from_edge, new_face, new_edge, prefix=None, angle=0, edge_type=None, joints=None):
+    def attach_face(self, from_edge, new_face, new_edge, prefix=None, angle=0, edge_type=None, joints=None, tab_width=None):
         """
         Attaches a face to the graph object, merging edges if necessary.
 
@@ -186,13 +186,14 @@ class FaceEdgeGraph(object):
             angle (numeric): the angle of connection between the edges
             edge_type (str): the type of edge("FOLD", "CUT", "JOINT")
             joints (list): list of joints to add to the new edge
+            tab_width (numeric): the width of a tab to add or None
         """
         # XXX should set angle from a face, not absolute angle of the face
         self.add_face(new_face, prefix)
 
         if from_edge is not None:
           new_edge = prefix_string(prefix, new_edge)
-          self.merge_edge(from_edge, new_edge, angle=angle, edge_type=edge_type, joints=joints)
+          self.merge_edge(from_edge, new_edge, tab_width=tab_width, angle=angle, edge_type=edge_type, joints=joints)
 
     def del_face(self, facename):
         """
@@ -299,7 +300,7 @@ class FaceEdgeGraph(object):
         """
         self.merge_edge(edge1, edge2, angle=angle, tab_width=width)
 
-    def merge_edge(self, edge1, edge2, angle=0, tab_width=None, edge_type=None, joints=None, flip=True):
+    def merge_edge(self, edge1, edge2, angle=0, tab_width=None, edge_type=None, joints=None):
         """
         Merges two edges in the graph
 
@@ -318,7 +319,7 @@ class FaceEdgeGraph(object):
         if e2 is None:
           raise AttributeError("Edge not found: " + edge2)
 
-        if len(e2.faces) > 1 or not flip:
+        if len(e2.faces) > 1:
           #print "Adding third edge"
           e2.merge_with(e1, angle=angle, flip=False, tab_width=tab_width)
         else:

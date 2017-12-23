@@ -55,8 +55,10 @@ class RectBeam(FoldedComponent):
 
     from_edge = None
     for i in faces or range(4):
-      self.attach_face(from_edge, rs[i], "e3", prefix="r%d"%i, angle=90)
-      print self.composables['graph'].edges
+      tw = None
+#      if i == 3:
+#        tw = 10
+      self.attach_face(from_edge, rs[i], "e3", prefix="r%d"%i, angle=90, tab_width=tw)
       from_edge = prefix('r%d' % i,'e1')
 
     '''if faces is False:

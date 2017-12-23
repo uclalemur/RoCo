@@ -161,11 +161,6 @@ class Drawing():
             #Overlap checking is handled only in top level call
             check_for_overlap = False
 
-        #Will this break if a face has to be flipped?
-        for e in face.get_2D_decorations():
-                self.edges[e[0]] = DrawingEdge(e[0], [eval_equation(x) for x in e[1]],
-                                        [eval_equation(x) for x in e[2]], EdgeType(e[3]))
-
         """
         Placing faces involves the notion of "pretransformed" and "transformed" values.
         Pretransformation moves the edge a face is being connected by to the x axis,
@@ -216,6 +211,14 @@ class Drawing():
         placed['faces'].append(face)
         if face in placed['overlapping']:
             placed['overlapping'].remove(face)
+
+        face.transform_2D = transform_matrix
+        #Will this break if a face has to be flipped?
+        ## find out how to transform the decoration. ##
+        for e in face.get_2D_decorations():
+                self.edges[e[0]] = DrawingEdge(e[0], [eval_equation(x) for x in e[1]],
+                                        [eval_equation(x) for x in e[2]], EdgeType(e[3]))
+        ## edges here is a dictionary, the key is decoration edge name. e is nested list and its first element is the edge name. ##
 
         #Place each edge
         for (i, edge) in enumerate(face.edges):
