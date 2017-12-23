@@ -23,7 +23,7 @@ To update documentation:
 
 Installation
 ------------
-1. Clone this repository: 'git clone git@git.uclalemur.com:RobotCompiler/roco.git'
+1. Clone this repository: 'git clone https://github.com/uclalemur/roco.git'
 2. Install dependencies: 'pip install -r requirements.txt'
 3. Add this directory to path: 'export PYTHONPATH=$PYTHONPATH:/path/to/this/dir'
 4. Verify installation: 'python roco/tests/test_parameterized.py'
