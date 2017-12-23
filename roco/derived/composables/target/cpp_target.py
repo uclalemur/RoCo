@@ -36,6 +36,22 @@ class Cpp(Target):
         """
         return token[2:-2]
 
+    def eval_output(self, parameters):
+        self.replace_all_params(parameters)
+
+    def restore_params(self, str, parameters):
+        p = compile("@@param@@(.*?)@@")
+        matches = p.findall(str)
+        for i in matches:
+            str = str.replace("@@param@@{}@@".format(i), parameters[i].get_value())
+        return str
+
+    def replace_all_params(self, parameters):
+        self.meta["code"] = self.restore_params(self.meta["code"], parameters)
+        self.meta["declarations"] = self.restore_params(self.meta["declarations"], parameters)
+        for k, v in self.meta["outputs"].iteritems():
+            self.meta["outputs"][k] = self.restore_params(v, parameters)
+
     @staticmethod
     def new():
         """Returns a new empty meta dictionary.
