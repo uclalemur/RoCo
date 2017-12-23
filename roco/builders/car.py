@@ -4,7 +4,7 @@ from roco.library import get_component
 
 c = Component(name = 'Car')
 c.add_subcomponent('DrivenServo0', 'DrivenServo')
-c.add_subcomponent('DrivenServo1', 'DrivenServo1|')
+c.add_subcomponent('DrivenServo1', 'DrivenServo')
 c.add_subcomponent('DrivenServo2', 'DrivenServo')
 c.add_subcomponent('DrivenServo3', 'DrivenServo')
 c.add_subcomponent('node_mcu0', 'node_mcu')

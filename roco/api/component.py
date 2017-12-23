@@ -43,13 +43,16 @@ def get_subcomponent_object(component, name=None, **kwargs):
         c.set_name(name)
         return c
     except AttributeError:
-        obj = try_import(component, component.upper())
-        c = obj(name=name, **kwargs)
-        c.set_name(name)
-        return c
+        try:
+            obj = try_import(component, component.upper())
+            c = obj(name=name, **kwargs)
+            c.set_name(name)
+            return c
+        except AttributeError:
+            c = Component(component, name, **kwargs)
+            return c
     except ImportError:
-        c = Component(component, **kwargs)
-        c.set_name(name)
+        c = Component(component, name, **kwargs)
         return c
 
 
