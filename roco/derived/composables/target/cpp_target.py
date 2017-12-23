@@ -6,7 +6,7 @@ the data within the Code Composable into C++.
 """
 
 from roco.derived.composables.target.target import Target
-from re import findall
+from re import findall, compile
 
 class Cpp(Target):
 
@@ -162,7 +162,7 @@ class Cpp(Target):
         self.meta["inputs"].update(new_meta["inputs"])
         self.meta["outputs"].update(new_meta["outputs"])
         self.meta["needs"].update(new_meta["needs"])
-        self.meta["declarations"] += new_meta["declarations"]
+        self.meta["declarations"] += (new_meta["declarations"] + "\n")
         return self.meta
 
     def get_inputs(self, output_label):
