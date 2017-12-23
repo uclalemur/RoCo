@@ -6,7 +6,7 @@ the data within the Code Composable into C++.
 """
 
 from roco.derived.composables.target.target import Target
-from re import findall
+from re import findall, compile
 
 class Cpp(Target):
 
@@ -35,6 +35,22 @@ class Cpp(Target):
 
         """
         return token[2:-2]
+
+    def eval_output(self, parameters):
+        self.replace_all_params(parameters)
+
+    def restore_params(self, str, parameters):
+        p = compile("@@param@@(.*?)@@")
+        matches = p.findall(str)
+        for i in matches:
+            str = str.replace("@@param@@{}@@".format(i), parameters[i].get_value())
+        return str
+
+    def replace_all_params(self, parameters):
+        self.meta["code"] = self.restore_params(self.meta["code"], parameters)
+        self.meta["declarations"] = self.restore_params(self.meta["declarations"], parameters)
+        for k, v in self.meta["outputs"].iteritems():
+            self.meta["outputs"][k] = self.restore_params(v, parameters)
 
     @staticmethod
     def new():
@@ -146,7 +162,7 @@ class Cpp(Target):
         self.meta["inputs"].update(new_meta["inputs"])
         self.meta["outputs"].update(new_meta["outputs"])
         self.meta["needs"].update(new_meta["needs"])
-        self.meta["declarations"] += new_meta["declarations"]
+        self.meta["declarations"] += (new_meta["declarations"] + "\n")
         return self.meta
 
     def get_inputs(self, output_label):

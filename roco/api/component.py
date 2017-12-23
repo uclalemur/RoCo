@@ -43,13 +43,16 @@ def get_subcomponent_object(component, name=None, **kwargs):
         c.set_name(name)
         return c
     except AttributeError:
-        obj = try_import(component, component.upper())
-        c = obj(name=name, **kwargs)
-        c.set_name(name)
-        return c
+        try:
+            obj = try_import(component, component.upper())
+            c = obj(name=name, **kwargs)
+            c.set_name(name)
+            return c
+        except AttributeError:
+            c = Component(component, name, **kwargs)
+            return c
     except ImportError:
-        c = Component(component, **kwargs)
-        c.set_name(name)
+        c = Component(component, name, **kwargs)
         return c
 
 
@@ -837,6 +840,15 @@ class Component(Parameterized):
             graph.add_edge(edge)
             sub.recurse_component_tree(graph, subnode, fullstr)
 
+    def eval_output(self):
+        """Solves output for code and electrical components based on parameters
+        
+
+        """
+        for name, composable in self.composables.iteritems():
+            if name == "code":
+                composable.eval_output(self.parameters)
+
     def make_output(self, file_dir=".", **kwargs):
         """Creates output based on the kwargs
 
@@ -852,6 +864,8 @@ class Component(Parameterized):
 
         print "Compiling robot designs..."
         sys.stdout.flush()
+        for name, comp in self.subcomponents.iteritems():
+            comp["component"].eval_output()
         if kw("remake", True):
             self.make()
         print "done."

@@ -79,6 +79,10 @@ class CodeComposable(VirtualComposable):
 
         self.components = self.components.union(new_composable.components)
 
+    def eval_output(self, parameters):
+        for target, meta in self.meta.iteritems():
+            target(self, meta).eval_output(parameters)
+
     def sub_parameter(self, token, value):
         """Sets the subParameter for each target supported by the composable
 

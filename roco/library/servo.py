@@ -12,8 +12,8 @@ class Servo(ElectricalComponent):
         self.physical =  {
             "numPins": 3,
             "power": {
-                "Vin": [1],
-                "Ground": [0]
+                "Vin": [0],
+                "Ground": [1]
             },
             "aliases": ["Vin", "ground", "PWMin"]
         }
