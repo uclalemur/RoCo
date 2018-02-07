@@ -136,7 +136,7 @@ class HyperEdge(object):
         if face in self.faces:
             oldangle = self.faces[face]
             print self.faces[face]
-            self.faces[face] = (-oldangle[0], not oldangle[1])
+            self.faces[face] = (-oldangle[0], oldangle[1])
             print self.faces[face]
 
     def join(self, length, face, from_face=None, angle = 0, flip = True):
