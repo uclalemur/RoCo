@@ -1,1051 +1,408 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>library Package &#8212; roco 1.0 documentation</title>
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="author" title="About these documents" href="about.html" />
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="tests Package" href="roco.tests.html" />
-    <link rel="prev" title="utils Package" href="roco.derived.utils.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="roco.tests.html" title="tests Package"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="roco.derived.utils.html" title="utils Package"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">roco 1.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="roco.html" accesskey="U">roco Package</a> &#187;</li> 
-      </ul>
-    </div>  
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>library Package &mdash; roco 1.0 documentation</title>
+  
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="about.html"/>
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="roco 1.0 documentation" href="index.html"/>
+        <link rel="up" title="roco Package" href="roco.html"/>
+        <link rel="next" title="tests Package" href="roco.tests.html"/>
+        <link rel="prev" title="utils Package" href="roco.derived.utils.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> roco
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Roco Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">Project Summary</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="roco.html">roco Package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="roco.html#id1"><code class="docutils literal notranslate"><span class="pre">roco</span></code> Package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="roco.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="roco.api.html">api Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="roco.builders.html">builders Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="roco.derived.html">derived Package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">library Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">library</span></code> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#android-module"><code class="docutils literal notranslate"><span class="pre">Android</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#constant-module"><code class="docutils literal notranslate"><span class="pre">Constant</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pentagon-module"><code class="docutils literal notranslate"><span class="pre">Pentagon</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rectbeam-module"><code class="docutils literal notranslate"><span class="pre">RectBeam</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rectangle-module"><code class="docutils literal notranslate"><span class="pre">Rectangle</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#square-module"><code class="docutils literal notranslate"><span class="pre">Square</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trapezoid-module"><code class="docutils literal notranslate"><span class="pre">Trapezoid</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trapezoid2-module"><code class="docutils literal notranslate"><span class="pre">Trapezoid2</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#triangle-module"><code class="docutils literal notranslate"><span class="pre">Triangle</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bool-duplicator-in-module"><code class="docutils literal notranslate"><span class="pre">bool_duplicator_in</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bool-duplicator-out-module"><code class="docutils literal notranslate"><span class="pre">bool_duplicator_out</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#button-module"><code class="docutils literal notranslate"><span class="pre">button</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cutout-module"><code class="docutils literal notranslate"><span class="pre">cutout</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#driver-module"><code class="docutils literal notranslate"><span class="pre">driver</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fto-int-multiplexer-module"><code class="docutils literal notranslate"><span class="pre">fto_int_multiplexer</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gain-block-module"><code class="docutils literal notranslate"><span class="pre">gain_block</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#header-module"><code class="docutils literal notranslate"><span class="pre">header</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#int-duplicator-in-module"><code class="docutils literal notranslate"><span class="pre">int_duplicator_in</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#int-duplicator-out-module"><code class="docutils literal notranslate"><span class="pre">int_duplicator_out</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#led-module"><code class="docutils literal notranslate"><span class="pre">led</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#node-mcu-module"><code class="docutils literal notranslate"><span class="pre">node_mcu</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pot-module"><code class="docutils literal notranslate"><span class="pre">pot</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pot-driver-module"><code class="docutils literal notranslate"><span class="pre">pot_driver</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reverse-string-module"><code class="docutils literal notranslate"><span class="pre">reverse_string</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#serial-in-module"><code class="docutils literal notranslate"><span class="pre">serial_in</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#serial-to-string-module"><code class="docutils literal notranslate"><span class="pre">serial_to_string</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#servo-module"><code class="docutils literal notranslate"><span class="pre">servo</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#servo-driver-module"><code class="docutils literal notranslate"><span class="pre">servo_driver</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sort-string-module"><code class="docutils literal notranslate"><span class="pre">sort_string</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#str-duplicator-in-module"><code class="docutils literal notranslate"><span class="pre">str_duplicator_in</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#str-duplicator-out-module"><code class="docutils literal notranslate"><span class="pre">str_duplicator_out</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#string-compare-module"><code class="docutils literal notranslate"><span class="pre">string_compare</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#string-source-module"><code class="docutils literal notranslate"><span class="pre">string_source</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#string-to-motor-module"><code class="docutils literal notranslate"><span class="pre">string_to_motor</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#template-component-module"><code class="docutils literal notranslate"><span class="pre">template_component</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#user-toggle-module"><code class="docutils literal notranslate"><span class="pre">user_toggle</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="roco.tests.html">tests Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="roco.utils.html">utils Package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">roco</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="roco.html">roco Package</a> &raquo;</li>
+        
+      <li>library Package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/roco.library.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="library-package">
 <h1>library Package<a class="headerlink" href="#library-package" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
 <h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">library</span></code> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-roco.library"></span><p>The library package.</p>
-<p>This package contains prebuilt components that can be loaded by roco
-to create output.</p>
-<dl class="class">
-<dt id="roco.library.ComponentQueryItem">
-<em class="property">class </em><code class="descclassname">roco.library.</code><code class="descname">ComponentQueryItem</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.ComponentQueryItem" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
-<dt id="roco.library.ComponentQueryItem.gen_composables">
-<code class="descname">gen_composables</code><span class="sig-paren">(</span><em>rows</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.ComponentQueryItem.gen_composables" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="roco.library.ComponentQueryItem.gen_interface">
-<code class="descname">gen_interface</code><span class="sig-paren">(</span><em>rows</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.ComponentQueryItem.gen_interface" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="roco.library.ComponentQueryItem.gen_parameters">
-<code class="descname">gen_parameters</code><span class="sig-paren">(</span><em>rows</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.ComponentQueryItem.gen_parameters" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="roco.library.ComponentQueryItem.get_name">
-<code class="descname">get_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.ComponentQueryItem.get_name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="function">
-<dt id="roco.library.build_database">
-<code class="descclassname">roco.library.</code><code class="descname">build_database</code><span class="sig-paren">(</span><em>components</em>, <em>username='root'</em>, <em>password=''</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.build_database" title="Permalink to this definition">¶</a></dt>
-<dd><p>Saves critical data about the passed in components in the database.
-Use with filterComponents()</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>components: An array of Component objects that will be saved to the database
-username (str): Username for the MySQL server. Default is “root”
-password (str): Password for the MySQL server. Default is empty string “”</dd>
-<dt>Returns:</dt>
-<dd>Nothing</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="roco.library.filter_components">
-<code class="descclassname">roco.library.</code><code class="descname">filter_components</code><span class="sig-paren">(</span><em>composable_type=['all'], verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.filter_components" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates all the components in the allComponents list, looks through them for
-components which have the specified composable type, and returns a list of those</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>composable_type: An array of keywords corresponding to specific composable types. Ex: “code” for “CodeComposable” To view the possible strings for composable_type, call filterComponents with its default parameter and look at the key values of Component.composables for all the Component objects in the array the function returns. Default value is “all”. This populates the array with ComponentQueryItems of related to all composables.</dd>
-<dt>Returns:</dt>
-<dd>Array of Component objects which have the specified composable type</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="roco.library.filter_database">
-<code class="descclassname">roco.library.</code><code class="descname">filter_database</code><span class="sig-paren">(</span><em>composable_type=['all'], verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.filter_database" title="Permalink to this definition">¶</a></dt>
-<dd><p>Looks through database for components which have the specified composable type</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>composable_type: The keyword corresponding to a specific composable type. Ex: “code” for “CodeComposable” Default value is “all”. This populates the array with ComponentQueryItems of related to all composables.</dd>
-<dt>Returns:</dt>
-<dd>Array of ComponentQueryItems populated with all the components in the
-database which had the specified composable type</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="roco.library.get_component">
-<code class="descclassname">roco.library.</code><code class="descname">get_component</code><span class="sig-paren">(</span><em>c</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.get_component" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.library.get_lib_dir">
-<code class="descclassname">roco.library.</code><code class="descname">get_lib_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.get_lib_dir" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.library.init_database">
-<code class="descclassname">roco.library.</code><code class="descname">init_database</code><span class="sig-paren">(</span><em>c</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.init_database" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initalizes the database and populates it with the necessary tables.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>c: cursor object of python database connection object</dd>
-<dt>Returns:</dt>
-<dd>Nothing</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="roco.library.instance_of">
-<code class="descclassname">roco.library.</code><code class="descname">instance_of</code><span class="sig-paren">(</span><em>comp</em>, <em>composable_type</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.instance_of" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.library.query_database">
-<code class="descclassname">roco.library.</code><code class="descname">query_database</code><span class="sig-paren">(</span><em>component</em>, <em>username='root'</em>, <em>password=''</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.query_database" title="Permalink to this definition">¶</a></dt>
-<dd><p>Look through the database and get a ComponentQueryItem that corresponds to
-component Object required</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>component: The name of the component. The value returned when Component.getName() is called. (STRING)
-username: Username for the MySQL server. Default is “root” (STRING)
-password: Password for the MySQL server. Default is empty string “” (STRING)
-verbose: If True, the function outputs a more detailed error message when a databse query fails. Default is False. (BOOLEAN)</dd>
-<dt>Returns:</dt>
-<dd>ComponentQueryItem</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="roco.library.update_component_lists">
-<code class="descclassname">roco.library.</code><code class="descname">update_component_lists</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.update_component_lists" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.library.write_composables">
-<code class="descclassname">roco.library.</code><code class="descname">write_composables</code><span class="sig-paren">(</span><em>comp</em>, <em>comp_id</em>, <em>c</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.write_composables" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes all the composables associated with a component to the database.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>comp: Component object
-comp_id: Primary key id of the component object in the database (INTEGER)
-c: cursor object of python database connection object</dd>
-<dt>Returns:</dt>
-<dd>Nothing</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="roco.library.write_interfaces">
-<code class="descclassname">roco.library.</code><code class="descname">write_interfaces</code><span class="sig-paren">(</span><em>comp</em>, <em>comp_id</em>, <em>c</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.write_interfaces" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes all the interfaces of a component to the database. If a component is
-composite, recursion is used to link the interfaces of subcomponents with
-the one passed in as an argument.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>comp: Component object
-comp_id: Primary key id of the component object in the database (INTEGER)
-c: cursor object of python database connection object</dd>
-<dt>Returns:</dt>
-<dd>Nothing</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="roco.library.write_parameters">
-<code class="descclassname">roco.library.</code><code class="descname">write_parameters</code><span class="sig-paren">(</span><em>comp</em>, <em>comp_id</em>, <em>c</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.write_parameters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes all the parameters of a component to the database.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>comp: Component object
-comp_id: Primary key id of the component object in the database (INTEGER)
-c: cursor object of python database connection object</dd>
-<dt>Returns:</dt>
-<dd>Nothing</dd>
-</dl>
-</dd></dl>
-
 </div>
 <div class="section" id="android-module">
 <h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">Android</span></code> Module<a class="headerlink" href="#android-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.Pentagon">
-<span id="pentagon-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">Pentagon</span></code> Module<a class="headerlink" href="#module-roco.library.Pentagon" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.Pentagon.Pentagon">
-<em class="property">class </em><code class="descclassname">roco.library.Pentagon.</code><code class="descname">Pentagon</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.Pentagon.Pentagon" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.derived.components.html#roco.derived.components.folded_component.FoldedComponent" title="roco.derived.components.folded_component.FoldedComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.components.folded_component.FoldedComponent</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.Pentagon.Pentagon.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.Pentagon.Pentagon.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assembles the component</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.Pentagon.Pentagon.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.Pentagon.Pentagon.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function that defines the state of a FoldedComponent</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>origin (bool): whether component starts at the origin or not
-euler (bool): whether to use euler angles to represent rotation or not
-quat (bool): whether to use quaternions to represent rotation or not
-<a href="#id2"><span class="problematic" id="id3">**</span></a>kwargs (dict): arbitrary keyword arguments for define</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="constant-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">Constant</span></code> Module<a class="headerlink" href="#constant-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.RectBeam">
-<span id="rectbeam-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">RectBeam</span></code> Module<a class="headerlink" href="#module-roco.library.RectBeam" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.RectBeam.RectBeam">
-<em class="property">class </em><code class="descclassname">roco.library.RectBeam.</code><code class="descname">RectBeam</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.RectBeam.RectBeam" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.derived.components.html#roco.derived.components.folded_component.FoldedComponent" title="roco.derived.components.folded_component.FoldedComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.components.folded_component.FoldedComponent</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.RectBeam.RectBeam.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.RectBeam.RectBeam.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assembles the component</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.RectBeam.RectBeam.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.RectBeam.RectBeam.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function that defines the state of a FoldedComponent</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>origin (bool): whether component starts at the origin or not
-euler (bool): whether to use euler angles to represent rotation or not
-quat (bool): whether to use quaternions to represent rotation or not
-<a href="#id4"><span class="problematic" id="id5">**</span></a>kwargs (dict): arbitrary keyword arguments for define</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="pentagon-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">Pentagon</span></code> Module<a class="headerlink" href="#pentagon-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.Rectangle">
-<span id="rectangle-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">Rectangle</span></code> Module<a class="headerlink" href="#module-roco.library.Rectangle" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.Rectangle.Rectangle">
-<em class="property">class </em><code class="descclassname">roco.library.Rectangle.</code><code class="descname">Rectangle</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.Rectangle.Rectangle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.derived.components.html#roco.derived.components.folded_component.FoldedComponent" title="roco.derived.components.folded_component.FoldedComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.components.folded_component.FoldedComponent</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.Rectangle.Rectangle.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.Rectangle.Rectangle.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assembles the component</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.Rectangle.Rectangle.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.Rectangle.Rectangle.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function that defines the state of a FoldedComponent</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>origin (bool): whether component starts at the origin or not
-euler (bool): whether to use euler angles to represent rotation or not
-quat (bool): whether to use quaternions to represent rotation or not
-<a href="#id6"><span class="problematic" id="id7">**</span></a>kwargs (dict): arbitrary keyword arguments for define</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="rectbeam-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">RectBeam</span></code> Module<a class="headerlink" href="#rectbeam-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.Square">
-<span id="square-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">Square</span></code> Module<a class="headerlink" href="#module-roco.library.Square" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.Square.Square">
-<em class="property">class </em><code class="descclassname">roco.library.Square.</code><code class="descname">Square</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.Square.Square" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.derived.components.html#roco.derived.components.folded_component.FoldedComponent" title="roco.derived.components.folded_component.FoldedComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.components.folded_component.FoldedComponent</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.Square.Square.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.Square.Square.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assembles the component</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.Square.Square.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.Square.Square.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function that defines the state of a FoldedComponent</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>origin (bool): whether component starts at the origin or not
-euler (bool): whether to use euler angles to represent rotation or not
-quat (bool): whether to use quaternions to represent rotation or not
-<a href="#id8"><span class="problematic" id="id9">**</span></a>kwargs (dict): arbitrary keyword arguments for define</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="rectangle-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">Rectangle</span></code> Module<a class="headerlink" href="#rectangle-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.Trapezoid">
-<span id="trapezoid-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">Trapezoid</span></code> Module<a class="headerlink" href="#module-roco.library.Trapezoid" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.Trapezoid.Trapezoid">
-<em class="property">class </em><code class="descclassname">roco.library.Trapezoid.</code><code class="descname">Trapezoid</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.Trapezoid.Trapezoid" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.derived.components.html#roco.derived.components.folded_component.FoldedComponent" title="roco.derived.components.folded_component.FoldedComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.components.folded_component.FoldedComponent</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.Trapezoid.Trapezoid.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.Trapezoid.Trapezoid.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assembles the component</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.Trapezoid.Trapezoid.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.Trapezoid.Trapezoid.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function that defines the state of a FoldedComponent</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>origin (bool): whether component starts at the origin or not
-euler (bool): whether to use euler angles to represent rotation or not
-quat (bool): whether to use quaternions to represent rotation or not
-<a href="#id10"><span class="problematic" id="id11">**</span></a>kwargs (dict): arbitrary keyword arguments for define</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="square-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">Square</span></code> Module<a class="headerlink" href="#square-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.Trapezoid2">
-<span id="trapezoid2-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">Trapezoid2</span></code> Module<a class="headerlink" href="#module-roco.library.Trapezoid2" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.Trapezoid2.Trapezoid2">
-<em class="property">class </em><code class="descclassname">roco.library.Trapezoid2.</code><code class="descname">Trapezoid2</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.Trapezoid2.Trapezoid2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.derived.components.html#roco.derived.components.folded_component.FoldedComponent" title="roco.derived.components.folded_component.FoldedComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.components.folded_component.FoldedComponent</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.Trapezoid2.Trapezoid2.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.Trapezoid2.Trapezoid2.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assembles the component</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.Trapezoid2.Trapezoid2.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.Trapezoid2.Trapezoid2.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function that defines the state of a FoldedComponent</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>origin (bool): whether component starts at the origin or not
-euler (bool): whether to use euler angles to represent rotation or not
-quat (bool): whether to use quaternions to represent rotation or not
-<a href="#id12"><span class="problematic" id="id13">**</span></a>kwargs (dict): arbitrary keyword arguments for define</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="trapezoid-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">Trapezoid</span></code> Module<a class="headerlink" href="#trapezoid-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.Triangle">
-<span id="triangle-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">Triangle</span></code> Module<a class="headerlink" href="#module-roco.library.Triangle" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.Triangle.Triangle">
-<em class="property">class </em><code class="descclassname">roco.library.Triangle.</code><code class="descname">Triangle</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.Triangle.Triangle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.derived.components.html#roco.derived.components.folded_component.FoldedComponent" title="roco.derived.components.folded_component.FoldedComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.components.folded_component.FoldedComponent</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.Triangle.Triangle.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.Triangle.Triangle.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assembles the component</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.Triangle.Triangle.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.Triangle.Triangle.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function that defines the state of a FoldedComponent</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>origin (bool): whether component starts at the origin or not
-euler (bool): whether to use euler angles to represent rotation or not
-quat (bool): whether to use quaternions to represent rotation or not
-<a href="#id14"><span class="problematic" id="id15">**</span></a>kwargs (dict): arbitrary keyword arguments for define</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="trapezoid2-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">Trapezoid2</span></code> Module<a class="headerlink" href="#trapezoid2-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.button">
-<span id="button-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">button</span></code> Module<a class="headerlink" href="#module-roco.library.button" title="Permalink to this headline">¶</a></h2>
-<p>class Button(ElectricalComponent):</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>def __init__(self, yamlFile=None, <a href="#id16"><span class="problematic" id="id17">**</span></a>kwargs):</dt>
-<dd>ElectricalComponent.__init__(self, yamlFile, <a href="#id18"><span class="problematic" id="id19">**</span></a>kwargs)</dd>
-<dt>def define(self, <a href="#id20"><span class="problematic" id="id21">**</span></a>kwargs):</dt>
-<dd><dl class="first docutils">
-<dt>self.physical = {</dt>
-<dd>“pin1”: None,
-“pin2”: None</dd>
-</dl>
-<p>}</p>
-<p>self.addInterface(“ein”, ElectricalPort(self, “ein”, [“pin1”]))
-self.addInterface(“eout”, ElectricalPort(self, “eout”, [“pin2”]))</p>
-<p class="last">ElectricalComponent.define(self)</p>
-</dd>
-<dt>def assemble(self):</dt>
-<dd>ElectricalComponent.assemble(self)</dd>
-</dl>
-</div></blockquote>
-<dl class="class">
-<dt id="roco.library.button.Button">
-<em class="property">class </em><code class="descclassname">roco.library.button.</code><code class="descname">Button</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>name=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.button.Button" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.derived.components.html#roco.derived.components.electrical_component.ElectricalComponent" title="roco.derived.components.electrical_component.ElectricalComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.components.electrical_component.ElectricalComponent</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.button.Button.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.button.Button.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function for overriding interfaces.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><a href="#id22"><span class="problematic" id="id23">**</span></a>kwargs: Arbitrary keyword arguments</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="triangle-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">Triangle</span></code> Module<a class="headerlink" href="#triangle-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.cutout">
-<span id="cutout-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">cutout</span></code> Module<a class="headerlink" href="#module-roco.library.cutout" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.cutout.Cutout">
-<em class="property">class </em><code class="descclassname">roco.library.cutout.</code><code class="descname">Cutout</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>name=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.cutout.Cutout" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.api.html#roco.api.component.Component" title="roco.api.component.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.api.component.Component</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.cutout.Cutout.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.cutout.Cutout.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assembles the component</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.cutout.Cutout.define">
-<code class="descname">define</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.cutout.Cutout.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function for overriding interfaces.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><a href="#id24"><span class="problematic" id="id25">**</span></a>kwargs: Arbitrary keyword arguments</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="bool-duplicator-in-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">bool_duplicator_in</span></code> Module<a class="headerlink" href="#bool-duplicator-in-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.driver">
-<span id="driver-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">driver</span></code> Module<a class="headerlink" href="#module-roco.library.driver" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.driver.Driver">
-<em class="property">class </em><code class="descclassname">roco.library.driver.</code><code class="descname">Driver</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.driver.Driver" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.derived.components.html#roco.derived.components.code_component.CodeComponent" title="roco.derived.components.code_component.CodeComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.components.code_component.CodeComponent</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.driver.Driver.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.driver.Driver.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assemble the component by merging the code of all subcomponents together
-into one CodeComposable</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.driver.Driver.get_pin_alias">
-<code class="descname">get_pin_alias</code><span class="sig-paren">(</span><em>pin</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.driver.Driver.get_pin_alias" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="roco.library.driver.Driver.get_token_subs">
-<code class="descname">get_token_subs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.driver.Driver.get_token_subs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a dictionary containing all key value pairs for parameters.</p>
-<dl class="docutils">
-<dt>Returns:</dt>
-<dd>Dictionary of all parameters and their values</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.driver.Driver.set_pin_parameter">
-<code class="descname">set_pin_parameter</code><span class="sig-paren">(</span><em>pin_names</em>, <em>pin_values</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.driver.Driver.set_pin_parameter" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<div class="section" id="bool-duplicator-out-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">bool_duplicator_out</span></code> Module<a class="headerlink" href="#bool-duplicator-out-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.gain_block">
-<span id="gain-block-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">gain_block</span></code> Module<a class="headerlink" href="#module-roco.library.gain_block" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.gain_block.Gain">
-<em class="property">class </em><code class="descclassname">roco.library.gain_block.</code><code class="descname">Gain</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.gain_block.Gain" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.derived.components.html#roco.derived.components.code_component.CodeComponent" title="roco.derived.components.code_component.CodeComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.components.code_component.CodeComponent</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.gain_block.Gain.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.gain_block.Gain.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assemble the component by merging the code of all subcomponents together
-into one CodeComposable</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.gain_block.Gain.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.gain_block.Gain.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function for overriding interfaces.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><a href="#id26"><span class="problematic" id="id27">**</span></a>kwargs: Arbitrary keyword arguments</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="button-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">button</span></code> Module<a class="headerlink" href="#button-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.header">
-<span id="header-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">header</span></code> Module<a class="headerlink" href="#module-roco.library.header" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.header.Header">
-<em class="property">class </em><code class="descclassname">roco.library.header.</code><code class="descname">Header</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>name=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.header.Header" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.api.html#roco.api.component.Component" title="roco.api.component.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.api.component.Component</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.header.Header.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.header.Header.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assembles the component</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.header.Header.define">
-<code class="descname">define</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.header.Header.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function for overriding interfaces.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><a href="#id28"><span class="problematic" id="id29">**</span></a>kwargs: Arbitrary keyword arguments</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="cutout-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">cutout</span></code> Module<a class="headerlink" href="#cutout-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.led">
-<span id="led-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">led</span></code> Module<a class="headerlink" href="#module-roco.library.led" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.led.LED">
-<em class="property">class </em><code class="descclassname">roco.library.led.</code><code class="descname">LED</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>name=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.led.LED" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.derived.components.html#roco.derived.components.electrical_component.ElectricalComponent" title="roco.derived.components.electrical_component.ElectricalComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.components.electrical_component.ElectricalComponent</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.led.LED.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.led.LED.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assemble the component by merging the code of all subcomponents together
-into one ElectricalComposable</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.led.LED.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.led.LED.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function for overriding interfaces.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><a href="#id30"><span class="problematic" id="id31">**</span></a>kwargs: Arbitrary keyword arguments</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="driver-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">driver</span></code> Module<a class="headerlink" href="#driver-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.node_mcu">
-<span id="node-mcu-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">node_mcu</span></code> Module<a class="headerlink" href="#module-roco.library.node_mcu" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.node_mcu.NodeMcu">
-<em class="property">class </em><code class="descclassname">roco.library.node_mcu.</code><code class="descname">NodeMcu</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>name=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.node_mcu.NodeMcu" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.api.html#roco.api.component.Component" title="roco.api.component.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.api.component.Component</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.node_mcu.NodeMcu.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.node_mcu.NodeMcu.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assembles the component</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.node_mcu.NodeMcu.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.node_mcu.NodeMcu.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function for overriding interfaces.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><a href="#id32"><span class="problematic" id="id33">**</span></a>kwargs: Arbitrary keyword arguments</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.node_mcu.NodeMcu.get_pin_alias">
-<code class="descname">get_pin_alias</code><span class="sig-paren">(</span><em>pin</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.node_mcu.NodeMcu.get_pin_alias" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="roco.library.node_mcu.NodeMcu.get_pin_indices">
-<code class="descname">get_pin_indices</code><span class="sig-paren">(</span><em>pins</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.node_mcu.NodeMcu.get_pin_indices" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="roco.library.node_mcu.NodeMcu.set_pin_parameter">
-<code class="descname">set_pin_parameter</code><span class="sig-paren">(</span><em>pin_name</em>, <em>pin_value</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.node_mcu.NodeMcu.set_pin_parameter" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<div class="section" id="fto-int-multiplexer-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">fto_int_multiplexer</span></code> Module<a class="headerlink" href="#fto-int-multiplexer-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.pot">
-<span id="pot-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">pot</span></code> Module<a class="headerlink" href="#module-roco.library.pot" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.pot.Pot">
-<em class="property">class </em><code class="descclassname">roco.library.pot.</code><code class="descname">Pot</code><span class="sig-paren">(</span><em>yamlFile=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.pot.Pot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.derived.components.html#roco.derived.components.electrical_component.ElectricalComponent" title="roco.derived.components.electrical_component.ElectricalComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.components.electrical_component.ElectricalComponent</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.pot.Pot.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.pot.Pot.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assemble the component by merging the code of all subcomponents together
-into one ElectricalComposable</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.pot.Pot.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.pot.Pot.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function for overriding interfaces.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><a href="#id34"><span class="problematic" id="id35">**</span></a>kwargs: Arbitrary keyword arguments</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="gain-block-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">gain_block</span></code> Module<a class="headerlink" href="#gain-block-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.pot_driver">
-<span id="pot-driver-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">pot_driver</span></code> Module<a class="headerlink" href="#module-roco.library.pot_driver" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.pot_driver.PotDriver">
-<em class="property">class </em><code class="descclassname">roco.library.pot_driver.</code><code class="descname">PotDriver</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.pot_driver.PotDriver" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#roco.library.driver.Driver" title="roco.library.driver.Driver"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.library.driver.Driver</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.pot_driver.PotDriver.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.pot_driver.PotDriver.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function for overriding interfaces.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><a href="#id36"><span class="problematic" id="id37">**</span></a>kwargs: Arbitrary keyword arguments</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="header-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">header</span></code> Module<a class="headerlink" href="#header-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.reverse_string">
-<span id="reverse-string-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">reverse_string</span></code> Module<a class="headerlink" href="#module-roco.library.reverse_string" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.reverse_string.ReverseString">
-<em class="property">class </em><code class="descclassname">roco.library.reverse_string.</code><code class="descname">ReverseString</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.reverse_string.ReverseString" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.derived.components.html#roco.derived.components.code_component.CodeComponent" title="roco.derived.components.code_component.CodeComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.components.code_component.CodeComponent</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.reverse_string.ReverseString.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.reverse_string.ReverseString.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assemble the component by merging the code of all subcomponents together
-into one CodeComposable</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.reverse_string.ReverseString.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.reverse_string.ReverseString.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function for overriding interfaces.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><a href="#id38"><span class="problematic" id="id39">**</span></a>kwargs: Arbitrary keyword arguments</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="int-duplicator-in-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">int_duplicator_in</span></code> Module<a class="headerlink" href="#int-duplicator-in-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.serial_in">
-<span id="serial-in-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">serial_in</span></code> Module<a class="headerlink" href="#module-roco.library.serial_in" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.serial_in.SerialIn">
-<em class="property">class </em><code class="descclassname">roco.library.serial_in.</code><code class="descname">SerialIn</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.serial_in.SerialIn" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.derived.components.html#roco.derived.components.code_component.CodeComponent" title="roco.derived.components.code_component.CodeComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.components.code_component.CodeComponent</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.serial_in.SerialIn.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.serial_in.SerialIn.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assemble the component by merging the code of all subcomponents together
-into one CodeComposable</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.serial_in.SerialIn.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.serial_in.SerialIn.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function for overriding interfaces.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><a href="#id40"><span class="problematic" id="id41">**</span></a>kwargs: Arbitrary keyword arguments</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="int-duplicator-out-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">int_duplicator_out</span></code> Module<a class="headerlink" href="#int-duplicator-out-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.serial_to_string">
-<span id="serial-to-string-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">serial_to_string</span></code> Module<a class="headerlink" href="#module-roco.library.serial_to_string" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.serial_to_string.SerialToString">
-<em class="property">class </em><code class="descclassname">roco.library.serial_to_string.</code><code class="descname">SerialToString</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.serial_to_string.SerialToString" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.derived.components.html#roco.derived.components.code_component.CodeComponent" title="roco.derived.components.code_component.CodeComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.components.code_component.CodeComponent</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.serial_to_string.SerialToString.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.serial_to_string.SerialToString.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assemble the component by merging the code of all subcomponents together
-into one CodeComposable</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.serial_to_string.SerialToString.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.serial_to_string.SerialToString.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function for overriding interfaces.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><a href="#id42"><span class="problematic" id="id43">**</span></a>kwargs: Arbitrary keyword arguments</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="led-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">led</span></code> Module<a class="headerlink" href="#led-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.servo">
-<span id="servo-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">servo</span></code> Module<a class="headerlink" href="#module-roco.library.servo" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.servo.Servo">
-<em class="property">class </em><code class="descclassname">roco.library.servo.</code><code class="descname">Servo</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.servo.Servo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.derived.components.html#roco.derived.components.electrical_component.ElectricalComponent" title="roco.derived.components.electrical_component.ElectricalComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.components.electrical_component.ElectricalComponent</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.servo.Servo.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.servo.Servo.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assemble the component by merging the code of all subcomponents together
-into one ElectricalComposable</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.servo.Servo.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.servo.Servo.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function for overriding interfaces.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><a href="#id44"><span class="problematic" id="id45">**</span></a>kwargs: Arbitrary keyword arguments</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="node-mcu-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">node_mcu</span></code> Module<a class="headerlink" href="#node-mcu-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.servo_driver">
-<span id="servo-driver-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">servo_driver</span></code> Module<a class="headerlink" href="#module-roco.library.servo_driver" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.servo_driver.ServoDriver">
-<em class="property">class </em><code class="descclassname">roco.library.servo_driver.</code><code class="descname">ServoDriver</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.servo_driver.ServoDriver" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#roco.library.driver.Driver" title="roco.library.driver.Driver"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.library.driver.Driver</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.servo_driver.ServoDriver.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.servo_driver.ServoDriver.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function for overriding interfaces.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><a href="#id46"><span class="problematic" id="id47">**</span></a>kwargs: Arbitrary keyword arguments</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="pot-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">pot</span></code> Module<a class="headerlink" href="#pot-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.sort_string">
-<span id="sort-string-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">sort_string</span></code> Module<a class="headerlink" href="#module-roco.library.sort_string" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.sort_string.SortString">
-<em class="property">class </em><code class="descclassname">roco.library.sort_string.</code><code class="descname">SortString</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>name=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.sort_string.SortString" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.derived.components.html#roco.derived.components.code_component.CodeComponent" title="roco.derived.components.code_component.CodeComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.components.code_component.CodeComponent</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.sort_string.SortString.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.sort_string.SortString.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assemble the component by merging the code of all subcomponents together
-into one CodeComposable</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.sort_string.SortString.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.sort_string.SortString.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function for overriding interfaces.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><a href="#id48"><span class="problematic" id="id49">**</span></a>kwargs: Arbitrary keyword arguments</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="pot-driver-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">pot_driver</span></code> Module<a class="headerlink" href="#pot-driver-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.string_compare">
-<span id="string-compare-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">string_compare</span></code> Module<a class="headerlink" href="#module-roco.library.string_compare" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.string_compare.StringCompare">
-<em class="property">class </em><code class="descclassname">roco.library.string_compare.</code><code class="descname">StringCompare</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.string_compare.StringCompare" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.derived.components.html#roco.derived.components.code_component.CodeComponent" title="roco.derived.components.code_component.CodeComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.components.code_component.CodeComponent</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.string_compare.StringCompare.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.string_compare.StringCompare.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assemble the component by merging the code of all subcomponents together
-into one CodeComposable</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.string_compare.StringCompare.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.string_compare.StringCompare.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function for overriding interfaces.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><a href="#id50"><span class="problematic" id="id51">**</span></a>kwargs: Arbitrary keyword arguments</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="reverse-string-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">reverse_string</span></code> Module<a class="headerlink" href="#reverse-string-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.string_source">
-<span id="string-source-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">string_source</span></code> Module<a class="headerlink" href="#module-roco.library.string_source" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.string_source.StringSource">
-<em class="property">class </em><code class="descclassname">roco.library.string_source.</code><code class="descname">StringSource</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.string_source.StringSource" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.derived.components.html#roco.derived.components.code_component.CodeComponent" title="roco.derived.components.code_component.CodeComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.components.code_component.CodeComponent</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.string_source.StringSource.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.string_source.StringSource.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assemble the component by merging the code of all subcomponents together
-into one CodeComposable</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.string_source.StringSource.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.string_source.StringSource.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function for overriding interfaces.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><a href="#id52"><span class="problematic" id="id53">**</span></a>kwargs: Arbitrary keyword arguments</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="serial-in-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">serial_in</span></code> Module<a class="headerlink" href="#serial-in-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.string_to_motor">
-<span id="string-to-motor-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">string_to_motor</span></code> Module<a class="headerlink" href="#module-roco.library.string_to_motor" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.string_to_motor.StringToMotor">
-<em class="property">class </em><code class="descclassname">roco.library.string_to_motor.</code><code class="descname">StringToMotor</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.string_to_motor.StringToMotor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.derived.components.html#roco.derived.components.code_component.CodeComponent" title="roco.derived.components.code_component.CodeComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.components.code_component.CodeComponent</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.string_to_motor.StringToMotor.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.string_to_motor.StringToMotor.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assemble the component by merging the code of all subcomponents together
-into one CodeComposable</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.string_to_motor.StringToMotor.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.string_to_motor.StringToMotor.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function for overriding interfaces.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><a href="#id54"><span class="problematic" id="id55">**</span></a>kwargs: Arbitrary keyword arguments</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="serial-to-string-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">serial_to_string</span></code> Module<a class="headerlink" href="#serial-to-string-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.template_component">
-<span id="template-component-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">template_component</span></code> Module<a class="headerlink" href="#module-roco.library.template_component" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.template_component.SerialIn">
-<em class="property">class </em><code class="descclassname">roco.library.template_component.</code><code class="descname">SerialIn</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.template_component.SerialIn" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.derived.components.html#roco.derived.components.code_component.CodeComponent" title="roco.derived.components.code_component.CodeComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.components.code_component.CodeComponent</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.template_component.SerialIn.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.template_component.SerialIn.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assemble the component by merging the code of all subcomponents together
-into one CodeComposable</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.template_component.SerialIn.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.template_component.SerialIn.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function for overriding interfaces.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><a href="#id56"><span class="problematic" id="id57">**</span></a>kwargs: Arbitrary keyword arguments</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="servo-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">servo</span></code> Module<a class="headerlink" href="#servo-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.library.user_toggle">
-<span id="user-toggle-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">user_toggle</span></code> Module<a class="headerlink" href="#module-roco.library.user_toggle" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.library.user_toggle.UserToggle">
-<em class="property">class </em><code class="descclassname">roco.library.user_toggle.</code><code class="descname">UserToggle</code><span class="sig-paren">(</span><em>yaml_file=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.user_toggle.UserToggle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.derived.components.html#roco.derived.components.code_component.CodeComponent" title="roco.derived.components.code_component.CodeComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.components.code_component.CodeComponent</span></code></a></p>
-<dl class="method">
-<dt id="roco.library.user_toggle.UserToggle.assemble">
-<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.user_toggle.UserToggle.assemble" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assemble the component by merging the code of all subcomponents together
-into one CodeComposable</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="roco.library.user_toggle.UserToggle.define">
-<code class="descname">define</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.library.user_toggle.UserToggle.define" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function for overriding interfaces.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><a href="#id58"><span class="problematic" id="id59">**</span></a>kwargs: Arbitrary keyword arguments</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="servo-driver-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">servo_driver</span></code> Module<a class="headerlink" href="#servo-driver-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="sort-string-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">sort_string</span></code> Module<a class="headerlink" href="#sort-string-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="str-duplicator-in-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">str_duplicator_in</span></code> Module<a class="headerlink" href="#str-duplicator-in-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="str-duplicator-out-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">str_duplicator_out</span></code> Module<a class="headerlink" href="#str-duplicator-out-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="string-compare-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">string_compare</span></code> Module<a class="headerlink" href="#string-compare-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="string-source-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">string_source</span></code> Module<a class="headerlink" href="#string-source-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="string-to-motor-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">string_to_motor</span></code> Module<a class="headerlink" href="#string-to-motor-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="template-component-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">template_component</span></code> Module<a class="headerlink" href="#template-component-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="user-toggle-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">user_toggle</span></code> Module<a class="headerlink" href="#user-toggle-module" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">library Package</a><ul>
-<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">library</span></code> Package</a></li>
-<li><a class="reference internal" href="#android-module"><code class="docutils literal notranslate"><span class="pre">Android</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.Pentagon"><code class="docutils literal notranslate"><span class="pre">Pentagon</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.RectBeam"><code class="docutils literal notranslate"><span class="pre">RectBeam</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.Rectangle"><code class="docutils literal notranslate"><span class="pre">Rectangle</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.Square"><code class="docutils literal notranslate"><span class="pre">Square</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.Trapezoid"><code class="docutils literal notranslate"><span class="pre">Trapezoid</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.Trapezoid2"><code class="docutils literal notranslate"><span class="pre">Trapezoid2</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.Triangle"><code class="docutils literal notranslate"><span class="pre">Triangle</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.button"><code class="docutils literal notranslate"><span class="pre">button</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.cutout"><code class="docutils literal notranslate"><span class="pre">cutout</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.driver"><code class="docutils literal notranslate"><span class="pre">driver</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.gain_block"><code class="docutils literal notranslate"><span class="pre">gain_block</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.header"><code class="docutils literal notranslate"><span class="pre">header</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.led"><code class="docutils literal notranslate"><span class="pre">led</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.node_mcu"><code class="docutils literal notranslate"><span class="pre">node_mcu</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.pot"><code class="docutils literal notranslate"><span class="pre">pot</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.pot_driver"><code class="docutils literal notranslate"><span class="pre">pot_driver</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.reverse_string"><code class="docutils literal notranslate"><span class="pre">reverse_string</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.serial_in"><code class="docutils literal notranslate"><span class="pre">serial_in</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.serial_to_string"><code class="docutils literal notranslate"><span class="pre">serial_to_string</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.servo"><code class="docutils literal notranslate"><span class="pre">servo</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.servo_driver"><code class="docutils literal notranslate"><span class="pre">servo_driver</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.sort_string"><code class="docutils literal notranslate"><span class="pre">sort_string</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.string_compare"><code class="docutils literal notranslate"><span class="pre">string_compare</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.string_source"><code class="docutils literal notranslate"><span class="pre">string_source</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.string_to_motor"><code class="docutils literal notranslate"><span class="pre">string_to_motor</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.template_component"><code class="docutils literal notranslate"><span class="pre">template_component</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.library.user_toggle"><code class="docutils literal notranslate"><span class="pre">user_toggle</span></code> Module</a></li>
-</ul>
-</li>
-</ul>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="roco.tests.html" class="btn btn-neutral float-right" title="tests Package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="roco.derived.utils.html" class="btn btn-neutral" title="utils Package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="roco.derived.utils.html"
-                        title="previous chapter">utils Package</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="roco.tests.html"
-                        title="next chapter">tests Package</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/roco.library.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Gopi Suresh, Ahmed Allibhoy, Christian Warloe, Prathyush Katukojwala.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="roco.tests.html" title="tests Package"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="roco.derived.utils.html" title="utils Package"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">roco 1.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="roco.html" >roco Package</a> &#187;</li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Gopi Suresh, Ahmed Allibhoy, Christian Warloe, Prathyush Katukojwala.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.1.
-    </div>
-  </body>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
 </html>

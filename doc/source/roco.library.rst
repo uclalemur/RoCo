@@ -17,6 +17,14 @@ library Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`Constant` Module
+----------------------
+
+.. automodule:: roco.library.Constant
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 :mod:`Pentagon` Module
 ----------------------
 
@@ -73,6 +81,22 @@ library Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`bool_duplicator_in` Module
+--------------------------------
+
+.. automodule:: roco.library.bool_duplicator_in
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`bool_duplicator_out` Module
+---------------------------------
+
+.. automodule:: roco.library.bool_duplicator_out
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 :mod:`button` Module
 --------------------
 
@@ -97,6 +121,14 @@ library Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`fto_int_multiplexer` Module
+---------------------------------
+
+.. automodule:: roco.library.fto_int_multiplexer
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 :mod:`gain_block` Module
 ------------------------
 
@@ -109,6 +141,22 @@ library Package
 --------------------
 
 .. automodule:: roco.library.header
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`int_duplicator_in` Module
+-------------------------------
+
+.. automodule:: roco.library.int_duplicator_in
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`int_duplicator_out` Module
+--------------------------------
+
+.. automodule:: roco.library.int_duplicator_out
     :members:
     :undoc-members:
     :show-inheritance:
@@ -189,6 +237,22 @@ library Package
 -------------------------
 
 .. automodule:: roco.library.sort_string
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`str_duplicator_in` Module
+-------------------------------
+
+.. automodule:: roco.library.str_duplicator_in
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`str_duplicator_out` Module
+--------------------------------
+
+.. automodule:: roco.library.str_duplicator_out
     :members:
     :undoc-members:
     :show-inheritance:

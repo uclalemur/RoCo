@@ -1,514 +1,285 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>utils Package &#8212; roco 1.0 documentation</title>
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="author" title="About these documents" href="about.html" />
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="tests Package" href="roco.tests.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="roco.tests.html" title="tests Package"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">roco 1.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="roco.html" accesskey="U">roco Package</a> &#187;</li> 
-      </ul>
-    </div>  
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>utils Package &mdash; roco 1.0 documentation</title>
+  
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="about.html"/>
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="roco 1.0 documentation" href="index.html"/>
+        <link rel="up" title="roco Package" href="roco.html"/>
+        <link rel="prev" title="tests Package" href="roco.tests.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> roco
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Roco Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">Project Summary</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="roco.html">roco Package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="roco.html#id1"><code class="docutils literal notranslate"><span class="pre">roco</span></code> Package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="roco.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="roco.api.html">api Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="roco.builders.html">builders Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="roco.derived.html">derived Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="roco.library.html">library Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="roco.tests.html">tests Package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">utils Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">utils</span></code> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#display-module"><code class="docutils literal notranslate"><span class="pre">display</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#io-module"><code class="docutils literal notranslate"><span class="pre">io</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mymath-module"><code class="docutils literal notranslate"><span class="pre">mymath</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src-module"><code class="docutils literal notranslate"><span class="pre">src</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transforms-module"><code class="docutils literal notranslate"><span class="pre">transforms</span></code> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utils-module"><code class="docutils literal notranslate"><span class="pre">utils</span></code> Module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">roco</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="roco.html">roco Package</a> &raquo;</li>
+        
+      <li>utils Package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/roco.utils.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="utils-package">
 <h1>utils Package<a class="headerlink" href="#utils-package" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
 <h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">utils</span></code> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-roco.utils"></span><p>The utils module contains helper classes and functions required by the roco module</p>
 </div>
-<div class="section" id="module-roco.utils.display">
-<span id="display-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">display</span></code> Module<a class="headerlink" href="#module-roco.utils.display" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.utils.display.DisplayApp">
-<em class="property">class </em><code class="descclassname">roco.utils.display.</code><code class="descname">DisplayApp</code><span class="sig-paren">(</span><em>dwg</em>, <em>height=500</em>, <em>width=700</em>, <em>showFlats=True</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.display.DisplayApp" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
-<dt id="roco.utils.display.DisplayApp.bind">
-<code class="descname">bind</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.display.DisplayApp.bind" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="roco.utils.display.DisplayApp.click">
-<code class="descname">click</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.display.DisplayApp.click" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="roco.utils.display.DisplayApp.createAddOns">
-<code class="descname">createAddOns</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.display.DisplayApp.createAddOns" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="roco.utils.display.DisplayApp.current">
-<code class="descname">current</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.display.DisplayApp.current" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="roco.utils.display.DisplayApp.drag">
-<code class="descname">drag</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.display.DisplayApp.drag" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="roco.utils.display.DisplayApp.draw">
-<code class="descname">draw</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.display.DisplayApp.draw" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="roco.utils.display.DisplayApp.grid">
-<code class="descname">grid</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.display.DisplayApp.grid" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="roco.utils.display.DisplayApp.zoom">
-<code class="descname">zoom</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.display.DisplayApp.zoom" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.display.displayTkinter">
-<code class="descclassname">roco.utils.display.</code><code class="descname">displayTkinter</code><span class="sig-paren">(</span><em>dwg</em>, <em>showFlats=True</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.display.displayTkinter" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<div class="section" id="display-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">display</span></code> Module<a class="headerlink" href="#display-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.utils.io">
-<span id="io-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">io</span></code> Module<a class="headerlink" href="#module-roco.utils.io" title="Permalink to this headline">¶</a></h2>
-<p>Some IO utilities for roco.</p>
-<dl class="function">
-<dt id="roco.utils.io.load_yaml">
-<code class="descclassname">roco.utils.io.</code><code class="descname">load_yaml</code><span class="sig-paren">(</span><em>file_name</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.io.load_yaml" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<div class="section" id="io-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">io</span></code> Module<a class="headerlink" href="#io-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.utils.mymath">
-<span id="mymath-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">mymath</span></code> Module<a class="headerlink" href="#module-roco.utils.mymath" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="roco.utils.mymath.D">
-<em class="property">class </em><code class="descclassname">roco.utils.mymath.</code><code class="descname">D</code><a class="headerlink" href="#roco.utils.mymath.D" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sympy.core.function.AppliedUndef</span></code></p>
-<dl class="attribute">
-<dt id="roco.utils.mymath.D.default_assumptions">
-<code class="descname">default_assumptions</code><em class="property"> = {}</em><a class="headerlink" href="#roco.utils.mymath.D.default_assumptions" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="roco.utils.mymath.SetPackage">
-<em class="property">class </em><code class="descclassname">roco.utils.mymath.</code><code class="descname">SetPackage</code><a class="headerlink" href="#roco.utils.mymath.SetPackage" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="roco.utils.mymath.SetPackage.use_numpy">
-<code class="descname">use_numpy</code><em class="property"> = False</em><a class="headerlink" href="#roco.utils.mymath.SetPackage.use_numpy" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.mymath.cumsum">
-<code class="descclassname">roco.utils.mymath.</code><code class="descname">cumsum</code><span class="sig-paren">(</span><em>iterable</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.mymath.cumsum" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.mymath.deg2rad">
-<code class="descclassname">roco.utils.mymath.</code><code class="descname">deg2rad</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.mymath.deg2rad" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.mymath.diag">
-<code class="descclassname">roco.utils.mymath.</code><code class="descname">diag</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.mymath.diag" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.mymath.difference">
-<code class="descclassname">roco.utils.mymath.</code><code class="descname">difference</code><span class="sig-paren">(</span><em>pts1</em>, <em>pts2</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.mymath.difference" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.mymath.difference_exceeds">
-<code class="descclassname">roco.utils.mymath.</code><code class="descname">difference_exceeds</code><span class="sig-paren">(</span><em>pts1</em>, <em>pts2</em>, <em>tol</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.mymath.difference_exceeds" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.mymath.dot">
-<code class="descclassname">roco.utils.mymath.</code><code class="descname">dot</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.mymath.dot" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.mymath.norm">
-<code class="descclassname">roco.utils.mymath.</code><code class="descname">norm</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.mymath.norm" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.mymath.rad2deg">
-<code class="descclassname">roco.utils.mymath.</code><code class="descname">rad2deg</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.mymath.rad2deg" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.mymath.round">
-<code class="descclassname">roco.utils.mymath.</code><code class="descname">round</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.mymath.round" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.mymath.rows">
-<code class="descclassname">roco.utils.mymath.</code><code class="descname">rows</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.mymath.rows" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.mymath.sum">
-<code class="descclassname">roco.utils.mymath.</code><code class="descname">sum</code><span class="sig-paren">(</span><em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.mymath.sum" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.mymath.use_numpy">
-<code class="descclassname">roco.utils.mymath.</code><code class="descname">use_numpy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.mymath.use_numpy" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.mymath.use_sympy">
-<code class="descclassname">roco.utils.mymath.</code><code class="descname">use_sympy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.mymath.use_sympy" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<div class="section" id="mymath-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">mymath</span></code> Module<a class="headerlink" href="#mymath-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.utils.src">
-<span id="src-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">src</span></code> Module<a class="headerlink" href="#module-roco.utils.src" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="src-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">src</span></code> Module<a class="headerlink" href="#src-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.utils.transforms">
-<span id="transforms-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">transforms</span></code> Module<a class="headerlink" href="#module-roco.utils.transforms" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="roco.utils.transforms.DCM_2_quat">
-<code class="descclassname">roco.utils.transforms.</code><code class="descname">DCM_2_quat</code><span class="sig-paren">(</span><em>dcm</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.transforms.DCM_2_quat" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.transforms.get_6DOF">
-<code class="descclassname">roco.utils.transforms.</code><code class="descname">get_6DOF</code><span class="sig-paren">(</span><em>dcm</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.transforms.get_6DOF" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.transforms.inverse_quat">
-<code class="descclassname">roco.utils.transforms.</code><code class="descname">inverse_quat</code><span class="sig-paren">(</span><em>quat</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.transforms.inverse_quat" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.transforms.mirror_x">
-<code class="descclassname">roco.utils.transforms.</code><code class="descname">mirror_x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.transforms.mirror_x" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.transforms.mirror_y">
-<code class="descclassname">roco.utils.transforms.</code><code class="descname">mirror_y</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.transforms.mirror_y" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.transforms.move_origin_to">
-<code class="descclassname">roco.utils.transforms.</code><code class="descname">move_origin_to</code><span class="sig-paren">(</span><em>pt</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.transforms.move_origin_to" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.transforms.move_to_origin">
-<code class="descclassname">roco.utils.transforms.</code><code class="descname">move_to_origin</code><span class="sig-paren">(</span><em>pt</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.transforms.move_to_origin" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.transforms.multiply_quat">
-<code class="descclassname">roco.utils.transforms.</code><code class="descname">multiply_quat</code><span class="sig-paren">(</span><em>quaternion1</em>, <em>quaternion0</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.transforms.multiply_quat" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.transforms.normalize_quat">
-<code class="descclassname">roco.utils.transforms.</code><code class="descname">normalize_quat</code><span class="sig-paren">(</span><em>quat</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.transforms.normalize_quat" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.transforms.oitch">
-<code class="descclassname">roco.utils.transforms.</code><code class="descname">oitch</code><span class="sig-paren">(</span><em>angle</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.transforms.oitch" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.transforms.quat_2_DCM">
-<code class="descclassname">roco.utils.transforms.</code><code class="descname">quat_2_DCM</code><span class="sig-paren">(</span><em>quat</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.transforms.quat_2_DCM" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.transforms.reflect_across_2D">
-<code class="descclassname">roco.utils.transforms.</code><code class="descname">reflect_across_2D</code><span class="sig-paren">(</span><em>edge</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.transforms.reflect_across_2D" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.transforms.reflect_across_2D_pts">
-<code class="descclassname">roco.utils.transforms.</code><code class="descname">reflect_across_2D_pts</code><span class="sig-paren">(</span><em>edgepts</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.transforms.reflect_across_2D_pts" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.transforms.roll">
-<code class="descclassname">roco.utils.transforms.</code><code class="descname">roll</code><span class="sig-paren">(</span><em>angle</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.transforms.roll" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.transforms.rotate_onto_x">
-<code class="descclassname">roco.utils.transforms.</code><code class="descname">rotate_onto_x</code><span class="sig-paren">(</span><em>pt</em>, <em>pt2=(0</em>, <em>0)</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.transforms.rotate_onto_x" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.transforms.rotate_x">
-<code class="descclassname">roco.utils.transforms.</code><code class="descname">rotate_x</code><span class="sig-paren">(</span><em>angle</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.transforms.rotate_x" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.transforms.rotate_x_to">
-<code class="descclassname">roco.utils.transforms.</code><code class="descname">rotate_x_to</code><span class="sig-paren">(</span><em>pt</em>, <em>pt2=(0</em>, <em>0)</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.transforms.rotate_x_to" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.transforms.rotate_y">
-<code class="descclassname">roco.utils.transforms.</code><code class="descname">rotate_y</code><span class="sig-paren">(</span><em>angle</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.transforms.rotate_y" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.transforms.rotate_z">
-<code class="descclassname">roco.utils.transforms.</code><code class="descname">rotate_z</code><span class="sig-paren">(</span><em>angle</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.transforms.rotate_z" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.transforms.scale">
-<code class="descclassname">roco.utils.transforms.</code><code class="descname">scale</code><span class="sig-paren">(</span><em>scale</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.transforms.scale" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.transforms.translate">
-<code class="descclassname">roco.utils.transforms.</code><code class="descname">translate</code><span class="sig-paren">(</span><em>origin</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.transforms.translate" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.transforms.yaw">
-<code class="descclassname">roco.utils.transforms.</code><code class="descname">yaw</code><span class="sig-paren">(</span><em>angle</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.transforms.yaw" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<div class="section" id="transforms-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">transforms</span></code> Module<a class="headerlink" href="#transforms-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-roco.utils.utils">
-<span id="utils-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">utils</span></code> Module<a class="headerlink" href="#module-roco.utils.utils" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="roco.utils.utils.decorate_graph">
-<code class="descclassname">roco.utils.utils.</code><code class="descname">decorate_graph</code><span class="sig-paren">(</span><em>face</em>, <em>decoration</em>, <em>offset=(0</em>, <em>0)</em>, <em>offset_dx=None</em>, <em>offset_dy=None</em>, <em>rotate=False</em>, <em>mode=None</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.utils.decorate_graph" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds a decoration to a face at the given offset</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>face (Face): face to decorate
-decoration (Decoration): decoration to add
-offset (tuple): pair of offsets in the x and y axes
-offset_dx: offset in the x axis
-offset_dy: offset in the y axis
-rotate: whether to rotate the decoration or not
-mode: decoration primitive</dd>
-</dl>
-</dd></dl>
-
-<dl class="class">
-<dt id="roco.utils.utils.memoized">
-<em class="property">class </em><code class="descclassname">roco.utils.utils.</code><code class="descname">memoized</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.utils.memoized" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Decorator. Caches a function’s return value each time it is called.
-If called later with the same arguments, the cached value is returned
-(not reevaluated).</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.utils.prefix">
-<code class="descclassname">roco.utils.utils.</code><code class="descname">prefix</code><span class="sig-paren">(</span><em>s1</em>, <em>s2</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.utils.prefix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Prefixes s2 with s1 with a specific delimiter</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>s1 (str): prefix
-s2 (str): string to prefix</dd>
-<dt>Returns:</dt>
-<dd>prefixed string</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.utils.print_equations">
-<code class="descclassname">roco.utils.utils.</code><code class="descname">print_equations</code><span class="sig-paren">(</span><em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.utils.print_equations" title="Permalink to this definition">¶</a></dt>
-<dd><p>Prints the relations of a component</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>component (Component): the component to print the relations of</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.utils.print_parameters">
-<code class="descclassname">roco.utils.utils.</code><code class="descname">print_parameters</code><span class="sig-paren">(</span><em>component</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.utils.print_parameters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Prints the parameters of a component</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>component (Component): the component to print the parameters of</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.utils.print_summary">
-<code class="descclassname">roco.utils.utils.</code><code class="descname">print_summary</code><span class="sig-paren">(</span><em>component</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.utils.print_summary" title="Permalink to this definition">¶</a></dt>
-<dd><p>Prints a summary of a component</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>component (Component): the component to print a summary of</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="roco.utils.utils.scheme_list">
-<code class="descclassname">roco.utils.utils.</code><code class="descname">scheme_list</code><a class="headerlink" href="#roco.utils.utils.scheme_list" title="Permalink to this definition">¶</a></dt>
-<dd><p>Decorator. Caches a function’s return value each time it is called.
-If called later with the same arguments, the cached value is returned
-(not reevaluated).</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.utils.scheme_repr">
-<code class="descclassname">roco.utils.utils.</code><code class="descname">scheme_repr</code><span class="sig-paren">(</span><em>elist</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.utils.scheme_repr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts a scheme list to a scheme expression</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>elist (list): a list that represents an expression in prefix notation</dd>
-<dt>Returns:</dt>
-<dd>a string that represents the expression that can be interpreted in scheme</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.utils.scheme_string">
-<code class="descclassname">roco.utils.utils.</code><code class="descname">scheme_string</code><span class="sig-paren">(</span><em>expr</em>, <em>prefix=''</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.utils.scheme_string" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts an expression to a scheme string</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>expr: sympy expression object
-prefix (str): string to prefix expression with</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.utils.to_camel_case">
-<code class="descclassname">roco.utils.utils.</code><code class="descname">to_camel_case</code><span class="sig-paren">(</span><em>under</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.utils.to_camel_case" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts a string delimitted with underscores to camelcase. Does not work if
-string uses underscores as content as well as as delimeters.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>under (str): string with underscores.</dd>
-<dt>Returns:</dt>
-<dd>The camelcase version of under.</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="roco.utils.utils.try_import">
-<code class="descclassname">roco.utils.utils.</code><code class="descname">try_import</code><span class="sig-paren">(</span><em>module</em>, <em>attribute</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.utils.utils.try_import" title="Permalink to this definition">¶</a></dt>
-<dd><p>Attempts to import a module from multiple locations</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>module (str): name of module
-attribute: attribute to return from module</dd>
-<dt>Returns:</dt>
-<dd>an attribute from a module</dd>
-</dl>
-</dd></dl>
-
+<div class="section" id="utils-module">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">utils</span></code> Module<a class="headerlink" href="#utils-module" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">utils Package</a><ul>
-<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">utils</span></code> Package</a></li>
-<li><a class="reference internal" href="#module-roco.utils.display"><code class="docutils literal notranslate"><span class="pre">display</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.utils.io"><code class="docutils literal notranslate"><span class="pre">io</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.utils.mymath"><code class="docutils literal notranslate"><span class="pre">mymath</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.utils.src"><code class="docutils literal notranslate"><span class="pre">src</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.utils.transforms"><code class="docutils literal notranslate"><span class="pre">transforms</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.utils.utils"><code class="docutils literal notranslate"><span class="pre">utils</span></code> Module</a></li>
-</ul>
-</li>
-</ul>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="roco.tests.html" class="btn btn-neutral" title="tests Package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="roco.tests.html"
-                        title="previous chapter">tests Package</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/roco.utils.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Gopi Suresh, Ahmed Allibhoy, Christian Warloe, Prathyush Katukojwala.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="roco.tests.html" title="tests Package"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">roco 1.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="roco.html" >roco Package</a> &#187;</li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Gopi Suresh, Ahmed Allibhoy, Christian Warloe, Prathyush Katukojwala.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.1.
-    </div>
-  </body>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
 </html>
