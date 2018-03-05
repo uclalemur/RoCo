@@ -70,3 +70,7 @@ class Interface(object):
 
         """
         return self.ports
+
+if __name__ == "__main__":
+    pass
+    

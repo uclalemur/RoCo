@@ -89,3 +89,7 @@ else:
         
   def rows(x):
     return x.rows
+
+if __name__ == "__main__":
+  pass
+  

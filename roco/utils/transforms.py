@@ -186,3 +186,7 @@ def DCM_2_quat(dcm):
      q[2] =  (dcm[1,2] + dcm[2,1]) / denom
 
   return q
+
+if __name__ == "__main__":
+  pass
+  

@@ -9,6 +9,14 @@ tests Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`test_component` Module
+----------------------------
+
+.. automodule:: roco.tests.test_component
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 :mod:`test_composable` Module
 -----------------------------
 

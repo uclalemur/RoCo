@@ -76,3 +76,6 @@ class OutPort(CodePort):
         if self.type is None or other_port.type is None:
             return isinstance(other_port, InPort)
         return (self.type == other_port.type) and isinstance(other_port, InPort)
+
+if __name__ == "__main__":
+    pass

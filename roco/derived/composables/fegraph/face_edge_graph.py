@@ -578,3 +578,6 @@ class FaceEdgeGraph(object):
       self.place()
       dxf_edges = [list(e.pts_2d) + [e.get_interior_angle()] for e in self.edges if e.pts_2d is not None]
       dxf_write(dxf_edges, filename)
+
+if __name__ == "__main__":
+    pass

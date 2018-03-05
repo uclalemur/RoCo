@@ -400,3 +400,6 @@ class DrawingEdge(object):
       t = engine.text(label, insert=((self.x1+self.x2)/2, (self.y1+self.y2)/2))# , rotate=r)
       # t.rotate=r
       drawing.add(t)
+
+if __name__ == "__main__":
+  pass

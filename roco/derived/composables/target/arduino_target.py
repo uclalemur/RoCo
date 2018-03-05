@@ -241,3 +241,6 @@ class Arduino(Cpp):
         f.write(setup)
         f.write(loop)
         f.close()
+
+if __name__ == "__main__":
+    pass

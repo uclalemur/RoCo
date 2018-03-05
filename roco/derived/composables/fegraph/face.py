@@ -624,3 +624,6 @@ class Pentagon(Face):
     pt5 = (s*np.sin(angle3), -1*s*np.cos(angle3))
     Face.__init__(self, name, (pt1, pt2, pt3, pt4, pt5), [s, s, s, s, s], edge_names=edge_names, all_edges=all_edges,
                   recenter=recenter)
+
+if __name__ == "__main__":
+    pass

@@ -127,3 +127,7 @@ class DisplayApp:
 def displayTkinter(dwg, showFlats = True):
     d = DisplayApp(dwg, showFlats = showFlats)
     d.root.mainloop()
+
+if __name__ == "__main__":
+    pass
+    

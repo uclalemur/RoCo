@@ -892,3 +892,7 @@ class Component(Parameterized):
         print
 
         print "Happy roboting!"
+
+if __name__ == "__main__":
+    pass
+    

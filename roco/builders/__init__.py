@@ -8,3 +8,6 @@ import os
 
 def get_builder_dir():
     return os.path.abspath(os.path.dirname(__file__))
+
+if __name__ == "__main__":
+    pass

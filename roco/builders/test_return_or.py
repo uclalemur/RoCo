@@ -46,9 +46,10 @@ class person(object):
   def get_age(self,age):
       self.age = age
 
-me = 'Wenzhong'
-c = person()
-c.get_name(me)
-c.get_age(27)
-print c.age
+if __name__ == "__main__":
+    me = 'Wenzhong'
+    c = person()
+    c.get_name(me)
+    c.get_age(27)
+    print c.age
 

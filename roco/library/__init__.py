@@ -18,7 +18,6 @@ from roco.api.component import Component
 from roco.utils.utils import try_import, to_camel_case
 
 
-
 py_components = [os.path.basename(f)[:-3] for f in glob.glob(
    os.path.dirname(__file__) + "/*.py") if os.path.basename(f)[0] != "_"]
 yaml_components = [os.path.basename(
@@ -49,17 +48,10 @@ def filter_components(composable_type=["all"], verbose=False):
     """
     Creates all the components in the allComponents list, looks through them for
     components which have the specified composable type, and returns a list of those
-    Arguments.
-        composable_type: An array of keywords corresponding to specific composable
-                        types.
-                         ex: "code" for "CodeComposable"
-                         To view the possible strings for composable_type, call
-                         filterComponents with its default parameter and look at
-                         the key values of Component.composables for all the
-                         Component objects in the array the function returns.
-                         Default value is "all". This populates the array with
-                         ComponentQueryItems of related to all composables.
-    Return.
+
+    Args:
+        composable_type: An array of keywords corresponding to specific composable types. Ex: "code" for "CodeComposable" To view the possible strings for composable_type, call filterComponents with its default parameter and look at the key values of Component.composables for all the Component objects in the array the function returns. Default value is "all". This populates the array with ComponentQueryItems of related to all composables.
+    Returns:
         Array of Component objects which have the specified composable type
     """
     
@@ -82,16 +74,15 @@ def filter_components(composable_type=["all"], verbose=False):
 
 # when no arguments are passed in all components are returned
 def filter_database(composable_type=["all"], verbose=False):
-    """
-    Looks through database for components which have the specified composable type
-    Arguments.
-        composable_type: The keyword corresponding to a specific composable type.
-                         ex: "code" for "CodeComposable"
-                         Default value is "all". This populates the array with
-                         ComponentQueryItems of related to all composables.
-    Return.
+    """Looks through database for components which have the specified composable type
+
+    Args:
+        composable_type: The keyword corresponding to a specific composable type. Ex: "code" for "CodeComposable" Default value is "all". This populates the array with ComponentQueryItems of related to all composables.
+
+    Returns:
         Array of ComponentQueryItems populated with all the components in the
         database which had the specified composable type
+
     """
     comps = []
     b = update_component_lists()
@@ -141,16 +132,17 @@ def get_component(c, **kwargs):
 
 
 def build_database(components, username="root", password=""):
-    """
-    Saves critical data about the passed in components in the database.
+    """Saves critical data about the passed in components in the database.
     Use with filterComponents()
-    Arguments.
-        components: An array of Component objects that will be saved to the
-                    database
-        username: Username for the MySQL server. Default is "root" (STRING)
-        password: Password for the MySQL server. Default is empty string "" (STRING)
-    Return.
+
+    Args:
+        components: An array of Component objects that will be saved to the database
+        username (str): Username for the MySQL server. Default is "root"
+        password (str): Password for the MySQL server. Default is empty string ""
+
+    Returns:
         Nothing
+
     """
     # con = db.connect(user=username, passwd=password)
 
@@ -186,10 +178,13 @@ def build_database(components, username="root", password=""):
 def init_database(c):
     """
     Initalizes the database and populates it with the necessary tables.
-    Arguments.
+    
+    Args:
         c: cursor object of python database connection object
-    Return.
+
+    Returns:
         Nothing
+
     """
     # c.execute('CREATE DATABASE IF NOT EXISTS component_info')
     # c.execute('USE component_info')
@@ -207,12 +202,15 @@ def write_interfaces(comp, comp_id, c, verbose=False):
     Writes all the interfaces of a component to the database. If a component is
     composite, recursion is used to link the interfaces of subcomponents with
     the one passed in as an argument.
-    Arguments.
+
+    Args:
         comp: Component object
         comp_id: Primary key id of the component object in the database (INTEGER)
         c: cursor object of python database connection object
-    Return.
+
+    Returns:
         Nothing
+
     """
     try:
         # delete existing component interface links and interfaces
@@ -257,12 +255,15 @@ def write_interfaces(comp, comp_id, c, verbose=False):
 def write_parameters(comp, comp_id, c):
     """
     Writes all the parameters of a component to the database.
-    Arguments.
+
+    Args:
         comp: Component object
         comp_id: Primary key id of the component object in the database (INTEGER)
         c: cursor object of python database connection object
-    Return.
+
+    Returns:
         Nothing
+
     """
     try:
         # delete existing component interface links and interfaces
@@ -292,14 +293,16 @@ def write_parameters(comp, comp_id, c):
 
 
 def write_composables(comp, comp_id, c):
-    """
-    Writes all the composables associated with a component to the database.
-    Arguments.
+    """Writes all the composables associated with a component to the database.
+
+    Args:
         comp: Component object
         comp_id: Primary key id of the component object in the database (INTEGER)
         c: cursor object of python database connection object
-    Return.
+
+    Returns:
         Nothing
+
     """
     for k, v in comp.composables.iteritems():
         c.execute('SELECT * FROM composables WHERE var_name LIKE "{}" AND composable_obj LIKE "{}"'.format(str(k), str(v.__class__.__name__)))
@@ -321,28 +324,20 @@ def write_composables(comp, comp_id, c):
 class ComponentQueryItem:
 
     def __init__(self, name):
-        """
-        Initialize ComponentQueryItem
-        Arguments.
-            name: The name of the component. The value returned when
-                  Component.getName() is called. (STRING)
-        Return.
+        """Initialize ComponentQueryItem
+
+        Args:
+            name: The name of the component. The value returned when Component.getName() is called. (STRING)
+
+        Returns:
             ComponentQueryItem
-        Attributes.
-            name: The name of the component. The value returned when
-                  Component.getName() is called. (STRING)
-            interfaces: A dictionary containing the variable names of the
-                        interfaces as its keys and the type of interface as its
-                        values. All the data in the dict are strings
-            parameters: A dictionary containing the variable names of the
-                        parameters as its keys and the default values of the
-                        parameters as its values. All the keys in the dict are
-                        strings and all the values are string representations of
-                        the default parameter values
-            composables: A dictionary containing the types of the composables as
-                         its keys and the names of the corresponding Composable
-                         classes as its values. All the data in the dict are
-                         strings
+        
+        Attributes:
+            name: The name of the component. The value returned when Component.getName() is called. (STRING)
+            interfaces: A dictionary containing the variable names of the interfaces as its keys and the type of interface as its values. All the data in the dict are strings
+            parameters: A dictionary containing the variable names of the parameters as its keys and the default values of the parameters as its values. All the keys in the dict are strings and all the values are string representations of the default parameter values
+            composables: A dictionary containing the types of the composables as its keys and the names of the corresponding Composable classes as its values. All the data in the dict are strings
+
         """
         self.name = name
 
@@ -378,15 +373,16 @@ def query_database(component, username="root", password="", verbose=False):
     """
     Look through the database and get a ComponentQueryItem that corresponds to
     component Object required
-    Arguments.
-        component: The name of the component. The value returned when
-                   Component.getName() is called. (STRING)
+
+    Args:
+        component: The name of the component. The value returned when Component.getName() is called. (STRING)
         username: Username for the MySQL server. Default is "root" (STRING)
         password: Password for the MySQL server. Default is empty string "" (STRING)
-        verbose: If True, the function outputs a more detailed error message when
-                 a databse query fails. Default is False. (BOOLEAN)
-    Return.
+        verbose: If True, the function outputs a more detailed error message when a databse query fails. Default is False. (BOOLEAN)
+
+    Returns:
         ComponentQueryItem
+
     """
     # con = db.connect(user=username, passwd=password)
 

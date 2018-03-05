@@ -63,3 +63,6 @@ class FacePort(SixDOFPort):
             return (otherPort.get_decoration() is not None)
         except AttributeError:
             return False
+
+if __name__ == "__main__":
+    pass

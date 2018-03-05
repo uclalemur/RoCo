@@ -7,19 +7,13 @@
 
 By UCLA LEMUR
 
-Documentation of Roco is in ./build/html/index.html
-
 Enables the rapid design and implementation of robots.
 
 **PLEASE ADHERE TO STYLE GUIDE WHEN EDITING/COMMITING CODE:
 https://google.github.io/styleguide/pyguide.html
 **
 
-To update documentation:
-1. cd to root directory of project.
-2. Run the following command: ./update_doc.py -f -d source/ -s rst -n ROCO -m 3 ./roco/
-3. Then run "make html".
-4. To see a list of options supported by update_doc.py, run: ./update_doc -h
+Documentation of Roco is in ./doc/build/html/index.html
 
 Installation
 ------------
@@ -76,3 +70,10 @@ c.add_connection(("r1","r"),("r2","l),angle=90)
 c.make_output()
 
 Happy roboting!
+
+Updating documentation
+----------------------
+1. Run the following command: cd doc
+2. Run the following command: ./update_doc.py -f -d ./source/ -s rst -n ROCO -m 3 ../roco/
+3. Then run: make html
+4. To see a list of options supported by update_doc.py, run: ./update_doc.py -h

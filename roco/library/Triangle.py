@@ -3,6 +3,7 @@ from roco.derived.composables.fegraph.face import Triangle as Tri
 from roco.derived.ports.edge_port import EdgePort
 from roco.derived.ports.face_port import FacePort
 
+
 class Triangle(FoldedComponent):
 
     _test_params = {
@@ -38,5 +39,5 @@ class Triangle(FoldedComponent):
         self.add_interface("a", EdgePort(self, "e1"))
         self.add_interface("c", EdgePort(self, "e2"))
 
-    if __name__ == "__main__":
-        h = Triangle()
+if __name__ == "__main__":
+    h = Triangle()

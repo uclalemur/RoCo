@@ -35,3 +35,7 @@ class Driver(CodeComponent):
     def assemble(self):
         self.composables['electrical'] = ElectricalComposable(self.get_name(), self.physical, is_virtual=True)
         CodeComponent.assemble(self)
+
+if __name__ == "__main__":
+    pass
+    

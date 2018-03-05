@@ -46,3 +46,7 @@ class OutStringPort(OutPort, CodePort):
         OutPort.__init__(self, parent, name, **kwargs)
         CodePort.__init__(self, parent, name, label, dtype="string", **kwargs)
         self.add_allowable_mate(self.__class__)
+
+if __name__ == "__main__":
+    pass
+    

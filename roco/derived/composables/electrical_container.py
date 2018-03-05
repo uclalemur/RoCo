@@ -37,3 +37,6 @@ class ElectricalContainer(ContainerComposable):
 
     def make_output(self, file_dir, **kwargs):
         pass
+
+if __name__ == "__main__":
+    pass

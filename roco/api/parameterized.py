@@ -287,3 +287,7 @@ class Parameterized(object):
           fixed = fixed_solved if fixed_solved is not None else next(iter(e_class))
           for var in e_class:
               var.set_solved(fixed.get_value())
+
+if __name__ == "__main__":
+    pass
+    

@@ -140,3 +140,6 @@ class EdgePort(Port):
             pass
 
         return constraints
+
+if __name__ == "__main__":
+    pass

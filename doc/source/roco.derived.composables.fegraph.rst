@@ -49,3 +49,11 @@ fegraph Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`stlwriter` Module
+-----------------------
+
+.. automodule:: roco.derived.composables.fegraph.stlwriter
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

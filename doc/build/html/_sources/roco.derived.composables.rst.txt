@@ -17,10 +17,34 @@ composables Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`code_container` Module
+----------------------------
+
+.. automodule:: roco.derived.composables.code_container
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`container_composable` Module
+----------------------------------
+
+.. automodule:: roco.derived.composables.container_composable
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 :mod:`electrical_composable` Module
 -----------------------------------
 
 .. automodule:: roco.derived.composables.electrical_composable
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`electrical_container` Module
+----------------------------------
+
+.. automodule:: roco.derived.composables.electrical_container
     :members:
     :undoc-members:
     :show-inheritance:
@@ -47,4 +71,5 @@ Subpackages
 .. toctree::
 
     roco.derived.composables.fegraph
+    roco.derived.composables.target
 

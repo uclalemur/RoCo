@@ -46,3 +46,7 @@ class FoldedComponent(MechanicalComponent):
         self.get_edge = self.composables[self.GRAPH].get_edge
         self.attach_face = self.composables[self.GRAPH].attach_face
         self.add_face = self.composables[self.GRAPH].add_face
+
+if __name__ == "__main__":
+    pass
+    

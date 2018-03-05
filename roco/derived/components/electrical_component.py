@@ -35,3 +35,7 @@ class ElectricalComponent(Component):
 
         """
         self.composables['electrical'] = ElectricalComposable(self.get_name(), self.physical)
+
+if __name__ == "__main__":
+    pass
+    

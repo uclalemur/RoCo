@@ -100,3 +100,6 @@ def femaleFingerJoint(length, width, **kwargs):
                         recenter=False)
     maleFemaleFingerJointHelper(face, "slotedge", width, FemaleFingerJointDrawing, **kwargs)
     return face
+
+if __name__ == "__main__":
+  pass

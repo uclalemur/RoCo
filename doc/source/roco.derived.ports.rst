@@ -17,6 +17,30 @@ ports Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`base_port` Module
+-----------------------
+
+.. automodule:: roco.derived.ports.base_port
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`bool_port` Module
+-----------------------
+
+.. automodule:: roco.derived.ports.bool_port
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`calculator` Module
+------------------------
+
+.. automodule:: roco.derived.ports.calculator
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 :mod:`code_port` Module
 -----------------------
 
@@ -89,6 +113,14 @@ ports Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`mount_port` Module
+------------------------
+
+.. automodule:: roco.derived.ports.mount_port
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 :mod:`out_port` Module
 ----------------------
 
@@ -101,6 +133,14 @@ ports Package
 ----------------------
 
 .. automodule:: roco.derived.ports.pwm_port
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`serial_port` Module
+-------------------------
+
+.. automodule:: roco.derived.ports.serial_port
     :members:
     :undoc-members:
     :show-inheritance:

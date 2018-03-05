@@ -1,6 +1,7 @@
 from roco.derived.ports.electrical_port import ElectricalPort
 from roco.derived.components.electrical_component import ElectricalComponent
 
+
 class Servo(ElectricalComponent):
 
     def __init__(self, yaml_file=None, **kwargs):

@@ -247,3 +247,6 @@ def print_equations(f):
   for i,c in enumerate(component.get_relations()):
     print c
   print
+
+if __name__ == "__main__":
+  pass

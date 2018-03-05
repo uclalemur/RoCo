@@ -1,37 +1,25 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>ports Package &#8212; roco 1.0 documentation</title>
-    
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="utils Package" href="roco.derived.utils.html" />
-    <link rel="prev" title="fegraph Package" href="roco.derived.composables.fegraph.html" /> 
-  </head>
-  <body role="document">
+    <link rel="prev" title="target Package" href="roco.derived.composables.target.html" /> 
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -45,7 +33,7 @@
           <a href="roco.derived.utils.html" title="utils Package"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="roco.derived.composables.fegraph.html" title="fegraph Package"
+          <a href="roco.derived.composables.target.html" title="target Package"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">roco 1.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="roco.html" >roco Package</a> &#187;</li>
@@ -61,22 +49,135 @@
   <div class="section" id="ports-package">
 <h1>ports Package<a class="headerlink" href="#ports-package" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2><code class="xref py py-mod docutils literal"><span class="pre">ports</span></code> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">ports</span></code> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-roco.derived.ports"></span><p>The ports package.</p>
 <p>Contains more specific types of ports derived from the base Port class.</p>
 </div>
-<div class="section" id="analog-port-module">
-<h2><code class="xref py py-mod docutils literal"><span class="pre">analog_port</span></code> Module<a class="headerlink" href="#analog-port-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-roco.derived.ports.analog_port">
+<span id="analog-port-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">analog_port</span></code> Module<a class="headerlink" href="#module-roco.derived.ports.analog_port" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="roco.derived.ports.analog_port.AnalogInputPort">
+<em class="property">class </em><code class="descclassname">roco.derived.ports.analog_port.</code><code class="descname">AnalogInputPort</code><span class="sig-paren">(</span><em>parent</em>, <em>pin</em>, <em>virtual=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.analog_port.AnalogInputPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.ports.virtual_electrical_port.VirtualElectricalPort" title="roco.derived.ports.virtual_electrical_port.VirtualElectricalPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.virtual_electrical_port.VirtualElectricalPort</span></code></a></p>
+<p>An Analog input port.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>None</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="roco.derived.ports.analog_port.AnalogOutputPort">
+<em class="property">class </em><code class="descclassname">roco.derived.ports.analog_port.</code><code class="descname">AnalogOutputPort</code><span class="sig-paren">(</span><em>parent</em>, <em>pin</em>, <em>virtual=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.analog_port.AnalogOutputPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.ports.virtual_electrical_port.VirtualElectricalPort" title="roco.derived.ports.virtual_electrical_port.VirtualElectricalPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.virtual_electrical_port.VirtualElectricalPort</span></code></a></p>
+<p>An Analog output port.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>None</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-roco.derived.ports.base_port">
+<span id="base-port-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">base_port</span></code> Module<a class="headerlink" href="#module-roco.derived.ports.base_port" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="roco.derived.ports.base_port.InPort">
+<em class="property">class </em><code class="descclassname">roco.derived.ports.base_port.</code><code class="descname">InPort</code><span class="sig-paren">(</span><em>parent</em>, <em>name</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.base_port.InPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.ports.code_port.CodePort" title="roco.derived.ports.code_port.CodePort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.code_port.CodePort</span></code></a></p>
+<p>A class representing an input port.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>No new attributes.</dd>
+</dl>
+<dl class="method">
+<dt id="roco.derived.ports.base_port.InPort.can_mate">
+<code class="descname">can_mate</code><span class="sig-paren">(</span><em>other_port</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.base_port.InPort.can_mate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this port can mate with other_port and false otherwise.
+Overrides inherited implementation</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>other_port (Port): the port that is compared to this port to check compatibility.</dd>
+<dt>Returns:</dt>
+<dd>Boolean denoting whether or not the ports are compatible.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="roco.derived.ports.base_port.OutPort">
+<em class="property">class </em><code class="descclassname">roco.derived.ports.base_port.</code><code class="descname">OutPort</code><span class="sig-paren">(</span><em>parent</em>, <em>name</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.base_port.OutPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.ports.code_port.CodePort" title="roco.derived.ports.code_port.CodePort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.code_port.CodePort</span></code></a></p>
+<p>A class representing an output port.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>No new attributes.</dd>
+</dl>
+<dl class="method">
+<dt id="roco.derived.ports.base_port.OutPort.can_mate">
+<code class="descname">can_mate</code><span class="sig-paren">(</span><em>other_port</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.base_port.OutPort.can_mate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this port can mate with other_port and false otherwise.
+Overrides inherited implementation</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>other_port (Port): the port that is compared to this port to check compatibility.</dd>
+<dt>Returns:</dt>
+<dd>Boolean denoting whether or not the ports are compatible.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-roco.derived.ports.bool_port">
+<span id="bool-port-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">bool_port</span></code> Module<a class="headerlink" href="#module-roco.derived.ports.bool_port" title="Permalink to this headline">¶</a></h2>
+<p>InBoolPort and OutBoolPort classes.</p>
+<p>This module contains the InBoolPort and OutBoolPort classes.</p>
+<dl class="class">
+<dt id="roco.derived.ports.bool_port.InBoolPort">
+<em class="property">class </em><code class="descclassname">roco.derived.ports.bool_port.</code><code class="descname">InBoolPort</code><span class="sig-paren">(</span><em>parent</em>, <em>name</em>, <em>label</em>, <em>is_arg=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.bool_port.InBoolPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.ports.base_port.InPort" title="roco.derived.ports.base_port.InPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.base_port.InPort</span></code></a>, <a class="reference internal" href="#roco.derived.ports.code_port.CodePort" title="roco.derived.ports.code_port.CodePort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.code_port.CodePort</span></code></a></p>
+<p>A class representing an input port for an integer.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>No new attributes.</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="roco.derived.ports.bool_port.OutBoolPort">
+<em class="property">class </em><code class="descclassname">roco.derived.ports.bool_port.</code><code class="descname">OutBoolPort</code><span class="sig-paren">(</span><em>parent</em>, <em>name</em>, <em>label</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.bool_port.OutBoolPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.ports.base_port.OutPort" title="roco.derived.ports.base_port.OutPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.base_port.OutPort</span></code></a>, <a class="reference internal" href="#roco.derived.ports.code_port.CodePort" title="roco.derived.ports.code_port.CodePort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.code_port.CodePort</span></code></a></p>
+<p>A class representing an output port for an integer.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>No new attributes.</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-roco.derived.ports.calculator">
+<span id="calculator-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">calculator</span></code> Module<a class="headerlink" href="#module-roco.derived.ports.calculator" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="roco.derived.ports.calculator.func">
+<code class="descclassname">roco.derived.ports.calculator.</code><code class="descname">func</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.calculator.func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="roco.derived.ports.calculator.integral">
+<code class="descclassname">roco.derived.ports.calculator.</code><code class="descname">integral</code><span class="sig-paren">(</span><em>start</em>, <em>finish</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.calculator.integral" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 <div class="section" id="module-roco.derived.ports.code_port">
-<span id="code-port-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">code_port</span></code> Module<a class="headerlink" href="#module-roco.derived.ports.code_port" title="Permalink to this headline">¶</a></h2>
+<span id="code-port-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">code_port</span></code> Module<a class="headerlink" href="#module-roco.derived.ports.code_port" title="Permalink to this headline">¶</a></h2>
 <p>CodePort class.</p>
 <p>This module contains the CodePort class as well as the following classes that derive from it:
 OutPort, InPort, InStringPort, OutStringPort, InIntPort, OutIntPort, InFloatPort, OutFloatPort, InDoublePort, OutDoublePort.</p>
 <dl class="class">
 <dt id="roco.derived.ports.code_port.CodePort">
 <em class="property">class </em><code class="descclassname">roco.derived.ports.code_port.</code><code class="descname">CodePort</code><span class="sig-paren">(</span><em>parent</em>, <em>name</em>, <em>label</em>, <em>dtype=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.code_port.CodePort" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.api.html#roco.api.port.Port" title="roco.api.port.Port"><code class="xref py py-class docutils literal"><span class="pre">roco.api.port.Port</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="roco.api.html#roco.api.port.Port" title="roco.api.port.Port"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.api.port.Port</span></code></a></p>
 <p>A class representing a code port</p>
 <dl class="method">
 <dt id="roco.derived.ports.code_port.CodePort.can_mate">
@@ -130,20 +231,66 @@ to_port (port): port that is to be connected to this port.</dd>
 </dd></dl>
 
 </div>
-<div class="section" id="digital-port-module">
-<h2><code class="xref py py-mod docutils literal"><span class="pre">digital_port</span></code> Module<a class="headerlink" href="#digital-port-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-roco.derived.ports.digital_port">
+<span id="digital-port-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">digital_port</span></code> Module<a class="headerlink" href="#module-roco.derived.ports.digital_port" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="roco.derived.ports.digital_port.DigitalInputPort">
+<em class="property">class </em><code class="descclassname">roco.derived.ports.digital_port.</code><code class="descname">DigitalInputPort</code><span class="sig-paren">(</span><em>parent</em>, <em>pin</em>, <em>virtual=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.digital_port.DigitalInputPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.ports.virtual_electrical_port.VirtualElectricalPort" title="roco.derived.ports.virtual_electrical_port.VirtualElectricalPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.virtual_electrical_port.VirtualElectricalPort</span></code></a></p>
+<p>A Digital input port.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>None</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="roco.derived.ports.digital_port.DigitalOutputPort">
+<em class="property">class </em><code class="descclassname">roco.derived.ports.digital_port.</code><code class="descname">DigitalOutputPort</code><span class="sig-paren">(</span><em>parent</em>, <em>pin</em>, <em>virtual=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.digital_port.DigitalOutputPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.ports.virtual_electrical_port.VirtualElectricalPort" title="roco.derived.ports.virtual_electrical_port.VirtualElectricalPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.virtual_electrical_port.VirtualElectricalPort</span></code></a></p>
+<p>A Digital output port.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>None</dd>
+</dl>
+</dd></dl>
+
 </div>
-<div class="section" id="double-port-module">
-<h2><code class="xref py py-mod docutils literal"><span class="pre">double_port</span></code> Module<a class="headerlink" href="#double-port-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-roco.derived.ports.double_port">
+<span id="double-port-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">double_port</span></code> Module<a class="headerlink" href="#module-roco.derived.ports.double_port" title="Permalink to this headline">¶</a></h2>
+<p>InDoublePort and OutDoublePort classes.</p>
+<p>This module contains the InDoublePort and OutDoublePort classes.</p>
+<dl class="class">
+<dt id="roco.derived.ports.double_port.InDoublePort">
+<em class="property">class </em><code class="descclassname">roco.derived.ports.double_port.</code><code class="descname">InDoublePort</code><span class="sig-paren">(</span><em>parent</em>, <em>name</em>, <em>label</em>, <em>is_arg=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.double_port.InDoublePort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.ports.base_port.InPort" title="roco.derived.ports.base_port.InPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.base_port.InPort</span></code></a>, <a class="reference internal" href="#roco.derived.ports.code_port.CodePort" title="roco.derived.ports.code_port.CodePort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.code_port.CodePort</span></code></a></p>
+<p>A class representing an input port for a double.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>No new attributes.</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="roco.derived.ports.double_port.OutDoublePort">
+<em class="property">class </em><code class="descclassname">roco.derived.ports.double_port.</code><code class="descname">OutDoublePort</code><span class="sig-paren">(</span><em>parent</em>, <em>name</em>, <em>label</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.double_port.OutDoublePort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.ports.base_port.OutPort" title="roco.derived.ports.base_port.OutPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.base_port.OutPort</span></code></a>, <a class="reference internal" href="#roco.derived.ports.code_port.CodePort" title="roco.derived.ports.code_port.CodePort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.code_port.CodePort</span></code></a></p>
+<p>A class representing an output port for a double.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>No new attributes.</dd>
+</dl>
+</dd></dl>
+
 </div>
 <div class="section" id="module-roco.derived.ports.edge_port">
-<span id="edge-port-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">edge_port</span></code> Module<a class="headerlink" href="#module-roco.derived.ports.edge_port" title="Permalink to this headline">¶</a></h2>
+<span id="edge-port-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">edge_port</span></code> Module<a class="headerlink" href="#module-roco.derived.ports.edge_port" title="Permalink to this headline">¶</a></h2>
 <p>EdgePort class.</p>
 <p>This module contains the EdgePort class.</p>
 <dl class="class">
 <dt id="roco.derived.ports.edge_port.EdgePort">
 <em class="property">class </em><code class="descclassname">roco.derived.ports.edge_port.</code><code class="descname">EdgePort</code><span class="sig-paren">(</span><em>parent</em>, <em>edge_name</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.edge_port.EdgePort" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.api.html#roco.api.port.Port" title="roco.api.port.Port"><code class="xref py py-class docutils literal"><span class="pre">roco.api.port.Port</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="roco.api.html#roco.api.port.Port" title="roco.api.port.Port"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.api.port.Port</span></code></a></p>
 <p>A class representing a physical edge that can be connected to.</p>
 <dl class="docutils">
 <dt>Attributes:</dt>
@@ -224,17 +371,72 @@ to_port: The port to be connected to</dd>
 </dd></dl>
 
 </div>
-<div class="section" id="electrical-port-module">
-<h2><code class="xref py py-mod docutils literal"><span class="pre">electrical_port</span></code> Module<a class="headerlink" href="#electrical-port-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-roco.derived.ports.electrical_port">
+<span id="electrical-port-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">electrical_port</span></code> Module<a class="headerlink" href="#module-roco.derived.ports.electrical_port" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="roco.derived.ports.electrical_port.ElectricalPort">
+<em class="property">class </em><code class="descclassname">roco.derived.ports.electrical_port.</code><code class="descname">ElectricalPort</code><span class="sig-paren">(</span><em>parent</em>, <em>pins</em>, <em>virtual=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.electrical_port.ElectricalPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="roco.api.html#roco.api.port.Port" title="roco.api.port.Port"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.api.port.Port</span></code></a></p>
+<p>A class representing an Electrical port</p>
+<dl class="method">
+<dt id="roco.derived.ports.electrical_port.ElectricalPort.constrain">
+<code class="descname">constrain</code><span class="sig-paren">(</span><em>parent</em>, <em>to_port</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.electrical_port.ElectricalPort.constrain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a set of semantic constraints to be satisfied when connecting to to_port object.
+Overrides inherited implementation.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>parent (component): parent of to_port //CHECK
+to_port (port): port that is to be connected to this port.</dd>
+<dt>Returns:</dt>
+<dd>list of semantic constraints</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.ports.electrical_port.ElectricalPort.get_component_name">
+<code class="descname">get_component_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.electrical_port.ElectricalPort.get_component_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns name of component</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.ports.electrical_port.ElectricalPort.get_pins">
+<code class="descname">get_pins</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.electrical_port.ElectricalPort.get_pins" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an array of the pins.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>integer array of all pins in this port.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.ports.electrical_port.ElectricalPort.is_virtual">
+<code class="descname">is_virtual</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.electrical_port.ElectricalPort.is_virtual" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether or not this port is virtual</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>Boolean</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-roco.derived.ports.face_port">
-<span id="face-port-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">face_port</span></code> Module<a class="headerlink" href="#module-roco.derived.ports.face_port" title="Permalink to this headline">¶</a></h2>
+<span id="face-port-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">face_port</span></code> Module<a class="headerlink" href="#module-roco.derived.ports.face_port" title="Permalink to this headline">¶</a></h2>
 <p>FacePort class.</p>
 <p>This module contains the FacePort class.</p>
 <dl class="class">
 <dt id="roco.derived.ports.face_port.FacePort">
 <em class="property">class </em><code class="descclassname">roco.derived.ports.face_port.</code><code class="descname">FacePort</code><span class="sig-paren">(</span><em>parent</em>, <em>face</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.face_port.FacePort" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#roco.derived.ports.six_dof_port.SixDOFPort" title="roco.derived.ports.six_dof_port.SixDOFPort"><code class="xref py py-class docutils literal"><span class="pre">roco.derived.ports.six_dof_port.SixDOFPort</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.ports.six_dof_port.SixDOFPort" title="roco.derived.ports.six_dof_port.SixDOFPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.six_dof_port.SixDOFPort</span></code></a></p>
 <p>A class representing a physical face that can be connected to.</p>
 <dl class="docutils">
 <dt>Attributes:</dt>
@@ -280,29 +482,165 @@ is associated with.</dd>
 </dd></dl>
 
 </div>
-<div class="section" id="float-port-module">
-<h2><code class="xref py py-mod docutils literal"><span class="pre">float_port</span></code> Module<a class="headerlink" href="#float-port-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-roco.derived.ports.float_port">
+<span id="float-port-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">float_port</span></code> Module<a class="headerlink" href="#module-roco.derived.ports.float_port" title="Permalink to this headline">¶</a></h2>
+<p>InFloatPort and OutFloatPort classes.</p>
+<p>This module contains the InFloatPort and OutFloatPort classes.</p>
+<dl class="class">
+<dt id="roco.derived.ports.float_port.InFloatPort">
+<em class="property">class </em><code class="descclassname">roco.derived.ports.float_port.</code><code class="descname">InFloatPort</code><span class="sig-paren">(</span><em>parent</em>, <em>name</em>, <em>label</em>, <em>is_arg=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.float_port.InFloatPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.ports.base_port.InPort" title="roco.derived.ports.base_port.InPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.base_port.InPort</span></code></a>, <a class="reference internal" href="#roco.derived.ports.code_port.CodePort" title="roco.derived.ports.code_port.CodePort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.code_port.CodePort</span></code></a></p>
+<p>A class representing an input port for a float.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>No new attributes.</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="roco.derived.ports.float_port.OutFloatPort">
+<em class="property">class </em><code class="descclassname">roco.derived.ports.float_port.</code><code class="descname">OutFloatPort</code><span class="sig-paren">(</span><em>parent</em>, <em>name</em>, <em>label</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.float_port.OutFloatPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.ports.base_port.OutPort" title="roco.derived.ports.base_port.OutPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.base_port.OutPort</span></code></a>, <a class="reference internal" href="#roco.derived.ports.code_port.CodePort" title="roco.derived.ports.code_port.CodePort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.code_port.CodePort</span></code></a></p>
+<p>A class representing an output port for a float.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>No new attributes.</dd>
+</dl>
+</dd></dl>
+
 </div>
 <div class="section" id="in-port-module">
-<h2><code class="xref py py-mod docutils literal"><span class="pre">in_port</span></code> Module<a class="headerlink" href="#in-port-module" title="Permalink to this headline">¶</a></h2>
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">in_port</span></code> Module<a class="headerlink" href="#in-port-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="int-port-module">
-<h2><code class="xref py py-mod docutils literal"><span class="pre">int_port</span></code> Module<a class="headerlink" href="#int-port-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-roco.derived.ports.int_port">
+<span id="int-port-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">int_port</span></code> Module<a class="headerlink" href="#module-roco.derived.ports.int_port" title="Permalink to this headline">¶</a></h2>
+<p>InIntPort and OutIntPort classes.</p>
+<p>This module contains the InIntPort and OutIntPort classes.</p>
+<dl class="class">
+<dt id="roco.derived.ports.int_port.InIntPort">
+<em class="property">class </em><code class="descclassname">roco.derived.ports.int_port.</code><code class="descname">InIntPort</code><span class="sig-paren">(</span><em>parent</em>, <em>name</em>, <em>label</em>, <em>is_arg=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.int_port.InIntPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.ports.base_port.InPort" title="roco.derived.ports.base_port.InPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.base_port.InPort</span></code></a>, <a class="reference internal" href="#roco.derived.ports.code_port.CodePort" title="roco.derived.ports.code_port.CodePort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.code_port.CodePort</span></code></a></p>
+<p>A class representing an input port for an integer.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>No new attributes.</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="roco.derived.ports.int_port.OutIntPort">
+<em class="property">class </em><code class="descclassname">roco.derived.ports.int_port.</code><code class="descname">OutIntPort</code><span class="sig-paren">(</span><em>parent</em>, <em>name</em>, <em>label</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.int_port.OutIntPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.ports.base_port.OutPort" title="roco.derived.ports.base_port.OutPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.base_port.OutPort</span></code></a>, <a class="reference internal" href="#roco.derived.ports.code_port.CodePort" title="roco.derived.ports.code_port.CodePort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.code_port.CodePort</span></code></a></p>
+<p>A class representing an output port for an integer.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>No new attributes.</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-roco.derived.ports.mount_port">
+<span id="mount-port-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">mount_port</span></code> Module<a class="headerlink" href="#module-roco.derived.ports.mount_port" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="roco.derived.ports.mount_port.MountPort">
+<em class="property">class </em><code class="descclassname">roco.derived.ports.mount_port.</code><code class="descname">MountPort</code><span class="sig-paren">(</span><em>parent</em>, <em>decoration</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.mount_port.MountPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="roco.api.html#roco.api.port.Port" title="roco.api.port.Port"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.api.port.Port</span></code></a></p>
+<p>A class representing the connection between a physical object and a
+mechanical face. MountPorts contain decorations, which are cutouts that
+allow for phycial objects to be placed onto faces</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>decoration (Decoration): A graph containing the face holes for the mount</dd>
+</dl>
+<dl class="method">
+<dt id="roco.derived.ports.mount_port.MountPort.can_mate">
+<code class="descname">can_mate</code><span class="sig-paren">(</span><em>other_port</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.mount_port.MountPort.can_mate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this port can mate with other_port and false otherwise.
+Override this method for better matching.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>other_port (Port): the port that is compared to this port to check compatibility.</dd>
+<dt>Returns:</dt>
+<dd>Boolean denoting whether or not the ports are compatible.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.ports.mount_port.MountPort.get_decoration">
+<code class="descname">get_decoration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.mount_port.MountPort.get_decoration" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.ports.mount_port.MountPort.toString">
+<code class="descname">toString</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.mount_port.MountPort.toString" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="out-port-module">
-<h2><code class="xref py py-mod docutils literal"><span class="pre">out_port</span></code> Module<a class="headerlink" href="#out-port-module" title="Permalink to this headline">¶</a></h2>
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">out_port</span></code> Module<a class="headerlink" href="#out-port-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="pwm-port-module">
-<h2><code class="xref py py-mod docutils literal"><span class="pre">pwm_port</span></code> Module<a class="headerlink" href="#pwm-port-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-roco.derived.ports.pwm_port">
+<span id="pwm-port-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">pwm_port</span></code> Module<a class="headerlink" href="#module-roco.derived.ports.pwm_port" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="roco.derived.ports.pwm_port.PWMInputPort">
+<em class="property">class </em><code class="descclassname">roco.derived.ports.pwm_port.</code><code class="descname">PWMInputPort</code><span class="sig-paren">(</span><em>parent</em>, <em>pin</em>, <em>virtual=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.pwm_port.PWMInputPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.ports.virtual_electrical_port.VirtualElectricalPort" title="roco.derived.ports.virtual_electrical_port.VirtualElectricalPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.virtual_electrical_port.VirtualElectricalPort</span></code></a></p>
+<p>A PWM input port.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>None</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="roco.derived.ports.pwm_port.PWMOutputPort">
+<em class="property">class </em><code class="descclassname">roco.derived.ports.pwm_port.</code><code class="descname">PWMOutputPort</code><span class="sig-paren">(</span><em>parent</em>, <em>pin</em>, <em>virtual=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.pwm_port.PWMOutputPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.ports.virtual_electrical_port.VirtualElectricalPort" title="roco.derived.ports.virtual_electrical_port.VirtualElectricalPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.virtual_electrical_port.VirtualElectricalPort</span></code></a></p>
+<p>A PWM output port.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>None</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-roco.derived.ports.serial_port">
+<span id="serial-port-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">serial_port</span></code> Module<a class="headerlink" href="#module-roco.derived.ports.serial_port" title="Permalink to this headline">¶</a></h2>
+<p>InIntPort and OutIntPort classes.</p>
+<p>This module contains the InIntPort and OutIntPort classes.</p>
+<dl class="class">
+<dt id="roco.derived.ports.serial_port.InSerialPort">
+<em class="property">class </em><code class="descclassname">roco.derived.ports.serial_port.</code><code class="descname">InSerialPort</code><span class="sig-paren">(</span><em>parent</em>, <em>name</em>, <em>label</em>, <em>is_arg=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.serial_port.InSerialPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.ports.base_port.InPort" title="roco.derived.ports.base_port.InPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.base_port.InPort</span></code></a>, <a class="reference internal" href="#roco.derived.ports.code_port.CodePort" title="roco.derived.ports.code_port.CodePort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.code_port.CodePort</span></code></a></p>
+<p>A class representing an input port for an integer.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>No new attributes.</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="roco.derived.ports.serial_port.OutSerialPort">
+<em class="property">class </em><code class="descclassname">roco.derived.ports.serial_port.</code><code class="descname">OutSerialPort</code><span class="sig-paren">(</span><em>parent</em>, <em>name</em>, <em>label</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.serial_port.OutSerialPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.ports.base_port.OutPort" title="roco.derived.ports.base_port.OutPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.base_port.OutPort</span></code></a>, <a class="reference internal" href="#roco.derived.ports.code_port.CodePort" title="roco.derived.ports.code_port.CodePort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.code_port.CodePort</span></code></a></p>
+<p>A class representing an output port for an integer.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>No new attributes.</dd>
+</dl>
+</dd></dl>
+
 </div>
 <div class="section" id="module-roco.derived.ports.six_dof_port">
-<span id="six-dof-port-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">six_dof_port</span></code> Module<a class="headerlink" href="#module-roco.derived.ports.six_dof_port" title="Permalink to this headline">¶</a></h2>
+<span id="six-dof-port-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">six_dof_port</span></code> Module<a class="headerlink" href="#module-roco.derived.ports.six_dof_port" title="Permalink to this headline">¶</a></h2>
 <p>SixDOFPort class.</p>
 <p>This module contains the SixDOFPort class.</p>
 <dl class="class">
 <dt id="roco.derived.ports.six_dof_port.SixDOFPort">
 <em class="property">class </em><code class="descclassname">roco.derived.ports.six_dof_port.</code><code class="descname">SixDOFPort</code><span class="sig-paren">(</span><em>parent</em>, <em>obj</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.six_dof_port.SixDOFPort" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="roco.api.html#roco.api.port.Port" title="roco.api.port.Port"><code class="xref py py-class docutils literal"><span class="pre">roco.api.port.Port</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="roco.api.html#roco.api.port.Port" title="roco.api.port.Port"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.api.port.Port</span></code></a></p>
 <p>A class representing a port associated with an object that has 6DOF.</p>
 <dl class="method">
 <dt id="roco.derived.ports.six_dof_port.SixDOFPort.get_points">
@@ -319,11 +657,80 @@ is associated with.</dd>
 </dd></dl>
 
 </div>
-<div class="section" id="string-port-module">
-<h2><code class="xref py py-mod docutils literal"><span class="pre">string_port</span></code> Module<a class="headerlink" href="#string-port-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-roco.derived.ports.string_port">
+<span id="string-port-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">string_port</span></code> Module<a class="headerlink" href="#module-roco.derived.ports.string_port" title="Permalink to this headline">¶</a></h2>
+<p>InStringPort and OutStringPort classes.</p>
+<p>This module contains the InStringPort and OutStringPort classes.</p>
+<dl class="class">
+<dt id="roco.derived.ports.string_port.InStringPort">
+<em class="property">class </em><code class="descclassname">roco.derived.ports.string_port.</code><code class="descname">InStringPort</code><span class="sig-paren">(</span><em>parent</em>, <em>name</em>, <em>label</em>, <em>is_arg=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.string_port.InStringPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.ports.base_port.InPort" title="roco.derived.ports.base_port.InPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.base_port.InPort</span></code></a>, <a class="reference internal" href="#roco.derived.ports.code_port.CodePort" title="roco.derived.ports.code_port.CodePort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.code_port.CodePort</span></code></a></p>
+<p>A class representing an input port for a string.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>No new attributes.</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="roco.derived.ports.string_port.OutStringPort">
+<em class="property">class </em><code class="descclassname">roco.derived.ports.string_port.</code><code class="descname">OutStringPort</code><span class="sig-paren">(</span><em>parent</em>, <em>name</em>, <em>label</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.string_port.OutStringPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.ports.base_port.OutPort" title="roco.derived.ports.base_port.OutPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.base_port.OutPort</span></code></a>, <a class="reference internal" href="#roco.derived.ports.code_port.CodePort" title="roco.derived.ports.code_port.CodePort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.code_port.CodePort</span></code></a></p>
+<p>A class representing an output port for a string.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>No new attributes.</dd>
+</dl>
+</dd></dl>
+
 </div>
-<div class="section" id="virtual-electrical-port-module">
-<h2><code class="xref py py-mod docutils literal"><span class="pre">virtual_electrical_port</span></code> Module<a class="headerlink" href="#virtual-electrical-port-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-roco.derived.ports.virtual_electrical_port">
+<span id="virtual-electrical-port-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">virtual_electrical_port</span></code> Module<a class="headerlink" href="#module-roco.derived.ports.virtual_electrical_port" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="roco.derived.ports.virtual_electrical_port.VirtualElectricalPort">
+<em class="property">class </em><code class="descclassname">roco.derived.ports.virtual_electrical_port.</code><code class="descname">VirtualElectricalPort</code><span class="sig-paren">(</span><em>parent</em>, <em>pin</em>, <em>virtual=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.virtual_electrical_port.VirtualElectricalPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.ports.electrical_port.ElectricalPort" title="roco.derived.ports.electrical_port.ElectricalPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.ports.electrical_port.ElectricalPort</span></code></a></p>
+<p>NO IDEA WHAT ANYTHING IN THIS FILE DOES</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+</dl>
+<dl class="method">
+<dt id="roco.derived.ports.virtual_electrical_port.VirtualElectricalPort.constrain">
+<code class="descname">constrain</code><span class="sig-paren">(</span><em>parent</em>, <em>to_port</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.virtual_electrical_port.VirtualElectricalPort.constrain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a set of semantic constraints to be satisfied when connecting to to_port object.
+Overrides inherited implementation.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>parent (component): parent of to_port //CHECK
+to_port (port): port that is to be connected to this port.</dd>
+<dt>Returns:</dt>
+<dd>list of semantic constraints</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.ports.virtual_electrical_port.VirtualElectricalPort.get_pin_alias">
+<code class="descname">get_pin_alias</code><span class="sig-paren">(</span><em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.virtual_electrical_port.VirtualElectricalPort.get_pin_alias" title="Permalink to this definition">¶</a></dt>
+<dd><p>NO IDEA WHAT THIS DOES</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>p</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.ports.virtual_electrical_port.VirtualElectricalPort.set_parent_pin">
+<code class="descname">set_parent_pin</code><span class="sig-paren">(</span><em>pval</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.ports.virtual_electrical_port.VirtualElectricalPort.set_parent_pin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set value of parent pin to pval</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>pval (int) : new value of parent pin</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 
@@ -336,29 +743,34 @@ is associated with.</dd>
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">ports Package</a><ul>
-<li><a class="reference internal" href="#id1"><code class="docutils literal"><span class="pre">ports</span></code> Package</a></li>
-<li><a class="reference internal" href="#analog-port-module"><code class="docutils literal"><span class="pre">analog_port</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.derived.ports.code_port"><code class="docutils literal"><span class="pre">code_port</span></code> Module</a></li>
-<li><a class="reference internal" href="#digital-port-module"><code class="docutils literal"><span class="pre">digital_port</span></code> Module</a></li>
-<li><a class="reference internal" href="#double-port-module"><code class="docutils literal"><span class="pre">double_port</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.derived.ports.edge_port"><code class="docutils literal"><span class="pre">edge_port</span></code> Module</a></li>
-<li><a class="reference internal" href="#electrical-port-module"><code class="docutils literal"><span class="pre">electrical_port</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.derived.ports.face_port"><code class="docutils literal"><span class="pre">face_port</span></code> Module</a></li>
-<li><a class="reference internal" href="#float-port-module"><code class="docutils literal"><span class="pre">float_port</span></code> Module</a></li>
-<li><a class="reference internal" href="#in-port-module"><code class="docutils literal"><span class="pre">in_port</span></code> Module</a></li>
-<li><a class="reference internal" href="#int-port-module"><code class="docutils literal"><span class="pre">int_port</span></code> Module</a></li>
-<li><a class="reference internal" href="#out-port-module"><code class="docutils literal"><span class="pre">out_port</span></code> Module</a></li>
-<li><a class="reference internal" href="#pwm-port-module"><code class="docutils literal"><span class="pre">pwm_port</span></code> Module</a></li>
-<li><a class="reference internal" href="#module-roco.derived.ports.six_dof_port"><code class="docutils literal"><span class="pre">six_dof_port</span></code> Module</a></li>
-<li><a class="reference internal" href="#string-port-module"><code class="docutils literal"><span class="pre">string_port</span></code> Module</a></li>
-<li><a class="reference internal" href="#virtual-electrical-port-module"><code class="docutils literal"><span class="pre">virtual_electrical_port</span></code> Module</a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">ports</span></code> Package</a></li>
+<li><a class="reference internal" href="#module-roco.derived.ports.analog_port"><code class="docutils literal notranslate"><span class="pre">analog_port</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.derived.ports.base_port"><code class="docutils literal notranslate"><span class="pre">base_port</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.derived.ports.bool_port"><code class="docutils literal notranslate"><span class="pre">bool_port</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.derived.ports.calculator"><code class="docutils literal notranslate"><span class="pre">calculator</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.derived.ports.code_port"><code class="docutils literal notranslate"><span class="pre">code_port</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.derived.ports.digital_port"><code class="docutils literal notranslate"><span class="pre">digital_port</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.derived.ports.double_port"><code class="docutils literal notranslate"><span class="pre">double_port</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.derived.ports.edge_port"><code class="docutils literal notranslate"><span class="pre">edge_port</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.derived.ports.electrical_port"><code class="docutils literal notranslate"><span class="pre">electrical_port</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.derived.ports.face_port"><code class="docutils literal notranslate"><span class="pre">face_port</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.derived.ports.float_port"><code class="docutils literal notranslate"><span class="pre">float_port</span></code> Module</a></li>
+<li><a class="reference internal" href="#in-port-module"><code class="docutils literal notranslate"><span class="pre">in_port</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.derived.ports.int_port"><code class="docutils literal notranslate"><span class="pre">int_port</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.derived.ports.mount_port"><code class="docutils literal notranslate"><span class="pre">mount_port</span></code> Module</a></li>
+<li><a class="reference internal" href="#out-port-module"><code class="docutils literal notranslate"><span class="pre">out_port</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.derived.ports.pwm_port"><code class="docutils literal notranslate"><span class="pre">pwm_port</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.derived.ports.serial_port"><code class="docutils literal notranslate"><span class="pre">serial_port</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.derived.ports.six_dof_port"><code class="docutils literal notranslate"><span class="pre">six_dof_port</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.derived.ports.string_port"><code class="docutils literal notranslate"><span class="pre">string_port</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.derived.ports.virtual_electrical_port"><code class="docutils literal notranslate"><span class="pre">virtual_electrical_port</span></code> Module</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="roco.derived.composables.fegraph.html"
-                        title="previous chapter">fegraph Package</a></p>
+  <p class="topless"><a href="roco.derived.composables.target.html"
+                        title="previous chapter">target Package</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="roco.derived.utils.html"
                         title="next chapter">utils Package</a></p>
@@ -371,12 +783,14 @@ is associated with.</dd>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -396,7 +810,7 @@ is associated with.</dd>
           <a href="roco.derived.utils.html" title="utils Package"
              >next</a> |</li>
         <li class="right" >
-          <a href="roco.derived.composables.fegraph.html" title="fegraph Package"
+          <a href="roco.derived.composables.target.html" title="target Package"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">roco 1.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="roco.html" >roco Package</a> &#187;</li>
@@ -405,7 +819,7 @@ is associated with.</dd>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Gopi Suresh, Ahmed Allibhoy, Christian Warloe, Prathyush Katukojwala.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.1.
     </div>
   </body>
 </html>

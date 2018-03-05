@@ -78,3 +78,6 @@ class CodePort(Port):
         """
         label = self.label.replace("@@name@@", name)
         self.set_parameter("label", label, force_literal=True) ## TODO: this shouldn't require force_literal=True
+
+if __name__ == "__main__":
+    pass

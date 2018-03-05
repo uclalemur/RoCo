@@ -27,3 +27,6 @@ class ContainerComposable(Composable):
 
     def make_output(self, file_dir, **kwargs):
         return
+
+if __name__ == "__main__":
+    pass

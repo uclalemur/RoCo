@@ -15,3 +15,7 @@ def load_yaml(file_name):
     fqn = join(ROCO_DIR, 'library', file_name)
     with open(fqn, 'r') as fd:
         return safe_load(fd)
+
+if __name__ == "__main__":
+    pass
+    

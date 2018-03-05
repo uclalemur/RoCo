@@ -2,6 +2,7 @@ from roco.derived.ports.string_port import InStringPort, OutStringPort
 from roco.derived.components.code_component import CodeComponent
 from roco.derived.composables.target.cpp_target import Cpp
 
+
 class SortString(CodeComponent):
 
     def __init__(self, yaml_file=None, name = None, **kwargs):

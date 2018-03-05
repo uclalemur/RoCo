@@ -3,7 +3,6 @@ from roco.derived.components.code_component import CodeComponent
 from roco.derived.ports.int_port import OutIntPort
 
 
-
 class UserToggle(CodeComponent):
 
 	def __init__(self,  yaml_file=None, **kwargs):
@@ -41,6 +40,7 @@ class UserToggle(CodeComponent):
 
 	def assemble(self):
 		CodeComponent.assemble(self)
+
 
 if __name__ == "__main__":
 	pass

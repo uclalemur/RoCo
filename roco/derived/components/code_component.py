@@ -75,3 +75,7 @@ class CodeComponent(Component):
 
         """
         self.composables['code'] = CodeComposable(self.mangle_names())
+
+if __name__ == "__main__":
+    pass
+    

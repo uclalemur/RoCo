@@ -69,3 +69,6 @@ class ElectricalPort(Port):
 
         """
         return self.virtual
+
+if __name__ == "__main__":
+    pass

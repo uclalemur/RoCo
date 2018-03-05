@@ -7,9 +7,10 @@ from roco.utils.mymath import arctan2, norm
 class mFingerDrawing(FaceD):
     """This class generate the basic element for finger joint decoration.
     It is to add the finger shape not the rectangle tab face.
-         argument:
-             w is the width of finger;
-             t is the half of the height of finger;
+
+    Args:
+        w is the width of finger;
+        t is the half of the height of finger;
 
     """
     def __init__(self, length, width, male=True):
@@ -19,9 +20,10 @@ class mFingerDrawing(FaceD):
 class fFingerDrawing(FaceD):
     """This class generate the basic element for finger joint decoration.
     It is to add the finger shape not the rectangle tab face.
-         argument:
-             w is the width of finger;
-             t is the half of the height of finger;
+    
+    Args:
+        w is the width of finger;
+        t is the half of the height of finger;
 
     """
     def __init__(self, length, width, male=False):
@@ -246,30 +248,23 @@ def femaleFingerJoint(length, width, **kwargs):
     face = fFingerJoint(length, width,male=False,edge_names=["slotedge","e1","oppedge","e3"],recenter=False)
     return face
 
-
-
-
-
-
-
-
-
-## code to execute. ##
-c = fc()
-c.add_subcomponent('s1','Square')
-c.add_subcomponent('s2','Square')
-c.add_subcomponent("s3", "Square")
-c.add_subcomponent("s4", "Square")
-# c.add_subcomponent('s3','Square')
-c.add_connection(('s1','r'),('s2','l'),angle= 90)
-# c.add_connection(('s1','r'),('s2','l'),tab=True, angle= 90,width=1.5) ##angle=90)
-# c.add_connection(('s1','r'),('s2','l'),tab=True, width=3)  ## width is the width of 'tab'. So it actually equals to the width of material.
-c.add_connection(('s2','r'),('s3','l'),angle= 90)
-c.add_connection(('s3','r'),('s4','l'),angle= 90)
-c.add_connection(('s4','r'),('s1','l'),tab=True, angle= 90,width=1.5)
-# c.add_connection(('s3','r'),('s1','l'),tab=True, width=3)
-# c.make_output(tabFace=None,tabDecoration=None,slotFace=femaleFingerJoint, slotDecoration=None)
-# c.make_output(display=False,thickness=10,tabFace=maleFingerJoint,tabDecoration=maleFingerJointDecoration,slotFace=femaleFingerJoint, slotDecoration=femaleFingerJointDecoration)
-c.make_output(tabFace=maleFingerJoint,tabDecoration=maleFingerJointDecoration,slotFace=femaleFingerJoint, slotDecoration=femaleFingerJointDecoration)
-# c.make_output(display=False,thickness=10)
-# c.make_output()
+if __name__ == "__main__":
+    ## code to execute. ##
+    c = fc()
+    c.add_subcomponent('s1','Square')
+    c.add_subcomponent('s2','Square')
+    c.add_subcomponent("s3", "Square")
+    c.add_subcomponent("s4", "Square")
+    # c.add_subcomponent('s3','Square')
+    c.add_connection(('s1','r'),('s2','l'),angle= 90)
+    # c.add_connection(('s1','r'),('s2','l'),tab=True, angle= 90,width=1.5) ##angle=90)
+    # c.add_connection(('s1','r'),('s2','l'),tab=True, width=3)  ## width is the width of 'tab'. So it actually equals to the width of material.
+    c.add_connection(('s2','r'),('s3','l'),angle= 90)
+    c.add_connection(('s3','r'),('s4','l'),angle= 90)
+    c.add_connection(('s4','r'),('s1','l'),tab=True, angle= 90,width=1.5)
+    # c.add_connection(('s3','r'),('s1','l'),tab=True, width=3)
+    # c.make_output(tabFace=None,tabDecoration=None,slotFace=femaleFingerJoint, slotDecoration=None)
+    # c.make_output(display=False,thickness=10,tabFace=maleFingerJoint,tabDecoration=maleFingerJointDecoration,slotFace=femaleFingerJoint, slotDecoration=femaleFingerJointDecoration)
+    c.make_output(tabFace=maleFingerJoint,tabDecoration=maleFingerJointDecoration,slotFace=femaleFingerJoint, slotDecoration=femaleFingerJointDecoration)
+    # c.make_output(display=False,thickness=10)
+    # c.make_output()

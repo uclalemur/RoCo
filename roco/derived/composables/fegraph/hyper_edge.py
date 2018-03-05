@@ -268,3 +268,6 @@ class HyperEdge(object):
             return ret + repr(self.faces.values())
         else:
             return ret
+
+if __name__ == "__main__":
+    pass

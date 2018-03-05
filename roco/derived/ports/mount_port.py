@@ -29,3 +29,7 @@ class MountPort(Port):
             return (other_port.get_face_name() is not None)
         except AttributeError:
             return False
+
+if __name__ == "__main__":
+    pass
+    

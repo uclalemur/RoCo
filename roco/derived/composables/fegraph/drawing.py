@@ -465,3 +465,7 @@ class Face(Drawing):
 class Rectangle(Face):
   def __init__(self, l, w, edge_type = None, origin = True):
     Face.__init__(self, ((l, 0), (l, w), (0, w), (0,0)), edge_type, origin)
+
+if __name__ == "__main__":
+    pass
+    

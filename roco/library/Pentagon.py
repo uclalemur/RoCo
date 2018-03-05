@@ -27,5 +27,5 @@ class Pentagon(FoldedComponent):
         self.add_interface("s4", EdgePort(self, "e4"))
         self.add_interface("s5", EdgePort(self, "e5"))
 
-    if __name__ == "__main__":
-        h = Pentagon()
+if __name__ == "__main__":
+    h = Pentagon()

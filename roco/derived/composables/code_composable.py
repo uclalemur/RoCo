@@ -130,3 +130,6 @@ class CodeComposable(VirtualComposable):
 
         for (target, meta) in self.meta.iteritems():
             target(self, meta).make_output(file_dir, **kwargs)
+
+if __name__ == "__main__":
+    pass

@@ -4,6 +4,7 @@ from roco.derived.components.code_component import CodeComponent
 from roco.derived.composables.target.cpp_target import Cpp
 from roco.derived.composables.target.arduino_target import Arduino
 
+
 class StringToMotor(CodeComponent):
 
     def __init__(self, yaml_file=None, **kwargs):

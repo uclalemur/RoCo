@@ -134,3 +134,6 @@ class ElectricalComposable(Composable):
                     f.write("Connect %s on %s to Vout\n" % (f_pin_name, name))
                 elif f_pin in val["power"]["Ground"]:
                     f.write("Connect %s on %s to ground\n" % (f_pin_name, name))
+
+if __name__ == "__main__":
+    pass

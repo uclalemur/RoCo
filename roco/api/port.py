@@ -222,3 +222,6 @@ class Port(Parameterized):
                     constraints.append(Eq(self.get_parameter(p)+kwargs["offset_" + p], to_port.get_parameter(p)))
                 else:
                     constraints.append(Eq(self.get_parameter(p), to_port.get_parameter(p)))
+
+if __name__ == "__main__":
+    pass

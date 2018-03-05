@@ -5,6 +5,7 @@ from roco.derived.ports.face_port import FacePort
 from roco.utils.utils import prefix
 from sympy import LessThan
 
+
 class Trapezoid2(FoldedComponent):
 
     _test_params = {
@@ -40,5 +41,5 @@ class Trapezoid2(FoldedComponent):
         self.add_interface("s1", EdgePort(self, "e2"))
         self.add_interface("s2", EdgePort(self, "e0"))
 
-    if __name__ == "__main__":
-        h = Trapezoid2()
+if __name__ == "__main__":
+    h = Trapezoid2()

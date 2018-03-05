@@ -252,3 +252,6 @@ class Cpp(Target):
 
         f.write(main)
         f.close()
+
+if __name__ == "__main__":
+    pass

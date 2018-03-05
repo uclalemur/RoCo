@@ -232,3 +232,6 @@ class GraphComposable(Composable, FaceEdgeGraph):
           sys.stdout.flush()
           self.to_stl(filedir + "/model.stl")
           print "done."
+
+if __name__ == "__main__":
+  pass

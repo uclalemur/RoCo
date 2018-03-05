@@ -67,3 +67,6 @@ self.transform3D = np.eye(4)
             quat = [a, b, c, d]
             self.transform3D = np.dot(self.transform3D, quat2DCM(quat))"""
 
+if __name__ == "__main__":
+    pass
+    

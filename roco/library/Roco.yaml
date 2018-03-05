@@ -1,0 +1,32 @@
+connections:
+- - [s2s, receivedString]
+  - [compare, inString]
+  - {}
+- - [serial, came]
+  - [s2s, came]
+  - {}
+- - [s2s, cameOut]
+  - [compare, inDetected]
+  - {}
+- - [serial, received]
+  - [s2s, received]
+  - {}
+constants: {}
+constraints: []
+hierarchical_constraints: []
+interfaces: {}
+parameters: {compare_compareString: '''Go''', compare_target: '''''', s2s_target: '''''',
+  serial_target: ''''''}
+subcomponents:
+  compare:
+    class: string_compare
+    constants: {}
+    parameters: {}
+  s2s:
+    class: serial_to_string
+    constants: {}
+    parameters: {}
+  serial:
+    class: serial_in
+    constants: {}
+    parameters: {}

@@ -124,3 +124,6 @@ class Variable(Dummy):
       state['default'] = self.default
       state['solved'] = self.solved
       return state
+
+if __name__ == "__main__":
+    pass

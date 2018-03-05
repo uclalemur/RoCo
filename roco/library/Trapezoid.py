@@ -35,5 +35,5 @@ class Trapezoid(FoldedComponent):
         self.add_interface("t", EdgePort(self, "e1"))
         self.add_interface("b", EdgePort(self, "e3"))
 
-    if __name__ == "__main__":
-        h = Trapezoid()
+if __name__ == "__main__":
+    h = Trapezoid()

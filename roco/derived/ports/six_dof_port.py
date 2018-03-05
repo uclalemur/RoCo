@@ -33,3 +33,7 @@ class SixDOFPort(Port):
             A list with the dx, dy, dz parameters
         """
         return [[self.get_parameter(x) for x in ["dx", "dy", "dz"]]]
+
+if __name__ == "__main__":
+    pass
+    

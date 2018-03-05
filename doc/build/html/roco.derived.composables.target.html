@@ -1,0 +1,441 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>target Package &#8212; roco 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="ports Package" href="roco.derived.ports.html" />
+    <link rel="prev" title="fegraph Package" href="roco.derived.composables.fegraph.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="roco.derived.ports.html" title="ports Package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="roco.derived.composables.fegraph.html" title="fegraph Package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">roco 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="roco.html" >roco Package</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="roco.derived.html" >derived Package</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="roco.derived.composables.html" accesskey="U">composables Package</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="target-package">
+<h1>target Package<a class="headerlink" href="#target-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">target</span></code> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-roco.derived.composables.target"></span><p>The targets package within derived.</p>
+<p>This package contains all target types derived from the base Target.</p>
+</div>
+<div class="section" id="module-roco.derived.composables.target.arduino_target">
+<span id="arduino-target-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">arduino_target</span></code> Module<a class="headerlink" href="#module-roco.derived.composables.target.arduino_target" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="roco.derived.composables.target.arduino_target.Arduino">
+<em class="property">class </em><code class="descclassname">roco.derived.composables.target.arduino_target.</code><code class="descname">Arduino</code><span class="sig-paren">(</span><em>composable</em>, <em>meta</em>, <em>name=''</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.arduino_target.Arduino" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.composables.target.cpp_target.Cpp" title="roco.derived.composables.target.cpp_target.Cpp"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.composables.target.cpp_target.Cpp</span></code></a></p>
+<dl class="method">
+<dt id="roco.derived.composables.target.arduino_target.Arduino.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>new_meta</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.arduino_target.Arduino.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Appends the code of a different composable to this target.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>new_meta (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, optional): A dictionary containing the different parts of the code.</dd>
+<dt>Returns:</dt>
+<dd>None.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.target.arduino_target.Arduino.get_parameters">
+<code class="descname">get_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.arduino_target.Arduino.get_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an array of all the parameters used in the code</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None.</dd>
+<dt>Returns:</dt>
+<dd>A string array of all the parameters in the code.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.target.arduino_target.Arduino.make_output">
+<code class="descname">make_output</code><span class="sig-paren">(</span><em>filedir</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.arduino_target.Arduino.make_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the Code Composable into source code and writes it to a
+specified file.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>filedir (str): Path for the output file.
+<a href="#id2"><span class="problematic" id="id3">**</span></a>kwargs: Arbitrary keyword arguments to control construction.</dd>
+<dt>Returns:</dt>
+<dd>None.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.target.arduino_target.Arduino.mangle">
+<code class="descname">mangle</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.arduino_target.Arduino.mangle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unmangles all the variable names in the Code Composable so that they can
+be reused for other components.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name (str): The name of the component.</dd>
+<dt>Returns:</dt>
+<dd>None.</dd>
+</dl>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="roco.derived.composables.target.arduino_target.Arduino.new">
+<em class="property">static </em><code class="descname">new</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.arduino_target.Arduino.new" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.target.arduino_target.Arduino.sub_parameters">
+<code class="descname">sub_parameters</code><span class="sig-paren">(</span><em>subs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.arduino_target.Arduino.sub_parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.target.arduino_target.Arduino.update_interface">
+<code class="descname">update_interface</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.arduino_target.Arduino.update_interface" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.target.arduino_target.Arduino.write_HTML">
+<code class="descname">write_HTML</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.arduino_target.Arduino.write_HTML" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-roco.derived.composables.target.cpp_target">
+<span id="cpp-target-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">cpp_target</span></code> Module<a class="headerlink" href="#module-roco.derived.composables.target.cpp_target" title="Permalink to this headline">¶</a></h2>
+<p>Cpp Target class and helper functions.</p>
+<p>This module contains the CppTarget class as well as functions that help convert
+the data within the Code Composable into C++.</p>
+<dl class="class">
+<dt id="roco.derived.composables.target.cpp_target.Cpp">
+<em class="property">class </em><code class="descclassname">roco.derived.composables.target.cpp_target.</code><code class="descname">Cpp</code><span class="sig-paren">(</span><em>composable</em>, <em>meta</em>, <em>name=''</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.cpp_target.Cpp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#roco.derived.composables.target.target.Target" title="roco.derived.composables.target.target.Target"><code class="xref py py-class docutils literal notranslate"><span class="pre">roco.derived.composables.target.target.Target</span></code></a></p>
+<dl class="method">
+<dt id="roco.derived.composables.target.cpp_target.Cpp.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>new_meta</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.cpp_target.Cpp.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Appends the code of a different composable to this target.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>new_meta (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, optional): A dictionary containing the different parts of the code.</dd>
+<dt>Returns:</dt>
+<dd>None.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.target.cpp_target.Cpp.attach">
+<code class="descname">attach</code><span class="sig-paren">(</span><em>from_port</em>, <em>to_port</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.cpp_target.Cpp.attach" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attaches two ports in the component and replaces their symbolic
+representation in the target with real code.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>from_port (OutPort): An output port that outputs into the parent component.
+to_port (InPort): An input port that takes the from_port as an input in the parent component.
+<a href="#id4"><span class="problematic" id="id5">**</span></a>kwargs: Arbitrary keyword arguments to control construction.</dd>
+<dt>Returns:</dt>
+<dd>None.</dd>
+</dl>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="roco.derived.composables.target.cpp_target.Cpp.detokenize">
+<em class="property">static </em><code class="descname">detokenize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.cpp_target.Cpp.detokenize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unmangles the given token.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>token (str): String to be unmangled.</dd>
+<dt>Returns:</dt>
+<dd>The original unmangled string.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.target.cpp_target.Cpp.get_inputs">
+<code class="descname">get_inputs</code><span class="sig-paren">(</span><em>output_label</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.cpp_target.Cpp.get_inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an array containing all the inputs used for a given output.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>output_label (str): The output for which inputs are returned.</dd>
+<dt>Returns:</dt>
+<dd>An array of strings containing the inputs used for the output named output_label.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.target.cpp_target.Cpp.get_parameters">
+<code class="descname">get_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.cpp_target.Cpp.get_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an array of all the parameters used in the code</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None.</dd>
+<dt>Returns:</dt>
+<dd>A string array of all the parameters in the code.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.target.cpp_target.Cpp.get_params_from">
+<code class="descname">get_params_from</code><span class="sig-paren">(</span><em>where</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.cpp_target.Cpp.get_params_from" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an array containing the unmangled versions of all the mangled
+parameter tokens in a given string.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>where (str): A string containing mangled tokens.</dd>
+<dt>Returns:</dt>
+<dd>An array containing the unmangled parameters in a given string.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.target.cpp_target.Cpp.make_output">
+<code class="descname">make_output</code><span class="sig-paren">(</span><em>filedir</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.cpp_target.Cpp.make_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the Code Composable into source code and writes it to a
+specified file.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>filedir (str): Path for the output file.
+<a href="#id6"><span class="problematic" id="id7">**</span></a>kwargs: Arbitrary keyword arguments to control construction.</dd>
+<dt>Returns:</dt>
+<dd>None.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.target.cpp_target.Cpp.mangle">
+<code class="descname">mangle</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.cpp_target.Cpp.mangle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unmangles all the variable names in the Code Composable so that they can
+be reused for other components.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name (str): The name of the component.</dd>
+<dt>Returns:</dt>
+<dd>None.</dd>
+</dl>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="roco.derived.composables.target.cpp_target.Cpp.new">
+<em class="property">static </em><code class="descname">new</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.cpp_target.Cpp.new" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a new empty meta dictionary.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None.</dd>
+<dt>Returns:</dt>
+<dd>A new empty meta dictionary.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.target.cpp_target.Cpp.replace_all_inputs">
+<code class="descname">replace_all_inputs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.cpp_target.Cpp.replace_all_inputs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.target.cpp_target.Cpp.replace_input">
+<code class="descname">replace_input</code><span class="sig-paren">(</span><em>output_label</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.cpp_target.Cpp.replace_input" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.target.cpp_target.Cpp.sub_parameters">
+<code class="descname">sub_parameters</code><span class="sig-paren">(</span><em>subs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.cpp_target.Cpp.sub_parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="roco.derived.composables.target.cpp_target.Cpp.tokenize">
+<em class="property">static </em><code class="descname">tokenize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.cpp_target.Cpp.tokenize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Marks the input label for mangling.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>label (str): String to be mangled.</dd>
+<dt>Returns:</dt>
+<dd>The mangled string.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-roco.derived.composables.target.target">
+<span id="target-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">target</span></code> Module<a class="headerlink" href="#module-roco.derived.composables.target.target" title="Permalink to this headline">¶</a></h2>
+<p>Target class and helper functions.</p>
+<p>This module contains the Target class as well as functions that convert the data
+within the Code Composable into specific languages that the targets will output.
+This class does nothing by itself. It needs to be extended to add any and all
+functionality.</p>
+<dl class="class">
+<dt id="roco.derived.composables.target.target.Target">
+<em class="property">class </em><code class="descclassname">roco.derived.composables.target.target.</code><code class="descname">Target</code><span class="sig-paren">(</span><em>composable</em>, <em>meta</em>, <em>name=''</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.target.Target" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="roco.derived.composables.target.target.Target.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>new_meta</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.target.Target.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Appends the code of a different composable to this target.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>new_meta (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, optional): A dictionary containing the different parts of the code.</dd>
+<dt>Returns:</dt>
+<dd>None.</dd>
+<dt>Raises:</dt>
+<dd>NotImplementedError</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.target.target.Target.attach">
+<code class="descname">attach</code><span class="sig-paren">(</span><em>from_port</em>, <em>to_port</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.target.Target.attach" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attaches two ports in the component and replaces their symbolic
+representation in the target with real code.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>from_port (OutPort): An output port that outputs into the parent component.
+to_port (InPort): An input port that takes the from_port as an input in the parent component.
+<a href="#id8"><span class="problematic" id="id9">**</span></a>kwargs: Arbitrary keyword arguments to control construction.</dd>
+<dt>Returns:</dt>
+<dd>None.</dd>
+<dt>Raises:</dt>
+<dd>NotImplementedError</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.target.target.Target.makeOutput">
+<code class="descname">makeOutput</code><span class="sig-paren">(</span><em>filedir</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.target.Target.makeOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the Code Componsable into source code and writes it to a
+specified file.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>filedir (str): Path for the output file.
+<a href="#id10"><span class="problematic" id="id11">**</span></a>kwargs: Arbitrary keyword arguments to control construction.</dd>
+<dt>Returns:</dt>
+<dd>None.</dd>
+<dt>Raises:</dt>
+<dd>NotImplementedError</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="roco.derived.composables.target.target.Target.mangle">
+<code class="descname">mangle</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#roco.derived.composables.target.target.Target.mangle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unmangles all the variable names in the Code Composable so that they can
+be reused for other components.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>name (str): The name of the component.</dd>
+<dt>Returns:</dt>
+<dd>None.</dd>
+<dt>Raises:</dt>
+<dd>NotImplementedError</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">target Package</a><ul>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">target</span></code> Package</a></li>
+<li><a class="reference internal" href="#module-roco.derived.composables.target.arduino_target"><code class="docutils literal notranslate"><span class="pre">arduino_target</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.derived.composables.target.cpp_target"><code class="docutils literal notranslate"><span class="pre">cpp_target</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-roco.derived.composables.target.target"><code class="docutils literal notranslate"><span class="pre">target</span></code> Module</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="roco.derived.composables.fegraph.html"
+                        title="previous chapter">fegraph Package</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="roco.derived.ports.html"
+                        title="next chapter">ports Package</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/roco.derived.composables.target.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="roco.derived.ports.html" title="ports Package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="roco.derived.composables.fegraph.html" title="fegraph Package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">roco 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="roco.html" >roco Package</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="roco.derived.html" >derived Package</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="roco.derived.composables.html" >composables Package</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Gopi Suresh, Ahmed Allibhoy, Christian Warloe, Prathyush Katukojwala.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.1.
+    </div>
+  </body>
+</html>

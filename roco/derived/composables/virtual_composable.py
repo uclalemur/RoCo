@@ -56,3 +56,6 @@ class VirtualComposable(Composable):
             Composable has not container.
         """
         pass
+
+if __name__ == "__main__":
+    pass

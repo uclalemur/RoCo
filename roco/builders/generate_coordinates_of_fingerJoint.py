@@ -72,3 +72,4 @@ class FingerJoint(Face):
 if __name__ == "__main__":  ## only execute this code when you run the code from this dir
     d = CoorForFingerjoint(40,'female')
     print(d)
+    

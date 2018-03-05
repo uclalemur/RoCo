@@ -13,6 +13,7 @@ from roco.derived.components.code_component import CodeComponent
 from roco.derived.composables.target.cpp_target import Cpp
 from roco.derived.composables.target.arduino_target import Arduino
 
+
 # Subclass this component with from Whatever type of component it is.
 class SerialIn(CodeComponent):
 

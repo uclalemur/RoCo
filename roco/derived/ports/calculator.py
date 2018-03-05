@@ -9,4 +9,5 @@ def integral(start, finish):
         sum += func(x+dx)*dx
         x = x+dx
 
-integral(-1, 1)
+if __name__ == "__main__":
+    integral(-1, 1)

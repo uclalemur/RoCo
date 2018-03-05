@@ -32,3 +32,7 @@ class VirtualElectricalPort(ElectricalPort):
         to_port.set_parent_pin(self.get_pin_alias(self.pins))
         self.set_parent_pin(to_port.get_pin_alias(to_port.pins))
         return []
+
+if __name__ == "__main__":
+    pass
+    

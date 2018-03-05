@@ -60,3 +60,7 @@ class Connection(object):
 
         """
         return self.matched_ports
+
+if __name__ == "__main__":
+    pass
+    

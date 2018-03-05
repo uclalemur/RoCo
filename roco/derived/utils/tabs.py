@@ -91,3 +91,6 @@ def BeamSlots(length, width, **kwargs):
                         recenter=False)
     BeamTabSlotHelper(face, "slotedge", width, SlotDrawing, **kwargs)
     return face
+
+if __name__ == "__main__":
+  pass

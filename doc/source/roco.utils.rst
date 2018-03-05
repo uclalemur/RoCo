@@ -33,6 +33,22 @@ utils Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`src` Module
+-----------------
+
+.. automodule:: roco.utils.src
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`transforms` Module
+------------------------
+
+.. automodule:: roco.utils.transforms
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 :mod:`utils` Module
 -------------------
 
