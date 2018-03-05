@@ -282,10 +282,8 @@ class Face(object):
         while self.edges:
             new_edges.append(self.edges.pop())
             new_edges[-1].flip_connection(self)
-            new_pts.append(self.pts_2D.pop())
         new_edges.insert(0, new_edges.pop())
         self.edges = new_edges
-        self.pts_2D = new_pts
         return self
 
     def transform(self, scale=1, angle=0, origin=(0, 0)):

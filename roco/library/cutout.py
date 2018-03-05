@@ -7,9 +7,9 @@ from roco.derived.ports.mount_port import MountPort
 class Cutout(Component):
 
     def define(self):
-            self.add_parameter("width", 10)
-            self.add_parameter("length", 10)
-            self.add_interface("mount", MountPort(self, None))
+        self.add_parameter("width", 8)
+        self.add_parameter("length", 18)
+        self.add_interface("mount", MountPort(self, None))
 
     def assemble(self):
         w = self.get_parameter("width").get_value()
@@ -25,7 +25,7 @@ class Cutout(Component):
 
 
 if __name__ == "__main__":
-        h = Header()
-        h.set_parameter("width", 11)
-        h.set_parameter("length", 11)
-        h.make()
+    h = Header()
+    h.set_parameter("width", 11)
+    h.set_parameter("length", 11)
+    h.make()

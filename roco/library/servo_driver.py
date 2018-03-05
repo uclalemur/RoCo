@@ -4,6 +4,7 @@ from roco.api.component import Component
 from roco.derived.ports.pwm_port import PWMInputPort, PWMOutputPort 
 from roco.derived.ports.electrical_port import ElectricalPort
 from roco.derived.ports.digital_port import DigitalInputPort
+from roco.derived.ports.bool_port import InBoolPort
 from roco.derived.components.code_component import CodeComponent
 from roco.derived.components.electrical_component import ElectricalComponent
 from roco.derived.composables.target.arduino_target import Arduino
@@ -21,8 +22,8 @@ class ServoDriver(Driver):
         self.physical = {
             "numPins": 3,
             "power": {
-                "Vin": [1],
-                "Ground": [0]
+                "Vin": [0],
+                "Ground": [1]
             },
             "aliases": ["Vin", "ground", "PWMin"]
         }
@@ -33,10 +34,11 @@ class ServoDriver(Driver):
 
                 "inputs": {
                     "in_@@name@@": None,
+                    "enable_@@name@@": None,
                 },
 
                 "outputs": {
-                    "servo_@@name@@": "servo_@@name@@.write(127)"
+                    "servo_@@name@@": "servo_@@name@@.write(<<in_@@name@@>>)"
                 },
 
                 "declarations": "Servo servo_@@name@@;",
@@ -50,7 +52,7 @@ class ServoDriver(Driver):
         self.add_interface("inInt", InIntPort(self, "inInt", "in_@@name@@"))
         self.add_interface("eOut", ElectricalPort(self, [2], virtual=True))
         self.add_interface("PWMin", PWMInputPort(self, [2], virtual=True))
-
+        self.add_interface("Enable", InBoolPort(self, "enable", "enable_@@name@@"))
         self.add_parameter("Pin", "", isSymbol=False)
 
         Driver.define(self)

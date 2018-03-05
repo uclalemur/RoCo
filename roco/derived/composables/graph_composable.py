@@ -98,7 +98,7 @@ class GraphComposable(Composable, FaceEdgeGraph):
                 self.add_tab(label1[i], label2[i], **newargs)
                 continue
             except:
-              pass
+                pass
             self.merge_edge(label1[i], label2[i], **newargs)
         # Attach if one port contains a Face and the other contains a Decoration
         try:
