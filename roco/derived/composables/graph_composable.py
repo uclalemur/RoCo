@@ -1,5 +1,4 @@
 """The GraphComposable Module
-
 Contains the GraphComposable class, which adds output functionality to the
 graph class
 """
@@ -24,11 +23,9 @@ class Decoration(Composable, FaceEdgeGraph):
 
 class GraphComposable(Composable, FaceEdgeGraph):
     """Class allowing output to be produced from FaceEdgeGraphs
-
     The GraphComposable class adds the Composable interface to the
     FaceEdgeGraph class. With this class, graphs can be converted to drawings
     and output to a file or drawn using tkinter
-
     Attributes:
         component (FoldedComponent): Reference to the FoldedComponent
             represented by the graph
@@ -37,7 +34,6 @@ class GraphComposable(Composable, FaceEdgeGraph):
     def __init__(self, transform=None):
         """
         Initializes a GraphComposable
-
         Args:
             transform: optional initial transform
         """
@@ -47,7 +43,6 @@ class GraphComposable(Composable, FaceEdgeGraph):
     def append(self, g2, prefix2):
         """
         Composes two GraphComposables and prefixes the composable being composed if necessary
-
         Args:
             g2 (GraphComposable): GraphComposable to append to this one
             prefix2 (str): string to prefix g2 with
@@ -63,7 +58,6 @@ class GraphComposable(Composable, FaceEdgeGraph):
     def attach(self, port1, port2, **kwargs):
         """
         Attaches two ports together in this composable
-
         Args:
             port1 (Port): first port to attach
             port2 (Port): second port to attach
@@ -127,7 +121,6 @@ class GraphComposable(Composable, FaceEdgeGraph):
         """
         Creates output based on the composable to the given directory.
         The output files depend upon the kwargs.
-
         Args:
             filedir (str): file directory to place output files
             **kwargs (dict): arguments for the make process as well as output files
