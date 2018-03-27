@@ -1,7 +1,0 @@
-connections: []
-constants: {}
-constraints: []
-hierarchical_constraints: []
-interfaces: {}
-parameters: {Width: '79'}
-subcomponents: {}

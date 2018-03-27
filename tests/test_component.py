@@ -1,9 +1,10 @@
 import sys
 import os
 import unittest
-sys.path.insert(1, os.path.join(sys.path[0], '..'))
+
 from roco.api.component import Component  # Imports the Component class
 from roco.api.port import Port  # Imports the Port class
+
 
 class TestComponent(unittest.TestCase):    
     def setUp(self):

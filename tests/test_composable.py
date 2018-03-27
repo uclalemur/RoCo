@@ -1,9 +1,10 @@
 import sys
 import os
 import unittest
-sys.path.insert(1, os.path.join(sys.path[0], '..'))
+
 from roco.api.composable import Composable  # Imports the Composable class
 from roco.api.interface import Interface  # Imports the Interface class
+
 
 class TestComposable(unittest.TestCase):
     def setUp(self):

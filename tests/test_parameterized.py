@@ -1,8 +1,9 @@
 import sys
 import os
 import unittest
-sys.path.insert(1, os.path.join(sys.path[0], '..'))
-from api.parameterized import Parameterized  # Imports the Parameterized class
+
+from roco.api.parameterized import Parameterized  # Imports the Parameterized class
+
 
 class TestParameterized(unittest.TestCase):
     def setUp(self):
